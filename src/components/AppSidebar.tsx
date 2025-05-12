@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarFooter } from "@/components/ui/sidebar";
-import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug } from "lucide-react";
+import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug, List } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useCapabilities } from "@/context/CapabilitiesContext";
 
@@ -159,6 +159,20 @@ export const AppSidebar = () => {
             <SidebarMenuButton tooltip="Integrations" className="py-4">
               <Plug />
               <span>Integrations</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton 
+              isActive={currentPath === '/customize-menu'} 
+              tooltip="Customise menu" 
+              className="py-4"
+              asChild
+            >
+              <Link to="/customize-menu">
+                <List />
+                <span>Customise menu</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           
