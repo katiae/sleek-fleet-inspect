@@ -99,8 +99,8 @@ export const AppSidebar = () => {
         {/* Separator for new section */}
         <SidebarSeparator className="my-4" />
         
-        {/* Extensions & Resources section - Moved to bottom */}
-        <SidebarGroupLabel>Extensions & Resources</SidebarGroupLabel>
+        {/* Resources section */}
+        <SidebarGroupLabel>Resources</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton tooltip="Add Capabilities" className="py-4">
