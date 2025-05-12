@@ -3,6 +3,7 @@ import React from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarFooter } from "@/components/ui/sidebar";
 import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useCapabilities } from "@/context/CapabilitiesContext";
 
 export const AppSidebar = () => {
   const {
@@ -12,6 +13,12 @@ export const AppSidebar = () => {
   
   const location = useLocation();
   const currentPath = location.pathname;
+  
+  const { capabilities } = useCapabilities();
+  
+  // Filter active capabilities by section
+  const mainCapabilities = capabilities.filter(cap => cap.active && cap.section === "Main");
+  const adminCapabilities = capabilities.filter(cap => cap.active && cap.section === "Administration");
 
   return <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader>
@@ -32,7 +39,7 @@ export const AppSidebar = () => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              isActive={false} 
+              isActive={currentPath === '/'} 
               tooltip="Cases" 
               className="py-4"
               asChild
@@ -64,6 +71,16 @@ export const AppSidebar = () => {
               <span>Availability</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
+          
+          {/* Render Main section capabilities */}
+          {mainCapabilities.map((capability) => (
+            <SidebarMenuItem key={capability.id}>
+              <SidebarMenuButton tooltip={capability.name} className="py-4">
+                {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
+                <span>{capability.name}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
         
         {/* Separator between sections */}
@@ -106,6 +123,16 @@ export const AppSidebar = () => {
               <span>Fees</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
+          
+          {/* Render Administration section capabilities */}
+          {adminCapabilities.map((capability) => (
+            <SidebarMenuItem key={capability.id}>
+              <SidebarMenuButton tooltip={capability.name} className="py-4">
+                {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
+                <span>{capability.name}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
       </SidebarContent>
       
@@ -116,7 +143,7 @@ export const AppSidebar = () => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              isActive={true} 
+              isActive={currentPath === '/capabilities'} 
               tooltip="Add Capabilities" 
               className="data-[active=true]:bg-white py-4"
               asChild
@@ -145,4 +172,3 @@ export const AppSidebar = () => {
       </SidebarFooter>
     </Sidebar>;
 };
-
