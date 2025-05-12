@@ -17,8 +17,8 @@ export const AppSidebar = () => {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b">
-        <div className="flex items-center justify-between p-2">
-          <div className="flex items-center space-x-2 px-2">
+        <div className={`flex ${state === "collapsed" ? "flex-col" : ""} items-center p-2 ${state === "collapsed" ? "gap-2" : "justify-between"}`}>
+          <div className={`flex items-center ${state === "expanded" ? "space-x-2 px-2" : "justify-center"}`}>
             {state === "expanded" ? (
               <>
                 <div className="font-semibold text-orange-500">Velocity</div>
