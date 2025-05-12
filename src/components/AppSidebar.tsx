@@ -99,6 +99,7 @@ export const AppSidebar = () => {
       
       {/* Resources section - Fixed to bottom */}
       <SidebarFooter className="mt-auto p-4">
+        <SidebarSeparator className="mb-4" />
         <SidebarGroupLabel>Resources</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
