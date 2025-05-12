@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   useSidebar
 } from "@/components/ui/sidebar";
-import { ChevronLeft, Folder } from "lucide-react";
+import { Folder, PanelLeft } from "lucide-react";
 
 export const AppSidebar = () => {
   const { toggleSidebar, state } = useSidebar();
@@ -33,7 +33,7 @@ export const AppSidebar = () => {
             className="rounded-md p-1 hover:bg-gray-100"
             aria-label="Toggle Sidebar"
           >
-            <ChevronLeft size={18} className={state === "collapsed" ? "rotate-180" : ""} />
+            <PanelLeft size={18} className={state === "collapsed" ? "rotate-180" : ""} />
           </button>
         </div>
       </SidebarHeader>
