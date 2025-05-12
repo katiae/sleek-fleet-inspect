@@ -15,7 +15,7 @@ export const AppSidebar = () => {
   const { toggleSidebar, state } = useSidebar();
   
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader>
         <div className={`flex ${state === "collapsed" ? "flex-col" : ""} items-center p-2 ${state === "collapsed" ? "gap-2" : "justify-between"}`}>
           <div className={`flex items-center ${state === "expanded" ? "space-x-2 px-2" : "justify-center"}`}>
@@ -37,7 +37,7 @@ export const AppSidebar = () => {
           </button>
         </div>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="p-4">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton isActive={true} tooltip="Cases">
