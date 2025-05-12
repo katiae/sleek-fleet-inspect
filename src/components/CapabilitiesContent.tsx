@@ -13,6 +13,7 @@ type Capability = {
   description: string;
   icon: React.ReactNode;
   active: boolean;
+  bgColor: string;
 };
 
 export const CapabilitiesContent = () => {
@@ -22,43 +23,49 @@ export const CapabilitiesContent = () => {
       id: "api-integration",
       name: "API Integration",
       description: "Connect with external services through secure API endpoints",
-      icon: <Globe className="h-8 w-8 text-orange-500" />,
+      icon: <Globe className="h-6 w-6 text-white" />,
       active: false,
+      bgColor: "bg-blue-500",
     },
     {
       id: "document-processing",
       name: "Document Processing",
       description: "Automatic extraction and analysis from uploaded documents",
-      icon: <FileText className="h-8 w-8 text-orange-500" />,
+      icon: <FileText className="h-6 w-6 text-white" />,
       active: false,
+      bgColor: "bg-purple-500",
     },
     {
       id: "data-analytics",
       name: "Data Analytics",
       description: "Advanced analytics and insights for your case data",
-      icon: <Database className="h-8 w-8 text-orange-500" />,
+      icon: <Database className="h-6 w-6 text-white" />,
       active: true,
+      bgColor: "bg-green-500",
     },
     {
       id: "security-compliance",
       name: "Security & Compliance",
       description: "Enhanced security protocols and compliance features",
-      icon: <Shield className="h-8 w-8 text-orange-500" />,
+      icon: <Shield className="h-6 w-6 text-white" />,
       active: false,
+      bgColor: "bg-red-500",
     },
     {
       id: "automated-workflows",
       name: "Automated Workflows",
       description: "Create and manage automated workflows for case processing",
-      icon: <Workflow className="h-8 w-8 text-orange-500" />,
+      icon: <Workflow className="h-6 w-6 text-white" />,
       active: false,
+      bgColor: "bg-amber-500",
     },
     {
       id: "searches",
       name: "Searches",
       description: "Advanced search capabilities across all your case documents",
-      icon: <SearchIcon className="h-8 w-8 text-orange-500" />,
+      icon: <SearchIcon className="h-6 w-6 text-white" />,
       active: false,
+      bgColor: "bg-indigo-500",
     },
   ]);
 
@@ -113,7 +120,11 @@ export const CapabilitiesContent = () => {
         {filteredCapabilities.map((capability) => (
           <Card key={capability.id} className="overflow-hidden hover:shadow-md transition-shadow duration-200">
             <div className="p-6 flex flex-col h-full">
-              <div className="mb-4">{capability.icon}</div>
+              <div className="mb-4">
+                <div className={`${capability.bgColor} w-12 h-12 rounded-lg flex items-center justify-center shadow-sm`}>
+                  {capability.icon}
+                </div>
+              </div>
               <h3 className="font-semibold text-lg mb-2">{capability.name}</h3>
               <p className="text-gray-500 text-sm flex-grow mb-4">{capability.description}</p>
               <Separator className="my-4" />
