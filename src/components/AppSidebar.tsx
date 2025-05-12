@@ -1,7 +1,6 @@
-
 import React from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel } from "@/components/ui/sidebar";
-import { Folder, FileText, CheckSquare, Calendar, Users, FileSpreadsheet, CircleDollarSign, PanelLeft } from "lucide-react";
+import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, Help, Plus } from "lucide-react";
 
 export const AppSidebar = () => {
   const {
@@ -92,6 +91,27 @@ export const AppSidebar = () => {
             <SidebarMenuButton tooltip="Fees" className="py-4">
               <CircleDollarSign />
               <span>Fees</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        
+        {/* Separator for new section */}
+        <SidebarSeparator className="my-4" />
+        
+        {/* Help & Add Capabilities section */}
+        <SidebarGroupLabel>Support</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Help" className="py-4">
+              <Help />
+              <span>Help</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Add Capabilities" className="py-4">
+              <Plus />
+              <span>Add Capabilities</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
