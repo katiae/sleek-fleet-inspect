@@ -96,12 +96,12 @@ export default {
 				},
 				'gradient-fade': {
 					'0%': { 
-						backgroundImage: 'linear-gradient(90deg, #FF7F50 0%, #FFA07A 50%, #ffffff 100%)', 
+						backgroundImage: 'linear-gradient(90deg, #FEC6A1 0%, #FDE1D3 50%, #ffffff 100%)', 
 						opacity: '0.6',
 						borderRadius: '0.5rem'
 					},
 					'50%': { 
-						backgroundImage: 'linear-gradient(90deg, #FF7F50 0%, #FFA07A 50%, #ffffff 100%)', 
+						backgroundImage: 'linear-gradient(90deg, #FEC6A1 0%, #FDE1D3 50%, #ffffff 100%)', 
 						opacity: '1',
 						borderRadius: '0.5rem'
 					},
