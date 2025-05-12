@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -127,11 +128,17 @@ export const CapabilitiesContent = () => {
                         Add
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem onClick={() => handleAddToSection(capability.id, "Main")}>
+                    <DropdownMenuContent align="end" className="p-2">
+                      <DropdownMenuItem 
+                        onClick={() => handleAddToSection(capability.id, "Main")}
+                        className="py-2.5 px-4 cursor-pointer"
+                      >
                         Add to Main
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => handleAddToSection(capability.id, "Administration")}>
+                      <DropdownMenuItem 
+                        onClick={() => handleAddToSection(capability.id, "Administration")}
+                        className="py-2.5 px-4 cursor-pointer"
+                      >
                         Add to Administration
                       </DropdownMenuItem>
                     </DropdownMenuContent>
