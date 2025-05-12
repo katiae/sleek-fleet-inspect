@@ -38,7 +38,7 @@ const SortableMenuItem = ({ item }: { item: MenuItem }) => {
         <GripVertical className="w-5 h-5 text-gray-400" />
       </div>
       <div className="flex items-center gap-2">
-        {React.cloneElement(item.icon as React.ReactElement, { className: "h-5 w-5" })}
+        {item.icon}
         <span className="font-medium">{item.name}</span>
       </div>
     </div>
