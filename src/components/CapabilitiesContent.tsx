@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Search, FileText, Database, Globe, Shield } from "lucide-react";
+import { Search, FileText, Database, Globe, Shield, Workflow, SearchIcon } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 type Capability = {
@@ -44,6 +44,20 @@ export const CapabilitiesContent = () => {
       name: "Security & Compliance",
       description: "Enhanced security protocols and compliance features",
       icon: <Shield className="h-8 w-8 text-orange-500" />,
+      active: false,
+    },
+    {
+      id: "automated-workflows",
+      name: "Automated Workflows",
+      description: "Create and manage automated workflows for case processing",
+      icon: <Workflow className="h-8 w-8 text-orange-500" />,
+      active: false,
+    },
+    {
+      id: "searches",
+      name: "Searches",
+      description: "Advanced search capabilities across all your case documents",
+      icon: <SearchIcon className="h-8 w-8 text-orange-500" />,
       active: false,
     },
   ]);
@@ -95,7 +109,7 @@ export const CapabilitiesContent = () => {
         />
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCapabilities.map((capability) => (
           <Card key={capability.id} className="overflow-hidden hover:shadow-md transition-shadow duration-200">
             <div className="p-6 flex flex-col h-full">
@@ -117,7 +131,7 @@ export const CapabilitiesContent = () => {
         ))}
         
         {filteredCapabilities.length === 0 && (
-          <div className="col-span-4 text-center py-10 text-gray-500">
+          <div className="col-span-3 text-center py-10 text-gray-500">
             No capabilities found matching your search.
           </div>
         )}
