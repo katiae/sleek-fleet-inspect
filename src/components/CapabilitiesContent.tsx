@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -177,7 +176,7 @@ export const CapabilitiesContent = () => {
                     <DropdownMenuTrigger asChild>
                       <Button 
                         size="sm" 
-                        className="bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:text-gray-900"
+                        className="bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900"
                       >
                         Add
                       </Button>
