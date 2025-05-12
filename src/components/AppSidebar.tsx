@@ -1,6 +1,8 @@
+
 import React from "react";
-import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar } from "@/components/ui/sidebar";
-import { Folder, PanelLeft } from "lucide-react";
+import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel } from "@/components/ui/sidebar";
+import { Folder, FileText, CheckSquare, Calendar, Users, FileSpreadsheet, CircleDollarSign, PanelLeft } from "lucide-react";
+
 export const AppSidebar = () => {
   const {
     toggleSidebar,
@@ -21,11 +23,75 @@ export const AppSidebar = () => {
         </div>
       </SidebarHeader>
       <SidebarContent className="p-4">
+        {/* Cases section */}
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton isActive={true} tooltip="Cases" className="data-[active=true]:bg-white py-4">
               <Folder className="text-orange-500" />
               <span>Cases</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Reports" className="py-4">
+              <FileText />
+              <span>Reports</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Tasks" className="py-4">
+              <CheckSquare />
+              <span>Tasks</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Availability" className="py-4">
+              <Calendar />
+              <span>Availability</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        
+        {/* Separator between sections */}
+        <SidebarSeparator className="my-4" />
+        
+        {/* Admin section */}
+        <SidebarGroupLabel>Administration</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Audit log" className="py-4">
+              <FileText />
+              <span>Audit log</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Users" className="py-4">
+              <Users />
+              <span>Users</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Clients" className="py-4">
+              <Users />
+              <span>Clients</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Templates" className="py-4">
+              <FileText />
+              <span>Templates</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Fees" className="py-4">
+              <CircleDollarSign />
+              <span>Fees</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
