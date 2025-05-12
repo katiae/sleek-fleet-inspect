@@ -95,9 +95,21 @@ export default {
 					to: { transform: 'translateX(0)' }
 				},
 				'gradient-fade': {
-					'0%': { backgroundImage: 'linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)', opacity: '0.6' },
-					'50%': { backgroundImage: 'linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)', opacity: '1' },
-					'100%': { backgroundImage: 'none', opacity: '0' }
+					'0%': { 
+						backgroundImage: 'linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)', 
+						opacity: '0.6',
+						borderRadius: '0.5rem'
+					},
+					'50%': { 
+						backgroundImage: 'linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)', 
+						opacity: '1',
+						borderRadius: '0.5rem'
+					},
+					'100%': { 
+						backgroundImage: 'none', 
+						opacity: '0',
+						borderRadius: '0.5rem'
+					}
 				}
 			},
 			animation: {
