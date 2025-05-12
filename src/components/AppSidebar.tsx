@@ -40,7 +40,11 @@ export const AppSidebar = () => {
       <SidebarContent className="p-4">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton isActive={true} tooltip="Cases">
+            <SidebarMenuButton 
+              isActive={true} 
+              tooltip="Cases" 
+              className="data-[active=true]:bg-white"
+            >
               <Folder className="text-orange-500" />
               <span>Cases</span>
             </SidebarMenuButton>
