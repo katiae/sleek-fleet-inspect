@@ -103,16 +103,16 @@ export const AppSidebar = () => {
         <SidebarGroupLabel>Support</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Help" className="py-4">
-              <HelpCircle />
-              <span>Help</span>
+            <SidebarMenuButton tooltip="Add Capabilities" className="py-4">
+              <Plus />
+              <span>Add Capabilities</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
           
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Add Capabilities" className="py-4">
-              <Plus />
-              <span>Add Capabilities</span>
+            <SidebarMenuButton tooltip="Help" className="py-4">
+              <HelpCircle />
+              <span>Help</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
