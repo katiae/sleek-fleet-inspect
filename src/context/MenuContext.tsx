@@ -17,6 +17,7 @@ type MenuContextType = {
   resetMenuOrder: () => void;
 };
 
+// Create icon elements properly
 const defaultMenuItems: MenuItem[] = [
   { id: "cases", name: "Cases", icon: <Folder />, link: "/", section: "Main", order: 1 },
   { id: "reports", name: "Reports", icon: <FileText />, section: "Main", order: 2 },
@@ -33,12 +34,24 @@ const defaultMenuItems: MenuItem[] = [
   { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 4 },
 ];
 
+// Function to convert serialized icons back to React elements
+const reconstructIcons = (items: any[]): MenuItem[] => {
+  return items.map(item => {
+    // Find the matching default item to get its icon
+    const defaultItem = defaultMenuItems.find(di => di.id === item.id);
+    return {
+      ...item,
+      icon: defaultItem ? defaultItem.icon : null
+    };
+  });
+};
+
 const MenuContext = createContext<MenuContextType | null>(null);
 
 export const MenuProvider = ({ children }: { children: ReactNode }) => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>(() => {
     const savedItems = localStorage.getItem('menuItems');
-    return savedItems ? JSON.parse(savedItems) : defaultMenuItems;
+    return savedItems ? reconstructIcons(JSON.parse(savedItems)) : defaultMenuItems;
   });
 
   // Effect to refresh menuItems from localStorage when it changes
@@ -46,7 +59,7 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
     const handleStorageChange = () => {
       const savedItems = localStorage.getItem('menuItems');
       if (savedItems) {
-        setMenuItems(JSON.parse(savedItems));
+        setMenuItems(reconstructIcons(JSON.parse(savedItems)));
       }
     };
 
@@ -57,8 +70,18 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const updateMenuItems = (items: MenuItem[]) => {
+    // Create a simplified version for storage without React elements
+    const storageItems = items.map(item => ({
+      id: item.id,
+      name: item.name,
+      link: item.link,
+      section: item.section,
+      order: item.order,
+      // Don't store React elements
+    }));
+    
     setMenuItems(items);
-    localStorage.setItem('menuItems', JSON.stringify(items));
+    localStorage.setItem('menuItems', JSON.stringify(storageItems));
   };
 
   const resetMenuOrder = () => {

@@ -38,7 +38,7 @@ const SortableMenuItem = ({ item }: { item: MenuItem }) => {
         <GripVertical className="w-5 h-5 text-gray-400" />
       </div>
       <div className="flex items-center gap-2">
-        {item.icon}
+        {React.isValidElement(item.icon) ? item.icon : null}
         <span className="font-medium">{item.name}</span>
       </div>
     </div>
