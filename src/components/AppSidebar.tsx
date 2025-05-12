@@ -74,7 +74,7 @@ export const AppSidebar = () => {
           
           {/* Render Main section capabilities with animation */}
           {mainCapabilities.map((capability) => (
-            <SidebarMenuItem key={capability.id} className="animate-in fade-in slide-in-from-left duration-300">
+            <SidebarMenuItem key={capability.id} className="animate-gradient-pulse">
               <SidebarMenuButton tooltip={capability.name} className="py-4">
                 {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
                 <span>{capability.name}</span>
@@ -126,7 +126,7 @@ export const AppSidebar = () => {
           
           {/* Render Administration section capabilities with animation */}
           {adminCapabilities.map((capability) => (
-            <SidebarMenuItem key={capability.id} className="animate-in fade-in slide-in-from-left duration-300">
+            <SidebarMenuItem key={capability.id} className="animate-gradient-pulse">
               <SidebarMenuButton tooltip={capability.name} className="py-4">
                 {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
                 <span>{capability.name}</span>

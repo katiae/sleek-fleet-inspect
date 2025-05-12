@@ -93,13 +93,19 @@ export default {
 				'slide-in-from-left': {
 					from: { transform: 'translateX(-10px)' },
 					to: { transform: 'translateX(0)' }
+				},
+				'gradient-fade': {
+					'0%': { backgroundImage: 'linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)', opacity: '0.6' },
+					'50%': { backgroundImage: 'linear-gradient(90deg, hsla(46, 73%, 75%, 1) 0%, hsla(176, 73%, 88%, 1) 100%)', opacity: '1' },
+					'100%': { backgroundImage: 'none', opacity: '0' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-in-out',
-				'slide-in-from-left': 'slide-in-from-left 0.3s ease-in-out'
+				'slide-in-from-left': 'slide-in-from-left 0.3s ease-in-out',
+				'gradient-pulse': 'gradient-fade 3s ease-in-out'
 			}
 		}
 	},
