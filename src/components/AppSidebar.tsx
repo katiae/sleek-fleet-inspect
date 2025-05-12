@@ -19,8 +19,8 @@ export const AppSidebar = () => {
       <SidebarHeader className="border-b">
         <div className="flex items-center justify-between p-2">
           <div className="flex items-center space-x-2 px-2">
-            <div className="font-semibold text-orange-500">Vantage</div>
-            <div className="text-xs text-muted-foreground">CaseManager</div>
+            <div className="font-semibold text-orange-500">Velocity</div>
+            <div className="text-xs text-muted-foreground">InspectPro</div>
           </div>
           <button 
             onClick={toggleSidebar}
