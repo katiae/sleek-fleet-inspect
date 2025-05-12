@@ -12,29 +12,35 @@ import {
 import { ChevronLeft, Folder } from "lucide-react";
 
 export const AppSidebar = () => {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, state } = useSidebar();
   
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon">
       <SidebarHeader className="border-b">
         <div className="flex items-center justify-between p-2">
           <div className="flex items-center space-x-2 px-2">
-            <div className="font-semibold text-orange-500">Velocity</div>
-            <div className="text-xs text-muted-foreground">InspectPro</div>
+            {state === "expanded" ? (
+              <>
+                <div className="font-semibold text-orange-500">Velocity</div>
+                <div className="text-xs text-muted-foreground">InspectPro</div>
+              </>
+            ) : (
+              <div className="font-semibold text-orange-500">V</div>
+            )}
           </div>
           <button 
             onClick={toggleSidebar}
             className="rounded-md p-1 hover:bg-gray-100"
             aria-label="Toggle Sidebar"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={18} className={state === "collapsed" ? "rotate-180" : ""} />
           </button>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton isActive={true}>
+            <SidebarMenuButton isActive={true} tooltip="Cases">
               <Folder className="text-orange-500" />
               <span>Cases</span>
             </SidebarMenuButton>
