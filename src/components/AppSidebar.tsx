@@ -32,13 +32,13 @@ export const AppSidebar = () => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              isActive={currentPath === "/"} 
+              isActive={false} 
               tooltip="Cases" 
-              className="data-[active=true]:bg-white py-4"
+              className="py-4"
               asChild
             >
               <Link to="/">
-                <Folder className="text-orange-500" />
+                <Folder />
                 <span>Cases</span>
               </Link>
             </SidebarMenuButton>
@@ -116,13 +116,13 @@ export const AppSidebar = () => {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
-              isActive={currentPath === "/capabilities"} 
+              isActive={true} 
               tooltip="Add Capabilities" 
-              className="py-4"
+              className="data-[active=true]:bg-white py-4"
               asChild
             >
               <Link to="/capabilities">
-                <Plus />
+                <Plus className="text-orange-500" />
                 <span>Add Capabilities</span>
               </Link>
             </SidebarMenuButton>
@@ -145,3 +145,4 @@ export const AppSidebar = () => {
       </SidebarFooter>
     </Sidebar>;
 };
+
