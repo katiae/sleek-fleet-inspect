@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar } from "@/components/ui/sidebar";
 import { Folder, PanelLeft } from "lucide-react";
@@ -23,7 +24,7 @@ export const AppSidebar = () => {
       <SidebarContent className="p-4">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton isActive={true} tooltip="Cases" className="data-[active=true]:bg-white">
+            <SidebarMenuButton isActive={true} tooltip="Cases" className="data-[active=true]:bg-white py-3">
               <Folder className="text-orange-500" />
               <span>Cases</span>
             </SidebarMenuButton>
