@@ -1,11 +1,17 @@
 
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Switch } from "@/components/ui/switch";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Search, FileText, Database, Globe, Shield, Workflow, SearchIcon } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 type Capability = {
   id: string;
@@ -14,6 +20,7 @@ type Capability = {
   icon: React.ReactNode;
   active: boolean;
   bgColor: string;
+  section?: "Administration" | "Main" | null;
 };
 
 export const CapabilitiesContent = () => {
@@ -26,6 +33,7 @@ export const CapabilitiesContent = () => {
       icon: <Globe className="h-6 w-6 text-gray-700" />,
       active: false,
       bgColor: "bg-blue-100",
+      section: null,
     },
     {
       id: "document-processing",
@@ -34,6 +42,7 @@ export const CapabilitiesContent = () => {
       icon: <FileText className="h-6 w-6 text-gray-700" />,
       active: false,
       bgColor: "bg-purple-100",
+      section: null,
     },
     {
       id: "data-analytics",
@@ -42,6 +51,7 @@ export const CapabilitiesContent = () => {
       icon: <Database className="h-6 w-6 text-gray-700" />,
       active: true,
       bgColor: "bg-green-100",
+      section: "Main",
     },
     {
       id: "security-compliance",
@@ -50,6 +60,7 @@ export const CapabilitiesContent = () => {
       icon: <Shield className="h-6 w-6 text-gray-700" />,
       active: false,
       bgColor: "bg-red-100",
+      section: null,
     },
     {
       id: "automated-workflows",
@@ -58,6 +69,7 @@ export const CapabilitiesContent = () => {
       icon: <Workflow className="h-6 w-6 text-gray-700" />,
       active: false,
       bgColor: "bg-amber-100",
+      section: null,
     },
     {
       id: "searches",
@@ -66,6 +78,7 @@ export const CapabilitiesContent = () => {
       icon: <SearchIcon className="h-6 w-6 text-gray-700" />,
       active: false,
       bgColor: "bg-indigo-100",
+      section: null,
     },
   ]);
 
@@ -77,22 +90,39 @@ export const CapabilitiesContent = () => {
     capability.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleToggleCapability = (id: string) => {
+  const handleAddToSection = (id: string, section: "Administration" | "Main") => {
     setCapabilities(
       capabilities.map((capability) => {
         if (capability.id === id) {
-          const newState = !capability.active;
+          const newState = true;
+          const newSection = section;
           
           // Show toast notification
           toast({
-            title: `${capability.name} ${newState ? "activated" : "deactivated"}`,
-            description: newState 
-              ? "The capability is now available for use" 
-              : "The capability has been disabled",
+            title: `${capability.name} added to ${section}`,
+            description: `The capability is now available in the ${section} section`,
             duration: 3000,
           });
           
-          return { ...capability, active: newState };
+          return { ...capability, active: newState, section: newSection };
+        }
+        return capability;
+      })
+    );
+  };
+
+  const handleRemove = (id: string) => {
+    setCapabilities(
+      capabilities.map((capability) => {
+        if (capability.id === id) {
+          // Show toast notification
+          toast({
+            title: `${capability.name} removed`,
+            description: "The capability has been removed from all sections",
+            duration: 3000,
+          });
+          
+          return { ...capability, active: false, section: null };
         }
         return capability;
       })
@@ -130,12 +160,33 @@ export const CapabilitiesContent = () => {
               <Separator className="my-4" />
               <CardFooter className="p-0 flex justify-between items-center">
                 <span className="text-sm text-gray-500">
-                  {capability.active ? "Active" : "Inactive"}
+                  {capability.section ? `In ${capability.section}` : "Not added"}
                 </span>
-                <Switch
-                  checked={capability.active}
-                  onCheckedChange={() => handleToggleCapability(capability.id)}
-                />
+                
+                {capability.active ? (
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handleRemove(capability.id)}
+                    className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
+                  >
+                    Remove
+                  </Button>
+                ) : (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="sm">Add</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem onClick={() => handleAddToSection(capability.id, "Main")}>
+                        Add to Main
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleAddToSection(capability.id, "Administration")}>
+                        Add to Administration
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
               </CardFooter>
             </div>
           </Card>
