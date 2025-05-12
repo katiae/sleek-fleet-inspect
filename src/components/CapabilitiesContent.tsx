@@ -1,0 +1,127 @@
+
+import React, { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Search, FileText, Database, Globe, Shield } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+
+type Capability = {
+  id: string;
+  name: string;
+  description: string;
+  icon: React.ReactNode;
+  active: boolean;
+};
+
+export const CapabilitiesContent = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [capabilities, setCapabilities] = useState<Capability[]>([
+    {
+      id: "api-integration",
+      name: "API Integration",
+      description: "Connect with external services through secure API endpoints",
+      icon: <Globe className="h-8 w-8 text-orange-500" />,
+      active: false,
+    },
+    {
+      id: "document-processing",
+      name: "Document Processing",
+      description: "Automatic extraction and analysis from uploaded documents",
+      icon: <FileText className="h-8 w-8 text-orange-500" />,
+      active: false,
+    },
+    {
+      id: "data-analytics",
+      name: "Data Analytics",
+      description: "Advanced analytics and insights for your case data",
+      icon: <Database className="h-8 w-8 text-orange-500" />,
+      active: true,
+    },
+    {
+      id: "security-compliance",
+      name: "Security & Compliance",
+      description: "Enhanced security protocols and compliance features",
+      icon: <Shield className="h-8 w-8 text-orange-500" />,
+      active: false,
+    },
+  ]);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredCapabilities = capabilities.filter((capability) =>
+    capability.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleToggleCapability = (id: string) => {
+    setCapabilities(
+      capabilities.map((capability) => {
+        if (capability.id === id) {
+          const newState = !capability.active;
+          
+          // Show toast notification
+          toast({
+            title: `${capability.name} ${newState ? "activated" : "deactivated"}`,
+            description: newState 
+              ? "The capability is now available for use" 
+              : "The capability has been disabled",
+            duration: 3000,
+          });
+          
+          return { ...capability, active: newState };
+        }
+        return capability;
+      })
+    );
+  };
+
+  return (
+    <div className="container mx-auto max-w-6xl">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Capabilities</h1>
+        <p className="text-gray-500">Enhance your workflow with these powerful features</p>
+      </div>
+      
+      <div className="relative mb-8 max-w-md mx-auto">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <Input
+          placeholder="Search capabilities..."
+          className="pl-10 pr-4"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {filteredCapabilities.map((capability) => (
+          <Card key={capability.id} className="overflow-hidden hover:shadow-md transition-shadow duration-200">
+            <div className="p-6 flex flex-col h-full">
+              <div className="mb-4">{capability.icon}</div>
+              <h3 className="font-semibold text-lg mb-2">{capability.name}</h3>
+              <p className="text-gray-500 text-sm flex-grow mb-4">{capability.description}</p>
+              <Separator className="my-4" />
+              <CardFooter className="p-0 flex justify-between items-center">
+                <span className="text-sm text-gray-500">
+                  {capability.active ? "Active" : "Inactive"}
+                </span>
+                <Switch
+                  checked={capability.active}
+                  onCheckedChange={() => handleToggleCapability(capability.id)}
+                />
+              </CardFooter>
+            </div>
+          </Card>
+        ))}
+        
+        {filteredCapabilities.length === 0 && (
+          <div className="col-span-4 text-center py-10 text-gray-500">
+            No capabilities found matching your search.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};

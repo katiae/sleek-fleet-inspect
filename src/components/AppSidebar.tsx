@@ -2,12 +2,17 @@
 import React from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarFooter } from "@/components/ui/sidebar";
 import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 export const AppSidebar = () => {
   const {
     toggleSidebar,
     state
   } = useSidebar();
+  
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader>
         <div className={`flex ${state === "collapsed" ? "flex-col" : ""} items-center p-2 ${state === "collapsed" ? "gap-2" : "justify-between"}`}>
@@ -26,9 +31,16 @@ export const AppSidebar = () => {
         {/* Cases section */}
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton isActive={true} tooltip="Cases" className="data-[active=true]:bg-white py-4">
-              <Folder className="text-orange-500" />
-              <span>Cases</span>
+            <SidebarMenuButton 
+              isActive={currentPath === "/"} 
+              tooltip="Cases" 
+              className="data-[active=true]:bg-white py-4"
+              asChild
+            >
+              <Link to="/">
+                <Folder className="text-orange-500" />
+                <span>Cases</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           
@@ -103,9 +115,16 @@ export const AppSidebar = () => {
         <SidebarGroupLabel>Resources</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Add Capabilities" className="py-4">
-              <Plus />
-              <span>Add Capabilities</span>
+            <SidebarMenuButton 
+              isActive={currentPath === "/capabilities"} 
+              tooltip="Add Capabilities" 
+              className="py-4"
+              asChild
+            >
+              <Link to="/capabilities">
+                <Plus />
+                <span>Add Capabilities</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
           
