@@ -13,6 +13,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCapabilities } from "@/context/CapabilitiesContext";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 type Capability = {
   id: string;
@@ -27,6 +37,7 @@ type Capability = {
 export const CapabilitiesContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { capabilities, setCapabilities } = useCapabilities();
+  const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -57,10 +68,18 @@ export const CapabilitiesContent = () => {
     );
   };
 
-  const handleRemove = (id: string) => {
+  const openRemoveConfirmation = (id: string) => {
+    setConfirmRemoveId(id);
+  };
+
+  const handleRemove = () => {
+    if (!confirmRemoveId) return;
+    
+    const capabilityToRemove = capabilities.find(c => c.id === confirmRemoveId);
+    
     setCapabilities(
       capabilities.map((capability) => {
-        if (capability.id === id) {
+        if (capability.id === confirmRemoveId) {
           // Show toast notification
           toast({
             title: `${capability.name} removed`,
@@ -73,6 +92,13 @@ export const CapabilitiesContent = () => {
         return capability;
       })
     );
+    
+    // Close the dialog
+    setConfirmRemoveId(null);
+  };
+
+  const cancelRemove = () => {
+    setConfirmRemoveId(null);
   };
 
   return (
@@ -113,7 +139,7 @@ export const CapabilitiesContent = () => {
                   <Button 
                     variant="outline" 
                     size="sm"
-                    onClick={() => handleRemove(capability.id)}
+                    onClick={() => openRemoveConfirmation(capability.id)}
                     className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
                   >
                     Remove
@@ -155,6 +181,28 @@ export const CapabilitiesContent = () => {
           </div>
         )}
       </div>
+
+      {/* Confirmation Dialog */}
+      <AlertDialog open={!!confirmRemoveId} onOpenChange={() => confirmRemoveId && setConfirmRemoveId(null)}>
+        <AlertDialogContent className="max-w-md">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-red-600">Remove capability?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Removing this capability will delete all data created within it and may affect all cases 
+              related to this capability. This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={cancelRemove}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleRemove}
+              className="bg-red-500 hover:bg-red-600"
+            >
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
