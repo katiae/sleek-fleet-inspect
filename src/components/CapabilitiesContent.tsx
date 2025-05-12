@@ -175,7 +175,12 @@ export const CapabilitiesContent = () => {
                 ) : (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button size="sm">Add</Button>
+                      <Button 
+                        size="sm" 
+                        className="bg-white text-gray-700 border-gray-200 hover:bg-gray-50 hover:text-gray-900"
+                      >
+                        Add
+                      </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem onClick={() => handleAddToSection(capability.id, "Main")}>
