@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, Plus, Plug, HelpCircle, List } from "lucide-react";
 
 export type MenuItem = {
@@ -40,6 +40,21 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
     const savedItems = localStorage.getItem('menuItems');
     return savedItems ? JSON.parse(savedItems) : defaultMenuItems;
   });
+
+  // Effect to refresh menuItems from localStorage when it changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedItems = localStorage.getItem('menuItems');
+      if (savedItems) {
+        setMenuItems(JSON.parse(savedItems));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
 
   const updateMenuItems = (items: MenuItem[]) => {
     setMenuItems(items);

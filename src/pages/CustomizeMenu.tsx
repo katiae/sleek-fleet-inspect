@@ -6,7 +6,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { useMenu, MenuItem } from "@/context/MenuContext";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { GripVertical } from "lucide-react";
+import { GripVertical, Save } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -48,11 +48,12 @@ const SortableMenuItem = ({ item }: { item: MenuItem }) => {
 const CustomizeMenu = () => {
   const { menuItems, updateMenuItems, resetMenuOrder } = useMenu();
   const [activeTab, setActiveTab] = useState<string>("Main");
+  const [localMenuItems, setLocalMenuItems] = useState<MenuItem[]>(menuItems);
   
   // Filter menu items by section
-  const mainItems = menuItems.filter(item => item.section === "Main").sort((a, b) => a.order - b.order);
-  const adminItems = menuItems.filter(item => item.section === "Administration").sort((a, b) => a.order - b.order);
-  const resourceItems = menuItems.filter(item => item.section === "Resources").sort((a, b) => a.order - b.order);
+  const mainItems = localMenuItems.filter(item => item.section === "Main").sort((a, b) => a.order - b.order);
+  const adminItems = localMenuItems.filter(item => item.section === "Administration").sort((a, b) => a.order - b.order);
+  const resourceItems = localMenuItems.filter(item => item.section === "Resources").sort((a, b) => a.order - b.order);
 
   // Configure DnD sensors
   const sensors = useSensors(
@@ -68,13 +69,13 @@ const CustomizeMenu = () => {
     if (!over || active.id === over.id) return;
     
     const section = activeTab;
-    const oldItems = menuItems.filter(item => item.section === section);
+    const oldItems = localMenuItems.filter(item => item.section === section);
     const activeIndex = oldItems.findIndex(item => item.id === active.id);
     const overIndex = oldItems.findIndex(item => item.id === over.id);
     
     if (activeIndex !== -1 && overIndex !== -1) {
       // Create a new array with updated order values
-      const newItems = [...menuItems];
+      const newItems = [...localMenuItems];
       
       // Update orders only for items in the current section
       const sectionItems = newItems.filter(item => item.section === section);
@@ -97,16 +98,20 @@ const CustomizeMenu = () => {
         return item;
       });
       
-      updateMenuItems(updatedItems);
-      
-      toast({
-        description: "Menu order updated successfully",
-      });
+      setLocalMenuItems(updatedItems);
     }
+  };
+
+  const handleSave = () => {
+    updateMenuItems(localMenuItems);
+    toast({
+      description: "Menu order saved successfully",
+    });
   };
 
   const handleReset = () => {
     resetMenuOrder();
+    setLocalMenuItems(menuItems);
     toast({
       description: "Menu order has been reset to default",
     });
@@ -187,9 +192,12 @@ const CustomizeMenu = () => {
                   </TabsContent>
                 </Tabs>
                 
-                <div className="mt-6 flex justify-end">
+                <div className="mt-6 flex justify-end gap-3">
                   <Button variant="outline" onClick={handleReset}>
                     Reset to Default
+                  </Button>
+                  <Button onClick={handleSave}>
+                    <Save className="mr-2" /> Save Changes
                   </Button>
                 </div>
               </CardContent>
