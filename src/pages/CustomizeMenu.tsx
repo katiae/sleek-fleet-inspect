@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { Navbar } from "@/components/Navbar";
@@ -13,8 +12,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // Import DND libraries
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
+
+// Add dependency for @dnd-kit/utilities
+
+
+// Then import CSS from the utilities package
+import { CSS } from '@dnd-kit/utilities';
 
 const SortableMenuItem = ({ item }: { item: MenuItem }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });

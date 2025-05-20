@@ -9,7 +9,6 @@ export type MenuItem = {
   link?: string;
   section: "Main" | "Administration" | "Resources";
   order: number;
-  isNew?: boolean; // Track if the item is newly added
 };
 
 type MenuContextType = {
@@ -40,16 +39,9 @@ const reconstructIcons = (items: any[]): MenuItem[] => {
   return items.map(item => {
     // Find the matching default item to get its icon
     const defaultItem = defaultMenuItems.find(di => di.id === item.id);
-    
-    // Determine if this item is newly added
-    const previousItems = localStorage.getItem('previousMenuItems');
-    const prevItemsArray = previousItems ? JSON.parse(previousItems) : [];
-    const isItemNew = item.id === 'analytics' && !prevItemsArray.some((prevItem: any) => prevItem.id === 'analytics');
-    
     return {
       ...item,
       icon: defaultItem ? defaultItem.icon : null,
-      isNew: isItemNew
     };
   });
 };
@@ -78,12 +70,6 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const updateMenuItems = (items: MenuItem[]) => {
-    // Store current items as previous before updating
-    const currentItems = localStorage.getItem('menuItems');
-    if (currentItems) {
-      localStorage.setItem('previousMenuItems', currentItems);
-    }
-    
     // Create a simplified version for storage without React elements
     const storageItems = items.map(item => ({
       id: item.id,
@@ -94,23 +80,11 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
       // Don't store React elements
     }));
     
-    // Mark the analytics item as new if it's being added
-    const updatedItems = items.map(item => {
-      if (item.id === 'analytics') {
-        const prevItems = localStorage.getItem('previousMenuItems');
-        const prevItemsArray = prevItems ? JSON.parse(prevItems) : [];
-        const isNew = !prevItemsArray.some((prevItem: any) => prevItem.id === 'analytics');
-        return { ...item, isNew };
-      }
-      return item;
-    });
-    
-    setMenuItems(updatedItems);
+    setMenuItems(items);
     localStorage.setItem('menuItems', JSON.stringify(storageItems));
   };
 
   const resetMenuOrder = () => {
-    localStorage.setItem('previousMenuItems', localStorage.getItem('menuItems') || '[]');
     setMenuItems(defaultMenuItems);
     localStorage.removeItem('menuItems');
   };

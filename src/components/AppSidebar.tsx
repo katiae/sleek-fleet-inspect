@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarFooter } from "@/components/ui/sidebar";
 import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug, List } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
@@ -17,33 +17,11 @@ export const AppSidebar = () => {
   
   const { capabilities } = useCapabilities();
   const { menuItems } = useMenu();
-  const [animatedItems, setAnimatedItems] = useState<Set<string>>(new Set());
   
   // Filter menu items by section
   const mainItems = menuItems.filter(item => item.section === "Main");
   const adminItems = menuItems.filter(item => item.section === "Administration");
   const resourceItems = menuItems.filter(item => item.section === "Resources");
-  
-  // Mark analytics item as animated after it's been displayed once
-  useEffect(() => {
-    const analyticsItem = menuItems.find(item => item.id === 'analytics' && item.isNew);
-    
-    if (analyticsItem && !animatedItems.has('analytics')) {
-      // Wait for animation to complete before adding to animated items
-      const timer = setTimeout(() => {
-        setAnimatedItems(prev => new Set(prev).add('analytics'));
-      }, 1000); // Animation duration
-      
-      return () => clearTimeout(timer);
-    }
-  }, [menuItems, animatedItems]);
-
-  // Function to determine if an item should be animated
-  const shouldAnimate = (itemId: string) => {
-    if (itemId !== 'analytics') return false;
-    const item = menuItems.find(item => item.id === itemId);
-    return item?.isNew === true && !animatedItems.has(itemId);
-  };
 
   return <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader>
@@ -97,12 +75,9 @@ export const AppSidebar = () => {
             </SidebarMenuButton>
           </SidebarMenuItem>
           
-          {/* Render Main section items with conditional animation */}
+          {/* Render Main section items */}
           {mainItems.map((item) => (
-            <SidebarMenuItem 
-              key={item.id} 
-              className={shouldAnimate(item.id) ? "animate-gradient-pulse rounded-md" : ""}
-            >
+            <SidebarMenuItem key={item.id}>
               <SidebarMenuButton tooltip={item.name} className="py-4">
                 {React.isValidElement(item.icon) ? item.icon : null}
                 <span>{item.name}</span>
@@ -117,12 +92,9 @@ export const AppSidebar = () => {
         {/* Admin section */}
         <SidebarGroupLabel>Administration</SidebarGroupLabel>
         <SidebarMenu>
-          {/* Render Administration section items with conditional animation */}
+          {/* Render Administration section items */}
           {adminItems.map((item) => (
-            <SidebarMenuItem 
-              key={item.id} 
-              className={shouldAnimate(item.id) ? "animate-gradient-pulse rounded-md" : ""}
-            >
+            <SidebarMenuItem key={item.id}>
               <SidebarMenuButton tooltip={item.name} className="py-4">
                 {React.isValidElement(item.icon) ? item.icon : null}
                 <span>{item.name}</span>
@@ -138,10 +110,7 @@ export const AppSidebar = () => {
         <SidebarGroupLabel>Resources</SidebarGroupLabel>
         <SidebarMenu>
           {resourceItems.map((item) => (
-            <SidebarMenuItem 
-              key={item.id} 
-              className={shouldAnimate(item.id) ? "animate-gradient-pulse rounded-md" : ""}
-            >
+            <SidebarMenuItem key={item.id}>
               <SidebarMenuButton 
                 isActive={item.link && currentPath === item.link}
                 tooltip={item.name} 
