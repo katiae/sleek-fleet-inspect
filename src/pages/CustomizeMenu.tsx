@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { Navbar } from "@/components/Navbar";
@@ -12,13 +13,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // Import DND libraries
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
-
-// Add dependency for @dnd-kit/utilities
-
-
-// Then import CSS from the utilities package
 import { CSS } from '@dnd-kit/utilities';
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 
 const SortableMenuItem = ({ item }: { item: MenuItem }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
@@ -42,7 +38,7 @@ const SortableMenuItem = ({ item }: { item: MenuItem }) => {
         <GripVertical className="w-5 h-5 text-gray-400" />
       </div>
       <div className="flex items-center gap-2">
-        {React.isValidElement(item.icon) ? item.icon : null}
+        {React.cloneElement(item.icon as React.ReactElement, { className: "h-5 w-5" })}
         <span className="font-medium">{item.name}</span>
       </div>
     </div>
