@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -105,21 +104,17 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
           <TabsContent value="details" className="pt-6">
             {/* Add inner category tabs for filtering case details */}
             <Tabs defaultValue="case" className="mb-6">
-              <TabsList className="w-full bg-gray-50">
-                <TabsTrigger value="case" className="flex-1">
-                  <FileText className="mr-2 h-4 w-4" />
+              <TabsList className="inline-flex h-10 bg-gray-50 mb-4">
+                <TabsTrigger value="case">
                   Case Details
                 </TabsTrigger>
-                <TabsTrigger value="job" className="flex-1">
-                  <Briefcase className="mr-2 h-4 w-4" />
+                <TabsTrigger value="job">
                   Job Details
                 </TabsTrigger>
-                <TabsTrigger value="vehicle" className="flex-1">
-                  <Car className="mr-2 h-4 w-4" />
+                <TabsTrigger value="vehicle">
                   Vehicle Insights
                 </TabsTrigger>
-                <TabsTrigger value="risks" className="flex-1">
-                  <Shield className="mr-2 h-4 w-4" />
+                <TabsTrigger value="risks">
                   Risks
                 </TabsTrigger>
               </TabsList>
