@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -124,14 +125,26 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                 <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
                   {/* Case Information */}
                   <div className="break-inside-avoid mb-4">
-                    <Accordion type="single" collapsible className="w-full">
+                    <Accordion type="single" defaultValue="case-information" collapsible className="w-full">
                       <AccordionItem value="case-information" className="border rounded-lg px-4">
-                        <AccordionTrigger className="py-4 hover:no-underline">
-                          <div className="flex items-center">
-                            <FileText className="h-5 w-5 mr-2 text-orange-500" />
-                            <span className="font-medium">Case Information</span>
-                          </div>
-                        </AccordionTrigger>
+                        <div className="flex justify-between items-center">
+                          <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
+                            <div className="flex items-center">
+                              <FileText className="h-5 w-5 mr-2 text-orange-500" />
+                              <span className="font-medium">Case Information</span>
+                            </div>
+                          </AccordionTrigger>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                              <DropdownMenuItem>Edit information</DropdownMenuItem>
+                              <DropdownMenuItem>Add note</DropdownMenuItem>
+                              <DropdownMenuItem>Export data</DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
                         <AccordionContent className="pt-2 pb-4">
                           <div className="grid grid-cols-1 gap-4">
                             <ul className="space-y-2 text-sm">
@@ -169,14 +182,26 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   {/* Customer Details */}
                   {caseItem.customer && (
                     <div className="break-inside-avoid mb-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" defaultValue="customer-details" collapsible className="w-full">
                         <AccordionItem value="customer-details" className="border rounded-lg px-4">
-                          <AccordionTrigger className="py-4 hover:no-underline">
-                            <div className="flex items-center">
-                              <User className="h-5 w-5 mr-2 text-green-500" />
-                              <span className="font-medium">Customer Details</span>
-                            </div>
-                          </AccordionTrigger>
+                          <div className="flex justify-between items-center">
+                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
+                              <div className="flex items-center">
+                                <User className="h-5 w-5 mr-2 text-green-500" />
+                                <span className="font-medium">Customer Details</span>
+                              </div>
+                            </AccordionTrigger>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Edit customer</DropdownMenuItem>
+                                <DropdownMenuItem>Contact customer</DropdownMenuItem>
+                                <DropdownMenuItem>View history</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
@@ -205,14 +230,26 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   {/* Access Arrangements */}
                   {caseItem.access && (
                     <div className="break-inside-avoid mb-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" defaultValue="access-details" collapsible className="w-full">
                         <AccordionItem value="access-details" className="border rounded-lg px-4">
-                          <AccordionTrigger className="py-4 hover:no-underline">
-                            <div className="flex items-center">
-                              <Key className="h-5 w-5 mr-2 text-red-500" />
-                              <span className="font-medium">Access Arrangements</span>
-                            </div>
-                          </AccordionTrigger>
+                          <div className="flex justify-between items-center">
+                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
+                              <div className="flex items-center">
+                                <Key className="h-5 w-5 mr-2 text-red-500" />
+                                <span className="font-medium">Access Arrangements</span>
+                              </div>
+                            </AccordionTrigger>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Update access info</DropdownMenuItem>
+                                <DropdownMenuItem>Request access changes</DropdownMenuItem>
+                                <DropdownMenuItem>Print instructions</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
@@ -246,14 +283,26 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   {/* Job Details */}
                   {caseItem.job && (
                     <div className="break-inside-avoid mb-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" defaultValue="job-details" collapsible className="w-full">
                         <AccordionItem value="job-details" className="border rounded-lg px-4">
-                          <AccordionTrigger className="py-4 hover:no-underline">
-                            <div className="flex items-center">
-                              <Briefcase className="h-5 w-5 mr-2 text-amber-500" />
-                              <span className="font-medium">Job Details</span>
-                            </div>
-                          </AccordionTrigger>
+                          <div className="flex justify-between items-center">
+                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
+                              <div className="flex items-center">
+                                <Briefcase className="h-5 w-5 mr-2 text-amber-500" />
+                                <span className="font-medium">Job Details</span>
+                              </div>
+                            </AccordionTrigger>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Edit job details</DropdownMenuItem>
+                                <DropdownMenuItem>Add parts</DropdownMenuItem>
+                                <DropdownMenuItem>Update cost</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
@@ -286,14 +335,26 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   {/* Appointment Details */}
                   {caseItem.appointment && (
                     <div className="break-inside-avoid mb-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" defaultValue="appointment-details" collapsible className="w-full">
                         <AccordionItem value="appointment-details" className="border rounded-lg px-4">
-                          <AccordionTrigger className="py-4 hover:no-underline">
-                            <div className="flex items-center">
-                              <Calendar className="h-5 w-5 mr-2 text-purple-500" />
-                              <span className="font-medium">Appointment Details</span>
-                            </div>
-                          </AccordionTrigger>
+                          <div className="flex justify-between items-center">
+                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
+                              <div className="flex items-center">
+                                <Calendar className="h-5 w-5 mr-2 text-purple-500" />
+                                <span className="font-medium">Appointment Details</span>
+                              </div>
+                            </AccordionTrigger>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Reschedule</DropdownMenuItem>
+                                <DropdownMenuItem>Cancel appointment</DropdownMenuItem>
+                                <DropdownMenuItem>Send reminder</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
@@ -322,14 +383,26 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   {/* Mechanic Details */}
                   {caseItem.mechanic && (
                     <div className="break-inside-avoid mb-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" defaultValue="mechanic-details" collapsible className="w-full">
                         <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
-                          <AccordionTrigger className="py-4 hover:no-underline">
-                            <div className="flex items-center">
-                              <Wrench className="h-5 w-5 mr-2 text-gray-600" />
-                              <span className="font-medium">Mechanic Details</span>
-                            </div>
-                          </AccordionTrigger>
+                          <div className="flex justify-between items-center">
+                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
+                              <div className="flex items-center">
+                                <Wrench className="h-5 w-5 mr-2 text-gray-600" />
+                                <span className="font-medium">Mechanic Details</span>
+                              </div>
+                            </AccordionTrigger>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Contact mechanic</DropdownMenuItem>
+                                <DropdownMenuItem>Reassign job</DropdownMenuItem>
+                                <DropdownMenuItem>View schedule</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
@@ -363,14 +436,26 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   {/* Vehicle Details */}
                   {caseItem.vehicle && (
                     <div className="break-inside-avoid mb-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" defaultValue="vehicle-details" collapsible className="w-full">
                         <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
-                          <AccordionTrigger className="py-4 hover:no-underline">
-                            <div className="flex items-center">
-                              <Car className="h-5 w-5 mr-2 text-blue-500" />
-                              <span className="font-medium">Vehicle Details</span>
-                            </div>
-                          </AccordionTrigger>
+                          <div className="flex justify-between items-center">
+                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
+                              <div className="flex items-center">
+                                <Car className="h-5 w-5 mr-2 text-blue-500" />
+                                <span className="font-medium">Vehicle Details</span>
+                              </div>
+                            </AccordionTrigger>
+                            <DropdownMenu>
+                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </DropdownMenuTrigger>
+                              <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Update vehicle info</DropdownMenuItem>
+                                <DropdownMenuItem>View service history</DropdownMenuItem>
+                                <DropdownMenuItem>Check recalls</DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
