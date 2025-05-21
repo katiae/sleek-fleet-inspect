@@ -240,7 +240,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 
                     <div className="flex-1 bg-gray-50 p-4 rounded-r-lg">
                       <div className="flex justify-between items-start">
-                        <h3 className="text-base font-medium">Property & access details</h3>
+                        <h3 className="text-base font-medium">Access details</h3>
                         <Button variant="ghost" size="sm" className="text-orange-500">
                           <MapPin className="h-4 w-4 mr-1" />
                           Directions
