@@ -15,7 +15,7 @@ export const AdminSection = () => {
   return (
     <Collapsible open={adminSectionOpen} onOpenChange={setAdminSectionOpen} className="mt-8">
       <CollapsibleTrigger className="w-full flex items-center justify-between px-2 text-xs font-medium text-sidebar-foreground/70">
-        <span>Administration</span>
+        <span>Admin</span>
         <ChevronDown className="h-4 w-4 transition-transform duration-200" 
           style={{ transform: adminSectionOpen ? 'rotate(0deg)' : 'rotate(-90deg)' }} 
         />
