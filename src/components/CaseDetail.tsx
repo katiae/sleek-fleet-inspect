@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -128,10 +129,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                       <AccordionItem value="case-information" className="border rounded-lg px-4">
                         <div className="flex justify-between items-center">
                           <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                            <div className="flex items-center">
-                              <FileText className="h-5 w-5 mr-2 text-orange-500" />
-                              <span className="font-medium">Case Information</span>
-                            </div>
+                            <span className="font-medium">Case Information</span>
                           </AccordionTrigger>
                           <DropdownMenu>
                             <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -149,11 +147,11 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Address:</span>
-                                <span className="font-medium">{caseItem.address}</span>
+                                <span>{caseItem.address}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Case Type:</span>
-                                <span className="font-medium">{caseItem.type}</span>
+                                <span>{caseItem.type}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Status:</span>
@@ -161,15 +159,15 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Last Inspected:</span>
-                                <span className="font-medium">{caseItem.lastInspected}</span>
+                                <span>{caseItem.lastInspected}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Owner Name:</span>
-                                <span className="font-medium">{caseItem.owner.name}</span>
+                                <span>{caseItem.owner.name}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Owner Type:</span>
-                                <span className="font-medium">{caseItem.owner.type}</span>
+                                <span>{caseItem.owner.type}</span>
                               </li>
                             </ul>
                           </div>
@@ -185,10 +183,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                         <AccordionItem value="customer-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <div className="flex items-center">
-                                <User className="h-5 w-5 mr-2 text-green-500" />
-                                <span className="font-medium">Customer Details</span>
-                              </div>
+                              <span className="font-medium">Customer Details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -205,19 +200,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Name:</span>
-                                <span className="font-medium">{caseItem.customer.name}</span>
+                                <span>{caseItem.customer.name}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Phone:</span>
-                                <span className="font-medium">{caseItem.customer.phone}</span>
+                                <span>{caseItem.customer.phone}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Email:</span>
-                                <span className="font-medium">{caseItem.customer.email}</span>
+                                <span>{caseItem.customer.email}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Preferred Contact:</span>
-                                <span className="font-medium">{caseItem.customer.preferredContact}</span>
+                                <span>{caseItem.customer.preferredContact}</span>
                               </li>
                             </ul>
                           </AccordionContent>
@@ -233,10 +228,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                         <AccordionItem value="access-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <div className="flex items-center">
-                                <Key className="h-5 w-5 mr-2 text-red-500" />
-                                <span className="font-medium">Access Arrangements</span>
-                              </div>
+                              <span className="font-medium">Access Arrangements</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -253,19 +245,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Instructions:</span>
-                                <span className="font-medium">{caseItem.access.instructions}</span>
+                                <span>{caseItem.access.instructions}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Restrictions:</span>
-                                <span className="font-medium">{caseItem.access.restrictions}</span>
+                                <span>{caseItem.access.restrictions}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Contact Person:</span>
-                                <span className="font-medium">{caseItem.access.contactPerson}</span>
+                                <span>{caseItem.access.contactPerson}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Contact Phone:</span>
-                                <span className="font-medium">{caseItem.access.contactPhone}</span>
+                                <span>{caseItem.access.contactPhone}</span>
                               </li>
                             </ul>
                           </AccordionContent>
@@ -286,10 +278,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                         <AccordionItem value="job-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <div className="flex items-center">
-                                <Briefcase className="h-5 w-5 mr-2 text-amber-500" />
-                                <span className="font-medium">Job Details</span>
-                              </div>
+                              <span className="font-medium">Job Details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -306,21 +295,21 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Type:</span>
-                                <span className="font-medium">{caseItem.job.type}</span>
+                                <span>{caseItem.job.type}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Description:</span>
-                                <span className="font-medium">{caseItem.job.description}</span>
+                                <span>{caseItem.job.description}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Estimated Cost:</span>
-                                <span className="font-medium">{caseItem.job.estimatedCost}</span>
+                                <span>{caseItem.job.estimatedCost}</span>
                               </li>
                               <li>
                                 <span className="text-gray-500">Required Parts:</span>
                                 <ul className="mt-1 list-disc list-inside">
                                   {caseItem.job.parts.map((part, index) => (
-                                    <li key={index} className="font-medium">{part}</li>
+                                    <li key={index}>{part}</li>
                                   ))}
                                 </ul>
                               </li>
@@ -338,10 +327,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                         <AccordionItem value="appointment-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <div className="flex items-center">
-                                <Calendar className="h-5 w-5 mr-2 text-purple-500" />
-                                <span className="font-medium">Appointment Details</span>
-                              </div>
+                              <span className="font-medium">Appointment Details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -358,19 +344,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Date:</span>
-                                <span className="font-medium">{caseItem.appointment.date}</span>
+                                <span>{caseItem.appointment.date}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Time:</span>
-                                <span className="font-medium">{caseItem.appointment.time}</span>
+                                <span>{caseItem.appointment.time}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Duration:</span>
-                                <span className="font-medium">{caseItem.appointment.duration}</span>
+                                <span>{caseItem.appointment.duration}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Status:</span>
-                                <span className="font-medium">{caseItem.appointment.status}</span>
+                                <span>{caseItem.appointment.status}</span>
                               </li>
                             </ul>
                           </AccordionContent>
@@ -386,10 +372,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                         <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <div className="flex items-center">
-                                <Wrench className="h-5 w-5 mr-2 text-gray-600" />
-                                <span className="font-medium">Mechanic Details</span>
-                              </div>
+                              <span className="font-medium">Mechanic Details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -406,19 +389,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Name:</span>
-                                <span className="font-medium">{caseItem.mechanic.name}</span>
+                                <span>{caseItem.mechanic.name}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">ID:</span>
-                                <span className="font-medium">{caseItem.mechanic.id}</span>
+                                <span>{caseItem.mechanic.id}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Specialization:</span>
-                                <span className="font-medium">{caseItem.mechanic.specialization}</span>
+                                <span>{caseItem.mechanic.specialization}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Contact:</span>
-                                <span className="font-medium">{caseItem.mechanic.contact}</span>
+                                <span>{caseItem.mechanic.contact}</span>
                               </li>
                             </ul>
                           </AccordionContent>
@@ -439,10 +422,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                         <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <div className="flex items-center">
-                                <Car className="h-5 w-5 mr-2 text-blue-500" />
-                                <span className="font-medium">Vehicle Details</span>
-                              </div>
+                              <span className="font-medium">Vehicle Details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -459,23 +439,23 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Make:</span>
-                                <span className="font-medium">{caseItem.vehicle.make}</span>
+                                <span>{caseItem.vehicle.make}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Model:</span>
-                                <span className="font-medium">{caseItem.vehicle.model}</span>
+                                <span>{caseItem.vehicle.model}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">Year:</span>
-                                <span className="font-medium">{caseItem.vehicle.year}</span>
+                                <span>{caseItem.vehicle.year}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">VIN:</span>
-                                <span className="font-medium">{caseItem.vehicle.vin}</span>
+                                <span>{caseItem.vehicle.vin}</span>
                               </li>
                               <li className="flex justify-between">
                                 <span className="text-gray-500">License Plate:</span>
-                                <span className="font-medium">{caseItem.vehicle.licensePlate}</span>
+                                <span>{caseItem.vehicle.licensePlate}</span>
                               </li>
                             </ul>
                           </AccordionContent>
@@ -494,7 +474,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                     <Card>
                       <CardContent className="p-6">
                         <div className="flex items-center mb-4">
-                          <Shield className="h-6 w-6 mr-3 text-orange-500" />
                           <h3 className="text-lg font-medium">Risk Assessment</h3>
                         </div>
                         <p className="text-gray-500 text-center my-6">
