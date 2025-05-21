@@ -145,27 +145,27 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                         <AccordionContent className="pt-2 pb-4">
                           <div className="grid grid-cols-1 gap-4">
                             <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Address:</span>
                                 <span className="ml-4 text-right">{caseItem.address}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Case Type:</span>
                                 <span className="ml-4 text-right">{caseItem.type}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Status:</span>
                                 <span className="ml-4 text-right"><CaseStatusBadge status={caseItem.status} /></span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Last Inspected:</span>
                                 <span className="ml-4 text-right">{caseItem.lastInspected}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Owner Name:</span>
                                 <span className="ml-4 text-right">{caseItem.owner.name}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Owner Type:</span>
                                 <span className="ml-4 text-right">{caseItem.owner.type}</span>
                               </li>
@@ -198,19 +198,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Name:</span>
                                 <span className="ml-4 text-right">{caseItem.customer.name}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Phone:</span>
                                 <span className="ml-4 text-right">{caseItem.customer.phone}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Email:</span>
                                 <span className="ml-4 text-right">{caseItem.customer.email}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Preferred Contact:</span>
                                 <span className="ml-4 text-right">{caseItem.customer.preferredContact}</span>
                               </li>
@@ -243,19 +243,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Instructions:</span>
                                 <span className="ml-4 text-right">{caseItem.access.instructions}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Restrictions:</span>
                                 <span className="ml-4 text-right">{caseItem.access.restrictions}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Contact Person:</span>
                                 <span className="ml-4 text-right">{caseItem.access.contactPerson}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Contact Phone:</span>
                                 <span className="ml-4 text-right">{caseItem.access.contactPhone}</span>
                               </li>
@@ -293,21 +293,21 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Type:</span>
                                 <span className="ml-4 text-right">{caseItem.job.type}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Description:</span>
                                 <span className="ml-4 text-right">{caseItem.job.description}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Estimated Cost:</span>
                                 <span className="ml-4 text-right">{caseItem.job.estimatedCost}</span>
                               </li>
-                              <li>
+                              <li className="flex items-start">
                                 <span className="text-gray-500">Required Parts:</span>
-                                <ul className="mt-1 list-disc list-inside">
+                                <ul className="mt-1 list-disc list-inside ml-4">
                                   {caseItem.job.parts.map((part, index) => (
                                     <li key={index}>{part}</li>
                                   ))}
@@ -342,19 +342,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Date:</span>
                                 <span className="ml-4 text-right">{caseItem.appointment.date}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Time:</span>
                                 <span className="ml-4 text-right">{caseItem.appointment.time}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Duration:</span>
                                 <span className="ml-4 text-right">{caseItem.appointment.duration}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Status:</span>
                                 <span className="ml-4 text-right">{caseItem.appointment.status}</span>
                               </li>
@@ -387,19 +387,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Name:</span>
                                 <span className="ml-4 text-right">{caseItem.mechanic.name}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">ID:</span>
                                 <span className="ml-4 text-right">{caseItem.mechanic.id}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Specialization:</span>
                                 <span className="ml-4 text-right">{caseItem.mechanic.specialization}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Contact:</span>
                                 <span className="ml-4 text-right">{caseItem.mechanic.contact}</span>
                               </li>
@@ -437,23 +437,23 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Make:</span>
                                 <span className="ml-4 text-right">{caseItem.vehicle.make}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Model:</span>
                                 <span className="ml-4 text-right">{caseItem.vehicle.model}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Year:</span>
                                 <span className="ml-4 text-right">{caseItem.vehicle.year}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">VIN:</span>
                                 <span className="ml-4 text-right">{caseItem.vehicle.vin}</span>
                               </li>
-                              <li className="flex justify-between items-center">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">License Plate:</span>
                                 <span className="ml-4 text-right">{caseItem.vehicle.licensePlate}</span>
                               </li>
@@ -507,3 +507,4 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
     </div>
   );
 };
+
