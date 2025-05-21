@@ -66,7 +66,7 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
         <Separator className="my-4" />
         <CardFooter className="p-0 flex justify-between items-center">
           <span className="text-sm text-gray-500">
-            {capability.premium ? "" : capability.section ? `In ${capability.section}` : "Not added"}
+            {capability.premium ? "Contact us to unlock" : capability.section ? `In ${capability.section}` : "Not added"}
           </span>
           
           {capability.active ? (
@@ -78,15 +78,7 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
             >
               Remove
             </Button>
-          ) : capability.premium ? (
-            <Button 
-              size="sm"
-              onClick={handlePremiumClick}
-              className="bg-orange-500 hover:bg-orange-600 text-white"
-            >
-              Contact us
-            </Button>
-          ) : (
+          ) : !capability.premium && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
