@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -248,7 +249,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   className="text-orange-500 h-6 px-2 py-0"
                   onClick={() => document.querySelector('[data-state="inactive"][value="details"]')?.dispatchEvent(new MouseEvent('click'))}
                 >
-                  <ExternalLink className="h-4 w-4 mr-0.5" />
                   View all case details
                 </Button>
               </div>
