@@ -250,71 +250,71 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 
                 <Card className="flex-1">
                   <CardContent className="pt-6 h-full">
-                    {/* Updated timeline styling to center dots directly ON the line */}
-                    <div className="space-y-6 relative">
+                    {/* Timeline with line and dots positioned on the left */}
+                    <div className="space-y-10 relative pl-6">
                       {/* Vertical timeline line that spans the entire timeline */}
-                      <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2"></div>
+                      <div className="absolute left-2.5 top-0 bottom-0 w-0.5 bg-gray-200"></div>
                       
                       {/* Appointment scheduled */}
-                      <div className="relative pl-8 pr-8">
-                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
-                        <div className="absolute w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center left-1/2 -translate-x-1/2 top-0 z-10">
+                      <div className="relative">
+                        {/* Timeline dot positioned on the left line */}
+                        <div className="absolute w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center left-[-11px] top-0 z-10">
                           <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
                         </div>
                         
-                        <div className="ml-4">
-                          <h4 className="text-sm font-medium text-gray-800">Appointment scheduled</h4>
-                          <p className="text-xs text-gray-500 mt-0.5">Today, 10:45 AM</p>
-                          <p className="text-xs text-gray-600 mt-2 mb-1">
+                        <div>
+                          <h4 className="text-base font-medium text-gray-800">Appointment scheduled</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">Today, 10:45 AM</p>
+                          <p className="text-sm text-gray-600 mt-2">
                             Appointment set for {caseItem.appointment?.date}, {caseItem.appointment?.time}
                           </p>
                         </div>
                       </div>
                       
                       {/* Mechanic assigned */}
-                      <div className="relative pl-8 pr-8">
-                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
-                        <div className="absolute w-3 h-3 rounded-full bg-blue-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
+                      <div className="relative">
+                        {/* Timeline dot positioned on the left line */}
+                        <div className="absolute w-4 h-4 rounded-full bg-blue-500 left-[-8px] top-1 z-10"></div>
                         
-                        <div className="ml-4">
-                          <h4 className="text-sm font-medium text-gray-800">Mechanic assigned</h4>
-                          <p className="text-xs text-gray-500 mt-0.5">Yesterday, 3:22 PM</p>
-                          <p className="text-xs text-gray-600 mt-2 mb-1">
+                        <div>
+                          <h4 className="text-base font-medium text-gray-800">Mechanic assigned</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 3:22 PM</p>
+                          <p className="text-sm text-gray-600 mt-2">
                             {caseItem.mechanic?.name} ({caseItem.mechanic?.specialization}) assigned to the case
                           </p>
                         </div>
                       </div>
                       
                       {/* Customer confirmation */}
-                      <div className="relative pl-8 pr-8">
-                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
-                        <div className="absolute w-3 h-3 rounded-full bg-green-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
+                      <div className="relative">
+                        {/* Timeline dot positioned on the left line */}
+                        <div className="absolute w-4 h-4 rounded-full bg-green-500 left-[-8px] top-1 z-10"></div>
                         
-                        <div className="ml-4">
-                          <h4 className="text-sm font-medium text-gray-800">Customer confirmed availability</h4>
-                          <p className="text-xs text-gray-500 mt-0.5">Yesterday, 1:15 PM</p>
+                        <div>
+                          <h4 className="text-base font-medium text-gray-800">Customer confirmed availability</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 1:15 PM</p>
                         </div>
                       </div>
                       
                       {/* Initial assessment */}
-                      <div className="relative pl-8 pr-8">
-                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
-                        <div className="absolute w-3 h-3 rounded-full bg-purple-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
+                      <div className="relative">
+                        {/* Timeline dot positioned on the left line */}
+                        <div className="absolute w-4 h-4 rounded-full bg-purple-500 left-[-8px] top-1 z-10"></div>
                         
-                        <div className="ml-4">
-                          <h4 className="text-sm font-medium text-gray-800">Initial assessment completed</h4>
-                          <p className="text-xs text-gray-500 mt-0.5">May 20, 2025, 9:30 AM</p>
+                        <div>
+                          <h4 className="text-base font-medium text-gray-800">Initial assessment completed</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">May 20, 2025, 9:30 AM</p>
                         </div>
                       </div>
                       
                       {/* Case created */}
-                      <div className="relative pl-8 pr-8">
-                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
-                        <div className="absolute w-3 h-3 rounded-full bg-gray-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
+                      <div className="relative">
+                        {/* Timeline dot positioned on the left line */}
+                        <div className="absolute w-4 h-4 rounded-full bg-gray-500 left-[-8px] top-1 z-10"></div>
                         
-                        <div className="ml-4">
-                          <h4 className="text-sm font-medium text-gray-800">Case created</h4>
-                          <p className="text-xs text-gray-500 mt-0.5">May 19, 2025, 4:15 PM</p>
+                        <div>
+                          <h4 className="text-base font-medium text-gray-800">Case created</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">May 19, 2025, 4:15 PM</p>
                         </div>
                       </div>
                     </div>
