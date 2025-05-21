@@ -181,9 +181,6 @@ export const AppSidebar = () => {
               </PopoverTrigger>
               <PopoverContent side="right" align="start" sideOffset={5} className="p-2 w-56 shadow-lg bg-white border border-gray-200 rounded-md">
                 <div className="flex flex-col gap-1">
-                  <div className="px-1.5 py-1 text-sm font-medium text-gray-700">
-                    Landmark Information Group
-                  </div>
                   <div className="h-px bg-gray-200 my-2"></div>
                   <button className="flex items-center gap-2 px-2 py-2 text-sm rounded-md hover:bg-gray-100 transition-colors">
                     <Plug className="h-4 w-4" />
