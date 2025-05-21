@@ -16,26 +16,32 @@ interface CaseDetailProps {
 export const CaseDetail: React.FC<CaseDetailProps> = ({
   caseItem
 }) => {
-  // Extract and format the day number explicitly
-  const getDayNumber = () => {
-    if (!caseItem.appointment?.date) return "";
+  // Extract and format date information
+  const getDateInfo = () => {
+    if (!caseItem.appointment?.date) return { day: "", weekday: "", month: "" };
     
     // Log the date string to verify its format
     console.log("Date string:", caseItem.appointment.date);
     
-    // Extract the day part from ISO format date (YYYY-MM-DD)
     try {
       const date = new Date(caseItem.appointment.date);
-      const dayNumber = date.getDate();
-      console.log("Extracted day:", dayNumber);
-      return dayNumber.toString();
+      const day = date.getDate().toString();
+      
+      // Get weekday name (e.g., Monday, Tuesday)
+      const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
+      
+      // Get month name (e.g., January, February)
+      const month = date.toLocaleDateString('en-US', { month: 'long' });
+      
+      console.log("Extracted date info:", { day, weekday, month });
+      return { day, weekday, month };
     } catch (error) {
       console.error("Error parsing date:", error);
-      return "";
+      return { day: "", weekday: "", month: "" };
     }
   };
 
-  const dayNumber = getDayNumber();
+  const { day, weekday, month } = getDateInfo();
 
   return <div className="space-y-6">
       <div className="flex justify-between items-start">
@@ -136,11 +142,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <div className="rounded-lg border border-gray-100 p-6 bg-white">
                   <div className="flex">
                     <div className="pl-6 mr-12 text-center flex flex-col justify-center">
-                      {/* Explicitly show the day number with extra logging */}
-                      <div className="text-[64px] text-blue-500 font-bold leading-none">
-                        {dayNumber || "N/A"}
+                      {/* Add weekday name above the day number */}
+                      <div className="text-lg text-gray-800 font-medium mb-1">
+                        {weekday}
                       </div>
-                      <div className="text-sm text-gray-500 mt-2">
+                      {/* Large day number */}
+                      <div className="text-[64px] text-blue-500 font-bold leading-none">
+                        {day || "N/A"}
+                      </div>
+                      {/* Add month name below the day number */}
+                      <div className="text-lg text-gray-800 font-medium mt-1 mb-2">
+                        {month}
+                      </div>
+                      <div className="text-sm text-gray-500">
                         ETA {caseItem.appointment.time}
                       </div>
                     </div>
