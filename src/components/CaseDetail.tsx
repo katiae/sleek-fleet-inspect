@@ -198,7 +198,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="flex-1 bg-gray-50 p-4 rounded-lg">
                       <div className="flex justify-between items-start">
                         <h3 className="text-base font-medium">Job details</h3>
-                        <Button variant="ghost" size="sm" className="text-xs">Details</Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-orange-500 h-6 px-2 py-0"
+                        >
+                          <FileText className="h-4 w-4 mr-0.5" />
+                          Details
+                        </Button>
                       </div>
                       
                       {caseItem.job && <div className="space-y-3 mt-4">
