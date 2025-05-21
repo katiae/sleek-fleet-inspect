@@ -10,7 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 // Google Maps API Key
-const GOOGLE_MAPS_API_KEY = "YOUR_API_KEY_HERE";
+const GOOGLE_MAPS_API_KEY = "AIzaSyBh7z3qRJnwouiI0l30sSaR-3wBhAGglro";
 
 interface CaseDetailProps {
   caseItem: Case;
