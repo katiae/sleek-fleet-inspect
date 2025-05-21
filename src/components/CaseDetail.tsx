@@ -512,7 +512,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <div>{caseItem.customer.email}</div>
                       </div>
                     </div>
-                    <Button size="sm" variant="outline" className="text-xs">Contact</Button>
                   </div>}
                 
                 {caseItem.mechanic && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
@@ -527,7 +526,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <div>ID: {caseItem.mechanic.id}</div>
                       </div>
                     </div>
-                    <Button size="sm" variant="outline" className="text-xs">Contact</Button>
                   </div>}
                 
                 {caseItem.access && caseItem.access.contactPerson && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
@@ -541,7 +539,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <div>{caseItem.access.contactPhone}</div>
                       </div>
                     </div>
-                    <Button size="sm" variant="outline" className="text-xs">Contact</Button>
                   </div>}
               </div>
             </div>
