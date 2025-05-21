@@ -258,7 +258,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                               <User className="h-5 w-5 text-gray-500 flex-shrink-0" />
                               <div className="font-medium">{caseItem.access.contactPerson}</div>
                             </div>
-                            <div className="ml-7 text-sm text-gray-600">Occupier</div>
+                            <div className="ml-7 text-sm text-gray-600">{caseItem.access.contactPerson}</div>
                           </div>}
                         
                         {/* Updated phone styling to match the data styling above */}
