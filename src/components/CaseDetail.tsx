@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -202,7 +201,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col">
-                  <div className="space-y-3 mb-auto">
+                  <div className="space-y-3 mb-3">
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
                       <div className="flex items-center justify-between">
                         <div>
@@ -231,7 +230,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     </div>
                   </div>
                   
-                  {/* Celebration message at the bottom of tasks - now using mt-auto to push to the bottom */}
+                  {/* Celebration message at the bottom of tasks - with consistent spacing */}
                   <div className="flex flex-col items-center justify-center mt-auto bg-gray-100 rounded-md py-3">
                     <PartyPopper className="h-6 w-6 text-gray-600 mb-2" />
                     <p className="text-sm text-gray-600 text-center">You don't have any more upcoming tasks</p>
