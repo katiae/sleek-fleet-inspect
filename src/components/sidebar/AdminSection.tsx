@@ -21,7 +21,8 @@ export const AdminSection = () => {
         <span>Administration</span>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <SidebarMenu>
+        {/* Added mt-2 for extra spacing after the section title */}
+        <SidebarMenu className="mt-2">
           <SidebarMenuItem>
             <SidebarMenuButton tooltip="Audit log" className="py-4">
               <FileText />
