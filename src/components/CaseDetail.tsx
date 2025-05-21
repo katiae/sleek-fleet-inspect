@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -60,7 +61,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-6">
-            {/* Tasks Section - Updated to remove color dots and replace due dates with action buttons */}
+            {/* Tasks Section - Updated with increased padding and grey background container */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-medium">
@@ -71,31 +72,33 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </Button>
               </div>
               
-              <div className="space-y-3">
-                <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-medium text-sm">Order required parts</span>
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 shadow-sm">
+                <div className="space-y-3">
+                  <div className="border rounded-md p-4 px-5 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="font-medium text-sm">Order required parts</span>
+                      </div>
+                      <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
                     </div>
-                    <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
                   </div>
-                </div>
-                
-                <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-medium text-sm">Contact customer to confirm appointment</span>
+                  
+                  <div className="border rounded-md p-4 px-5 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="font-medium text-sm">Contact customer to confirm appointment</span>
+                      </div>
+                      <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
                     </div>
-                    <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
                   </div>
-                </div>
-                
-                <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-medium text-sm">Review inspection report</span>
+                  
+                  <div className="border rounded-md p-4 px-5 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="font-medium text-sm">Review inspection report</span>
+                      </div>
+                      <Button variant="secondary" size="sm" className="text-xs">Review</Button>
                     </div>
-                    <Button variant="secondary" size="sm" className="text-xs">Review</Button>
                   </div>
                 </div>
               </div>
