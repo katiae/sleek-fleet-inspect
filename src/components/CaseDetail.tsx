@@ -151,7 +151,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         {day || "N/A"}
                       </div>
                       {/* Add month name below the day number */}
-                      <div className="text-lg text-gray-800 font-medium mt-1 mb-2">
+                      <div className="text-lg text-gray-800 font-medium mt-1 mb-0.5">
                         {month}
                       </div>
                       <div className="text-sm text-gray-500">
@@ -194,7 +194,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </div>
               )}
-
+              
               {/* Instruction Details Summary - As a separate card */}
               <Card>
                 <CardContent className="py-5">
