@@ -235,6 +235,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <div className="absolute inset-0 flex items-center justify-center bg-opacity-0 hover:bg-opacity-20 transition-opacity bg-green-200">
                           <MapPin className="h-8 w-8 text-red-500" />
                         </div>
+                        {/* Added error text overlay when map fails to load */}
+                        {mapLoadError && (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <MapPin className="h-8 w-8 text-gray-500 mb-2" />
+                            <p className="text-gray-600 text-sm font-medium">We couldn't locate the address on the map</p>
+                          </div>
+                        )}
                       </div>
                     </div>
 
