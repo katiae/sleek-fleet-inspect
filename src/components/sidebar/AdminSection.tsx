@@ -13,12 +13,12 @@ export const AdminSection = () => {
   const adminCapabilities = capabilities.filter(cap => cap.active && cap.section === "Administration");
 
   return (
-    <Collapsible open={adminSectionOpen} onOpenChange={setAdminSectionOpen} className="mt-4">
-      <CollapsibleTrigger className="w-full flex items-center gap-2 px-2 text-xs font-medium text-sidebar-foreground/70">
+    <Collapsible open={adminSectionOpen} onOpenChange={setAdminSectionOpen} className="mt-8">
+      <CollapsibleTrigger className="w-full flex items-center justify-between px-2 text-xs font-medium text-sidebar-foreground/70">
+        <span>Administration</span>
         <ChevronDown className="h-4 w-4 transition-transform duration-200" 
           style={{ transform: adminSectionOpen ? 'rotate(0deg)' : 'rotate(-90deg)' }} 
         />
-        <span>Administration</span>
       </CollapsibleTrigger>
       <CollapsibleContent>
         {/* Added mt-2 for extra spacing after the section title */}
