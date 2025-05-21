@@ -378,7 +378,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 
               {/* Instruction Details Summary */}
               <Card>
-                <CardContent className="py-5">
+                <CardHeader className="py-4 pb-0">
+                  <CardTitle className="text-base font-medium">Case brief</CardTitle>
+                </CardHeader>
+                <CardContent className="py-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                     <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Status</h3>
