@@ -265,7 +265,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                         
                         <div className="flex-1">
-                          <h4 className="text-base font-medium text-gray-800">Appointment scheduled</h4>
+                          <h4 className="text-sm font-medium">Appointment scheduled</h4>
                           <p className="text-sm text-gray-500 mt-0.5">Today, 10:45 AM</p>
                           <p className="text-sm text-gray-600 mt-2">
                             Appointment set for {caseItem.appointment?.date}, {caseItem.appointment?.time}
@@ -283,7 +283,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                         
                         <div className="flex-1">
-                          <h4 className="text-base font-medium text-gray-800">Mechanic assigned</h4>
+                          <h4 className="text-sm font-medium">Mechanic assigned</h4>
                           <p className="text-sm text-gray-500 mt-0.5">Yesterday, 3:22 PM</p>
                           <p className="text-sm text-gray-600 mt-2">
                             {caseItem.mechanic?.name} ({caseItem.mechanic?.specialization}) assigned to the case
@@ -301,7 +301,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                         
                         <div className="flex-1">
-                          <h4 className="text-base font-medium text-gray-800">Customer confirmed availability</h4>
+                          <h4 className="text-sm font-medium">Customer confirmed availability</h4>
                           <p className="text-sm text-gray-500 mt-0.5">Yesterday, 1:15 PM</p>
                         </div>
                       </div>
@@ -316,7 +316,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                         
                         <div className="flex-1">
-                          <h4 className="text-base font-medium text-gray-800">Initial assessment completed</h4>
+                          <h4 className="text-sm font-medium">Initial assessment completed</h4>
                           <p className="text-sm text-gray-500 mt-0.5">May 20, 2025, 9:30 AM</p>
                         </div>
                       </div>
@@ -331,7 +331,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                         
                         <div className="flex-1">
-                          <h4 className="text-base font-medium text-gray-800">Case created</h4>
+                          <h4 className="text-sm font-medium">Case created</h4>
                           <p className="text-sm text-gray-500 mt-0.5">May 19, 2025, 4:15 PM</p>
                         </div>
                       </div>
