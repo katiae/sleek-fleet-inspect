@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -111,23 +110,21 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 Summary
               </h2>
                 
-              {/* Appointment Information - Styled as its own card */}
+              {/* Appointment Information - Styled as its own card with white background and large day number */}
               {caseItem.appointment && (
-                <div className="rounded-lg border border-gray-100 p-6 bg-gray-50">
+                <div className="rounded-lg border border-gray-100 p-6 bg-white">
                   <div className="flex">
                     <div className="mr-8 text-center">
-                      <div className="text-3xl text-blue-500 font-bold">
+                      <div className="text-4xl text-blue-500 font-bold">
+                        {/* Extract only the day from the date string */}
                         {caseItem.appointment.date.split(" ")[1]}
-                      </div>
-                      <div className="text-lg font-medium">
-                        {caseItem.appointment.date.split(" ")[0]}
                       </div>
                       <div className="text-sm text-gray-500 mt-1">
                         ETA {caseItem.appointment.time}
                       </div>
                     </div>
 
-                    <div className="flex-1">
+                    <div className="flex-1 bg-gray-50 p-4 rounded-lg">
                       <div className="flex justify-between items-start">
                         <h3 className="text-xl font-medium">Job details</h3>
                         <Button variant="ghost" size="sm" className="text-blue-500">
