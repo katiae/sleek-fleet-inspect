@@ -7,7 +7,6 @@ import { CapabilitySearch } from "./CapabilitySearch";
 import { CapabilitiesGrid } from "./CapabilitiesGrid";
 import { RemoveCapabilityDialog } from "./RemoveCapabilityDialog";
 import { Button } from "@/components/ui/button";
-import { Contact } from "lucide-react";
 
 export const CapabilitiesContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -94,20 +93,17 @@ export const CapabilitiesContent = () => {
       />
       
       <div className="mb-6 mt-3 bg-gradient-to-r from-orange-50 to-white p-4 rounded-lg border border-orange-100">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3">
-          <div className="bg-orange-100 rounded-full p-2 flex-shrink-0">
-            <Contact className="h-5 w-5 text-orange-500" />
-          </div>
-          <div className="flex-grow text-center sm:text-left">
+        <div className="flex flex-row items-center justify-between">
+          <div className="flex-grow">
             <h3 className="text-base font-medium text-gray-900 mb-1">Need more capabilities?</h3>
-            <p className="text-sm text-gray-600 mb-2">Contact our team to explore premium solutions tailored for your business needs.</p>
-            <Button 
-              onClick={handleContactClick} 
-              className="bg-orange-500 hover:bg-orange-600 text-white text-sm py-1 h-8"
-            >
-              Contact us for more options
-            </Button>
+            <p className="text-sm text-gray-600">Contact our team to explore premium solutions tailored for your business needs.</p>
           </div>
+          <Button 
+            onClick={handleContactClick} 
+            className="bg-orange-500 hover:bg-orange-600 text-white text-sm py-1 h-8 ml-4 whitespace-nowrap"
+          >
+            Contact us for more options
+          </Button>
         </div>
       </div>
       
