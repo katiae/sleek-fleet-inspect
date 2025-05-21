@@ -6,6 +6,8 @@ import { CapabilitiesHeader } from "./CapabilitiesHeader";
 import { CapabilitySearch } from "./CapabilitySearch";
 import { CapabilitiesGrid } from "./CapabilitiesGrid";
 import { RemoveCapabilityDialog } from "./RemoveCapabilityDialog";
+import { Button } from "@/components/ui/button";
+import { Contact } from "lucide-react";
 
 export const CapabilitiesContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -75,6 +77,14 @@ export const CapabilitiesContent = () => {
     setConfirmRemoveId(null);
   };
 
+  const handleContactClick = () => {
+    toast({
+      title: "Contact Us",
+      description: "Our team will reach out to discuss additional capabilities for your account.",
+      duration: 5000,
+    });
+  };
+
   return (
     <div className="container mx-auto max-w-6xl">
       <CapabilitiesHeader />
@@ -82,6 +92,25 @@ export const CapabilitiesContent = () => {
         searchQuery={searchQuery}
         onSearchChange={handleSearchChange}
       />
+      
+      <div className="mb-8 mt-4 bg-gradient-to-r from-orange-50 to-white p-6 rounded-lg border border-orange-100 shadow-sm">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <div className="bg-orange-100 rounded-full p-3 flex-shrink-0">
+            <Contact className="h-6 w-6 text-orange-500" />
+          </div>
+          <div className="flex-grow text-center sm:text-left">
+            <h3 className="text-lg font-medium text-gray-900 mb-1">Need more capabilities?</h3>
+            <p className="text-gray-600 mb-3">Contact our team to explore premium solutions tailored for your business needs.</p>
+            <Button 
+              onClick={handleContactClick} 
+              className="bg-orange-500 hover:bg-orange-600 text-white"
+            >
+              Contact us for more options
+            </Button>
+          </div>
+        </div>
+      </div>
+      
       <CapabilitiesGrid
         capabilities={filteredCapabilities}
         onRemove={openRemoveConfirmation}
