@@ -19,7 +19,7 @@ export const MainSection = () => {
         <SidebarMenuButton 
           isActive={currentPath === '/'} 
           tooltip="Cases" 
-          className={`py-4 ${currentPath === '/' ? "text-sidebar-foreground font-medium" : ""}`}
+          className={`py-4 ${currentPath === '/' ? "text-sidebar-foreground font-medium !bg-transparent" : ""}`}
           asChild
         >
           <Link to="/">

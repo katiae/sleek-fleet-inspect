@@ -1,11 +1,13 @@
 
 import React from "react";
 
-export const CapabilitiesHeader: React.FC = () => {
+export const CapabilitiesHeader = () => {
   return (
-    <div className="text-center mb-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Capabilities</h1>
-      <p className="text-gray-500">Enhance your workflow with these powerful features</p>
+    <div className="mb-6">
+      <h1 className="text-2xl font-bold tracking-tight">Solutions</h1>
+      <p className="text-muted-foreground">
+        Add solutions to your sidebar menu to enhance your workflow.
+      </p>
     </div>
   );
 };
