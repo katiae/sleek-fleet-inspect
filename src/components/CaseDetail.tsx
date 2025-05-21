@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -60,6 +61,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       };
     }
   };
+  
+  // Get the encoded address for Google Maps
+  const getEncodedAddress = () => {
+    return encodeURIComponent(caseItem.address);
+  };
+  
   const {
     day,
     weekday,
@@ -216,12 +223,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <Card>
                   <div className="flex py-[14px] px-[14px]">
                     <div className="pl-2 mr-4 w-1/3">
-                      {/* Google Maps Standard Map View */}
+                      {/* Google Maps Standard Map View - Fixed implementation */}
                       <div className="relative w-full h-[150px] overflow-hidden rounded-md border border-gray-200">
                         <img 
-                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(caseItem.address)}&zoom=17&size=400x200&maptype=roadmap&markers=color:red%7C${encodeURIComponent(caseItem.address)}&key=${GOOGLE_MAPS_API_KEY}&style=feature:all|element:labels|visibility:off`} 
-                          alt="Map location" 
+                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`}
+                          alt="Location map" 
                           className="w-full h-full object-cover"
+                          onError={(e) => console.error("Map loading error:", e)}
                         />
                         {/* Overlay with icon that appears on hover */}
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition-opacity">
