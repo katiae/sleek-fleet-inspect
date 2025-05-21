@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -25,6 +26,75 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
     const encodedAddress = encodeURIComponent(caseItem.address);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
     window.open(googleMapsUrl, '_blank');
+  };
+
+  // Function to generate and download ICS file
+  const downloadICSFile = () => {
+    try {
+      if (!caseItem.appointment?.date) {
+        console.error("No appointment date available");
+        return;
+      }
+
+      // Convert the date to a proper format for .ics file (YYYYMMDD)
+      const date = new Date(caseItem.appointment.date);
+      
+      // Format the date as YYYYMMDDTHHMMSSZ
+      const startDate = date.toISOString().replace(/-|:|\.\d+/g, "");
+      
+      // Set end date 1 hour after start (or use duration if available)
+      const endDate = new Date(date.getTime() + (caseItem.appointment.duration 
+        ? parseInt(caseItem.appointment.duration) * 60000 
+        : 60 * 60000)).toISOString().replace(/-|:|\.\d+/g, "");
+      
+      // Create event description with access information
+      const description = caseItem.access 
+        ? `Access Contact: ${caseItem.access.contactPerson || 'Not specified'}\nContact Phone: ${caseItem.access.contactPhone || 'Not specified'}`
+        : 'No access information provided';
+      
+      // Create event title using job type or case type
+      const eventTitle = caseItem.job?.type || `${caseItem.type} Inspection`;
+
+      // Create the .ics content
+      const icsContent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "CALSCALE:GREGORIAN",
+        "PRODID:-//Inspection Calendar//EN",
+        "BEGIN:VEVENT",
+        `UID:${Date.now()}@inspection.calendar`,
+        `DTSTAMP:${new Date().toISOString().replace(/-|:|\.\d+/g, "")}`,
+        `DTSTART:${startDate}`,
+        `DTEND:${endDate}`,
+        `SUMMARY:${eventTitle}`,
+        `DESCRIPTION:${description.replace(/\n/g, '\\n')}`,
+        `LOCATION:${caseItem.address}`,
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      // Create a Blob with the .ics content
+      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      
+      // Create a URL for the Blob
+      const url = window.URL.createObjectURL(blob);
+      
+      // Create a link element to trigger the download
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${caseItem.id}_inspection.ics`;
+      
+      // Append the link to the document, trigger the click, and remove it
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Release the URL object
+      window.URL.revokeObjectURL(url);
+
+    } catch (error) {
+      console.error("Error generating ICS file:", error);
+    }
   };
 
   // Extract and format date information
@@ -202,9 +272,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           variant="ghost" 
                           size="sm" 
                           className="text-orange-500 h-6 px-2 py-0"
+                          onClick={downloadICSFile}
                         >
-                          <FileText className="h-4 w-4 mr-0.5" />
-                          Details
+                          <Calendar className="h-4 w-4 mr-0.5" />
+                          Add to Calendar
                         </Button>
                       </div>
                       
@@ -804,3 +875,4 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       </div>
     </div>;
 };
+
