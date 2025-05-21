@@ -50,9 +50,9 @@ export const MainSection = () => {
         </SidebarMenuButton>
       </SidebarMenuItem>
       
-      {/* Render Main section capabilities with animation */}
+      {/* Render Main section capabilities without animation */}
       {mainCapabilities.map((capability) => (
-        <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
+        <SidebarMenuItem key={capability.id}>
           <SidebarMenuButton tooltip={capability.name} className="py-4">
             {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
             <span>{capability.name}</span>
