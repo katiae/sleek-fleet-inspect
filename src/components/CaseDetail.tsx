@@ -250,31 +250,69 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 
                 <Card className="flex-1">
                   <CardContent className="pt-6 h-full">
-                    <div className="space-y-4">
-                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                        <div className="absolute w-2 h-2 rounded-full bg-blue-500 top-1.5 -left-[4.5px]"></div>
-                        <p className="text-sm">Appointment scheduled for {caseItem.appointment?.date}, {caseItem.appointment?.time}</p>
-                        <p className="text-xs text-gray-500">Today, 10:45 AM</p>
+                    {/* Updated timeline styling to match the provided screenshot */}
+                    <div className="space-y-6 pl-2 border-l border-gray-200">
+                      {/* Appointment scheduled */}
+                      <div className="relative">
+                        {/* Timeline dot - placed at top of content, yellow for "in progress" status */}
+                        <div className="absolute w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center -left-4 top-0">
+                          <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                        </div>
+                        
+                        <div className="ml-6">
+                          <h4 className="text-md font-medium">Appointment scheduled</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">Today, 10:45 AM</p>
+                          <p className="text-sm text-gray-700 mt-2">
+                            Appointment set for {caseItem.appointment?.date}, {caseItem.appointment?.time}
+                          </p>
+                        </div>
                       </div>
-                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                        <div className="absolute w-2 h-2 rounded-full bg-orange-500 top-1.5 -left-[4.5px]"></div>
-                        <p className="text-sm">Mechanic {caseItem.mechanic?.name} assigned to the case</p>
-                        <p className="text-xs text-gray-500">Yesterday, 3:22 PM</p>
+                      
+                      {/* Mechanic assigned */}
+                      <div className="relative">
+                        {/* Timeline dot - placed at top of content */}
+                        <div className="absolute w-2 h-2 rounded-full bg-blue-500 -left-[4.5px] top-2.5"></div>
+                        
+                        <div className="ml-6">
+                          <h4 className="text-md font-medium">Mechanic assigned</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 3:22 PM</p>
+                          <p className="text-sm text-gray-700 mt-2">
+                            {caseItem.mechanic?.name} ({caseItem.mechanic?.specialization}) assigned to the case
+                          </p>
+                        </div>
                       </div>
-                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                        <div className="absolute w-2 h-2 rounded-full bg-green-500 top-1.5 -left-[4.5px]"></div>
-                        <p className="text-sm">Customer confirmed availability for inspection</p>
-                        <p className="text-xs text-gray-500">Yesterday, 1:15 PM</p>
+                      
+                      {/* Customer confirmation */}
+                      <div className="relative">
+                        {/* Timeline dot - placed at top of content */}
+                        <div className="absolute w-2 h-2 rounded-full bg-green-500 -left-[4.5px] top-2.5"></div>
+                        
+                        <div className="ml-6">
+                          <h4 className="text-md font-medium">Customer confirmed availability</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 1:15 PM</p>
+                        </div>
                       </div>
-                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                        <div className="absolute w-2 h-2 rounded-full bg-purple-500 top-1.5 -left-[4.5px]"></div>
-                        <p className="text-sm">Initial assessment completed</p>
-                        <p className="text-xs text-gray-500">May 20, 2025, 9:30 AM</p>
+                      
+                      {/* Initial assessment */}
+                      <div className="relative">
+                        {/* Timeline dot - placed at top of content */}
+                        <div className="absolute w-2 h-2 rounded-full bg-purple-500 -left-[4.5px] top-2.5"></div>
+                        
+                        <div className="ml-6">
+                          <h4 className="text-md font-medium">Initial assessment completed</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">May 20, 2025, 9:30 AM</p>
+                        </div>
                       </div>
-                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                        <div className="absolute w-2 h-2 rounded-full bg-gray-500 top-1.5 -left-[4.5px]"></div>
-                        <p className="text-sm">Case created</p>
-                        <p className="text-xs text-gray-500">May 19, 2025, 4:15 PM</p>
+                      
+                      {/* Case created */}
+                      <div className="relative">
+                        {/* Timeline dot - placed at top of content */}
+                        <div className="absolute w-2 h-2 rounded-full bg-gray-500 -left-[4.5px] top-2.5"></div>
+                        
+                        <div className="ml-6">
+                          <h4 className="text-md font-medium">Case created</h4>
+                          <p className="text-sm text-gray-500 mt-0.5">May 19, 2025, 4:15 PM</p>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
