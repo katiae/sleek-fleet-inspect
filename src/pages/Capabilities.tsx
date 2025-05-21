@@ -12,7 +12,7 @@ const Capabilities = () => {
         <AppSidebar />
         <SidebarInset>
           <Navbar />
-          <div className="p-6">
+          <div className="px-11 py-6">
             <CapabilitiesContent />
           </div>
         </SidebarInset>
