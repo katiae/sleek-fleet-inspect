@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -136,7 +135,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               {caseItem.appointment && (
                 <div className="rounded-lg border border-gray-100 p-6 bg-white">
                   <div className="flex">
-                    <div className="mr-8 text-center flex flex-col justify-center">
+                    <div className="mr-12 text-center flex flex-col justify-center">
                       {/* Explicitly show the day number with extra logging */}
                       <div className="text-[64px] text-blue-500 font-bold leading-none">
                         {dayNumber || "N/A"}
