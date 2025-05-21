@@ -60,7 +60,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-6">
-            {/* Tasks Section - Moved to top, removed card wrapper, added small cards for each task */}
+            {/* Tasks Section - Updated to remove color dots and replace due dates with action buttons */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-lg font-medium">
@@ -74,31 +74,28 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               <div className="space-y-3">
                 <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="h-2 w-2 bg-green-500 rounded-full mr-2 flex-shrink-0"></div>
+                    <div>
                       <span className="font-medium text-sm">Order required parts</span>
                     </div>
-                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Due today</span>
+                    <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
                   </div>
                 </div>
                 
                 <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="h-2 w-2 bg-blue-500 rounded-full mr-2 flex-shrink-0"></div>
+                    <div>
                       <span className="font-medium text-sm">Contact customer to confirm appointment</span>
                     </div>
-                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Due tomorrow</span>
+                    <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
                   </div>
                 </div>
                 
                 <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="h-2 w-2 bg-orange-500 rounded-full mr-2 flex-shrink-0"></div>
+                    <div>
                       <span className="font-medium text-sm">Review inspection report</span>
                     </div>
-                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">Due in 2 days</span>
+                    <Button variant="secondary" size="sm" className="text-xs">Review</Button>
                   </div>
                 </div>
               </div>
@@ -210,7 +207,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <Button size="sm" variant="outline" className="text-xs">Contact</Button>
                     </div>
                   )}
-
+                  
                   {caseItem.mechanic && (
                     <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
                       <div className="bg-orange-100 text-orange-700 p-2 rounded-full">
@@ -227,7 +224,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <Button size="sm" variant="outline" className="text-xs">Contact</Button>
                     </div>
                   )}
-
+                  
                   {caseItem.access && caseItem.access.contactPerson && (
                     <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
                       <div className="bg-green-100 text-green-700 p-2 rounded-full">
