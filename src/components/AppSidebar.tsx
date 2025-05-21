@@ -13,14 +13,16 @@ export const AppSidebar = () => {
   
   return <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeaderComponent />
-      <SidebarContent className="p-4">
-        {/* Cases section */}
-        <MainSection />
-        
-        {/* Admin section - Collapsible */}
-        <AdminSection />
+      <SidebarContent className="p-4 flex flex-col h-full">
+        <div className="flex-grow">
+          {/* Cases section */}
+          <MainSection />
+          
+          {/* Admin section - Collapsible */}
+          <AdminSection />
+        </div>
       
-        {/* Resources section */}
+        {/* Resources section - Positioned at the bottom */}
         <ResourcesSection />
       </SidebarContent>
     </Sidebar>;

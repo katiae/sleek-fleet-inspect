@@ -1,4 +1,3 @@
-
 import React from "react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarGroupLabel } from "@/components/ui/sidebar";
 import { Settings, HelpCircle, ChevronRight, Plug, List, Plus } from "lucide-react";
@@ -11,7 +10,7 @@ export const ResourcesSection = () => {
   const currentPath = location.pathname;
 
   return (
-    <div className="mt-4">
+    <div>
       <SidebarGroupLabel>Resources</SidebarGroupLabel>
       <SidebarMenu className="mt-2">
         <SidebarMenuItem>
