@@ -7,7 +7,7 @@ export type MenuItem = {
   name: string;
   icon: React.ReactNode;
   link?: string;
-  section: "Main" | "Administration" | "Resources";
+  section: "Main" | "Administration" | "Solutions" | "Resources";
   order: number;
 };
 
@@ -27,10 +27,10 @@ const defaultMenuItems: MenuItem[] = [
   { id: "clients", name: "Clients", icon: <Users />, section: "Administration", order: 3 },
   { id: "templates", name: "Templates", icon: <FileText />, section: "Administration", order: 4 },
   { id: "fees", name: "Fees", icon: <CircleDollarSign />, section: "Administration", order: 5 },
-  { id: "add-capabilities", name: "Add Capabilities", icon: <Plus className="text-orange-500" />, link: "/capabilities", section: "Resources", order: 1 },
-  { id: "integrations", name: "Integrations", icon: <Plug />, section: "Resources", order: 2 },
-  { id: "customize-menu", name: "Customise menu", icon: <List />, link: "/customize-menu", section: "Resources", order: 3 },
-  { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 4 },
+  { id: "add-capabilities", name: "Add Capabilities", icon: <Plus className="text-orange-500" />, link: "/capabilities", section: "Solutions", order: 1 },
+  { id: "integrations", name: "Integrations", icon: <Plug />, section: "Resources", order: 1 },
+  { id: "customize-menu", name: "Customise menu", icon: <List />, link: "/customize-menu", section: "Resources", order: 2 },
+  { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 3 },
 ];
 
 const MenuContext = createContext<MenuContextType | null>(null);

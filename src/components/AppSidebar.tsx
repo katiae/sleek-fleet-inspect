@@ -19,6 +19,7 @@ export const AppSidebar = () => {
   // Filter active capabilities by section
   const mainCapabilities = capabilities.filter(cap => cap.active && cap.section === "Main");
   const adminCapabilities = capabilities.filter(cap => cap.active && cap.section === "Administration");
+  const solutionCapabilities = capabilities.filter(cap => cap.active && cap.section === "Solutions");
 
   return <Sidebar collapsible="icon" className="border-r-0">
       <SidebarHeader>
@@ -134,18 +135,16 @@ export const AppSidebar = () => {
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
-      </SidebarContent>
-      
-      {/* Resources section - Fixed to bottom */}
-      <SidebarFooter className="mt-auto p-4">
-        <SidebarSeparator className="mb-4" />
-        <SidebarGroupLabel>Resources</SidebarGroupLabel>
+        
+        {/* Solutions section */}
+        <SidebarSeparator className="my-4" />
+        <SidebarGroupLabel>Solutions</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton 
               isActive={currentPath === '/capabilities'} 
               tooltip="Add Capabilities" 
-              className="data-[active=true]:bg-white py-4"
+              className="py-4"
               asChild
             >
               <Link to="/capabilities">
@@ -155,6 +154,23 @@ export const AppSidebar = () => {
             </SidebarMenuButton>
           </SidebarMenuItem>
           
+          {/* Render Solutions section capabilities with animation */}
+          {solutionCapabilities.map((capability) => (
+            <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
+              <SidebarMenuButton tooltip={capability.name} className="py-4">
+                {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
+                <span>{capability.name}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
+      
+      {/* Resources section - Fixed to bottom */}
+      <SidebarFooter className="mt-auto p-4">
+        <SidebarSeparator className="mb-4" />
+        <SidebarGroupLabel>Resources</SidebarGroupLabel>
+        <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton tooltip="Integrations" className="py-4">
               <Plug />
