@@ -156,7 +156,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </h2>
                 
               {/* Appointment Information - Styled as its own card with white background and large day number */}
-              {caseItem.appointment && <div className="rounded-lg border border-gray-100 p-6 bg-white">
+              {caseItem.appointment && <div className="rounded-lg border shadow-sm bg-white">
                   <div className="flex">
                     <div className="pl-6 mr-12 text-center flex flex-col justify-center">
                       {/* Add weekday name above the day number */}
