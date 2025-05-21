@@ -231,10 +231,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       console.error("Map loading error:", e);
                       setMapLoadError(true);
                     }} onLoad={() => setMapLoadError(false)} />
-                        {/* Overlay with icon that appears on hover */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-opacity-0 hover:bg-opacity-20 transition-opacity bg-green-200">
-                          <MapPin className="h-8 w-8 text-red-500" />
-                        </div>
+                        
+                        {/* Removed the floating orange icon that was here */}
+                        
                         {/* Added error text overlay when map fails to load */}
                         {mapLoadError && (
                           <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
