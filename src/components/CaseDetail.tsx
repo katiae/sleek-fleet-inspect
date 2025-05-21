@@ -219,17 +219,17 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-                {/* Access Arrangements Card - Updated with green background instead of Google Maps */}
+                {/* Access Arrangements Card - Fixed to remove grey line */}
                 {caseItem.access && <Card className="h-full">
                   <div className="flex py-[14px] px-[14px] h-full">
                     <div className="w-1/3">
-                      {/* Green background with pin icon instead of Google Maps */}
-                      <div className="relative w-full h-full overflow-hidden border border-gray-200 border-r-0 rounded-l-lg bg-[#F2FCE2]" style={{
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0
-                    }}>
+                      {/* Green background with pin icon - removed all borders */}
+                      <div className="relative w-full h-full overflow-hidden rounded-l-lg bg-[#F2FCE2]" style={{
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0
+                      }}>
                         {/* Location pin and placeholder message */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-green-200">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
                           <MapPin className="h-8 w-8 text-gray-500 mb-2" />
                           <p className="text-gray-600 text-sm font-medium">
                             Property location
