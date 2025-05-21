@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import { useCapabilities } from "@/context/CapabilitiesContext";
-import { toast } from "@/hooks/use-toast";
 import { CapabilitiesHeader } from "./CapabilitiesHeader";
 import { CapabilitySearch } from "./CapabilitySearch";
 import { CapabilitiesGrid } from "./CapabilitiesGrid";
@@ -9,7 +8,7 @@ import { RemoveCapabilityDialog } from "./RemoveCapabilityDialog";
 
 export const CapabilitiesContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const { capabilities, setCapabilities } = useCapabilities();
+  const { capabilities, addCapabilityToSection, removeCapability } = useCapabilities();
   const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,25 +20,7 @@ export const CapabilitiesContent = () => {
   );
 
   const handleAddToSection = (id: string, section: "Administration" | "Main") => {
-    const capability = capabilities.find(cap => cap.id === id);
-    
-    if (!capability) return;
-    
-    setCapabilities(
-      capabilities.map((cap) => {
-        if (cap.id === id) {
-          // Show toast notification
-          toast({
-            title: `${cap.name} added to ${section}`,
-            description: `The capability is now available in the ${section} section`,
-            duration: 3000,
-          });
-          
-          return { ...cap, active: true, section: section };
-        }
-        return cap;
-      })
-    );
+    addCapabilityToSection(id, section);
   };
 
   const openRemoveConfirmation = (id: string) => {
@@ -48,25 +29,7 @@ export const CapabilitiesContent = () => {
 
   const handleRemove = () => {
     if (!confirmRemoveId) return;
-    
-    const capabilityToRemove = capabilities.find(c => c.id === confirmRemoveId);
-    
-    setCapabilities(
-      capabilities.map((capability) => {
-        if (capability.id === confirmRemoveId) {
-          // Show toast notification
-          toast({
-            title: `${capability.name} removed`,
-            description: "The capability has been removed from all sections",
-            duration: 3000,
-          });
-          
-          return { ...capability, active: false, section: null };
-        }
-        return capability;
-      })
-    );
-    
+    removeCapability(confirmRemoveId);
     // Close the dialog
     setConfirmRemoveId(null);
   };
