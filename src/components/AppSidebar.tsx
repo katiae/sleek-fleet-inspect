@@ -1,8 +1,9 @@
-import React from "react";
-import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarFooter } from "@/components/ui/sidebar";
-import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug, List } from "lucide-react";
+import React, { useState } from "react";
+import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarMenuAction } from "@/components/ui/sidebar";
+import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug, List, Settings, ChevronDown, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useCapabilities } from "@/context/CapabilitiesContext";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 export const AppSidebar = () => {
   const {
@@ -12,6 +13,7 @@ export const AppSidebar = () => {
   
   const location = useLocation();
   const currentPath = location.pathname;
+  const [settingsOpen, setSettingsOpen] = useState(false);
   
   const { capabilities } = useCapabilities();
   
@@ -163,39 +165,54 @@ export const AppSidebar = () => {
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
-      </SidebarContent>
       
-      {/* Resources section - No longer fixed to bottom */}
-      <SidebarSeparator className="my-4" />
-      <SidebarGroupLabel>Resources</SidebarGroupLabel>
-      <SidebarMenu>
-        <SidebarMenuItem>
-          <SidebarMenuButton tooltip="Integrations" className="py-4">
-            <Plug />
-            <span>Integrations</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-        
-        <SidebarMenuItem>
-          <SidebarMenuButton 
-            isActive={currentPath === '/customize-menu'} 
-            tooltip="Customise menu" 
-            className="py-4"
-            asChild
-          >
-            <Link to="/customize-menu">
-              <List />
-              <span>Customise menu</span>
-            </Link>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-        
-        <SidebarMenuItem>
-          <SidebarMenuButton tooltip="Help" className="py-4">
-            <HelpCircle />
-            <span>Help</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
+        {/* Resources section - No longer fixed to bottom */}
+        <SidebarSeparator className="my-4" />
+        <SidebarGroupLabel>Resources</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <Collapsible open={settingsOpen} onOpenChange={setSettingsOpen}>
+              <CollapsibleTrigger asChild>
+                <SidebarMenuButton tooltip="Settings" className="py-4 w-full justify-between">
+                  <div className="flex items-center">
+                    <Settings className="mr-2" />
+                    <span>Settings</span>
+                  </div>
+                  {settingsOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+                </SidebarMenuButton>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pl-6 pt-2">
+                <SidebarMenuItem>
+                  <SidebarMenuButton tooltip="Integrations" className="py-2">
+                    <Plug />
+                    <span>Integrations</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                
+                <SidebarMenuItem>
+                  <SidebarMenuButton 
+                    isActive={currentPath === '/customize-menu'} 
+                    tooltip="Customise menu" 
+                    className="py-2"
+                    asChild
+                  >
+                    <Link to="/customize-menu">
+                      <List />
+                      <span>Customise menu</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </CollapsibleContent>
+            </Collapsible>
+          </SidebarMenuItem>
+          
+          <SidebarMenuItem>
+            <SidebarMenuButton tooltip="Help" className="py-4">
+              <HelpCircle />
+              <span>Help</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarContent>
     </Sidebar>;
 };
