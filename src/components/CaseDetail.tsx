@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -221,43 +220,43 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                     </div>
                   )}
                   
-                  {/* Access Arrangements */}
-                  {caseItem.access && (
+                  {/* Mechanic Details - MOVED FROM JOB DETAILS TO CASE DETAILS */}
+                  {caseItem.mechanic && (
                     <div className="mb-4">
-                      <Accordion type="single" defaultValue="access-details" collapsible className="w-full">
-                        <AccordionItem value="access-details" className="border rounded-lg px-4">
+                      <Accordion type="single" defaultValue="mechanic-details" collapsible className="w-full">
+                        <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Access Arrangements</span>
+                              <span className="font-medium">Mechanic Details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
                                 <MoreHorizontal className="h-4 w-4" />
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Update access info</DropdownMenuItem>
-                                <DropdownMenuItem>Request access changes</DropdownMenuItem>
-                                <DropdownMenuItem>Print instructions</DropdownMenuItem>
+                                <DropdownMenuItem>Contact mechanic</DropdownMenuItem>
+                                <DropdownMenuItem>Reassign job</DropdownMenuItem>
+                                <DropdownMenuItem>View schedule</DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Instructions:</span>
-                                <span className="ml-4 text-right">{caseItem.access.instructions}</span>
+                                <span className="text-gray-500">Name:</span>
+                                <span className="ml-4 text-right">{caseItem.mechanic.name}</span>
                               </li>
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Restrictions:</span>
-                                <span className="ml-4 text-right">{caseItem.access.restrictions}</span>
+                                <span className="text-gray-500">ID:</span>
+                                <span className="ml-4 text-right">{caseItem.mechanic.id}</span>
                               </li>
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Contact Person:</span>
-                                <span className="ml-4 text-right">{caseItem.access.contactPerson}</span>
+                                <span className="text-gray-500">Specialization:</span>
+                                <span className="ml-4 text-right">{caseItem.mechanic.specialization}</span>
                               </li>
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Contact Phone:</span>
-                                <span className="ml-4 text-right">{caseItem.access.contactPhone}</span>
+                                <span className="text-gray-500">Contact:</span>
+                                <span className="ml-4 text-right">{caseItem.mechanic.contact}</span>
                               </li>
                             </ul>
                           </AccordionContent>
@@ -367,43 +366,43 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                     </div>
                   )}
 
-                  {/* Mechanic Details */}
-                  {caseItem.mechanic && (
+                  {/* Access Arrangements - MOVED FROM CASE DETAILS TO JOB DETAILS */}
+                  {caseItem.access && (
                     <div className="mb-4">
-                      <Accordion type="single" defaultValue="mechanic-details" collapsible className="w-full">
-                        <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
+                      <Accordion type="single" defaultValue="access-details" collapsible className="w-full">
+                        <AccordionItem value="access-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Mechanic Details</span>
+                              <span className="font-medium">Access Arrangements</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
                                 <MoreHorizontal className="h-4 w-4" />
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Contact mechanic</DropdownMenuItem>
-                                <DropdownMenuItem>Reassign job</DropdownMenuItem>
-                                <DropdownMenuItem>View schedule</DropdownMenuItem>
+                                <DropdownMenuItem>Update access info</DropdownMenuItem>
+                                <DropdownMenuItem>Request access changes</DropdownMenuItem>
+                                <DropdownMenuItem>Print instructions</DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
                           </div>
                           <AccordionContent className="pt-2 pb-4">
                             <ul className="space-y-2 text-sm">
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Name:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.name}</span>
+                                <span className="text-gray-500">Instructions:</span>
+                                <span className="ml-4 text-right">{caseItem.access.instructions}</span>
                               </li>
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">ID:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.id}</span>
+                                <span className="text-gray-500">Restrictions:</span>
+                                <span className="ml-4 text-right">{caseItem.access.restrictions}</span>
                               </li>
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Specialization:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.specialization}</span>
+                                <span className="text-gray-500">Contact Person:</span>
+                                <span className="ml-4 text-right">{caseItem.access.contactPerson}</span>
                               </li>
                               <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Contact:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.contact}</span>
+                                <span className="text-gray-500">Contact Phone:</span>
+                                <span className="ml-4 text-right">{caseItem.access.contactPhone}</span>
                               </li>
                             </ul>
                           </AccordionContent>
@@ -509,4 +508,3 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
     </div>
   );
 };
-
