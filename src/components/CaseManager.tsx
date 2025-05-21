@@ -18,7 +18,7 @@ export const CaseManager: React.FC<CaseManagerProps> = ({ children }) => {
         <AppSidebar />
         <SidebarInset>
           <Navbar />
-          <div className="p-6">
+          <div className="container mx-auto max-w-6xl p-6">
             {children || <div>Loading...</div>}
           </div>
         </SidebarInset>
