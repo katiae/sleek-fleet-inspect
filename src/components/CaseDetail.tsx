@@ -122,9 +122,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Case Details Tab */}
               <TabsContent value="case" className="mt-4">
-                <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
                   {/* Case Information */}
-                  <div className="break-inside-avoid mb-4">
+                  <div className="mb-4">
                     <Accordion type="single" defaultValue="case-information" collapsible className="w-full">
                       <AccordionItem value="case-information" className="border rounded-lg px-4">
                         <div className="flex justify-between items-center">
@@ -181,7 +181,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   
                   {/* Customer Details */}
                   {caseItem.customer && (
-                    <div className="break-inside-avoid mb-4">
+                    <div className="mb-4">
                       <Accordion type="single" defaultValue="customer-details" collapsible className="w-full">
                         <AccordionItem value="customer-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -229,7 +229,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   
                   {/* Access Arrangements */}
                   {caseItem.access && (
-                    <div className="break-inside-avoid mb-4">
+                    <div className="mb-4">
                       <Accordion type="single" defaultValue="access-details" collapsible className="w-full">
                         <AccordionItem value="access-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -279,10 +279,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Job Details Tab */}
               <TabsContent value="job" className="mt-4">
-                <div className="columns-1 sm:columns-2 gap-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
                   {/* Job Details */}
                   {caseItem.job && (
-                    <div className="break-inside-avoid mb-4">
+                    <div className="mb-4">
                       <Accordion type="single" defaultValue="job-details" collapsible className="w-full">
                         <AccordionItem value="job-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -334,7 +334,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
                   {/* Appointment Details */}
                   {caseItem.appointment && (
-                    <div className="break-inside-avoid mb-4">
+                    <div className="mb-4">
                       <Accordion type="single" defaultValue="appointment-details" collapsible className="w-full">
                         <AccordionItem value="appointment-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -382,7 +382,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
                   {/* Mechanic Details */}
                   {caseItem.mechanic && (
-                    <div className="break-inside-avoid mb-4">
+                    <div className="mb-4">
                       <Accordion type="single" defaultValue="mechanic-details" collapsible className="w-full">
                         <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -432,10 +432,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Vehicle Insights Tab */}
               <TabsContent value="vehicle" className="mt-4">
-                <div className="columns-1 sm:columns-2 gap-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
                   {/* Vehicle Details */}
                   {caseItem.vehicle && (
-                    <div className="break-inside-avoid mb-4">
+                    <div className="mb-4">
                       <Accordion type="single" defaultValue="vehicle-details" collapsible className="w-full">
                         <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -489,9 +489,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Risks Tab */}
               <TabsContent value="risks" className="mt-4">
-                <div className="columns-1 gap-4 space-y-4">
+                <div className="grid grid-cols-2 gap-4">
                   {/* Placeholder for Risks */}
-                  <div className="break-inside-avoid mb-4">
+                  <div className="mb-4">
                     <Card>
                       <CardContent className="p-6">
                         <div className="flex items-center mb-4">
@@ -529,3 +529,4 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
     </div>
   );
 };
+
