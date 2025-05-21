@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
 import { Capability } from "@/context/CapabilitiesContext";
-import { Lock } from "lucide-react";
+import { Crown } from "lucide-react";
 
 interface CapabilityCardProps {
   capability: Capability;
@@ -50,7 +50,7 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
           </div>
           {capability.premium && (
             <div className="absolute -top-1 -right-1 bg-amber-500 text-white p-1 rounded-full">
-              <Lock className="h-4 w-4" />
+              <Crown className="h-4 w-4" />
             </div>
           )}
         </div>
