@@ -202,7 +202,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 
                 <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col">
                   <div className="space-y-3 mb-3">
-                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <div>
                           <span className="font-medium text-sm">Order required parts</span>
@@ -211,7 +211,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                     </div>
                     
-                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <div>
                           <span className="font-medium text-sm">Contact customer to confirm appointment</span>
@@ -220,7 +220,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                     </div>
                     
-                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <div>
                           <span className="font-medium text-sm">Review inspection report</span>
