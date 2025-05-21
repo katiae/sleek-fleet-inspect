@@ -17,6 +17,9 @@ interface CaseDetailProps {
 export const CaseDetail: React.FC<CaseDetailProps> = ({
   caseItem
 }) => {
+  // State for tracking if the map image failed to load
+  const [mapLoadError, setMapLoadError] = useState(false);
+
   // Extract and format date information
   const getDateInfo = () => {
     if (!caseItem.appointment?.date) return {
@@ -217,13 +220,22 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-              {/* Access Arrangements Card - Updated height for map area */}
+              {/* Access Arrangements Card - Updated background for map area */}
               {caseItem.access && <Card>
                   <div className="flex py-[14px] px-[14px]">
                     <div className="pl-2 w-1/3 px-0">
-                      {/* Google Maps Standard Map View - Updated to match height of adjacent content */}
-                      <div className="relative w-full h-full overflow-hidden border border-gray-200 border-r-0 rounded-l-lg" style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}>
-                        <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} alt="Location map" className="w-full h-full object-cover" onError={e => console.error("Map loading error:", e)} />
+                      {/* Google Maps Standard Map View - Updated with different background color for errors */}
+                      <div className={`relative w-full h-full overflow-hidden border border-gray-200 border-r-0 rounded-l-lg ${mapLoadError ? 'bg-gray-300' : 'bg-gray-50'}`} style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}>
+                        <img 
+                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} 
+                          alt="Location map" 
+                          className="w-full h-full object-cover" 
+                          onError={e => {
+                            console.error("Map loading error:", e);
+                            setMapLoadError(true);
+                          }}
+                          onLoad={() => setMapLoadError(false)}
+                        />
                         {/* Overlay with icon that appears on hover */}
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition-opacity">
                           <MapPin className="h-8 w-8 text-red-500" />
