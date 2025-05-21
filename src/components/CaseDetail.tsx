@@ -305,13 +305,15 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                                 <span className="text-gray-500">Estimated Cost:</span>
                                 <span className="ml-4 text-right">{caseItem.job.estimatedCost}</span>
                               </li>
-                              <li className="flex items-start">
+                              <li className="flex justify-between items-start">
                                 <span className="text-gray-500">Required Parts:</span>
-                                <ul className="mt-1 list-disc list-inside ml-4">
-                                  {caseItem.job.parts.map((part, index) => (
-                                    <li key={index}>{part}</li>
-                                  ))}
-                                </ul>
+                                <div className="ml-4 text-right">
+                                  <ul className="list-disc list-inside text-right mt-1">
+                                    {caseItem.job.parts.map((part, index) => (
+                                      <li key={index} className="text-right">{part}</li>
+                                    ))}
+                                  </ul>
+                                </div>
                               </li>
                             </ul>
                           </AccordionContent>
