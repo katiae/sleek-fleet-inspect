@@ -167,8 +167,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </h2>
                 
               {/* Appointment Information - Styled as its own card with white background and large day number */}
-              {caseItem.appointment && <Card>
-                  <div className="flex py-[14px] px-[14px]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {caseItem.appointment && <Card className="h-full">
+                  <div className="flex py-[14px] px-[14px] h-full">
                     <div className="pl-6 mr-12 text-center flex flex-col justify-center">
                       {/* Add weekday name above the day number */}
                       <div className="text-lg text-gray-800 font-medium mb-1">
@@ -218,21 +219,19 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-              {/* Access Arrangements Card - Updated background for map area */}
-              {caseItem.access && <Card>
-                  <div className="flex py-[14px] px-[14px]">
-                    <div className="pl-2 w-1/3 px-0">
+                {/* Access Arrangements Card - Updated with fixed height to match appointment card */}
+                {caseItem.access && <Card className="h-full">
+                  <div className="flex py-[14px] px-[14px] h-full">
+                    <div className="w-1/3">
                       {/* Google Maps Standard Map View - Updated with different background color for errors */}
                       <div className={`relative w-full h-full overflow-hidden border border-gray-200 border-r-0 rounded-l-lg ${mapLoadError ? 'bg-gray-300' : 'bg-gray-50'}`} style={{
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0
-                  }}>
+                        borderTopRightRadius: 0,
+                        borderBottomRightRadius: 0
+                      }}>
                         <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} alt="Location map" className="w-full h-full object-cover" onError={e => {
-                      console.error("Map loading error:", e);
-                      setMapLoadError(true);
-                    }} onLoad={() => setMapLoadError(false)} />
-                        
-                        {/* Removed the floating orange icon that was here */}
+                          console.error("Map loading error:", e);
+                          setMapLoadError(true);
+                        }} onLoad={() => setMapLoadError(false)} />
                         
                         {/* Added error text overlay when map fails to load */}
                         {mapLoadError && <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
@@ -273,6 +272,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     </div>
                   </div>
                 </Card>}
+              </div>
 
               {/* Instruction Details Summary - As a separate card */}
               <Card>
