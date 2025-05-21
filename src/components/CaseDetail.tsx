@@ -229,7 +229,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       borderBottomRightRadius: 0
                     }}>
                         {/* Location pin and placeholder message */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-emerald-200">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-green-200">
                           <MapPin className="h-8 w-8 text-gray-500 mb-2" />
                           <p className="text-gray-600 text-sm font-medium">
                             Property location
