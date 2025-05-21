@@ -261,9 +261,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                             <div className="ml-7 text-sm text-gray-600">Occupier</div>
                           </div>}
                         
-                        {caseItem.access.contactPhone && <div className="flex gap-2 items-center ml-7 mt-1">
-                            <Phone className="h-4 w-4 text-orange-500" />
-                            <div className="text-orange-500">{caseItem.access.contactPhone}</div>
+                        {/* Updated phone styling to match the data styling above */}
+                        {caseItem.access.contactPhone && <div className="flex gap-2 items-start mt-2">
+                            <Phone className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
+                            <div className="flex-1">{caseItem.access.contactPhone}</div>
                           </div>}
                       </div>
                     </div>
