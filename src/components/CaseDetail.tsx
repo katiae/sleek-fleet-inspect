@@ -102,298 +102,240 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
           </TabsContent>
           
           <TabsContent value="details" className="pt-6">
-            <Card>
-              <CardContent className="p-6">
-                <Accordion type="single" collapsible className="w-full space-y-4">
-                  <AccordionItem value="case-information" className="border rounded-lg px-4">
-                    <AccordionTrigger className="py-4 hover:no-underline">
-                      <div className="flex items-center">
-                        <FileText className="h-5 w-5 mr-2 text-orange-500" />
-                        <span className="font-medium">Case Information</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <ul className="space-y-2 text-sm">
-                            <li className="flex justify-between">
-                              <span className="text-gray-500">Address:</span>
-                              <span className="font-medium">{caseItem.address}</span>
-                            </li>
-                            <li className="flex justify-between">
-                              <span className="text-gray-500">Case Type:</span>
-                              <span className="font-medium">{caseItem.type}</span>
-                            </li>
-                            <li className="flex justify-between">
-                              <span className="text-gray-500">Status:</span>
-                              <span><CaseStatusBadge status={caseItem.status} /></span>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <ul className="space-y-2 text-sm">
-                            <li className="flex justify-between">
-                              <span className="text-gray-500">Last Inspected:</span>
-                              <span className="font-medium">{caseItem.lastInspected}</span>
-                            </li>
-                            <li className="flex justify-between">
-                              <span className="text-gray-500">Owner Name:</span>
-                              <span className="font-medium">{caseItem.owner.name}</span>
-                            </li>
-                            <li className="flex justify-between">
-                              <span className="text-gray-500">Owner Type:</span>
-                              <span className="font-medium">{caseItem.owner.type}</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                  
-                  {caseItem.vehicle && (
-                    <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
-                      <AccordionTrigger className="py-4 hover:no-underline">
-                        <div className="flex items-center">
-                          <Car className="h-5 w-5 mr-2 text-blue-500" />
-                          <span className="font-medium">Vehicle Details</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Make:</span>
-                                <span className="font-medium">{caseItem.vehicle.make}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Model:</span>
-                                <span className="font-medium">{caseItem.vehicle.model}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Year:</span>
-                                <span className="font-medium">{caseItem.vehicle.year}</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">VIN:</span>
-                                <span className="font-medium">{caseItem.vehicle.vin}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">License Plate:</span>
-                                <span className="font-medium">{caseItem.vehicle.licensePlate}</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )}
-                  
-                  {caseItem.mechanic && (
-                    <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
-                      <AccordionTrigger className="py-4 hover:no-underline">
-                        <div className="flex items-center">
-                          <Wrench className="h-5 w-5 mr-2 text-gray-600" />
-                          <span className="font-medium">Mechanic Details</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Name:</span>
-                                <span className="font-medium">{caseItem.mechanic.name}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">ID:</span>
-                                <span className="font-medium">{caseItem.mechanic.id}</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Specialization:</span>
-                                <span className="font-medium">{caseItem.mechanic.specialization}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Contact:</span>
-                                <span className="font-medium">{caseItem.mechanic.contact}</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )}
-                  
-                  {caseItem.customer && (
-                    <AccordionItem value="customer-details" className="border rounded-lg px-4">
-                      <AccordionTrigger className="py-4 hover:no-underline">
-                        <div className="flex items-center">
-                          <User className="h-5 w-5 mr-2 text-green-500" />
-                          <span className="font-medium">Customer Details</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Name:</span>
-                                <span className="font-medium">{caseItem.customer.name}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Phone:</span>
-                                <span className="font-medium">{caseItem.customer.phone}</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Email:</span>
-                                <span className="font-medium">{caseItem.customer.email}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Preferred Contact:</span>
-                                <span className="font-medium">{caseItem.customer.preferredContact}</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )}
-                  
-                  {caseItem.appointment && (
-                    <AccordionItem value="appointment-details" className="border rounded-lg px-4">
-                      <AccordionTrigger className="py-4 hover:no-underline">
-                        <div className="flex items-center">
-                          <Calendar className="h-5 w-5 mr-2 text-purple-500" />
-                          <span className="font-medium">Appointment Details</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Date:</span>
-                                <span className="font-medium">{caseItem.appointment.date}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Time:</span>
-                                <span className="font-medium">{caseItem.appointment.time}</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Duration:</span>
-                                <span className="font-medium">{caseItem.appointment.duration}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Status:</span>
-                                <span className="font-medium">{caseItem.appointment.status}</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )}
-                  
-                  {caseItem.job && (
-                    <AccordionItem value="job-details" className="border rounded-lg px-4">
-                      <AccordionTrigger className="py-4 hover:no-underline">
-                        <div className="flex items-center">
-                          <Briefcase className="h-5 w-5 mr-2 text-amber-500" />
-                          <span className="font-medium">Job Details</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Type:</span>
-                                <span className="font-medium">{caseItem.job.type}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Description:</span>
-                                <span className="font-medium">{caseItem.job.description}</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Estimated Cost:</span>
-                                <span className="font-medium">{caseItem.job.estimatedCost}</span>
-                              </li>
-                              <li>
-                                <span className="text-gray-500">Required Parts:</span>
-                                <ul className="mt-1 list-disc list-inside">
-                                  {caseItem.job.parts.map((part, index) => (
-                                    <li key={index} className="font-medium">{part}</li>
-                                  ))}
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )}
-                  
-                  {caseItem.access && (
-                    <AccordionItem value="access-details" className="border rounded-lg px-4">
-                      <AccordionTrigger className="py-4 hover:no-underline">
-                        <div className="flex items-center">
-                          <Key className="h-5 w-5 mr-2 text-red-500" />
-                          <span className="font-medium">Access Arrangements</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Instructions:</span>
-                                <span className="font-medium">{caseItem.access.instructions}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Restrictions:</span>
-                                <span className="font-medium">{caseItem.access.restrictions}</span>
-                              </li>
-                            </ul>
-                          </div>
-                          <div>
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Contact Person:</span>
-                                <span className="font-medium">{caseItem.access.contactPerson}</span>
-                              </li>
-                              <li className="flex justify-between">
-                                <span className="text-gray-500">Contact Phone:</span>
-                                <span className="font-medium">{caseItem.access.contactPhone}</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )}
-                </Accordion>
-              </CardContent>
-            </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <AccordionItem value="case-information" className="border rounded-lg px-4">
+                <AccordionTrigger className="py-4 hover:no-underline">
+                  <div className="flex items-center">
+                    <FileText className="h-5 w-5 mr-2 text-orange-500" />
+                    <span className="font-medium">Case Information</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-4">
+                  <div className="grid grid-cols-1 gap-4">
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Address:</span>
+                        <span className="font-medium">{caseItem.address}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Case Type:</span>
+                        <span className="font-medium">{caseItem.type}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Status:</span>
+                        <span><CaseStatusBadge status={caseItem.status} /></span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Last Inspected:</span>
+                        <span className="font-medium">{caseItem.lastInspected}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Owner Name:</span>
+                        <span className="font-medium">{caseItem.owner.name}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Owner Type:</span>
+                        <span className="font-medium">{caseItem.owner.type}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+              
+              {caseItem.vehicle && (
+                <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
+                  <AccordionTrigger className="py-4 hover:no-underline">
+                    <div className="flex items-center">
+                      <Car className="h-5 w-5 mr-2 text-blue-500" />
+                      <span className="font-medium">Vehicle Details</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-4">
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Make:</span>
+                        <span className="font-medium">{caseItem.vehicle.make}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Model:</span>
+                        <span className="font-medium">{caseItem.vehicle.model}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Year:</span>
+                        <span className="font-medium">{caseItem.vehicle.year}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">VIN:</span>
+                        <span className="font-medium">{caseItem.vehicle.vin}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">License Plate:</span>
+                        <span className="font-medium">{caseItem.vehicle.licensePlate}</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              )}
+              
+              {caseItem.mechanic && (
+                <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
+                  <AccordionTrigger className="py-4 hover:no-underline">
+                    <div className="flex items-center">
+                      <Wrench className="h-5 w-5 mr-2 text-gray-600" />
+                      <span className="font-medium">Mechanic Details</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-4">
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Name:</span>
+                        <span className="font-medium">{caseItem.mechanic.name}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">ID:</span>
+                        <span className="font-medium">{caseItem.mechanic.id}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Specialization:</span>
+                        <span className="font-medium">{caseItem.mechanic.specialization}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Contact:</span>
+                        <span className="font-medium">{caseItem.mechanic.contact}</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              )}
+              
+              {caseItem.customer && (
+                <AccordionItem value="customer-details" className="border rounded-lg px-4">
+                  <AccordionTrigger className="py-4 hover:no-underline">
+                    <div className="flex items-center">
+                      <User className="h-5 w-5 mr-2 text-green-500" />
+                      <span className="font-medium">Customer Details</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-4">
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Name:</span>
+                        <span className="font-medium">{caseItem.customer.name}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Phone:</span>
+                        <span className="font-medium">{caseItem.customer.phone}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Email:</span>
+                        <span className="font-medium">{caseItem.customer.email}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Preferred Contact:</span>
+                        <span className="font-medium">{caseItem.customer.preferredContact}</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              )}
+              
+              {caseItem.appointment && (
+                <AccordionItem value="appointment-details" className="border rounded-lg px-4">
+                  <AccordionTrigger className="py-4 hover:no-underline">
+                    <div className="flex items-center">
+                      <Calendar className="h-5 w-5 mr-2 text-purple-500" />
+                      <span className="font-medium">Appointment Details</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-4">
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Date:</span>
+                        <span className="font-medium">{caseItem.appointment.date}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Time:</span>
+                        <span className="font-medium">{caseItem.appointment.time}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Duration:</span>
+                        <span className="font-medium">{caseItem.appointment.duration}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Status:</span>
+                        <span className="font-medium">{caseItem.appointment.status}</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              )}
+              
+              {caseItem.job && (
+                <AccordionItem value="job-details" className="border rounded-lg px-4">
+                  <AccordionTrigger className="py-4 hover:no-underline">
+                    <div className="flex items-center">
+                      <Briefcase className="h-5 w-5 mr-2 text-amber-500" />
+                      <span className="font-medium">Job Details</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-4">
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Type:</span>
+                        <span className="font-medium">{caseItem.job.type}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Description:</span>
+                        <span className="font-medium">{caseItem.job.description}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Estimated Cost:</span>
+                        <span className="font-medium">{caseItem.job.estimatedCost}</span>
+                      </li>
+                      <li>
+                        <span className="text-gray-500">Required Parts:</span>
+                        <ul className="mt-1 list-disc list-inside">
+                          {caseItem.job.parts.map((part, index) => (
+                            <li key={index} className="font-medium">{part}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              )}
+              
+              {caseItem.access && (
+                <AccordionItem value="access-details" className="border rounded-lg px-4">
+                  <AccordionTrigger className="py-4 hover:no-underline">
+                    <div className="flex items-center">
+                      <Key className="h-5 w-5 mr-2 text-red-500" />
+                      <span className="font-medium">Access Arrangements</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 pb-4">
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Instructions:</span>
+                        <span className="font-medium">{caseItem.access.instructions}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Restrictions:</span>
+                        <span className="font-medium">{caseItem.access.restrictions}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Contact Person:</span>
+                        <span className="font-medium">{caseItem.access.contactPerson}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Contact Phone:</span>
+                        <span className="font-medium">{caseItem.access.contactPhone}</span>
+                      </li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              )}
+            </div>
           </TabsContent>
           
           <TabsContent value="activity" className="pt-6">
