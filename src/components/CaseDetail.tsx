@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -8,6 +9,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Google Maps API Key
 const GOOGLE_MAPS_API_KEY = "AIzaSyBh7z3qRJnwouiI0l30sSaR-3wBhAGglro";
@@ -22,6 +24,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 
   // Add a reference to the Tabs component to control tab switching programmatically
   const [activeTab, setActiveTab] = useState("overview");
+  
+  // Check if the user is on a mobile device
+  const isMobile = useIsMobile();
 
   // Function to navigate to a specific tab
   const navigateToTab = (tabValue: string) => {
@@ -183,47 +188,88 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-6">
-            {/* Tasks Section - Updated with reduced spacing between title and grey container */}
-            <div className="mb-6">
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-lg font-medium">
-                  Upcoming Tasks
-                </h2>
-                <Button variant="link" size="sm" className="text-sm text-orange-500">
-                  See all tasks
-                </Button>
-              </div>
-              
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                <div className="space-y-3">
-                  <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-medium text-sm">Order required parts</span>
+            {/* Tasks and Activity Section - Modified to use grid for lg screens */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Tasks Section - Grid column 1 */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h2 className="text-lg font-medium">
+                    Upcoming Tasks
+                  </h2>
+                  <Button variant="link" size="sm" className="text-sm text-orange-500">
+                    See all tasks
+                  </Button>
+                </div>
+                
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                  <div className="space-y-3">
+                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="font-medium text-sm">Order required parts</span>
+                        </div>
+                        <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
                       </div>
-                      <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
                     </div>
-                  </div>
-                  
-                  <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-medium text-sm">Contact customer to confirm appointment</span>
+                    
+                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="font-medium text-sm">Contact customer to confirm appointment</span>
+                        </div>
+                        <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
                       </div>
-                      <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
                     </div>
-                  </div>
-                  
-                  <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="font-medium text-sm">Review inspection report</span>
+                    
+                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="font-medium text-sm">Review inspection report</span>
+                        </div>
+                        <Button variant="secondary" size="sm" className="text-xs">Review</Button>
                       </div>
-                      <Button variant="secondary" size="sm" className="text-xs">Review</Button>
                     </div>
                   </div>
                 </div>
               </div>
+
+              {/* Recent Activity Section - Grid column 2 */}
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-lg font-medium">
+                    Recent Activity
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                      <div className="absolute w-2 h-2 rounded-full bg-blue-500 top-1.5 -left-[4.5px]"></div>
+                      <p className="text-sm">Appointment scheduled for {caseItem.appointment?.date}, {caseItem.appointment?.time}</p>
+                      <p className="text-xs text-gray-500">Today, 10:45 AM</p>
+                    </div>
+                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                      <div className="absolute w-2 h-2 rounded-full bg-orange-500 top-1.5 -left-[4.5px]"></div>
+                      <p className="text-sm">Mechanic {caseItem.mechanic?.name} assigned to the case</p>
+                      <p className="text-xs text-gray-500">Yesterday, 3:22 PM</p>
+                    </div>
+                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                      <div className="absolute w-2 h-2 rounded-full bg-green-500 top-1.5 -left-[4.5px]"></div>
+                      <p className="text-sm">Customer confirmed availability for inspection</p>
+                      <p className="text-xs text-gray-500">Yesterday, 1:15 PM</p>
+                    </div>
+                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                      <div className="absolute w-2 h-2 rounded-full bg-purple-500 top-1.5 -left-[4.5px]"></div>
+                      <p className="text-sm">Initial assessment completed</p>
+                      <p className="text-xs text-gray-500">May 20, 2025, 9:30 AM</p>
+                    </div>
+                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                      <div className="absolute w-2 h-2 rounded-full bg-gray-500 top-1.5 -left-[4.5px]"></div>
+                      <p className="text-sm">Case created</p>
+                      <p className="text-xs text-gray-500">May 19, 2025, 4:15 PM</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Summary Section - Restructured to have Summary as section title and separate cards */}
@@ -351,12 +397,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <CardContent className="py-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                     <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
-                      <div>{caseItem.type}</div>
-                    </div>
-                    <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
                       <div>{caseItem.owner.type}</div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
+                      <div>{caseItem.type}</div>
                     </div>
                     <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
@@ -378,44 +424,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </CardContent>
               </Card>
             </div>
-
-            {/* Recent Activity Section */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg font-medium">
-                  Recent Activity
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                    <div className="absolute w-2 h-2 rounded-full bg-blue-500 top-1.5 -left-[4.5px]"></div>
-                    <p className="text-sm">Appointment scheduled for {caseItem.appointment?.date}, {caseItem.appointment?.time}</p>
-                    <p className="text-xs text-gray-500">Today, 10:45 AM</p>
-                  </div>
-                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                    <div className="absolute w-2 h-2 rounded-full bg-orange-500 top-1.5 -left-[4.5px]"></div>
-                    <p className="text-sm">Mechanic {caseItem.mechanic?.name} assigned to the case</p>
-                    <p className="text-xs text-gray-500">Yesterday, 3:22 PM</p>
-                  </div>
-                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                    <div className="absolute w-2 h-2 rounded-full bg-green-500 top-1.5 -left-[4.5px]"></div>
-                    <p className="text-sm">Customer confirmed availability for inspection</p>
-                    <p className="text-xs text-gray-500">Yesterday, 1:15 PM</p>
-                  </div>
-                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                    <div className="absolute w-2 h-2 rounded-full bg-purple-500 top-1.5 -left-[4.5px]"></div>
-                    <p className="text-sm">Initial assessment completed</p>
-                    <p className="text-xs text-gray-500">May 20, 2025, 9:30 AM</p>
-                  </div>
-                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                    <div className="absolute w-2 h-2 rounded-full bg-gray-500 top-1.5 -left-[4.5px]"></div>
-                    <p className="text-sm">Case created</p>
-                    <p className="text-xs text-gray-500">May 19, 2025, 4:15 PM</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
 
             {/* Contacts Section */}
             <Card>
