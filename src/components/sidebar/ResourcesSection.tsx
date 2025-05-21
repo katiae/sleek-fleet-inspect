@@ -21,7 +21,7 @@ export const ResourcesSection = () => {
               className="py-4"
               isActive={currentPath === '/capabilities'}
             >
-              <Plus className="text-orange-500" />
+              <Plus className={currentPath === '/capabilities' ? "text-orange-500" : ""} />
               <span>Add Capabilities</span>
             </SidebarMenuButton>
           </Link>
