@@ -18,7 +18,7 @@ export const ResourcesSection = () => {
           <Link to="/capabilities">
             <SidebarMenuButton 
               tooltip="Add Capabilities" 
-              className={`py-4 ${currentPath === '/capabilities' ? "bg-transparent text-sidebar-foreground font-medium" : ""}`}
+              className={`py-4 ${currentPath === '/capabilities' ? "text-sidebar-foreground font-medium" : ""}`}
               isActive={currentPath === '/capabilities'}
             >
               <Plus className={currentPath === '/capabilities' ? "text-orange-500" : ""} />
