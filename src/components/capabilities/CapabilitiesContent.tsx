@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useCapabilities } from "@/context/CapabilitiesContext";
 import { toast } from "@/hooks/use-toast";
@@ -6,6 +7,7 @@ import { CapabilitySearch } from "./CapabilitySearch";
 import { CapabilitiesGrid } from "./CapabilitiesGrid";
 import { RemoveCapabilityDialog } from "./RemoveCapabilityDialog";
 import { Button } from "@/components/ui/button";
+
 export const CapabilitiesContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const {
@@ -13,13 +15,17 @@ export const CapabilitiesContent = () => {
     setCapabilities
   } = useCapabilities();
   const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
+
   const filteredCapabilities = capabilities.filter(capability => capability.name.toLowerCase().includes(searchQuery.toLowerCase()));
+
   const handleAddToSection = (id: string, section: "Administration" | "Main") => {
     const capability = capabilities.find(cap => cap.id === id);
     if (!capability) return;
+    
     setCapabilities(capabilities.map(cap => {
       if (cap.id === id) {
         // Show toast notification
@@ -37,12 +43,15 @@ export const CapabilitiesContent = () => {
       return cap;
     }));
   };
+
   const openRemoveConfirmation = (id: string) => {
     setConfirmRemoveId(id);
   };
+
   const handleRemove = () => {
     if (!confirmRemoveId) return;
     const capabilityToRemove = capabilities.find(c => c.id === confirmRemoveId);
+    
     setCapabilities(capabilities.map(capability => {
       if (capability.id === confirmRemoveId) {
         // Show toast notification
@@ -63,9 +72,11 @@ export const CapabilitiesContent = () => {
     // Close the dialog
     setConfirmRemoveId(null);
   };
+
   const cancelRemove = () => {
     setConfirmRemoveId(null);
   };
+
   const handleContactClick = () => {
     toast({
       title: "Contact Us",
@@ -73,7 +84,8 @@ export const CapabilitiesContent = () => {
       duration: 5000
     });
   };
-  return <div className="container mx-auto max-w-6xl">
+
+  return <>
       <CapabilitiesHeader />
       <CapabilitySearch searchQuery={searchQuery} onSearchChange={handleSearchChange} />
       
@@ -90,5 +102,5 @@ export const CapabilitiesContent = () => {
       <CapabilitiesGrid capabilities={filteredCapabilities} onRemove={openRemoveConfirmation} onAddToSection={handleAddToSection} />
 
       <RemoveCapabilityDialog isOpen={!!confirmRemoveId} onCancel={cancelRemove} onConfirm={handleRemove} />
-    </div>;
+    </>;
 };
