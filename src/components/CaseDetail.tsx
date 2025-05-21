@@ -19,7 +19,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 }) => {
   // State for tracking if the map image failed to load
   const [mapLoadError, setMapLoadError] = useState(false);
-  
+
   // Add a reference to the Tabs component to control tab switching programmatically
   const [activeTab, setActiveTab] = useState("overview");
 
@@ -45,60 +45,42 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 
       // Convert the date to a proper format for .ics file (YYYYMMDD)
       const date = new Date(caseItem.appointment.date);
-      
+
       // Format the date as YYYYMMDDTHHMMSSZ
       const startDate = date.toISOString().replace(/-|:|\.\d+/g, "");
-      
+
       // Set end date 1 hour after start (or use duration if available)
-      const endDate = new Date(date.getTime() + (caseItem.appointment.duration 
-        ? parseInt(caseItem.appointment.duration) * 60000 
-        : 60 * 60000)).toISOString().replace(/-|:|\.\d+/g, "");
-      
+      const endDate = new Date(date.getTime() + (caseItem.appointment.duration ? parseInt(caseItem.appointment.duration) * 60000 : 60 * 60000)).toISOString().replace(/-|:|\.\d+/g, "");
+
       // Create event description with access information
-      const description = caseItem.access 
-        ? `Access Contact: ${caseItem.access.contactPerson || 'Not specified'}\nContact Phone: ${caseItem.access.contactPhone || 'Not specified'}`
-        : 'No access information provided';
-      
+      const description = caseItem.access ? `Access Contact: ${caseItem.access.contactPerson || 'Not specified'}\nContact Phone: ${caseItem.access.contactPhone || 'Not specified'}` : 'No access information provided';
+
       // Create event title using job type or case type
       const eventTitle = caseItem.job?.type || `${caseItem.type} Inspection`;
 
       // Create the .ics content
-      const icsContent = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "CALSCALE:GREGORIAN",
-        "PRODID:-//Inspection Calendar//EN",
-        "BEGIN:VEVENT",
-        `UID:${Date.now()}@inspection.calendar`,
-        `DTSTAMP:${new Date().toISOString().replace(/-|:|\.\d+/g, "")}`,
-        `DTSTART:${startDate}`,
-        `DTEND:${endDate}`,
-        `SUMMARY:${eventTitle}`,
-        `DESCRIPTION:${description.replace(/\n/g, '\\n')}`,
-        `LOCATION:${caseItem.address}`,
-        "END:VEVENT",
-        "END:VCALENDAR"
-      ].join("\r\n");
+      const icsContent = ["BEGIN:VCALENDAR", "VERSION:2.0", "CALSCALE:GREGORIAN", "PRODID:-//Inspection Calendar//EN", "BEGIN:VEVENT", `UID:${Date.now()}@inspection.calendar`, `DTSTAMP:${new Date().toISOString().replace(/-|:|\.\d+/g, "")}`, `DTSTART:${startDate}`, `DTEND:${endDate}`, `SUMMARY:${eventTitle}`, `DESCRIPTION:${description.replace(/\n/g, '\\n')}`, `LOCATION:${caseItem.address}`, "END:VEVENT", "END:VCALENDAR"].join("\r\n");
 
       // Create a Blob with the .ics content
-      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-      
+      const blob = new Blob([icsContent], {
+        type: "text/calendar;charset=utf-8"
+      });
+
       // Create a URL for the Blob
       const url = window.URL.createObjectURL(blob);
-      
+
       // Create a link element to trigger the download
       const link = document.createElement("a");
       link.href = url;
       link.download = `${caseItem.id}_inspection.ics`;
-      
+
       // Append the link to the document, trigger the click, and remove it
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
+
       // Release the URL object
       window.URL.revokeObjectURL(url);
-
     } catch (error) {
       console.error("Error generating ICS file:", error);
     }
@@ -250,12 +232,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <h2 className="text-lg font-medium">
                   Summary
                 </h2>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="text-orange-500 h-6 px-2 py-0"
-                  onClick={() => navigateToTab("details")}
-                >
+                <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0" onClick={() => navigateToTab("details")}>
                   View all case details
                 </Button>
               </div>
@@ -285,12 +262,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="flex-1 bg-gray-50 p-4 rounded-lg">
                       <div className="flex justify-between items-start">
                         <h3 className="text-base font-medium">Job details</h3>
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="text-orange-500 h-6 px-2 py-0"
-                          onClick={downloadICSFile}
-                        >
+                        <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0" onClick={downloadICSFile}>
                           <Calendar className="h-4 w-4 mr-0.5" />
                           Add to Calendar
                         </Button>
@@ -340,12 +312,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="flex-1 bg-gray-50 p-4 rounded-r-lg">
                       <div className="flex justify-between items-start">
                         <h3 className="text-base font-medium">Access details</h3>
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          className="text-orange-500 h-6 px-2 py-0" 
-                          onClick={openInGoogleMaps}
-                        >
+                        <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0" onClick={openInGoogleMaps}>
                           <ExternalLink className="h-4 w-4 mr-0.5" />
                           Open in Google Maps
                         </Button>
@@ -360,7 +327,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         {caseItem.access.contactPerson && <div className="flex flex-col gap-1 mt-2">
                             <div className="flex items-center gap-2">
                               <User className="h-5 w-5 text-gray-500 flex-shrink-0" />
-                              <div className="font-medium">James Blackwell</div>
+                              <div className="font-normal">James Blackwell</div>
                             </div>
                             <div className="ml-7 text-sm text-gray-600">{caseItem.access.contactPerson}</div>
                           </div>}
