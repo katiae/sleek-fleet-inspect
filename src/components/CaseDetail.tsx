@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -60,6 +61,51 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-6">
+            {/* Tasks Section - Moved to top, removed card wrapper, added small cards for each task */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-medium flex items-center">
+                  <Activity className="h-5 w-5 mr-2 text-gray-500" />
+                  Upcoming Tasks
+                </h2>
+                <Button variant="link" size="sm" className="text-sm text-blue-600">
+                  See all tasks
+                </Button>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="h-2 w-2 bg-green-500 rounded-full mr-2 flex-shrink-0"></div>
+                      <span className="font-medium text-sm">Order required parts</span>
+                    </div>
+                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Due today</span>
+                  </div>
+                </div>
+                
+                <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="h-2 w-2 bg-blue-500 rounded-full mr-2 flex-shrink-0"></div>
+                      <span className="font-medium text-sm">Contact customer to confirm appointment</span>
+                    </div>
+                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Due tomorrow</span>
+                  </div>
+                </div>
+                
+                <div className="border rounded-md p-3 shadow-sm hover:bg-gray-50 transition-colors">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="h-2 w-2 bg-orange-500 rounded-full mr-2 flex-shrink-0"></div>
+                      <span className="font-medium text-sm">Review inspection report</span>
+                    </div>
+                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full">Due in 2 days</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Key Information Summary */}
             <Card>
               <CardHeader className="pb-2">
@@ -101,49 +147,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     </div>
                   )}
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Tasks Section */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg font-medium flex items-center">
-                  <Activity className="h-5 w-5 mr-2 text-gray-500" />
-                  Upcoming Tasks
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="py-2">
-                        <div className="flex items-center">
-                          <div className="h-2 w-2 bg-orange-500 rounded-full mr-2"></div>
-                          <span>Review inspection report</span>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-right text-gray-500 text-sm py-2">Due in 2 days</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="py-2">
-                        <div className="flex items-center">
-                          <div className="h-2 w-2 bg-blue-500 rounded-full mr-2"></div>
-                          <span>Contact customer to confirm appointment</span>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-right text-gray-500 text-sm py-2">Due tomorrow</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="py-2">
-                        <div className="flex items-center">
-                          <div className="h-2 w-2 bg-green-500 rounded-full mr-2"></div>
-                          <span>Order required parts</span>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-right text-gray-500 text-sm py-2">Due today</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
               </CardContent>
             </Card>
 
