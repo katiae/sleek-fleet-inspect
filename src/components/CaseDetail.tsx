@@ -223,7 +223,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 {caseItem.access && <Card className="h-full">
                   <div className="flex py-[14px] px-[14px] h-full">
                     <div className="w-1/3">
-                      {/* Google Maps Standard Map View - Updated with different background color for errors */}
+                      {/* Google Maps Standard Map View - Updated with different background color for errors and removed title/help icon */}
                       <div className={`relative w-full h-full overflow-hidden border border-gray-200 border-r-0 rounded-l-lg ${mapLoadError ? 'bg-gray-300' : 'bg-gray-50'}`} style={{
                         borderTopRightRadius: 0,
                         borderBottomRightRadius: 0
@@ -233,7 +233,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           setMapLoadError(true);
                         }} onLoad={() => setMapLoadError(false)} />
                         
-                        {/* Added error text overlay when map fails to load */}
+                        {/* Removed help icon and modified error text overlay when map fails to load */}
                         {mapLoadError && <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
                             <MapPin className="h-8 w-8 text-gray-500 mb-2" />
                             <p className="text-gray-600 text-sm font-medium">We couldn't locate the address on the map</p>
