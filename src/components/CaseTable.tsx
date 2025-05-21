@@ -18,8 +18,15 @@ import {
 } from "@/components/ui/pagination";
 import { cases } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
+import { useNavigate } from "react-router-dom";
 
 export const CaseTable = () => {
+  const navigate = useNavigate();
+
+  const handleRowClick = (caseId: string) => {
+    navigate(`/case/${caseId}`);
+  };
+
   return (
     <div className="bg-white border rounded-md">
       <div className="overflow-x-auto">
@@ -36,7 +43,11 @@ export const CaseTable = () => {
           </TableHeader>
           <TableBody>
             {cases.map((caseItem, index) => (
-              <TableRow key={index}>
+              <TableRow 
+                key={index} 
+                className="cursor-pointer hover:bg-gray-50"
+                onClick={() => handleRowClick(caseItem.id)}
+              >
                 <TableCell className="font-medium">{caseItem.id}</TableCell>
                 <TableCell>{caseItem.address}</TableCell>
                 <TableCell>

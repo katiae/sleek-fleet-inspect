@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Capabilities from "./pages/Capabilities";
 import CustomizeMenu from "./pages/CustomizeMenu";
+import CaseDetail from "./pages/CaseDetail";
 import { CapabilitiesProvider } from "./context/CapabilitiesContext";
 import { MenuProvider } from "./context/MenuContext";
 
@@ -25,6 +26,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/capabilities" element={<Capabilities />} />
               <Route path="/customize-menu" element={<CustomizeMenu />} />
+              <Route path="/case/:id" element={<CaseDetail />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
