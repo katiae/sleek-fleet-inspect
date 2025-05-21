@@ -3,7 +3,7 @@ import React from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { Navbar } from "@/components/Navbar";
 import { AppSidebar } from "@/components/AppSidebar";
-import { CapabilitiesContent } from "@/components/CapabilitiesContent";
+import { CapabilitiesContent } from "@/components/capabilities/CapabilitiesContent";
 
 const Capabilities = () => {
   return (
