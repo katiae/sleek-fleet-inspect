@@ -1,9 +1,10 @@
+
 import React, { useState } from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarMenuAction } from "@/components/ui/sidebar";
 import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug, List, Settings, ChevronDown, ChevronRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useCapabilities } from "@/context/CapabilitiesContext";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export const AppSidebar = () => {
   const {
@@ -171,39 +172,43 @@ export const AppSidebar = () => {
         <SidebarGroupLabel>Resources</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Collapsible open={settingsOpen} onOpenChange={setSettingsOpen}>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip="Settings" className="py-4 w-full justify-between">
-                  <div className="flex items-center">
-                    <Settings className="mr-2" />
-                    <span>Settings</span>
-                  </div>
-                  {settingsOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+            <Popover open={settingsOpen} onOpenChange={setSettingsOpen}>
+              <PopoverTrigger asChild>
+                <SidebarMenuButton tooltip="Settings" className="py-4">
+                  <Settings />
+                  <span>Settings</span>
                 </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent className="pl-6 pt-2">
-                <SidebarMenuItem>
-                  <SidebarMenuButton tooltip="Integrations" className="py-2">
-                    <Plug />
+              </PopoverTrigger>
+              <PopoverContent side="right" align="start" sideOffset={5} className="p-2 w-56 shadow-lg bg-white border border-gray-200 rounded-md">
+                <div className="flex flex-col gap-1">
+                  <div className="px-1.5 py-1 text-sm font-medium text-gray-700">
+                    Landmark Information Group
+                  </div>
+                  <div className="h-px bg-gray-200 my-2"></div>
+                  <button className="flex items-center gap-2 px-2 py-2 text-sm rounded-md hover:bg-gray-100 transition-colors">
+                    <Plug className="h-4 w-4" />
                     <span>Integrations</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                
-                <SidebarMenuItem>
-                  <SidebarMenuButton 
-                    isActive={currentPath === '/customize-menu'} 
-                    tooltip="Customise menu" 
-                    className="py-2"
-                    asChild
-                  >
-                    <Link to="/customize-menu">
-                      <List />
-                      <span>Customise menu</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </CollapsibleContent>
-            </Collapsible>
+                  </button>
+                  <Link to="/customize-menu" className="flex items-center gap-2 px-2 py-2 text-sm rounded-md hover:bg-gray-100 transition-colors">
+                    <List className="h-4 w-4" />
+                    <span>Customise menu</span>
+                  </Link>
+                  <div className="h-px bg-gray-200 my-2"></div>
+                  <button className="flex items-center justify-between gap-2 px-2 py-2 text-sm rounded-md hover:bg-gray-100 transition-colors">
+                    <span>Appcues status</span>
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  <button className="flex items-center justify-between gap-2 px-2 py-2 text-sm rounded-md hover:bg-gray-100 transition-colors">
+                    <span>Sign out</span>
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 17L21 12M21 12L16 7M21 12H9M9 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </PopoverContent>
+            </Popover>
           </SidebarMenuItem>
           
           <SidebarMenuItem>
