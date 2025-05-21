@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Sidebar, SidebarContent, SidebarSeparator, useSidebar } from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, useSidebar } from "@/components/ui/sidebar";
 import { 
   MainSection, 
   AdminSection, 
@@ -17,14 +17,10 @@ export const AppSidebar = () => {
         {/* Cases section */}
         <MainSection />
         
-        {/* Separator between sections */}
-        <SidebarSeparator className="my-4" />
-        
         {/* Admin section - Collapsible */}
         <AdminSection />
       
         {/* Resources section */}
-        <SidebarSeparator className="my-4" />
         <ResourcesSection />
       </SidebarContent>
     </Sidebar>;

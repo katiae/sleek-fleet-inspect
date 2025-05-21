@@ -13,7 +13,7 @@ export const AdminSection = () => {
   const adminCapabilities = capabilities.filter(cap => cap.active && cap.section === "Administration");
 
   return (
-    <Collapsible open={adminSectionOpen} onOpenChange={setAdminSectionOpen}>
+    <Collapsible open={adminSectionOpen} onOpenChange={setAdminSectionOpen} className="mt-4">
       <CollapsibleTrigger className="w-full flex items-center gap-2 px-2 text-xs font-medium text-sidebar-foreground/70">
         <ChevronDown className="h-4 w-4 transition-transform duration-200" 
           style={{ transform: adminSectionOpen ? 'rotate(0deg)' : 'rotate(-90deg)' }} 

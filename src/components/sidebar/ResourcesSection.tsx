@@ -11,7 +11,7 @@ export const ResourcesSection = () => {
   const currentPath = location.pathname;
 
   return (
-    <>
+    <div className="mt-4">
       <SidebarGroupLabel>Resources</SidebarGroupLabel>
       <SidebarMenu className="mt-2">
         <SidebarMenuItem>
@@ -58,6 +58,6 @@ export const ResourcesSection = () => {
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
-    </>
+    </div>
   );
 };
