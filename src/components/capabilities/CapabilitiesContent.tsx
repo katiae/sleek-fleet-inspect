@@ -83,9 +83,7 @@ export const CapabilitiesContent = () => {
             <h3 className="text-base font-medium text-gray-900 mb-1">Need more capabilities?</h3>
             <p className="text-sm text-slate-950">Contact our team to explore premium solutions tailored for your business needs.</p>
           </div>
-          <Button onClick={handleContactClick} className="bg-orange-500 hover:bg-orange-600 text-white text-sm py-1 h-8 ml-4 whitespace-nowrap">
-            Contact us for more options
-          </Button>
+          <Button onClick={handleContactClick} className="bg-orange-500 hover:bg-orange-600 text-white text-sm py-1 h-8 ml-4 whitespace-nowrap">Contact us </Button>
         </div>
       </div>
       
