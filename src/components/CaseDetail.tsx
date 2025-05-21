@@ -1,9 +1,10 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users } from "lucide-react";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -208,6 +209,63 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
+              {/* New Access Arrangements Card - With map on the left and contact info on the right */}
+              {caseItem.access && (
+                <Card>
+                  <div className="flex py-[14px] px-[14px]">
+                    <div className="pl-2 mr-4 w-1/3">
+                      {/* Map placeholder - this would be replaced with an actual Google Maps integration */}
+                      <div className="relative w-full h-[150px] overflow-hidden rounded-md border border-gray-200">
+                        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                          <img 
+                            src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(caseItem.address)}&zoom=15&size=300x150&maptype=roadmap&markers=color:red%7C${encodeURIComponent(caseItem.address)}&key=YOUR_API_KEY`} 
+                            alt="Map location" 
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-40">
+                            <MapPin className="h-8 w-8 text-orange-500" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex-1 bg-gray-50 p-4 rounded-lg">
+                      <div className="flex justify-between items-start">
+                        <h3 className="text-base font-medium">Property & access details</h3>
+                        <Button variant="ghost" size="sm" className="text-blue-500">
+                          <MapPin className="h-4 w-4 mr-1" />
+                          Directions
+                        </Button>
+                      </div>
+                      
+                      <div className="space-y-3 mt-4">
+                        <div className="flex gap-2 items-start">
+                          <MapPin className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
+                          <div className="flex-1">{caseItem.address}</div>
+                        </div>
+                        
+                        {caseItem.access.contactPerson && (
+                          <div className="flex flex-col gap-1 mt-2">
+                            <div className="flex items-center gap-2">
+                              <User className="h-5 w-5 text-gray-500 flex-shrink-0" />
+                              <div className="font-medium">{caseItem.access.contactPerson}</div>
+                            </div>
+                            <div className="ml-7 text-sm text-gray-600">Occupier</div>
+                          </div>
+                        )}
+                        
+                        {caseItem.access.contactPhone && (
+                          <div className="flex gap-2 items-center ml-7 mt-1">
+                            <Phone className="h-4 w-4 text-orange-500" />
+                            <div className="text-orange-500">{caseItem.access.contactPhone}</div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              )}
+
               {/* Instruction Details Summary - As a separate card */}
               <Card>
                 <CardContent className="py-5">
