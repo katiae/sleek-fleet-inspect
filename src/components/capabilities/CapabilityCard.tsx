@@ -36,12 +36,16 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
     <Card 
       key={capability.id} 
       className={`overflow-hidden transition-shadow duration-200 ${
-        capability.premium ? "border-dashed border-gray-300" : "hover:shadow-md"
+        capability.premium 
+          ? "border-dashed border-gray-300 bg-gray-50/50 opacity-85" 
+          : "hover:shadow-md"
       }`}
     >
-      <div className="p-6 flex flex-col h-full">
+      <div className={`p-6 flex flex-col h-full ${capability.premium ? "opacity-80" : ""}`}>
         <div className="mb-4 relative">
-          <div className={`${capability.bgColor} w-12 h-12 rounded-lg flex items-center justify-center shadow-sm`}>
+          <div className={`${capability.bgColor} w-12 h-12 rounded-lg flex items-center justify-center shadow-sm ${
+            capability.premium ? "opacity-70" : ""
+          }`}>
             {capability.icon}
           </div>
           {capability.premium && (
@@ -56,7 +60,9 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
             <span className="ml-2 text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full">Premium</span>
           )}
         </h3>
-        <p className="text-gray-500 text-sm flex-grow mb-4">{capability.description}</p>
+        <p className={`text-gray-500 text-sm flex-grow mb-4 ${capability.premium ? "text-gray-400" : ""}`}>
+          {capability.description}
+        </p>
         <Separator className="my-4" />
         <CardFooter className="p-0 flex justify-between items-center">
           <span className="text-sm text-gray-500">
