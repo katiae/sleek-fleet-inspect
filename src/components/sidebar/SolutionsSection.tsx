@@ -26,9 +26,9 @@ export const SolutionsSection = () => {
       <CollapsibleContent>
         {/* Added mt-2 for extra spacing after the section title */}
         <SidebarMenu className="mt-2">
-          {/* Render Solutions section capabilities with animation */}
+          {/* Render Solutions section capabilities without animation */}
           {solutionCapabilities.map((capability) => (
-            <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
+            <SidebarMenuItem key={capability.id}>
               <SidebarMenuButton tooltip={capability.name} className="py-4">
                 {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
                 <span>{capability.name}</span>

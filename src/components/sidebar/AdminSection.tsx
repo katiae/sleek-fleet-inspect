@@ -58,9 +58,9 @@ export const AdminSection = () => {
             </SidebarMenuButton>
           </SidebarMenuItem>
           
-          {/* Render Administration section capabilities with animation */}
+          {/* Render Administration section capabilities without animation */}
           {adminCapabilities.map((capability) => (
-            <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
+            <SidebarMenuItem key={capability.id}>
               <SidebarMenuButton tooltip={capability.name} className="py-4">
                 {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
                 <span>{capability.name}</span>
