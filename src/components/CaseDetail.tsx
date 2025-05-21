@@ -75,7 +75,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               
               <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
                 <div className="space-y-3">
-                  <div className="border rounded-md p-4 px-5 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                  <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="font-medium text-sm">Order required parts</span>
@@ -84,7 +84,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     </div>
                   </div>
                   
-                  <div className="border rounded-md p-4 px-5 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                  <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="font-medium text-sm">Contact customer to confirm appointment</span>
@@ -93,7 +93,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     </div>
                   </div>
                   
-                  <div className="border rounded-md p-4 px-5 shadow-sm bg-white hover:bg-gray-50 transition-colors">
+                  <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
                     <div className="flex items-center justify-between">
                       <div>
                         <span className="font-medium text-sm">Review inspection report</span>
@@ -105,95 +105,96 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </div>
             </div>
 
-            {/* Summary Section - Restructured based on the image */}
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg font-medium">
-                  Summary
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {/* Appointment Information - Styled similar to the example image */}
-                {caseItem.appointment && (
-                  <div className="mb-6 rounded-lg border border-gray-100 p-6 bg-gray-50">
-                    <div className="flex">
-                      <div className="mr-8 text-center">
-                        <div className="text-3xl text-blue-500 font-bold">
-                          {caseItem.appointment.date.split(" ")[1]}
-                        </div>
-                        <div className="text-lg font-medium">
-                          {caseItem.appointment.date.split(" ")[0]}
-                        </div>
-                        <div className="text-sm text-gray-500 mt-1">
-                          ETA {caseItem.appointment.time}
-                        </div>
+            {/* Summary Section - Restructured to have Summary as section title and separate cards */}
+            <div className="space-y-4">
+              <h2 className="text-lg font-medium">
+                Summary
+              </h2>
+                
+              {/* Appointment Information - Styled as its own card */}
+              {caseItem.appointment && (
+                <div className="rounded-lg border border-gray-100 p-6 bg-gray-50">
+                  <div className="flex">
+                    <div className="mr-8 text-center">
+                      <div className="text-3xl text-blue-500 font-bold">
+                        {caseItem.appointment.date.split(" ")[1]}
                       </div>
-
-                      <div className="flex-1">
-                        <div className="flex justify-between items-start">
-                          <h3 className="text-xl font-medium">Job details</h3>
-                          <Button variant="ghost" size="sm" className="text-blue-500">
-                            <FileText className="h-4 w-4 mr-1" />
-                            Details
-                          </Button>
-                        </div>
-                        
-                        {caseItem.job && (
-                          <div className="space-y-3 mt-4">
-                            <div className="flex gap-2 items-start">
-                              <Briefcase className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                              <div className="flex-1">{caseItem.job.type}</div>
-                            </div>
-                            
-                            <div className="flex gap-2 items-start">
-                              <FileText className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                              <div className="flex-1">{caseItem.job.description}</div>
-                            </div>
-                            
-                            {caseItem.vehicle && (
-                              <div className="flex gap-2 items-start">
-                                <Car className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                                <div className="flex-1">
-                                  {caseItem.vehicle.year} {caseItem.vehicle.make} {caseItem.vehicle.model}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        )}
+                      <div className="text-lg font-medium">
+                        {caseItem.appointment.date.split(" ")[0]}
+                      </div>
+                      <div className="text-sm text-gray-500 mt-1">
+                        ETA {caseItem.appointment.time}
                       </div>
                     </div>
-                  </div>
-                )}
 
-                {/* Instruction Details Summary */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-4">
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Status</h3>
-                    <div><CaseStatusBadge status={caseItem.status} /></div>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
-                    <div>{caseItem.type}</div>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
-                    <div>{caseItem.vehicle ? `${caseItem.vehicle.year} ${caseItem.vehicle.make} ${caseItem.vehicle.model}` : "N/A"}</div>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Owner</h3>
-                    <div>{caseItem.owner.name}</div>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
-                    <div>{caseItem.owner.type}</div>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
-                    <div>{caseItem.lastInspected}</div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-start">
+                        <h3 className="text-xl font-medium">Job details</h3>
+                        <Button variant="ghost" size="sm" className="text-blue-500">
+                          <FileText className="h-4 w-4 mr-1" />
+                          Details
+                        </Button>
+                      </div>
+                      
+                      {caseItem.job && (
+                        <div className="space-y-3 mt-4">
+                          <div className="flex gap-2 items-start">
+                            <Briefcase className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
+                            <div className="flex-1">{caseItem.job.type}</div>
+                          </div>
+                          
+                          <div className="flex gap-2 items-start">
+                            <FileText className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
+                            <div className="flex-1">{caseItem.job.description}</div>
+                          </div>
+                          
+                          {caseItem.vehicle && (
+                            <div className="flex gap-2 items-start">
+                              <Car className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
+                              <div className="flex-1">
+                                {caseItem.vehicle.year} {caseItem.vehicle.make} {caseItem.vehicle.model}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              )}
+
+              {/* Instruction Details Summary - As a separate card */}
+              <Card>
+                <CardContent className="py-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Status</h3>
+                      <div><CaseStatusBadge status={caseItem.status} /></div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
+                      <div>{caseItem.type}</div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
+                      <div>{caseItem.vehicle ? `${caseItem.vehicle.year} ${caseItem.vehicle.make} ${caseItem.vehicle.model}` : "N/A"}</div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner</h3>
+                      <div>{caseItem.owner.name}</div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
+                      <div>{caseItem.owner.type}</div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
+                      <div>{caseItem.lastInspected}</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Recent Activity Section */}
             <Card>
