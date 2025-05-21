@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -64,8 +63,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
             {/* Tasks Section - Moved to top, removed card wrapper, added small cards for each task */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-medium flex items-center">
-                  <Activity className="h-5 w-5 mr-2 text-gray-500" />
+                <h2 className="text-lg font-medium">
                   Upcoming Tasks
                 </h2>
                 <Button variant="link" size="sm" className="text-sm text-blue-600">
@@ -109,8 +107,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
             {/* Key Information Summary */}
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg font-medium flex items-center">
-                  <FileTextIcon className="h-5 w-5 mr-2 text-gray-500" />
+                <CardTitle className="text-lg font-medium">
                   Key Information
                 </CardTitle>
               </CardHeader>
@@ -153,8 +150,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
             {/* Recent Activity Section */}
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg font-medium flex items-center">
-                  <List className="h-5 w-5 mr-2 text-gray-500" />
+                <CardTitle className="text-lg font-medium">
                   Recent Activity
                 </CardTitle>
               </CardHeader>
@@ -192,8 +188,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
             {/* Contacts Section */}
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg font-medium flex items-center">
-                  <Users className="h-5 w-5 mr-2 text-gray-500" />
+                <CardTitle className="text-lg font-medium">
                   Case Contacts
                 </CardTitle>
               </CardHeader>
