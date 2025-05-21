@@ -19,11 +19,11 @@ export const MainSection = () => {
         <SidebarMenuButton 
           isActive={currentPath === '/'} 
           tooltip="Cases" 
-          className="py-4"
+          className={`py-4 ${currentPath === '/' ? "bg-transparent text-sidebar-foreground font-medium" : ""}`}
           asChild
         >
           <Link to="/">
-            <Folder />
+            <Folder className={currentPath === '/' ? "text-orange-500" : ""} />
             <span>Cases</span>
           </Link>
         </SidebarMenuButton>
