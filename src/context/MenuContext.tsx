@@ -7,7 +7,7 @@ export type MenuItem = {
   name: string;
   icon: React.ReactNode;
   link?: string;
-  section: "Main" | "Administration" | "Solutions" | "Resources";
+  section: "Main" | "Administration" | "Resources";
   order: number;
 };
 
@@ -33,13 +33,11 @@ const defaultMenuItems: MenuItem[] = [
   { id: "templates", name: "Templates", icon: <FileText />, section: "Administration", order: 4 },
   { id: "fees", name: "Fees", icon: <CircleDollarSign />, section: "Administration", order: 5 },
   
-  // Solutions section items
-  { id: "add-capabilities", name: "Add Capabilities", icon: <Plus className="text-orange-500" />, link: "/capabilities", section: "Solutions", order: 1 },
-  
   // Resources section items
   { id: "integrations", name: "Integrations", icon: <Plug />, section: "Resources", order: 1 },
-  { id: "customize-menu", name: "Customise menu", icon: <List />, link: "/customize-menu", section: "Resources", order: 2 },
-  { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 3 },
+  { id: "add-capabilities", name: "Add Capabilities", icon: <Plus className="text-orange-500" />, link: "/capabilities", section: "Resources", order: 2 },
+  { id: "customize-menu", name: "Customise menu", icon: <List />, link: "/customize-menu", section: "Resources", order: 3 },
+  { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 4 },
 ];
 
 const MenuContext = createContext<MenuContextType | null>(null);
@@ -77,29 +75,9 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
   // Add a new menu item to the specified section
   const addMenuItem = (item: MenuItem) => {
     const newItems = [...menuItems];
-    
-    if (item.section === "Solutions") {
-      // Find the index of "Add Capabilities" item
-      const addCapabilitiesIndex = newItems.findIndex(i => i.id === "add-capabilities");
-      
-      if (addCapabilitiesIndex !== -1) {
-        // Insert the new item before "Add Capabilities"
-        newItems.splice(addCapabilitiesIndex, 0, item);
-        
-        // Update order values for all Solutions items
-        const itemsWithUpdatedOrder = updateSectionOrder(newItems, "Solutions");
-        updateMenuItems(itemsWithUpdatedOrder);
-      } else {
-        // If "Add Capabilities" not found, just add to end of array
-        newItems.push(item);
-        updateMenuItems(newItems);
-      }
-    } else {
-      // For other sections, add to the end of the section and update order
-      newItems.push(item);
-      const itemsWithUpdatedOrder = updateSectionOrder(newItems, item.section);
-      updateMenuItems(itemsWithUpdatedOrder);
-    }
+    newItems.push(item);
+    const itemsWithUpdatedOrder = updateSectionOrder(newItems, item.section);
+    updateMenuItems(itemsWithUpdatedOrder);
   };
 
   const contextValue = React.useMemo<MenuContextType>(

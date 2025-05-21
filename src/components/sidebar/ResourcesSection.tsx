@@ -1,17 +1,19 @@
 
 import React from "react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarGroupLabel } from "@/components/ui/sidebar";
-import { Settings, HelpCircle, ChevronRight, Plug, List } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Settings, HelpCircle, ChevronRight, Plug, List, Plus } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 export const ResourcesSection = () => {
   const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   return (
     <>
       <SidebarGroupLabel>Resources</SidebarGroupLabel>
-      <SidebarMenu>
+      <SidebarMenu className="mt-2">
         <SidebarMenuItem>
           <Popover open={settingsOpen} onOpenChange={setSettingsOpen}>
             <PopoverTrigger asChild>
@@ -34,6 +36,20 @@ export const ResourcesSection = () => {
               </div>
             </PopoverContent>
           </Popover>
+        </SidebarMenuItem>
+        
+        <SidebarMenuItem>
+          <SidebarMenuButton 
+            isActive={currentPath === '/capabilities'} 
+            tooltip="Add Capabilities" 
+            className="py-4"
+            asChild
+          >
+            <Link to="/capabilities">
+              <Plus className="text-orange-500" />
+              <span>Add Capabilities</span>
+            </Link>
+          </SidebarMenuButton>
         </SidebarMenuItem>
         
         <SidebarMenuItem>

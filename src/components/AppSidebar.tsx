@@ -4,7 +4,6 @@ import { Sidebar, SidebarContent, SidebarSeparator, useSidebar } from "@/compone
 import { 
   MainSection, 
   AdminSection, 
-  SolutionsSection, 
   ResourcesSection 
 } from "@/components/sidebar";
 import { SidebarHeaderComponent } from "@/components/sidebar/SidebarHeader";
@@ -23,10 +22,6 @@ export const AppSidebar = () => {
         
         {/* Admin section - Collapsible */}
         <AdminSection />
-        
-        {/* Solutions section - Collapsible */}
-        <SidebarSeparator className="my-4" />
-        <SolutionsSection />
       
         {/* Resources section */}
         <SidebarSeparator className="my-4" />
