@@ -250,15 +250,15 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 
                 <Card className="flex-1">
                   <CardContent className="pt-6 h-full">
-                    {/* Updated timeline styling to center dots on the line */}
-                    <div className="space-y-6 pl-6 relative">
-                      {/* Add vertical line that spans the entire timeline */}
-                      <div className="absolute left-[11px] top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                    {/* Updated timeline styling to center dots directly ON the line */}
+                    <div className="space-y-6 relative">
+                      {/* Vertical timeline line that spans the entire timeline */}
+                      <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2"></div>
                       
                       {/* Appointment scheduled */}
-                      <div className="relative">
-                        {/* Centered timeline dot with absolute positioning */}
-                        <div className="absolute w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center -left-[10px] top-0">
+                      <div className="relative pl-8 pr-8">
+                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
+                        <div className="absolute w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center left-1/2 -translate-x-1/2 top-0 z-10">
                           <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
                         </div>
                         
@@ -272,9 +272,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                       
                       {/* Mechanic assigned */}
-                      <div className="relative">
-                        {/* Centered timeline dot - smaller dot */}
-                        <div className="absolute w-[10px] h-[10px] rounded-full bg-blue-500 -left-[5px] top-1"></div>
+                      <div className="relative pl-8 pr-8">
+                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
+                        <div className="absolute w-3 h-3 rounded-full bg-blue-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
                         
                         <div className="ml-4">
                           <h4 className="text-sm font-medium text-gray-800">Mechanic assigned</h4>
@@ -286,9 +286,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                       
                       {/* Customer confirmation */}
-                      <div className="relative">
-                        {/* Centered timeline dot */}
-                        <div className="absolute w-[10px] h-[10px] rounded-full bg-green-500 -left-[5px] top-1"></div>
+                      <div className="relative pl-8 pr-8">
+                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
+                        <div className="absolute w-3 h-3 rounded-full bg-green-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
                         
                         <div className="ml-4">
                           <h4 className="text-sm font-medium text-gray-800">Customer confirmed availability</h4>
@@ -297,9 +297,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                       
                       {/* Initial assessment */}
-                      <div className="relative">
-                        {/* Centered timeline dot */}
-                        <div className="absolute w-[10px] h-[10px] rounded-full bg-purple-500 -left-[5px] top-1"></div>
+                      <div className="relative pl-8 pr-8">
+                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
+                        <div className="absolute w-3 h-3 rounded-full bg-purple-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
                         
                         <div className="ml-4">
                           <h4 className="text-sm font-medium text-gray-800">Initial assessment completed</h4>
@@ -308,9 +308,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                       
                       {/* Case created */}
-                      <div className="relative">
-                        {/* Centered timeline dot */}
-                        <div className="absolute w-[10px] h-[10px] rounded-full bg-gray-500 -left-[5px] top-1"></div>
+                      <div className="relative pl-8 pr-8">
+                        {/* Centered timeline dot - positioned exactly on top of the vertical line */}
+                        <div className="absolute w-3 h-3 rounded-full bg-gray-500 left-1/2 -translate-x-1/2 top-1 z-10"></div>
                         
                         <div className="ml-4">
                           <h4 className="text-sm font-medium text-gray-800">Case created</h4>
