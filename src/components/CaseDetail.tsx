@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -256,7 +257,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         {caseItem.access.contactPerson && <div className="flex flex-col gap-1 mt-2">
                             <div className="flex items-center gap-2">
                               <User className="h-5 w-5 text-gray-500 flex-shrink-0" />
-                              <div className="font-medium">{caseItem.access.contactPerson}</div>
+                              <div className="font-medium">James Blackwell</div>
                             </div>
                             <div className="ml-7 text-sm text-gray-600">{caseItem.access.contactPerson}</div>
                           </div>}
