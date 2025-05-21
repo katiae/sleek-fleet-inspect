@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -238,7 +239,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   <h2 className="text-lg font-medium">
                     Recent Activity
                   </h2>
-                  <Button variant="link" size="sm" className="text-sm text-orange-500">
+                  <Button 
+                    variant="link" 
+                    size="sm" 
+                    className="text-sm text-orange-500" 
+                    onClick={() => navigateToTab("activity")}
+                  >
                     View all activity
                   </Button>
                 </div>
@@ -875,3 +881,4 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       </div>
     </div>;
 };
+
