@@ -53,9 +53,15 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
       <div className="border-b border-gray-200 w-full">
         <Tabs defaultValue="overview" className="mt-6">
           <div className="border-b border-gray-200 w-full">
-            <TabsList className="flex h-auto p-0 bg-transparent space-x-8 mb-0">
+            <TabsList className="flex h-auto p-0 bg-transparent space-x-8 mb-0 justify-start">
               <TabsTrigger 
                 value="overview" 
+                className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
+              >
+                Overview
+              </TabsTrigger>
+              <TabsTrigger 
+                value="details" 
                 className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
               >
                 Case details
@@ -76,6 +82,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
           </div>
           
           <TabsContent value="overview" className="pt-6">
+            <Card>
+              <CardContent className="p-6 text-center text-gray-500">
+                Overview information will appear here
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="details" className="pt-6">
             <Card>
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
