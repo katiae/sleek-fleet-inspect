@@ -234,7 +234,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <AccordionItem value="job-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Job Details</span>
+                              <span className="font-medium">Inspection Details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
