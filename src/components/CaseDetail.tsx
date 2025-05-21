@@ -277,7 +277,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <div className="flex items-start">
                         {/* Timeline dot positioned centered on the left line */}
                         <div className="relative mr-4 flex-shrink-0">
-                          <div className="w-3 h-3 rounded-full bg-gray-400 z-10 relative"></div>
+                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+                          </div>
                         </div>
                         
                         <div className="flex-1">
@@ -293,7 +295,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <div className="flex items-start">
                         {/* Timeline dot positioned centered on the left line */}
                         <div className="relative mr-4 flex-shrink-0">
-                          <div className="w-3 h-3 rounded-full bg-gray-400 z-10 relative"></div>
+                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+                          </div>
                         </div>
                         
                         <div className="flex-1">
@@ -306,7 +310,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <div className="flex items-start">
                         {/* Timeline dot positioned centered on the left line */}
                         <div className="relative mr-4 flex-shrink-0">
-                          <div className="w-3 h-3 rounded-full bg-gray-400 z-10 relative"></div>
+                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+                          </div>
                         </div>
                         
                         <div className="flex-1">
@@ -319,7 +325,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <div className="flex items-start">
                         {/* Timeline dot positioned centered on the left line */}
                         <div className="relative mr-4 flex-shrink-0">
-                          <div className="w-3 h-3 rounded-full bg-gray-400 z-10 relative"></div>
+                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+                          </div>
                         </div>
                         
                         <div className="flex-1">
