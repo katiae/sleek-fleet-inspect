@@ -231,7 +231,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     
                     {/* Celebration message at the bottom of tasks */}
                     <div className="flex flex-col items-center justify-center py-4 mt-2 bg-gray-100 rounded-md">
-                      <PartyPopper className="h-6 w-6 text-orange-500 mb-2" />
+                      <PartyPopper className="h-6 w-6 text-gray-600 mb-2" />
                       <p className="text-sm text-gray-600 text-center">You don't have any more upcoming tasks</p>
                     </div>
                   </div>
