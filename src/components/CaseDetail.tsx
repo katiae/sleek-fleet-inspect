@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -234,42 +233,48 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </div>
 
               {/* Recent Activity Section - Grid column 2 */}
-              <Card>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-lg font-medium">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h2 className="text-lg font-medium">
                     Recent Activity
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                      <div className="absolute w-2 h-2 rounded-full bg-blue-500 top-1.5 -left-[4.5px]"></div>
-                      <p className="text-sm">Appointment scheduled for {caseItem.appointment?.date}, {caseItem.appointment?.time}</p>
-                      <p className="text-xs text-gray-500">Today, 10:45 AM</p>
+                  </h2>
+                  <Button variant="link" size="sm" className="text-sm text-orange-500">
+                    View all activity
+                  </Button>
+                </div>
+                
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="space-y-4">
+                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                        <div className="absolute w-2 h-2 rounded-full bg-blue-500 top-1.5 -left-[4.5px]"></div>
+                        <p className="text-sm">Appointment scheduled for {caseItem.appointment?.date}, {caseItem.appointment?.time}</p>
+                        <p className="text-xs text-gray-500">Today, 10:45 AM</p>
+                      </div>
+                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                        <div className="absolute w-2 h-2 rounded-full bg-orange-500 top-1.5 -left-[4.5px]"></div>
+                        <p className="text-sm">Mechanic {caseItem.mechanic?.name} assigned to the case</p>
+                        <p className="text-xs text-gray-500">Yesterday, 3:22 PM</p>
+                      </div>
+                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                        <div className="absolute w-2 h-2 rounded-full bg-green-500 top-1.5 -left-[4.5px]"></div>
+                        <p className="text-sm">Customer confirmed availability for inspection</p>
+                        <p className="text-xs text-gray-500">Yesterday, 1:15 PM</p>
+                      </div>
+                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                        <div className="absolute w-2 h-2 rounded-full bg-purple-500 top-1.5 -left-[4.5px]"></div>
+                        <p className="text-sm">Initial assessment completed</p>
+                        <p className="text-xs text-gray-500">May 20, 2025, 9:30 AM</p>
+                      </div>
+                      <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                        <div className="absolute w-2 h-2 rounded-full bg-gray-500 top-1.5 -left-[4.5px]"></div>
+                        <p className="text-sm">Case created</p>
+                        <p className="text-xs text-gray-500">May 19, 2025, 4:15 PM</p>
+                      </div>
                     </div>
-                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                      <div className="absolute w-2 h-2 rounded-full bg-orange-500 top-1.5 -left-[4.5px]"></div>
-                      <p className="text-sm">Mechanic {caseItem.mechanic?.name} assigned to the case</p>
-                      <p className="text-xs text-gray-500">Yesterday, 3:22 PM</p>
-                    </div>
-                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                      <div className="absolute w-2 h-2 rounded-full bg-green-500 top-1.5 -left-[4.5px]"></div>
-                      <p className="text-sm">Customer confirmed availability for inspection</p>
-                      <p className="text-xs text-gray-500">Yesterday, 1:15 PM</p>
-                    </div>
-                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                      <div className="absolute w-2 h-2 rounded-full bg-purple-500 top-1.5 -left-[4.5px]"></div>
-                      <p className="text-sm">Initial assessment completed</p>
-                      <p className="text-xs text-gray-500">May 20, 2025, 9:30 AM</p>
-                    </div>
-                    <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
-                      <div className="absolute w-2 h-2 rounded-full bg-gray-500 top-1.5 -left-[4.5px]"></div>
-                      <p className="text-sm">Case created</p>
-                      <p className="text-xs text-gray-500">May 19, 2025, 4:15 PM</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             {/* Summary Section - Restructured to have Summary as section title and separate cards */}
@@ -397,24 +402,24 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <CardContent className="py-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                     <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
-                      <div>{caseItem.owner.type}</div>
-                    </div>
-                    <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
                       <div>{caseItem.type}</div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Estimated Price</h3>
+                      <div>{caseItem.job ? caseItem.job.estimatedCost : "N/A"}</div>
                     </div>
                     <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
                       <div>{caseItem.vehicle ? `${caseItem.vehicle.year} ${caseItem.vehicle.make} ${caseItem.vehicle.model}` : "N/A"}</div>
                     </div>
                     <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner</h3>
-                      <div>{caseItem.owner.name}</div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
+                      <div>{caseItem.owner.type}</div>
                     </div>
                     <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Estimated Price</h3>
-                      <div>{caseItem.job ? caseItem.job.estimatedCost : "N/A"}</div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner</h3>
+                      <div>{caseItem.owner.name}</div>
                     </div>
                     <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
