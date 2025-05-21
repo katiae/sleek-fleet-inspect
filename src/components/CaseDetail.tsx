@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -239,9 +238,20 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 
             {/* Summary Section - Restructured to have Summary as section title and separate cards */}
             <div className="space-y-4">
-              <h2 className="text-lg font-medium">
-                Summary
-              </h2>
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-medium">
+                  Summary
+                </h2>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="text-orange-500 h-6 px-2 py-0"
+                  onClick={() => document.querySelector('[data-state="inactive"][value="details"]')?.dispatchEvent(new MouseEvent('click'))}
+                >
+                  <ExternalLink className="h-4 w-4 mr-0.5" />
+                  View all case details
+                </Button>
+              </div>
                 
               {/* Card layout - Changed to lg breakpoint (1024px) for larger screens like 14-inch and above */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -875,4 +885,3 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       </div>
     </div>;
 };
-
