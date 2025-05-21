@@ -187,7 +187,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-6">
-            {/* Tasks and Activity Section - Added h-full to both grid items to match heights */}
+            {/* Tasks and Activity Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Tasks Section - Grid column 1 */}
               <div className="h-full flex flex-col">
@@ -250,19 +250,22 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 
                 <Card className="flex-1">
                   <CardContent className="pt-6 h-full">
-                    {/* Updated timeline styling to match the provided screenshot */}
-                    <div className="space-y-6 pl-2 border-l border-gray-200">
+                    {/* Updated timeline styling to center dots on the line */}
+                    <div className="space-y-6 pl-6 relative">
+                      {/* Add vertical line that spans the entire timeline */}
+                      <div className="absolute left-[11px] top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                      
                       {/* Appointment scheduled */}
                       <div className="relative">
-                        {/* Timeline dot - placed at top of content, yellow for "in progress" status */}
-                        <div className="absolute w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center -left-4 top-0">
-                          <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                        {/* Centered timeline dot with absolute positioning */}
+                        <div className="absolute w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center -left-[10px] top-0">
+                          <div className="w-2.5 h-2.5 rounded-full bg-amber-500"></div>
                         </div>
                         
-                        <div className="ml-6">
-                          <h4 className="text-md font-medium">Appointment scheduled</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">Today, 10:45 AM</p>
-                          <p className="text-sm text-gray-700 mt-2">
+                        <div className="ml-4">
+                          <h4 className="text-sm font-medium text-gray-800">Appointment scheduled</h4>
+                          <p className="text-xs text-gray-500 mt-0.5">Today, 10:45 AM</p>
+                          <p className="text-xs text-gray-600 mt-2 mb-1">
                             Appointment set for {caseItem.appointment?.date}, {caseItem.appointment?.time}
                           </p>
                         </div>
@@ -270,13 +273,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       
                       {/* Mechanic assigned */}
                       <div className="relative">
-                        {/* Timeline dot - placed at top of content */}
-                        <div className="absolute w-2 h-2 rounded-full bg-blue-500 -left-[4.5px] top-2.5"></div>
+                        {/* Centered timeline dot - smaller dot */}
+                        <div className="absolute w-[10px] h-[10px] rounded-full bg-blue-500 -left-[5px] top-1"></div>
                         
-                        <div className="ml-6">
-                          <h4 className="text-md font-medium">Mechanic assigned</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 3:22 PM</p>
-                          <p className="text-sm text-gray-700 mt-2">
+                        <div className="ml-4">
+                          <h4 className="text-sm font-medium text-gray-800">Mechanic assigned</h4>
+                          <p className="text-xs text-gray-500 mt-0.5">Yesterday, 3:22 PM</p>
+                          <p className="text-xs text-gray-600 mt-2 mb-1">
                             {caseItem.mechanic?.name} ({caseItem.mechanic?.specialization}) assigned to the case
                           </p>
                         </div>
@@ -284,34 +287,34 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       
                       {/* Customer confirmation */}
                       <div className="relative">
-                        {/* Timeline dot - placed at top of content */}
-                        <div className="absolute w-2 h-2 rounded-full bg-green-500 -left-[4.5px] top-2.5"></div>
+                        {/* Centered timeline dot */}
+                        <div className="absolute w-[10px] h-[10px] rounded-full bg-green-500 -left-[5px] top-1"></div>
                         
-                        <div className="ml-6">
-                          <h4 className="text-md font-medium">Customer confirmed availability</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 1:15 PM</p>
+                        <div className="ml-4">
+                          <h4 className="text-sm font-medium text-gray-800">Customer confirmed availability</h4>
+                          <p className="text-xs text-gray-500 mt-0.5">Yesterday, 1:15 PM</p>
                         </div>
                       </div>
                       
                       {/* Initial assessment */}
                       <div className="relative">
-                        {/* Timeline dot - placed at top of content */}
-                        <div className="absolute w-2 h-2 rounded-full bg-purple-500 -left-[4.5px] top-2.5"></div>
+                        {/* Centered timeline dot */}
+                        <div className="absolute w-[10px] h-[10px] rounded-full bg-purple-500 -left-[5px] top-1"></div>
                         
-                        <div className="ml-6">
-                          <h4 className="text-md font-medium">Initial assessment completed</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">May 20, 2025, 9:30 AM</p>
+                        <div className="ml-4">
+                          <h4 className="text-sm font-medium text-gray-800">Initial assessment completed</h4>
+                          <p className="text-xs text-gray-500 mt-0.5">May 20, 2025, 9:30 AM</p>
                         </div>
                       </div>
                       
                       {/* Case created */}
                       <div className="relative">
-                        {/* Timeline dot - placed at top of content */}
-                        <div className="absolute w-2 h-2 rounded-full bg-gray-500 -left-[4.5px] top-2.5"></div>
+                        {/* Centered timeline dot */}
+                        <div className="absolute w-[10px] h-[10px] rounded-full bg-gray-500 -left-[5px] top-1"></div>
                         
-                        <div className="ml-6">
-                          <h4 className="text-md font-medium">Case created</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">May 19, 2025, 4:15 PM</p>
+                        <div className="ml-4">
+                          <h4 className="text-sm font-medium text-gray-800">Case created</h4>
+                          <p className="text-xs text-gray-500 mt-0.5">May 19, 2025, 4:15 PM</p>
                         </div>
                       </div>
                     </div>
