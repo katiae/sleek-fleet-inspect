@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -209,22 +208,21 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-              {/* New Access Arrangements Card - With map on the left and contact info on the right */}
+              {/* New Access Arrangements Card - With street view on the left and contact info on the right */}
               {caseItem.access && (
                 <Card>
                   <div className="flex py-[14px] px-[14px]">
                     <div className="pl-2 mr-4 w-1/3">
-                      {/* Map placeholder - this would be replaced with an actual Google Maps integration */}
+                      {/* Street View placeholder - Using Google Maps Street View Static API */}
                       <div className="relative w-full h-[150px] overflow-hidden rounded-md border border-gray-200">
-                        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                          <img 
-                            src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(caseItem.address)}&zoom=15&size=300x150&maptype=roadmap&markers=color:red%7C${encodeURIComponent(caseItem.address)}&key=YOUR_API_KEY`} 
-                            alt="Map location" 
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-40">
-                            <MapPin className="h-8 w-8 text-orange-500" />
-                          </div>
+                        <img 
+                          src={`https://maps.googleapis.com/maps/api/streetview?size=400x200&location=${encodeURIComponent(caseItem.address)}&fov=80&heading=70&pitch=0&key=YOUR_API_KEY`} 
+                          alt="Street view" 
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Fallback in case the image doesn't load */}
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity">
+                          <MapPin className="h-8 w-8 text-orange-500" />
                         </div>
                       </div>
                     </div>
