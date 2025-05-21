@@ -15,6 +15,7 @@ type MenuContextType = {
   menuItems: MenuItem[];
   updateMenuItems: (items: MenuItem[]) => void;
   resetMenuOrder: () => void;
+  addMenuItem: (item: MenuItem) => void;
 };
 
 const defaultMenuItems: MenuItem[] = [
@@ -50,9 +51,41 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
     setMenuItems(defaultMenuItems);
     localStorage.removeItem('menuItems');
   };
+  
+  // Add a new menu item before "Add Capabilities" in Solutions section
+  const addMenuItem = (item: MenuItem) => {
+    const newItems = [...menuItems];
+    
+    // If adding to Solutions section, insert before "Add Capabilities"
+    if (item.section === "Solutions") {
+      // Find the index of "Add Capabilities" item
+      const addCapabilitiesIndex = newItems.findIndex(i => i.id === "add-capabilities");
+      
+      if (addCapabilitiesIndex !== -1) {
+        // Insert the new item before "Add Capabilities"
+        newItems.splice(addCapabilitiesIndex, 0, item);
+        
+        // Update order values for all Solutions items
+        const solutionsItems = newItems.filter(i => i.section === "Solutions");
+        solutionsItems.forEach((item, index) => {
+          item.order = index + 1;
+        });
+      } else {
+        // If "Add Capabilities" not found, just add to end of array
+        newItems.push(item);
+      }
+    } else {
+      // For other sections, just add to the end of the section
+      const sectionItems = newItems.filter(i => i.section === item.section);
+      item.order = sectionItems.length + 1;
+      newItems.push(item);
+    }
+    
+    updateMenuItems(newItems);
+  };
 
   return (
-    <MenuContext.Provider value={{ menuItems, updateMenuItems, resetMenuOrder }}>
+    <MenuContext.Provider value={{ menuItems, updateMenuItems, resetMenuOrder, addMenuItem }}>
       {children}
     </MenuContext.Provider>
   );

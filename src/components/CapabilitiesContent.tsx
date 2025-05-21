@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCapabilities } from "@/context/CapabilitiesContext";
+import { useMenu } from "@/context/MenuContext";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,12 +32,13 @@ type Capability = {
   icon: React.ReactNode;
   active: boolean;
   bgColor: string;
-  section?: "Administration" | "Main" | null;
+  section?: "Administration" | "Main" | "Solutions" | null;
 };
 
 export const CapabilitiesContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { capabilities, setCapabilities } = useCapabilities();
+  const { addMenuItem } = useMenu();
   const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,23 +49,38 @@ export const CapabilitiesContent = () => {
     capability.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddToSection = (id: string, section: "Administration" | "Main") => {
+  const handleAddToSection = (id: string, section: "Administration" | "Main" | "Solutions") => {
+    const capability = capabilities.find(cap => cap.id === id);
+    
+    if (!capability) return;
+    
     setCapabilities(
-      capabilities.map((capability) => {
-        if (capability.id === id) {
+      capabilities.map((cap) => {
+        if (cap.id === id) {
           const newState = true;
           const newSection = section;
           
+          // Add to menu if it's in Solutions section
+          if (section === "Solutions") {
+            addMenuItem({
+              id: `capability-${cap.id}`,
+              name: cap.name,
+              icon: cap.icon,
+              section: "Solutions",
+              order: 0 // This will be adjusted in addMenuItem function
+            });
+          }
+          
           // Show toast notification
           toast({
-            title: `${capability.name} added to ${section}`,
+            title: `${cap.name} added to ${section}`,
             description: `The capability is now available in the ${section} section`,
             duration: 3000,
           });
           
-          return { ...capability, active: newState, section: newSection };
+          return { ...cap, active: newState, section: newSection };
         }
-        return capability;
+        return cap;
       })
     );
   };
@@ -166,6 +183,12 @@ export const CapabilitiesContent = () => {
                         className="py-2.5 px-4 cursor-pointer"
                       >
                         Add to Administration
+                      </DropdownMenuItem>
+                      <DropdownMenuItem 
+                        onClick={() => handleAddToSection(capability.id, "Solutions")}
+                        className="py-2.5 px-4 cursor-pointer"
+                      >
+                        Add to Solutions
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
