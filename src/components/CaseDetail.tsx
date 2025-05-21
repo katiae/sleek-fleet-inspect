@@ -225,11 +225,11 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="w-1/3">
                       {/* Green background with pin icon - removed all borders */}
                       <div className="relative w-full h-full overflow-hidden rounded-l-lg bg-[#F2FCE2]" style={{
-                        borderTopRightRadius: 0,
-                        borderBottomRightRadius: 0
-                      }}>
+                      borderTopRightRadius: 0,
+                      borderBottomRightRadius: 0
+                    }}>
                         {/* Location pin and placeholder message */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-emerald-200">
                           <MapPin className="h-8 w-8 text-gray-500 mb-2" />
                           <p className="text-gray-600 text-sm font-medium">
                             Property location
