@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -222,7 +221,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               {caseItem.access && (
                 <Card>
                   <div className="flex py-[14px] px-[14px]">
-                    <div className="pl-2 mr-4 w-1/3">
+                    <div className="pl-2 w-1/3">
                       {/* Google Maps Standard Map View - Fixed implementation */}
                       <div className="relative w-full h-[150px] overflow-hidden rounded-md border border-gray-200">
                         <img 
