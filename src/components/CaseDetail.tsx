@@ -142,7 +142,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
     weekday,
     month
   } = getDateInfo();
-  return <div className="space-y-6">
+  return <div className="space-y-11">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">{caseItem.address}</h1>
@@ -186,7 +186,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
             </TabsList>
           </div>
           
-          <TabsContent value="overview" className="pt-6 space-y-6">
+          <TabsContent value="overview" className="pt-6 space-y-11">
             {/* Tasks and Activity Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Tasks Section - Grid column 1 */}
