@@ -80,7 +80,7 @@ export const CapabilitiesContent = () => {
       <div className="mb-6 mt-3 bg-gradient-to-r from-orange-50 to-white p-4 rounded-lg border border-orange-100">
         <div className="flex flex-row items-center justify-between">
           <div className="flex-grow">
-            <h3 className="text-base font-medium text-gray-900 mb-1">Need more capabilities?</h3>
+            <h3 className="text-base font-medium text-gray-900 mb-1">Need more solutions?</h3>
             <p className="text-sm text-slate-950">Contact our team to explore premium solutions tailored for your business needs.</p>
           </div>
           <Button onClick={handleContactClick} className="bg-orange-500 hover:bg-orange-600 text-white text-sm py-1 h-8 ml-4 whitespace-nowrap">Contact us </Button>
