@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -63,7 +62,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
         </DropdownMenu>
       </div>
       
-      <div className="border-b border-gray-200 w-full">
+      <div className="w-full">
         <Tabs defaultValue="overview" className="mt-6">
           <div className="border-b border-gray-200 w-full">
             <TabsList className="flex h-auto p-0 bg-transparent space-x-8 mb-0 justify-start">
@@ -122,7 +121,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Case Details Tab */}
               <TabsContent value="case" className="mt-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 border-0">
                   {/* Case Information */}
                   <div className="mb-4">
                     <Accordion type="single" defaultValue="case-information" collapsible className="w-full">
@@ -279,7 +278,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Job Details Tab */}
               <TabsContent value="job" className="mt-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 border-0">
                   {/* Job Details */}
                   {caseItem.job && (
                     <div className="mb-4">
@@ -432,7 +431,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Vehicle Insights Tab */}
               <TabsContent value="vehicle" className="mt-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 border-0">
                   {/* Vehicle Details */}
                   {caseItem.vehicle && (
                     <div className="mb-4">
@@ -489,7 +488,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
               {/* Risks Tab */}
               <TabsContent value="risks" className="mt-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4 border-0">
                   {/* Placeholder for Risks */}
                   <div className="mb-4">
                     <Card>
@@ -529,4 +528,3 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
     </div>
   );
 };
-
