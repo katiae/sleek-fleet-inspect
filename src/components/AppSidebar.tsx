@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarMenuAction } from "@/components/ui/sidebar";
 import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug, List, Settings, ChevronDown, ChevronRight } from "lucide-react";
@@ -176,6 +177,7 @@ export const AppSidebar = () => {
                 <SidebarMenuButton tooltip="Settings" className="py-4">
                   <Settings />
                   <span>Settings</span>
+                  <ChevronRight className="ml-auto h-4 w-4" />
                 </SidebarMenuButton>
               </PopoverTrigger>
               <PopoverContent side="right" align="start" sideOffset={5} className="p-2 w-56 shadow-lg bg-white border border-gray-200 rounded-md">
