@@ -251,7 +251,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           className="text-orange-500 h-6 px-2 py-0" 
                           onClick={openInGoogleMaps}
                         >
-                          <MapPin className="h-4 w-4 mr-1" />
+                          <MapPin className="h-4 w-4 mr-0.5" />
                           Open in Google Maps
                         </Button>
                       </div>
