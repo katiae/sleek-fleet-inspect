@@ -9,6 +9,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
+// Google Maps API Key
+const GOOGLE_MAPS_API_KEY = "YOUR_API_KEY_HERE";
+
 interface CaseDetailProps {
   caseItem: Case;
 }
@@ -208,7 +211,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-              {/* New Access Arrangements Card - With standard map view on the left and contact info on the right */}
+              {/* Access Arrangements Card - With standard map view on the left and contact info on the right */}
               {caseItem.access && (
                 <Card>
                   <div className="flex py-[14px] px-[14px]">
@@ -216,7 +219,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       {/* Google Maps Standard Map View */}
                       <div className="relative w-full h-[150px] overflow-hidden rounded-md border border-gray-200">
                         <img 
-                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(caseItem.address)}&zoom=17&size=400x200&maptype=roadmap&markers=color:red%7C${encodeURIComponent(caseItem.address)}&key=YOUR_API_KEY&style=feature:all|element:labels|visibility:off`} 
+                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(caseItem.address)}&zoom=17&size=400x200&maptype=roadmap&markers=color:red%7C${encodeURIComponent(caseItem.address)}&key=${GOOGLE_MAPS_API_KEY}&style=feature:all|element:labels|visibility:off`} 
                           alt="Map location" 
                           className="w-full h-full object-cover"
                         />
