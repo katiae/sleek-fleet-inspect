@@ -10,6 +10,9 @@ export const MainSection = () => {
   const currentPath = location.pathname;
   const { capabilities } = useCapabilities();
   
+  // Check if the current path is the home page or a case detail page
+  const isCasesActive = currentPath === '/' || currentPath.startsWith('/case/');
+  
   // Filter active capabilities by section
   const mainCapabilities = capabilities.filter(cap => cap.active && cap.section === "Main");
 
@@ -17,13 +20,13 @@ export const MainSection = () => {
     <SidebarMenu>
       <SidebarMenuItem>
         <SidebarMenuButton 
-          isActive={currentPath === '/'} 
+          isActive={isCasesActive} 
           tooltip="Cases" 
-          className={`py-4 ${currentPath === '/' ? "text-sidebar-foreground font-medium !bg-transparent" : ""}`}
+          className={`py-4 ${isCasesActive ? "text-sidebar-foreground font-medium !bg-transparent" : ""}`}
           asChild
         >
           <Link to="/">
-            <Folder className={currentPath === '/' ? "text-orange-500" : ""} />
+            <Folder className={isCasesActive ? "text-orange-500" : ""} />
             <span>Cases</span>
           </Link>
         </SidebarMenuButton>
