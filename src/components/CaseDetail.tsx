@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -166,8 +167,8 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 Summary
               </h2>
                 
-              {/* Appointment Information - Styled as its own card with white background and large day number */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Card layout - Modified for responsive behavior */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {caseItem.appointment && <Card className="h-full">
                   <div className="flex py-[14px] px-[14px] h-full">
                     <div className="pl-6 mr-12 text-center flex flex-col justify-center">
