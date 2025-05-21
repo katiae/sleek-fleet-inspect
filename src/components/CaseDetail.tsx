@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -90,7 +91,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <AccordionItem value="case-information" className="border rounded-lg px-4">
                         <div className="flex justify-between items-center">
                           <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                            <span className="font-medium">Case Information</span>
+                            <span className="font-medium">Case information</span>
                           </AccordionTrigger>
                           <DropdownMenu>
                             <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -143,7 +144,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <AccordionItem value="customer-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Customer Details</span>
+                              <span className="font-medium">Customer details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -186,7 +187,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Mechanic Details</span>
+                              <span className="font-medium">Mechanic details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -281,7 +282,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <AccordionItem value="appointment-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Appointment Details</span>
+                              <span className="font-medium">Appointment details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -324,7 +325,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <AccordionItem value="access-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Access Arrangements</span>
+                              <span className="font-medium">Access arrangements</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -372,7 +373,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
                             <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Vehicle Details</span>
+                              <span className="font-medium">Vehicle details</span>
                             </AccordionTrigger>
                             <DropdownMenu>
                               <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
@@ -423,7 +424,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <Card>
                       <CardContent className="p-6">
                         <div className="flex items-center mb-4">
-                          <h3 className="text-lg font-medium">Risk Assessment</h3>
+                          <h3 className="text-lg font-medium">Risk assessment</h3>
                         </div>
                         <p className="text-gray-500 text-center my-6">
                           No risk factors have been identified for this case yet.
