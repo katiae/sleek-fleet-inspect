@@ -235,19 +235,17 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         {/* Removed the floating orange icon that was here */}
                         
                         {/* Added error text overlay when map fails to load */}
-                        {mapLoadError && (
-                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                        {mapLoadError && <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
                             <MapPin className="h-8 w-8 text-gray-500 mb-2" />
                             <p className="text-gray-600 text-sm font-medium">We couldn't locate the address on the map</p>
-                          </div>
-                        )}
+                          </div>}
                       </div>
                     </div>
 
                     <div className="flex-1 bg-gray-50 p-4 rounded-r-lg">
                       <div className="flex justify-between items-start">
                         <h3 className="text-base font-medium">Property & access details</h3>
-                        <Button variant="ghost" size="sm" className="text-blue-500">
+                        <Button variant="ghost" size="sm" className="text-orange-500">
                           <MapPin className="h-4 w-4 mr-1" />
                           Directions
                         </Button>
