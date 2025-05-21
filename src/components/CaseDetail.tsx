@@ -208,21 +208,21 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-              {/* New Access Arrangements Card - With street view on the left and contact info on the right */}
+              {/* New Access Arrangements Card - With standard map view on the left and contact info on the right */}
               {caseItem.access && (
                 <Card>
                   <div className="flex py-[14px] px-[14px]">
                     <div className="pl-2 mr-4 w-1/3">
-                      {/* Street View placeholder - Using Google Maps Street View Static API */}
+                      {/* Google Maps Standard Map View */}
                       <div className="relative w-full h-[150px] overflow-hidden rounded-md border border-gray-200">
                         <img 
-                          src={`https://maps.googleapis.com/maps/api/streetview?size=400x200&location=${encodeURIComponent(caseItem.address)}&fov=80&heading=70&pitch=0&key=YOUR_API_KEY`} 
-                          alt="Street view" 
+                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${encodeURIComponent(caseItem.address)}&zoom=17&size=400x200&maptype=roadmap&markers=color:red%7C${encodeURIComponent(caseItem.address)}&key=YOUR_API_KEY&style=feature:all|element:labels|visibility:off`} 
+                          alt="Map location" 
                           className="w-full h-full object-cover"
                         />
-                        {/* Fallback in case the image doesn't load */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity">
-                          <MapPin className="h-8 w-8 text-orange-500" />
+                        {/* Overlay with icon that appears on hover */}
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition-opacity">
+                          <MapPin className="h-8 w-8 text-red-500" />
                         </div>
                       </div>
                     </div>
