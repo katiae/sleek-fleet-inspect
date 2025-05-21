@@ -3,10 +3,12 @@ import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield } from "lucide-react";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileText as FileTextIcon, Users } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
 interface CaseDetailProps {
   caseItem: Case;
 }
@@ -57,10 +59,193 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
             </TabsList>
           </div>
           
-          <TabsContent value="overview" className="pt-6">
+          <TabsContent value="overview" className="pt-6 space-y-6">
+            {/* Key Information Summary */}
             <Card>
-              <CardContent className="p-6 text-center text-gray-500">
-                Overview information will appear here
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-medium flex items-center">
+                  <FileTextIcon className="h-5 w-5 mr-2 text-gray-500" />
+                  Key Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <h3 className="font-medium text-sm text-gray-500 mb-1">Status</h3>
+                    <div><CaseStatusBadge status={caseItem.status} /></div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
+                    <div>{caseItem.type}</div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
+                    <div>{caseItem.lastInspected}</div>
+                  </div>
+                  {caseItem.appointment && (
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Next Appointment</h3>
+                      <div>{caseItem.appointment.date}, {caseItem.appointment.time}</div>
+                    </div>
+                  )}
+                  {caseItem.job && (
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Job Type</h3>
+                      <div>{caseItem.job.type}</div>
+                    </div>
+                  )}
+                  {caseItem.vehicle && (
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
+                      <div>{caseItem.vehicle.year} {caseItem.vehicle.make} {caseItem.vehicle.model}</div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Tasks Section */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-medium flex items-center">
+                  <Activity className="h-5 w-5 mr-2 text-gray-500" />
+                  Upcoming Tasks
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="py-2">
+                        <div className="flex items-center">
+                          <div className="h-2 w-2 bg-orange-500 rounded-full mr-2"></div>
+                          <span>Review inspection report</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right text-gray-500 text-sm py-2">Due in 2 days</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="py-2">
+                        <div className="flex items-center">
+                          <div className="h-2 w-2 bg-blue-500 rounded-full mr-2"></div>
+                          <span>Contact customer to confirm appointment</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right text-gray-500 text-sm py-2">Due tomorrow</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="py-2">
+                        <div className="flex items-center">
+                          <div className="h-2 w-2 bg-green-500 rounded-full mr-2"></div>
+                          <span>Order required parts</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right text-gray-500 text-sm py-2">Due today</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+
+            {/* Recent Activity Section */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-medium flex items-center">
+                  <List className="h-5 w-5 mr-2 text-gray-500" />
+                  Recent Activity
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                    <div className="absolute w-2 h-2 rounded-full bg-blue-500 top-1.5 -left-[4.5px]"></div>
+                    <p className="text-sm">Appointment scheduled for {caseItem.appointment?.date}, {caseItem.appointment?.time}</p>
+                    <p className="text-xs text-gray-500">Today, 10:45 AM</p>
+                  </div>
+                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                    <div className="absolute w-2 h-2 rounded-full bg-orange-500 top-1.5 -left-[4.5px]"></div>
+                    <p className="text-sm">Mechanic {caseItem.mechanic?.name} assigned to the case</p>
+                    <p className="text-xs text-gray-500">Yesterday, 3:22 PM</p>
+                  </div>
+                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                    <div className="absolute w-2 h-2 rounded-full bg-green-500 top-1.5 -left-[4.5px]"></div>
+                    <p className="text-sm">Customer confirmed availability for inspection</p>
+                    <p className="text-xs text-gray-500">Yesterday, 1:15 PM</p>
+                  </div>
+                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                    <div className="absolute w-2 h-2 rounded-full bg-purple-500 top-1.5 -left-[4.5px]"></div>
+                    <p className="text-sm">Initial assessment completed</p>
+                    <p className="text-xs text-gray-500">May 20, 2025, 9:30 AM</p>
+                  </div>
+                  <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
+                    <div className="absolute w-2 h-2 rounded-full bg-gray-500 top-1.5 -left-[4.5px]"></div>
+                    <p className="text-sm">Case created</p>
+                    <p className="text-xs text-gray-500">May 19, 2025, 4:15 PM</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Contacts Section */}
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-medium flex items-center">
+                  <Users className="h-5 w-5 mr-2 text-gray-500" />
+                  Case Contacts
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {caseItem.customer && (
+                    <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                      <div className="bg-blue-100 text-blue-700 p-2 rounded-full">
+                        <User className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-medium">{caseItem.customer.name}</h3>
+                        <p className="text-sm text-gray-500">Customer</p>
+                        <div className="mt-1 text-sm">
+                          <div>{caseItem.customer.phone}</div>
+                          <div>{caseItem.customer.email}</div>
+                        </div>
+                      </div>
+                      <Button size="sm" variant="outline" className="text-xs">Contact</Button>
+                    </div>
+                  )}
+
+                  {caseItem.mechanic && (
+                    <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                      <div className="bg-orange-100 text-orange-700 p-2 rounded-full">
+                        <Wrench className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-medium">{caseItem.mechanic.name}</h3>
+                        <p className="text-sm text-gray-500">Mechanic - {caseItem.mechanic.specialization}</p>
+                        <div className="mt-1 text-sm">
+                          <div>{caseItem.mechanic.contact}</div>
+                          <div>ID: {caseItem.mechanic.id}</div>
+                        </div>
+                      </div>
+                      <Button size="sm" variant="outline" className="text-xs">Contact</Button>
+                    </div>
+                  )}
+
+                  {caseItem.access && caseItem.access.contactPerson && (
+                    <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                      <div className="bg-green-100 text-green-700 p-2 rounded-full">
+                        <Key className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-medium">{caseItem.access.contactPerson}</h3>
+                        <p className="text-sm text-gray-500">Access Contact</p>
+                        <div className="mt-1 text-sm">
+                          <div>{caseItem.access.contactPhone}</div>
+                        </div>
+                      </div>
+                      <Button size="sm" variant="outline" className="text-xs">Contact</Button>
+                    </div>
+                  )}
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
