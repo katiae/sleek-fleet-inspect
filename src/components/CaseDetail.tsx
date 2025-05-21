@@ -8,6 +8,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
 interface CaseDetailProps {
   caseItem: Case;
 }
@@ -156,7 +157,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </h2>
                 
               {/* Appointment Information - Styled as its own card with white background and large day number */}
-              {caseItem.appointment && <div className="rounded-lg border shadow-sm bg-white">
+              {caseItem.appointment && <Card>
                   <div className="flex py-[14px] px-[14px]">
                     <div className="pl-6 mr-12 text-center flex flex-col justify-center">
                       {/* Add weekday name above the day number */}
@@ -178,7 +179,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 
                     <div className="flex-1 bg-gray-50 p-4 rounded-lg">
                       <div className="flex justify-between items-start">
-                        <h3 className="text-xl font-medium">Job details</h3>
+                        <h3 className="text-base font-medium">Job details</h3>
                         <Button variant="ghost" size="sm" className="text-blue-500">
                           <FileText className="h-4 w-4 mr-1" />
                           Details
@@ -205,7 +206,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>}
                     </div>
                   </div>
-                </div>}
+                </Card>}
               
               {/* Instruction Details Summary - As a separate card */}
               <Card>
