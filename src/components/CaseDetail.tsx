@@ -3,7 +3,7 @@ import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink } from "lucide-react";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink, PartyPopper } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -227,6 +227,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Review</Button>
                       </div>
+                    </div>
+                    
+                    {/* Celebration message at the bottom of tasks */}
+                    <div className="flex flex-col items-center justify-center py-4 mt-2">
+                      <PartyPopper className="h-6 w-6 text-orange-500 mb-2" />
+                      <p className="text-sm text-gray-600 text-center">You don't have any more upcoming tasks</p>
                     </div>
                   </div>
                 </div>
