@@ -93,17 +93,17 @@ export const CapabilitiesContent = () => {
         onSearchChange={handleSearchChange}
       />
       
-      <div className="mb-8 mt-4 bg-gradient-to-r from-orange-50 to-white p-6 rounded-lg border border-orange-100 shadow-sm">
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
-          <div className="bg-orange-100 rounded-full p-3 flex-shrink-0">
-            <Contact className="h-6 w-6 text-orange-500" />
+      <div className="mb-6 mt-3 bg-gradient-to-r from-orange-50 to-white p-4 rounded-lg border border-orange-100">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3">
+          <div className="bg-orange-100 rounded-full p-2 flex-shrink-0">
+            <Contact className="h-5 w-5 text-orange-500" />
           </div>
           <div className="flex-grow text-center sm:text-left">
-            <h3 className="text-lg font-medium text-gray-900 mb-1">Need more capabilities?</h3>
-            <p className="text-gray-600 mb-3">Contact our team to explore premium solutions tailored for your business needs.</p>
+            <h3 className="text-base font-medium text-gray-900 mb-1">Need more capabilities?</h3>
+            <p className="text-sm text-gray-600 mb-2">Contact our team to explore premium solutions tailored for your business needs.</p>
             <Button 
               onClick={handleContactClick} 
-              className="bg-orange-500 hover:bg-orange-600 text-white"
+              className="bg-orange-500 hover:bg-orange-600 text-white text-sm py-1 h-8"
             >
               Contact us for more options
             </Button>
