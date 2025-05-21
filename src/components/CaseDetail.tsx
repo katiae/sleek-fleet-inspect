@@ -50,105 +50,89 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
         </DropdownMenu>
       </div>
       
-      <Tabs defaultValue="overview" className="mt-6">
-        <TabsList className="w-full border-b pb-0 mb-4">
-          <TabsTrigger value="overview" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
-            <FileText className="mr-2 h-4 w-4" />
-            Overview
-          </TabsTrigger>
-          <TabsTrigger value="details" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
-            <List className="mr-2 h-4 w-4" />
-            Case Details
-          </TabsTrigger>
-          <TabsTrigger value="tasks" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
-            <Clipboard className="mr-2 h-4 w-4" />
-            Tasks
-          </TabsTrigger>
-          <TabsTrigger value="files" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
-            <FileText className="mr-2 h-4 w-4" />
-            Files
-          </TabsTrigger>
-          <TabsTrigger value="reports" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
-            <FileBarChart className="mr-2 h-4 w-4" />
-            Reports
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="overview">
-          <Card>
-            <CardContent className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Case Information</h3>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex justify-between">
-                      <span className="text-gray-500">Address:</span>
-                      <span className="font-medium">{caseItem.address}</span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-500">Case Type:</span>
-                      <span className="font-medium">{caseItem.type}</span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-500">Status:</span>
-                      <span><CaseStatusBadge status={caseItem.status} /></span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-500">Last Inspected:</span>
-                      <span className="font-medium">{caseItem.lastInspected}</span>
-                    </li>
-                  </ul>
+      <div className="border-b border-gray-200">
+        <Tabs defaultValue="overview" className="mt-6">
+          <TabsList className="flex h-auto p-0 bg-transparent space-x-8 mb-0">
+            <TabsTrigger 
+              value="overview" 
+              className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
+            >
+              Case details
+            </TabsTrigger>
+            <TabsTrigger 
+              value="activity" 
+              className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
+            >
+              Activity
+            </TabsTrigger>
+            <TabsTrigger 
+              value="reports" 
+              className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
+            >
+              Reports
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="overview" className="pt-6">
+            <Card>
+              <CardContent className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">Case Information</h3>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Address:</span>
+                        <span className="font-medium">{caseItem.address}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Case Type:</span>
+                        <span className="font-medium">{caseItem.type}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Status:</span>
+                        <span><CaseStatusBadge status={caseItem.status} /></span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Last Inspected:</span>
+                        <span className="font-medium">{caseItem.lastInspected}</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">Owner Information</h3>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Name:</span>
+                        <span className="font-medium">{caseItem.owner.name}</span>
+                      </li>
+                      <li className="flex justify-between">
+                        <span className="text-gray-500">Type:</span>
+                        <span className="font-medium">{caseItem.owner.type}</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-2">Owner Information</h3>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex justify-between">
-                      <span className="text-gray-500">Name:</span>
-                      <span className="font-medium">{caseItem.owner.name}</span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="text-gray-500">Type:</span>
-                      <span className="font-medium">{caseItem.owner.type}</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="details">
-          <Card>
-            <CardContent className="p-6 text-center text-gray-500">
-              Detailed case information will appear here
-            </CardContent>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="tasks">
-          <Card>
-            <CardContent className="p-6 text-center text-gray-500">
-              Tasks related to this case will appear here
-            </CardContent>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="files">
-          <Card>
-            <CardContent className="p-6 text-center text-gray-500">
-              Files associated with this case will appear here
-            </CardContent>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="reports">
-          <Card>
-            <CardContent className="p-6 text-center text-gray-500">
-              Reports for this case will appear here
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="activity" className="pt-6">
+            <Card>
+              <CardContent className="p-6 text-center text-gray-500">
+                Activity information will appear here
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="reports" className="pt-6">
+            <Card>
+              <CardContent className="p-6 text-center text-gray-500">
+                Reports for this case will appear here
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
   );
 };
