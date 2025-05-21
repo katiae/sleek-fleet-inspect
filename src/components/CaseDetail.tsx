@@ -249,7 +249,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </div>
                 
                 <Card className="flex-1">
-                  <CardContent className="p-4 h-full">
+                  <div className="p-4 h-full">
                     {/* Timeline with line and dots positioned on the left */}
                     <div className="space-y-6 relative">
                       {/* Updated vertical timeline container with better positioning */}
@@ -336,7 +336,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                       </div>
                     </div>
-                  </CardContent>
+                  </div>
                 </Card>
               </div>
             </div>
