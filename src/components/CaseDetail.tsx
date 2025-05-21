@@ -384,12 +384,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <CardContent className="py-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
                     <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Estimated Price</h3>
-                      <div>{caseItem.job ? caseItem.job.estimatedCost : "N/A"}</div>
-                    </div>
-                    <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
                       <div>{caseItem.type}</div>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
+                      <div>{caseItem.owner.type}</div>
                     </div>
                     <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
@@ -400,8 +400,8 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       <div>{caseItem.owner.name}</div>
                     </div>
                     <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
-                      <div>{caseItem.owner.type}</div>
+                      <h3 className="font-medium text-sm text-gray-500 mb-1">Estimated Price</h3>
+                      <div>{caseItem.job ? caseItem.job.estimatedCost : "N/A"}</div>
                     </div>
                     <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
