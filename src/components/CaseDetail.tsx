@@ -8,8 +8,8 @@ import {
   MoreHorizontal, 
   List,
   FileText,
-  Task,
-  Report
+  Clipboard,
+  FileBarChart
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -61,7 +61,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
             Case Details
           </TabsTrigger>
           <TabsTrigger value="tasks" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
-            <Task className="mr-2 h-4 w-4" />
+            <Clipboard className="mr-2 h-4 w-4" />
             Tasks
           </TabsTrigger>
           <TabsTrigger value="files" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
@@ -69,7 +69,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
             Files
           </TabsTrigger>
           <TabsTrigger value="reports" className="data-[state=active]:border-b-2 data-[state=active]:border-orange-500">
-            <Report className="mr-2 h-4 w-4" />
+            <FileBarChart className="mr-2 h-4 w-4" />
             Reports
           </TabsTrigger>
         </TabsList>
