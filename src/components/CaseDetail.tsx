@@ -220,7 +220,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   <div className="flex py-[14px] px-[14px]">
                     <div className="pl-2 w-1/3 px-0">
                       {/* Google Maps Standard Map View - Fixed implementation */}
-                      <div className="relative w-full h-[150px] overflow-hidden rounded-md rounded-tl-none rounded-bl-none border border-gray-200">
+                      <div className="relative w-full h-[150px] overflow-hidden border border-gray-200 border-r-0" style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}>
                         <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} alt="Location map" className="w-full h-full object-cover" onError={e => console.error("Map loading error:", e)} />
                         {/* Overlay with icon that appears on hover */}
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition-opacity">
@@ -229,7 +229,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                     </div>
 
-                    <div className="flex-1 bg-gray-50 p-4 rounded-lg">
+                    <div className="flex-1 bg-gray-50 p-4 rounded-lg rounded-l-none">
                       <div className="flex justify-between items-start">
                         <h3 className="text-base font-medium">Property & access details</h3>
                         <Button variant="ghost" size="sm" className="text-blue-500">
