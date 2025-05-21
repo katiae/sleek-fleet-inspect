@@ -23,7 +23,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 
   // Add a reference to the Tabs component to control tab switching programmatically
   const [activeTab, setActiveTab] = useState("overview");
-  
+
   // Check if the user is on a mobile device
   const isMobile = useIsMobile();
 
@@ -238,18 +238,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   <h2 className="text-lg font-medium">
                     Recent Activity
                   </h2>
-                  <Button 
-                    variant="link" 
-                    size="sm" 
-                    className="text-sm text-orange-500" 
-                    onClick={() => navigateToTab("activity")}
-                  >
+                  <Button variant="link" size="sm" className="text-sm text-orange-500" onClick={() => navigateToTab("activity")}>
                     View all activity
                   </Button>
                 </div>
                 
                 <Card className="flex-1">
-                  <div className="p-4 h-full">
+                  <div className="p-4 h-full py-0">
                     {/* Timeline with line and dots positioned on the left */}
                     <div className="space-y-6 relative">
                       {/* Updated vertical timeline container with better positioning */}
