@@ -11,6 +11,7 @@ export type Capability = {
   active: boolean;
   bgColor: string;
   section?: CapabilitySection | null;
+  premium?: boolean;
 };
 
 interface CapabilitiesContextType {
@@ -30,6 +31,7 @@ export const CapabilitiesProvider = ({ children }: { children: ReactNode }) => {
       active: false,
       bgColor: "bg-blue-100",
       section: null,
+      premium: true,
     },
     {
       id: "document-processing",
@@ -57,6 +59,7 @@ export const CapabilitiesProvider = ({ children }: { children: ReactNode }) => {
       active: false,
       bgColor: "bg-red-100",
       section: null,
+      premium: true,
     },
     {
       id: "automated-workflows",
@@ -66,6 +69,7 @@ export const CapabilitiesProvider = ({ children }: { children: ReactNode }) => {
       active: false,
       bgColor: "bg-amber-100",
       section: null,
+      premium: true,
     },
     {
       id: "searches",

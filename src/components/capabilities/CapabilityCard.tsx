@@ -10,7 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "@/hooks/use-toast";
-import { Capability, CapabilitySection } from "@/context/CapabilitiesContext";
+import { Capability } from "@/context/CapabilitiesContext";
+import { Lock } from "lucide-react";
 
 interface CapabilityCardProps {
   capability: Capability;
@@ -23,15 +24,38 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
   onRemove, 
   onAddToSection 
 }) => {
+  const handlePremiumClick = () => {
+    toast({
+      title: "Premium Solution",
+      description: "Contact us to add this premium solution to your account",
+      duration: 5000,
+    });
+  };
+
   return (
-    <Card key={capability.id} className="overflow-hidden hover:shadow-md transition-shadow duration-200">
+    <Card 
+      key={capability.id} 
+      className={`overflow-hidden transition-shadow duration-200 ${
+        capability.premium ? "border-dashed border-gray-300" : "hover:shadow-md"
+      }`}
+    >
       <div className="p-6 flex flex-col h-full">
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <div className={`${capability.bgColor} w-12 h-12 rounded-lg flex items-center justify-center shadow-sm`}>
             {capability.icon}
           </div>
+          {capability.premium && (
+            <div className="absolute -top-1 -right-1 bg-amber-500 text-white p-1 rounded-full">
+              <Lock className="h-4 w-4" />
+            </div>
+          )}
         </div>
-        <h3 className="font-semibold text-lg mb-2">{capability.name}</h3>
+        <h3 className="font-semibold text-lg mb-2 flex items-center">
+          {capability.name}
+          {capability.premium && (
+            <span className="ml-2 text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full">Premium</span>
+          )}
+        </h3>
         <p className="text-gray-500 text-sm flex-grow mb-4">{capability.description}</p>
         <Separator className="my-4" />
         <CardFooter className="p-0 flex justify-between items-center">
@@ -47,6 +71,14 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
               className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
             >
               Remove
+            </Button>
+          ) : capability.premium ? (
+            <Button 
+              size="sm"
+              onClick={handlePremiumClick}
+              className="bg-amber-500 hover:bg-amber-600 text-white"
+            >
+              Contact us
             </Button>
           ) : (
             <DropdownMenu>
