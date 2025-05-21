@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -188,10 +187,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-6">
-            {/* Tasks and Activity Section - Modified to use grid for lg screens */}
+            {/* Tasks and Activity Section - Added h-full to both grid items to match heights */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Tasks Section - Grid column 1 */}
-              <div>
+              <div className="h-full flex flex-col">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-medium">
                     Upcoming Tasks
@@ -201,7 +200,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </Button>
                 </div>
                 
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1">
                   <div className="space-y-3">
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:bg-gray-50 transition-colors">
                       <div className="flex items-center justify-between">
@@ -234,7 +233,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </div>
 
               {/* Recent Activity Section - Grid column 2 */}
-              <div>
+              <div className="h-full flex flex-col">
                 <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-medium">
                     Recent Activity
@@ -249,8 +248,8 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </Button>
                 </div>
                 
-                <Card>
-                  <CardContent className="pt-6">
+                <Card className="flex-1">
+                  <CardContent className="pt-6 h-full">
                     <div className="space-y-4">
                       <div className="border-l-2 border-gray-200 pl-4 pb-1 relative">
                         <div className="absolute w-2 h-2 rounded-full bg-blue-500 top-1.5 -left-[4.5px]"></div>
@@ -881,4 +880,3 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       </div>
     </div>;
 };
-
