@@ -1,8 +1,7 @@
-
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { Globe, FileText, Database, Shield, Workflow, Search as SearchIcon } from "lucide-react";
 
-export type CapabilitySection = "Main" | "Administration";
+export type CapabilitySection = "Main" | "Administration" | "Resources";
 
 export type Capability = {
   id: string;
@@ -11,7 +10,7 @@ export type Capability = {
   icon: React.ReactNode;
   active: boolean;
   bgColor: string;
-  section?: CapabilitySection;
+  section?: CapabilitySection | null;
 };
 
 interface CapabilitiesContextType {

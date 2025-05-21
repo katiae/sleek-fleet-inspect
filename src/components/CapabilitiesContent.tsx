@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useCapabilities } from "@/context/CapabilitiesContext";
+import { useCapabilities, CapabilitySection } from "@/context/CapabilitiesContext";
 import { useMenu } from "@/context/MenuContext";
 import {
   AlertDialog,
@@ -32,7 +32,7 @@ type Capability = {
   icon: React.ReactNode;
   active: boolean;
   bgColor: string;
-  section?: "Administration" | "Main" | "Resources" | null;
+  section?: CapabilitySection | null;
 };
 
 export const CapabilitiesContent = () => {
@@ -49,7 +49,7 @@ export const CapabilitiesContent = () => {
     capability.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddToSection = (id: string, section: "Administration" | "Main" | "Resources") => {
+  const handleAddToSection = (id: string, section: "Administration" | "Main") => {
     const capability = capabilities.find(cap => cap.id === id);
     
     if (!capability) return;
@@ -57,19 +57,6 @@ export const CapabilitiesContent = () => {
     setCapabilities(
       capabilities.map((cap) => {
         if (cap.id === id) {
-          const newState = true;
-          
-          // Add to menu if it's in Resources section
-          if (section === "Resources") {
-            addMenuItem({
-              id: `capability-${cap.id}`,
-              name: cap.name,
-              icon: cap.icon,
-              section: "Resources",
-              order: 0 // This will be adjusted in addMenuItem function
-            });
-          }
-          
           // Show toast notification
           toast({
             title: `${cap.name} added to ${section}`,
@@ -77,7 +64,7 @@ export const CapabilitiesContent = () => {
             duration: 3000,
           });
           
-          return { ...cap, active: newState, section: section };
+          return { ...cap, active: true, section: section };
         }
         return cap;
       })
@@ -182,12 +169,6 @@ export const CapabilitiesContent = () => {
                         className="py-2.5 px-4 cursor-pointer"
                       >
                         Add to Administration
-                      </DropdownMenuItem>
-                      <DropdownMenuItem 
-                        onClick={() => handleAddToSection(capability.id, "Resources")}
-                        className="py-2.5 px-4 cursor-pointer"
-                      >
-                        Add to Resources
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
