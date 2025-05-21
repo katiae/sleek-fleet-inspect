@@ -82,7 +82,7 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
             <Button 
               size="sm"
               onClick={handlePremiumClick}
-              className="bg-amber-500 hover:bg-amber-600 text-white"
+              className="bg-orange-500 hover:bg-orange-600 text-white"
             >
               Contact us
             </Button>
