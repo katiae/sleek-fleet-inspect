@@ -56,9 +56,6 @@ export const CapabilityCard: React.FC<CapabilityCardProps> = ({
         </div>
         <h3 className="font-semibold text-lg mb-2 flex items-center">
           {capability.name}
-          {capability.premium && (
-            <span className="ml-2 text-xs px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full">Premium</span>
-          )}
         </h3>
         <p className={`text-gray-500 text-sm flex-grow mb-4 ${capability.premium ? "text-gray-400" : ""}`}>
           {capability.description}
