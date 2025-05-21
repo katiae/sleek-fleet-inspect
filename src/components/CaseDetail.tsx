@@ -166,8 +166,8 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 Summary
               </h2>
                 
-              {/* Card layout - Changed from lg to md breakpoint for side-by-side layout */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Card layout - Changed to lg breakpoint (1024px) for larger screens like 14-inch and above */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {caseItem.appointment && <Card className="h-full">
                   <div className="flex py-[14px] px-[14px] h-full">
                     <div className="pl-6 mr-12 text-center flex flex-col justify-center">
@@ -219,7 +219,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-                {/* Access Arrangements Card - Updated with fixed height to match appointment card */}
+                {/* Access Arrangements Card */}
                 {caseItem.access && <Card className="h-full">
                   <div className="flex py-[14px] px-[14px] h-full">
                     <div className="w-1/3">
@@ -274,7 +274,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </Card>}
               </div>
 
-              {/* Instruction Details Summary - As a separate card */}
+              {/* Instruction Details Summary */}
               <Card>
                 <CardContent className="py-5">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
