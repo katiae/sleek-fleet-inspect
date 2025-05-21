@@ -500,7 +500,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               <h2 className="text-lg font-medium">Case Contacts</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {caseItem.customer && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                {caseItem.customer && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
                     <div className="bg-blue-100 text-blue-700 p-2 rounded-full">
                       <User className="h-5 w-5" />
                     </div>
@@ -514,7 +514,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     </div>
                   </div>}
                 
-                {caseItem.mechanic && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                {caseItem.mechanic && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
                     <div className="bg-orange-100 text-orange-700 p-2 rounded-full">
                       <Wrench className="h-5 w-5" />
                     </div>
@@ -528,7 +528,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     </div>
                   </div>}
                 
-                {caseItem.access && caseItem.access.contactPerson && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                {caseItem.access && caseItem.access.contactPerson && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
                     <div className="bg-green-100 text-green-700 p-2 rounded-full">
                       <Key className="h-5 w-5" />
                     </div>
