@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -23,16 +24,16 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
     // Log the date string to verify its format
     console.log("Date string:", caseItem.appointment.date);
     
-    // Extract the day part explicitly
-    const dateParts = caseItem.appointment.date.split(" ");
-    if (dateParts.length >= 2) {
-      const day = dateParts[1];
-      // Remove any non-numeric characters and log the result
-      const numericDay = day.replace(/\D/g, '');
-      console.log("Extracted day:", numericDay);
-      return numericDay;
+    // Extract the day part from ISO format date (YYYY-MM-DD)
+    try {
+      const date = new Date(caseItem.appointment.date);
+      const dayNumber = date.getDate();
+      console.log("Extracted day:", dayNumber);
+      return dayNumber.toString();
+    } catch (error) {
+      console.error("Error parsing date:", error);
+      return "";
     }
-    return "";
   };
 
   const dayNumber = getDayNumber();
