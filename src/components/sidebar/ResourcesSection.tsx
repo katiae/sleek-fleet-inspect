@@ -17,12 +17,12 @@ export const ResourcesSection = () => {
         <SidebarMenuItem>
           <Link to="/capabilities">
             <SidebarMenuButton 
-              tooltip="Add Solutions" 
+              tooltip="Add solutions" 
               className={`py-4 ${currentPath === '/capabilities' ? "text-sidebar-foreground font-medium !bg-transparent" : ""}`}
               isActive={currentPath === '/capabilities'}
             >
               <Plus className={currentPath === '/capabilities' ? "text-orange-500" : ""} />
-              <span>Add Solutions</span>
+              <span>Add solutions</span>
             </SidebarMenuButton>
           </Link>
         </SidebarMenuItem>
