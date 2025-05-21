@@ -3,7 +3,7 @@ import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone } from "lucide-react";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -251,7 +251,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           className="text-orange-500 h-6 px-2 py-0" 
                           onClick={openInGoogleMaps}
                         >
-                          <MapPin className="h-4 w-4 mr-0.5" />
+                          <ExternalLink className="h-4 w-4 mr-0.5" />
                           Open in Google Maps
                         </Button>
                       </div>
