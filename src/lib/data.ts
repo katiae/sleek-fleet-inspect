@@ -1,4 +1,3 @@
-
 export type CaseStatus = 
   "NEW" | 
   "PENDING" | 
@@ -19,6 +18,43 @@ export type Case = {
     name: string;
   };
   lastInspected: string;
+  vehicle?: {
+    make: string;
+    model: string;
+    year: string;
+    vin: string;
+    licensePlate: string;
+  };
+  mechanic?: {
+    name: string;
+    id: string;
+    specialization: string;
+    contact: string;
+  };
+  customer?: {
+    name: string;
+    phone: string;
+    email: string;
+    preferredContact: string;
+  };
+  appointment?: {
+    date: string;
+    time: string;
+    duration: string;
+    status: string;
+  };
+  job?: {
+    type: string;
+    description: string;
+    estimatedCost: string;
+    parts: string[];
+  };
+  access?: {
+    instructions: string;
+    restrictions: string;
+    contactPerson: string;
+    contactPhone: string;
+  };
 };
 
 export const cases: Case[] = [
@@ -31,7 +67,44 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    vehicle: {
+      make: "Toyota",
+      model: "Camry",
+      year: "2019",
+      vin: "4T1BF1FK5CU123456",
+      licensePlate: "ABC-1234"
+    },
+    mechanic: {
+      name: "Mike Johnson",
+      id: "MEC-4567",
+      specialization: "Engine Diagnostics",
+      contact: "mike.j@example.com"
+    },
+    customer: {
+      name: "Jane Smith",
+      phone: "(555) 123-4567",
+      email: "jane.smith@example.com",
+      preferredContact: "Email"
+    },
+    appointment: {
+      date: "2025-05-23",
+      time: "10:30 AM",
+      duration: "2 hours",
+      status: "Confirmed"
+    },
+    job: {
+      type: "Maintenance",
+      description: "Regular 50,000 mile maintenance check and oil change",
+      estimatedCost: "$350.00",
+      parts: ["Oil filter", "Air filter", "Cabin filter"]
+    },
+    access: {
+      instructions: "Park in visitor spot and check in at front desk",
+      restrictions: "No access after 5:00 PM",
+      contactPerson: "Building Manager",
+      contactPhone: "(555) 987-6543"
+    }
   },
   {
     id: "INS-2023-0012",
