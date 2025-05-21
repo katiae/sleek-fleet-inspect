@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -20,6 +19,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
 }) => {
   // State for tracking if the map image failed to load
   const [mapLoadError, setMapLoadError] = useState(false);
+  
+  // Add a reference to the Tabs component to control tab switching programmatically
+  const [activeTab, setActiveTab] = useState("overview");
+
+  // Function to navigate to a specific tab
+  const navigateToTab = (tabValue: string) => {
+    setActiveTab(tabValue);
+  };
 
   // Function to open Google Maps in a new tab
   const openInGoogleMaps = () => {
@@ -175,7 +182,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       </div>
       
       <div className="w-full">
-        <Tabs defaultValue="overview" className="mt-6">
+        <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="mt-6">
           <div className="border-b border-gray-200 w-full">
             <TabsList className="flex h-auto p-0 bg-transparent space-x-8 mb-0 justify-start">
               <TabsTrigger value="overview" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal text-center">
@@ -247,7 +254,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   variant="ghost" 
                   size="sm" 
                   className="text-orange-500 h-6 px-2 py-0"
-                  onClick={() => document.querySelector('[data-state="inactive"][value="details"]')?.dispatchEvent(new MouseEvent('click'))}
+                  onClick={() => navigateToTab("details")}
                 >
                   View all case details
                 </Button>
