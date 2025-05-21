@@ -1,8 +1,7 @@
-
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { Globe, FileText, Database, Shield, Workflow, Search as SearchIcon } from "lucide-react";
 
-export type CapabilitySection = "Administration" | "Main" | null;
+export type CapabilitySection = "Main" | "Administration" | "Solutions";
 
 export type Capability = {
   id: string;

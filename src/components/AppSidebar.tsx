@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, useSidebar, SidebarSeparator, SidebarGroupLabel, SidebarFooter } from "@/components/ui/sidebar";
 import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, PanelLeft, HelpCircle, Plus, Plug, List } from "lucide-react";
@@ -166,39 +165,37 @@ export const AppSidebar = () => {
         </SidebarMenu>
       </SidebarContent>
       
-      {/* Resources section - Fixed to bottom */}
-      <SidebarFooter className="mt-auto p-4">
-        <SidebarSeparator className="mb-4" />
-        <SidebarGroupLabel>Resources</SidebarGroupLabel>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Integrations" className="py-4">
-              <Plug />
-              <span>Integrations</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-              isActive={currentPath === '/customize-menu'} 
-              tooltip="Customise menu" 
-              className="py-4"
-              asChild
-            >
-              <Link to="/customize-menu">
-                <List />
-                <span>Customise menu</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Help" className="py-4">
-              <HelpCircle />
-              <span>Help</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
+      {/* Resources section - No longer fixed to bottom */}
+      <SidebarSeparator className="my-4" />
+      <SidebarGroupLabel>Resources</SidebarGroupLabel>
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton tooltip="Integrations" className="py-4">
+            <Plug />
+            <span>Integrations</span>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+        
+        <SidebarMenuItem>
+          <SidebarMenuButton 
+            isActive={currentPath === '/customize-menu'} 
+            tooltip="Customise menu" 
+            className="py-4"
+            asChild
+          >
+            <Link to="/customize-menu">
+              <List />
+              <span>Customise menu</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+        
+        <SidebarMenuItem>
+          <SidebarMenuButton tooltip="Help" className="py-4">
+            <HelpCircle />
+            <span>Help</span>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
     </Sidebar>;
 };
