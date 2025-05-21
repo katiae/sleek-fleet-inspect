@@ -223,21 +223,29 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 {caseItem.access && <Card className="h-full">
                   <div className="flex py-[14px] px-[14px] h-full">
                     <div className="w-1/3">
-                      {/* Google Maps Standard Map View - Updated with different background color for errors and removed title/help icon */}
+                      {/* Google Maps Standard Map View */}
                       <div className={`relative w-full h-full overflow-hidden border border-gray-200 border-r-0 rounded-l-lg ${mapLoadError ? 'bg-gray-300' : 'bg-gray-50'}`} style={{
                         borderTopRightRadius: 0,
                         borderBottomRightRadius: 0
                       }}>
-                        <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} alt="Location map" className="w-full h-full object-cover" onError={e => {
-                          console.error("Map loading error:", e);
-                          setMapLoadError(true);
-                        }} onLoad={() => setMapLoadError(false)} />
+                        {/* Map image */}
+                        <img 
+                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} 
+                          alt="Location map" 
+                          className="w-full h-full object-cover" 
+                          onError={() => setMapLoadError(true)} 
+                          onLoad={() => setMapLoadError(false)} 
+                        />
                         
-                        {/* Removed help icon and modified error text overlay when map fails to load */}
-                        {mapLoadError && <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                        {/* Only show error message when map fails to load - no title or question mark icon */}
+                        {mapLoadError && (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
                             <MapPin className="h-8 w-8 text-gray-500 mb-2" />
-                            <p className="text-gray-600 text-sm font-medium">We couldn't locate the address on the map</p>
-                          </div>}
+                            <p className="text-gray-600 text-sm font-medium">
+                              We couldn't locate the address on the map
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
 
