@@ -20,6 +20,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
   // State for tracking if the map image failed to load
   const [mapLoadError, setMapLoadError] = useState(false);
 
+  // Function to open Google Maps in a new tab
+  const openInGoogleMaps = () => {
+    const encodedAddress = encodeURIComponent(caseItem.address);
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+    window.open(googleMapsUrl, '_blank');
+  };
+
   // Extract and format date information
   const getDateInfo = () => {
     if (!caseItem.appointment?.date) return {
@@ -241,7 +248,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="flex-1 bg-gray-50 p-4 rounded-r-lg">
                       <div className="flex justify-between items-start">
                         <h3 className="text-base font-medium">Access details</h3>
-                        <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="text-orange-500 h-6 px-2 py-0" 
+                          onClick={openInGoogleMaps}
+                        >
                           <MapPin className="h-4 w-4 mr-1" />
                           Directions
                         </Button>
