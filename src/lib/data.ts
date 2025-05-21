@@ -1,3 +1,4 @@
+
 export type CaseStatus = 
   "NEW" | 
   "PENDING" | 
@@ -60,7 +61,7 @@ export type Case = {
 export const cases: Case[] = [
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "42 Baker Street, London, NW1 6XE",
     status: "NEW",
     type: "Full Inspection",
     owner: {
@@ -108,7 +109,7 @@ export const cases: Case[] = [
   },
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "17 Kensington Gardens, London, W8 4PX",
     status: "PENDING",
     type: "Full Inspection",
     owner: {
@@ -119,7 +120,7 @@ export const cases: Case[] = [
   },
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "221B Baker Street, London, NW1 6XE",
     status: "APPROVED",
     type: "Full Inspection",
     owner: {
@@ -130,7 +131,7 @@ export const cases: Case[] = [
   },
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "10 Downing Street, London, SW1A 2AA",
     status: "REJECTED",
     type: "Full Inspection",
     owner: {
@@ -141,7 +142,7 @@ export const cases: Case[] = [
   },
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "20 Mayfair Avenue, London, W1J 8LT",
     status: "EXPIRED",
     type: "Full Inspection",
     owner: {
@@ -152,7 +153,7 @@ export const cases: Case[] = [
   },
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "15 Notting Hill Gate, London, W11 3JQ",
     status: "SUSPENDED",
     type: "Full Inspection",
     owner: {
@@ -163,7 +164,7 @@ export const cases: Case[] = [
   },
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "30 St Mary Axe, London, EC3A 8EP",
     status: "UNDER REVIEW",
     type: "Full Inspection",
     owner: {
@@ -174,7 +175,7 @@ export const cases: Case[] = [
   },
   {
     id: "INS-2023-0012",
-    address: "1234 Elm Street, Springfield, IL 62704",
+    address: "5 Covent Garden, London, WC2E 8RF",
     status: "COMPLETED",
     type: "Full Inspection",
     owner: {
