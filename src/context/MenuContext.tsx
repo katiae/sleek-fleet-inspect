@@ -18,17 +18,25 @@ type MenuContextType = {
   addMenuItem: (item: MenuItem) => void;
 };
 
+// Menu item defaults organized by section
 const defaultMenuItems: MenuItem[] = [
+  // Main section items
   { id: "cases", name: "Cases", icon: <Folder />, link: "/", section: "Main", order: 1 },
   { id: "reports", name: "Reports", icon: <FileText />, section: "Main", order: 2 },
   { id: "tasks", name: "Tasks", icon: <CheckSquare />, section: "Main", order: 3 },
   { id: "availability", name: "Availability", icon: <Calendar />, section: "Main", order: 4 },
+  
+  // Administration section items
   { id: "audit-log", name: "Audit log", icon: <FileText />, section: "Administration", order: 1 },
   { id: "users", name: "Users", icon: <Users />, section: "Administration", order: 2 },
   { id: "clients", name: "Clients", icon: <Users />, section: "Administration", order: 3 },
   { id: "templates", name: "Templates", icon: <FileText />, section: "Administration", order: 4 },
   { id: "fees", name: "Fees", icon: <CircleDollarSign />, section: "Administration", order: 5 },
+  
+  // Solutions section items
   { id: "add-capabilities", name: "Add Capabilities", icon: <Plus className="text-orange-500" />, link: "/capabilities", section: "Solutions", order: 1 },
+  
+  // Resources section items
   { id: "integrations", name: "Integrations", icon: <Plug />, section: "Resources", order: 1 },
   { id: "customize-menu", name: "Customise menu", icon: <List />, link: "/customize-menu", section: "Resources", order: 2 },
   { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 3 },
@@ -42,21 +50,34 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
     return savedItems ? JSON.parse(savedItems) : defaultMenuItems;
   });
 
+  // Save menu items to localStorage and update state
   const updateMenuItems = (items: MenuItem[]) => {
     setMenuItems(items);
     localStorage.setItem('menuItems', JSON.stringify(items));
   };
 
+  // Reset menu items to default state
   const resetMenuOrder = () => {
     setMenuItems(defaultMenuItems);
     localStorage.removeItem('menuItems');
   };
   
-  // Add a new menu item before "Add Capabilities" in Solutions section
+  // Update order values for items within a section
+  const updateSectionOrder = (items: MenuItem[], section: string): MenuItem[] => {
+    const sectionItems = items.filter(item => item.section === section);
+    return items.map(item => {
+      if (item.section === section) {
+        const newOrder = sectionItems.findIndex(si => si.id === item.id) + 1;
+        return { ...item, order: newOrder };
+      }
+      return item;
+    });
+  };
+  
+  // Add a new menu item to the specified section
   const addMenuItem = (item: MenuItem) => {
     const newItems = [...menuItems];
     
-    // If adding to Solutions section, insert before "Add Capabilities"
     if (item.section === "Solutions") {
       // Find the index of "Add Capabilities" item
       const addCapabilitiesIndex = newItems.findIndex(i => i.id === "add-capabilities");
@@ -66,26 +87,33 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
         newItems.splice(addCapabilitiesIndex, 0, item);
         
         // Update order values for all Solutions items
-        const solutionsItems = newItems.filter(i => i.section === "Solutions");
-        solutionsItems.forEach((item, index) => {
-          item.order = index + 1;
-        });
+        const itemsWithUpdatedOrder = updateSectionOrder(newItems, "Solutions");
+        updateMenuItems(itemsWithUpdatedOrder);
       } else {
         // If "Add Capabilities" not found, just add to end of array
         newItems.push(item);
+        updateMenuItems(newItems);
       }
     } else {
-      // For other sections, just add to the end of the section
-      const sectionItems = newItems.filter(i => i.section === item.section);
-      item.order = sectionItems.length + 1;
+      // For other sections, add to the end of the section and update order
       newItems.push(item);
+      const itemsWithUpdatedOrder = updateSectionOrder(newItems, item.section);
+      updateMenuItems(itemsWithUpdatedOrder);
     }
-    
-    updateMenuItems(newItems);
   };
 
+  const contextValue = React.useMemo<MenuContextType>(
+    () => ({
+      menuItems,
+      updateMenuItems,
+      resetMenuOrder,
+      addMenuItem,
+    }),
+    [menuItems]
+  );
+
   return (
-    <MenuContext.Provider value={{ menuItems, updateMenuItems, resetMenuOrder, addMenuItem }}>
+    <MenuContext.Provider value={contextValue}>
       {children}
     </MenuContext.Provider>
   );
