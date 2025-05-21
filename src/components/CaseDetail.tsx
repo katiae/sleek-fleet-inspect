@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -9,7 +8,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
 interface CaseDetailProps {
   caseItem: Case;
 }
@@ -67,7 +65,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <h2 className="text-lg font-medium">
                   Upcoming Tasks
                 </h2>
-                <Button variant="link" size="sm" className="text-sm text-blue-600">
+                <Button variant="link" size="sm" className="text-sm text-orange-500">
                   See all tasks
                 </Button>
               </div>
@@ -125,24 +123,18 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
                     <div>{caseItem.lastInspected}</div>
                   </div>
-                  {caseItem.appointment && (
-                    <div>
+                  {caseItem.appointment && <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Next Appointment</h3>
                       <div>{caseItem.appointment.date}, {caseItem.appointment.time}</div>
-                    </div>
-                  )}
-                  {caseItem.job && (
-                    <div>
+                    </div>}
+                  {caseItem.job && <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Job Type</h3>
                       <div>{caseItem.job.type}</div>
-                    </div>
-                  )}
-                  {caseItem.vehicle && (
-                    <div>
+                    </div>}
+                  {caseItem.vehicle && <div>
                       <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
                       <div>{caseItem.vehicle.year} {caseItem.vehicle.make} {caseItem.vehicle.model}</div>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </CardContent>
             </Card>
@@ -194,8 +186,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {caseItem.customer && (
-                    <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                  {caseItem.customer && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
                       <div className="bg-blue-100 text-blue-700 p-2 rounded-full">
                         <User className="h-5 w-5" />
                       </div>
@@ -208,11 +199,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                       </div>
                       <Button size="sm" variant="outline" className="text-xs">Contact</Button>
-                    </div>
-                  )}
+                    </div>}
                   
-                  {caseItem.mechanic && (
-                    <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                  {caseItem.mechanic && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
                       <div className="bg-orange-100 text-orange-700 p-2 rounded-full">
                         <Wrench className="h-5 w-5" />
                       </div>
@@ -225,11 +214,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                       </div>
                       <Button size="sm" variant="outline" className="text-xs">Contact</Button>
-                    </div>
-                  )}
+                    </div>}
                   
-                  {caseItem.access && caseItem.access.contactPerson && (
-                    <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
+                  {caseItem.access && caseItem.access.contactPerson && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-100 hover:bg-gray-50">
                       <div className="bg-green-100 text-green-700 p-2 rounded-full">
                         <Key className="h-5 w-5" />
                       </div>
@@ -241,8 +228,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         </div>
                       </div>
                       <Button size="sm" variant="outline" className="text-xs">Contact</Button>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </CardContent>
             </Card>
