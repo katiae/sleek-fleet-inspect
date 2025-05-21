@@ -3,41 +3,17 @@ import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { 
-  MoreHorizontal, 
-  List,
-  FileText,
-  Clipboard,
-  FileBarChart,
-  Car,
-  Wrench,
-  User,
-  Calendar,
-  Briefcase,
-  Key,
-  Shield
-} from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 interface CaseDetailProps {
   caseItem: Case;
 }
-
-export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
-  return (
-    <div className="space-y-6">
+export const CaseDetail: React.FC<CaseDetailProps> = ({
+  caseItem
+}) => {
+  return <div className="space-y-6">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">{caseItem.address}</h1>
@@ -66,28 +42,16 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
         <Tabs defaultValue="overview" className="mt-6">
           <div className="border-b border-gray-200 w-full">
             <TabsList className="flex h-auto p-0 bg-transparent space-x-8 mb-0 justify-start">
-              <TabsTrigger 
-                value="overview" 
-                className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
-              >
+              <TabsTrigger value="overview" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium">
                 Overview
               </TabsTrigger>
-              <TabsTrigger 
-                value="details" 
-                className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
-              >
+              <TabsTrigger value="details" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium">
                 Case details
               </TabsTrigger>
-              <TabsTrigger 
-                value="activity" 
-                className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
-              >
+              <TabsTrigger value="activity" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium">
                 Activity
               </TabsTrigger>
-              <TabsTrigger 
-                value="reports" 
-                className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium"
-              >
+              <TabsTrigger value="reports" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-medium">
                 Reports
               </TabsTrigger>
             </TabsList>
@@ -108,9 +72,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                 <TabsTrigger value="case">
                   Case Details
                 </TabsTrigger>
-                <TabsTrigger value="job">
-                  Job Details
-                </TabsTrigger>
+                <TabsTrigger value="job">Job Details</TabsTrigger>
                 <TabsTrigger value="vehicle">
                   Vehicle Insights
                 </TabsTrigger>
@@ -176,8 +138,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                   </div>
                   
                   {/* Customer Details */}
-                  {caseItem.customer && (
-                    <div className="mb-4">
+                  {caseItem.customer && <div className="mb-4">
                       <Accordion type="single" defaultValue="customer-details" collapsible className="w-full">
                         <AccordionItem value="customer-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -217,12 +178,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                    </div>
-                  )}
+                    </div>}
                   
                   {/* Mechanic Details - MOVED FROM JOB DETAILS TO CASE DETAILS */}
-                  {caseItem.mechanic && (
-                    <div className="mb-4">
+                  {caseItem.mechanic && <div className="mb-4">
                       <Accordion type="single" defaultValue="mechanic-details" collapsible className="w-full">
                         <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -262,8 +221,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </TabsContent>
 
@@ -271,8 +229,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
               <TabsContent value="job" className="mt-4">
                 <div className="grid grid-cols-2 gap-4 border-0">
                   {/* Job Details */}
-                  {caseItem.job && (
-                    <div className="mb-4">
+                  {caseItem.job && <div className="mb-4">
                       <Accordion type="single" defaultValue="job-details" collapsible className="w-full">
                         <AccordionItem value="job-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -308,9 +265,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                                 <span className="text-gray-500">Required Parts:</span>
                                 <div className="ml-4 text-right">
                                   <ul className="list-disc list-inside text-right mt-1">
-                                    {caseItem.job.parts.map((part, index) => (
-                                      <li key={index} className="text-right">{part}</li>
-                                    ))}
+                                    {caseItem.job.parts.map((part, index) => <li key={index} className="text-right">{part}</li>)}
                                   </ul>
                                 </div>
                               </li>
@@ -318,12 +273,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                    </div>
-                  )}
+                    </div>}
 
                   {/* Appointment Details */}
-                  {caseItem.appointment && (
-                    <div className="mb-4">
+                  {caseItem.appointment && <div className="mb-4">
                       <Accordion type="single" defaultValue="appointment-details" collapsible className="w-full">
                         <AccordionItem value="appointment-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -363,12 +316,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                    </div>
-                  )}
+                    </div>}
 
                   {/* Access Arrangements - MOVED FROM CASE DETAILS TO JOB DETAILS */}
-                  {caseItem.access && (
-                    <div className="mb-4">
+                  {caseItem.access && <div className="mb-4">
                       <Accordion type="single" defaultValue="access-details" collapsible className="w-full">
                         <AccordionItem value="access-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -408,8 +359,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </TabsContent>
 
@@ -417,8 +367,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
               <TabsContent value="vehicle" className="mt-4">
                 <div className="grid grid-cols-2 gap-4 border-0">
                   {/* Vehicle Details */}
-                  {caseItem.vehicle && (
-                    <div className="mb-4">
+                  {caseItem.vehicle && <div className="mb-4">
                       <Accordion type="single" defaultValue="vehicle-details" collapsible className="w-full">
                         <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
                           <div className="flex justify-between items-center">
@@ -462,8 +411,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </TabsContent>
 
@@ -505,6 +453,5 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
-  );
+    </div>;
 };
