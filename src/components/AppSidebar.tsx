@@ -5,6 +5,7 @@ import { Folder, FileText, CheckSquare, Calendar, Users, CircleDollarSign, Panel
 import { Link, useLocation } from "react-router-dom";
 import { useCapabilities } from "@/context/CapabilitiesContext";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 export const AppSidebar = () => {
   const {
@@ -15,6 +16,8 @@ export const AppSidebar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [adminSectionOpen, setAdminSectionOpen] = useState(true);
+  const [solutionsSectionOpen, setSolutionsSectionOpen] = useState(true);
   
   const { capabilities } = useCapabilities();
   
@@ -89,83 +92,101 @@ export const AppSidebar = () => {
         {/* Separator between sections */}
         <SidebarSeparator className="my-4" />
         
-        {/* Admin section */}
-        <SidebarGroupLabel>Administration</SidebarGroupLabel>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Audit log" className="py-4">
-              <FileText />
-              <span>Audit log</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Users" className="py-4">
-              <Users />
-              <span>Users</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Clients" className="py-4">
-              <Users />
-              <span>Clients</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Templates" className="py-4">
-              <FileText />
-              <span>Templates</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Fees" className="py-4">
-              <CircleDollarSign />
-              <span>Fees</span>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          {/* Render Administration section capabilities with animation */}
-          {adminCapabilities.map((capability) => (
-            <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
-              <SidebarMenuButton tooltip={capability.name} className="py-4">
-                {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
-                <span>{capability.name}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
+        {/* Admin section - Now collapsible */}
+        <Collapsible open={adminSectionOpen} onOpenChange={setAdminSectionOpen}>
+          <CollapsibleTrigger className="w-full flex items-center gap-2 px-2 text-xs font-medium text-sidebar-foreground/70">
+            <ChevronDown className="h-4 w-4 transition-transform duration-200" 
+              style={{ transform: adminSectionOpen ? 'rotate(0deg)' : 'rotate(-90deg)' }} 
+            />
+            <span>Administration</span>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Audit log" className="py-4">
+                  <FileText />
+                  <span>Audit log</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Users" className="py-4">
+                  <Users />
+                  <span>Users</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Clients" className="py-4">
+                  <Users />
+                  <span>Clients</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Templates" className="py-4">
+                  <FileText />
+                  <span>Templates</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              
+              <SidebarMenuItem>
+                <SidebarMenuButton tooltip="Fees" className="py-4">
+                  <CircleDollarSign />
+                  <span>Fees</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              
+              {/* Render Administration section capabilities with animation */}
+              {adminCapabilities.map((capability) => (
+                <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
+                  <SidebarMenuButton tooltip={capability.name} className="py-4">
+                    {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
+                    <span>{capability.name}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </CollapsibleContent>
+        </Collapsible>
         
-        {/* Solutions section */}
+        {/* Solutions section - Now collapsible */}
         <SidebarSeparator className="my-4" />
-        <SidebarGroupLabel>Solutions</SidebarGroupLabel>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton 
-              isActive={currentPath === '/capabilities'} 
-              tooltip="Add Capabilities" 
-              className="py-4"
-              asChild
-            >
-              <Link to="/capabilities">
-                <Plus className="text-orange-500" />
-                <span>Add Capabilities</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          
-          {/* Render Solutions section capabilities with animation */}
-          {solutionCapabilities.map((capability) => (
-            <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
-              <SidebarMenuButton tooltip={capability.name} className="py-4">
-                {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
-                <span>{capability.name}</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
+        <Collapsible open={solutionsSectionOpen} onOpenChange={setSolutionsSectionOpen}>
+          <CollapsibleTrigger className="w-full flex items-center gap-2 px-2 text-xs font-medium text-sidebar-foreground/70">
+            <ChevronDown className="h-4 w-4 transition-transform duration-200" 
+              style={{ transform: solutionsSectionOpen ? 'rotate(0deg)' : 'rotate(-90deg)' }}
+            />
+            <span>Solutions</span>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton 
+                  isActive={currentPath === '/capabilities'} 
+                  tooltip="Add Capabilities" 
+                  className="py-4"
+                  asChild
+                >
+                  <Link to="/capabilities">
+                    <Plus className="text-orange-500" />
+                    <span>Add Capabilities</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              
+              {/* Render Solutions section capabilities with animation */}
+              {solutionCapabilities.map((capability) => (
+                <SidebarMenuItem key={capability.id} className="animate-gradient-pulse rounded-md">
+                  <SidebarMenuButton tooltip={capability.name} className="py-4">
+                    {React.cloneElement(capability.icon as React.ReactElement, { className: "h-5 w-5" })}
+                    <span>{capability.name}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </CollapsibleContent>
+        </Collapsible>
       
         {/* Resources section - No longer fixed to bottom */}
         <SidebarSeparator className="my-4" />
