@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -114,12 +115,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               {caseItem.appointment && (
                 <div className="rounded-lg border border-gray-100 p-6 bg-white">
                   <div className="flex">
-                    <div className="mr-8 text-center">
-                      <div className="text-4xl text-blue-500 font-bold">
+                    <div className="mr-8 text-center flex flex-col justify-center">
+                      <div className="text-[64px] text-blue-500 font-bold leading-none">
                         {/* Extract only the day from the date string */}
                         {caseItem.appointment.date.split(" ")[1]}
                       </div>
-                      <div className="text-sm text-gray-500 mt-1">
+                      <div className="text-sm text-gray-500 mt-2">
                         ETA {caseItem.appointment.time}
                       </div>
                     </div>
