@@ -70,7 +70,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </Button>
               </div>
               
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 shadow-sm">
+              <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
                 <div className="space-y-3">
                   <div className="border rounded-md p-4 px-5 shadow-sm bg-white hover:bg-gray-50 transition-colors">
                     <div className="flex items-center justify-between">
