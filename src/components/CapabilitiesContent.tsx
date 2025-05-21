@@ -32,7 +32,7 @@ type Capability = {
   icon: React.ReactNode;
   active: boolean;
   bgColor: string;
-  section?: "Administration" | "Main" | "Solutions" | null;
+  section?: "Administration" | "Main" | "Resources" | null;
 };
 
 export const CapabilitiesContent = () => {
@@ -49,7 +49,7 @@ export const CapabilitiesContent = () => {
     capability.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddToSection = (id: string, section: "Administration" | "Main" | "Solutions") => {
+  const handleAddToSection = (id: string, section: "Administration" | "Main" | "Resources") => {
     const capability = capabilities.find(cap => cap.id === id);
     
     if (!capability) return;
@@ -58,15 +58,14 @@ export const CapabilitiesContent = () => {
       capabilities.map((cap) => {
         if (cap.id === id) {
           const newState = true;
-          const newSection = section;
           
-          // Add to menu if it's in Solutions section
-          if (section === "Solutions") {
+          // Add to menu if it's in Resources section
+          if (section === "Resources") {
             addMenuItem({
               id: `capability-${cap.id}`,
               name: cap.name,
               icon: cap.icon,
-              section: "Solutions",
+              section: "Resources",
               order: 0 // This will be adjusted in addMenuItem function
             });
           }
@@ -78,7 +77,7 @@ export const CapabilitiesContent = () => {
             duration: 3000,
           });
           
-          return { ...cap, active: newState, section: newSection };
+          return { ...cap, active: newState, section: section };
         }
         return cap;
       })
@@ -185,10 +184,10 @@ export const CapabilitiesContent = () => {
                         Add to Administration
                       </DropdownMenuItem>
                       <DropdownMenuItem 
-                        onClick={() => handleAddToSection(capability.id, "Solutions")}
+                        onClick={() => handleAddToSection(capability.id, "Resources")}
                         className="py-2.5 px-4 cursor-pointer"
                       >
-                        Add to Solutions
+                        Add to Resources
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

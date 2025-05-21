@@ -35,9 +35,8 @@ const defaultMenuItems: MenuItem[] = [
   
   // Resources section items
   { id: "integrations", name: "Integrations", icon: <Plug />, section: "Resources", order: 1 },
-  { id: "add-capabilities", name: "Add Capabilities", icon: <Plus className="text-orange-500" />, link: "/capabilities", section: "Resources", order: 2 },
-  { id: "customize-menu", name: "Customise menu", icon: <List />, link: "/customize-menu", section: "Resources", order: 3 },
-  { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 4 },
+  { id: "customize-menu", name: "Customise menu", icon: <List />, link: "/customize-menu", section: "Resources", order: 2 },
+  { id: "help", name: "Help", icon: <HelpCircle />, section: "Resources", order: 3 },
 ];
 
 const MenuContext = createContext<MenuContextType | null>(null);
@@ -75,7 +74,11 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
   // Add a new menu item to the specified section
   const addMenuItem = (item: MenuItem) => {
     const newItems = [...menuItems];
+    
+    // Add the new item to the array
     newItems.push(item);
+    
+    // Update order values for all items in the section
     const itemsWithUpdatedOrder = updateSectionOrder(newItems, item.section);
     updateMenuItems(itemsWithUpdatedOrder);
   };

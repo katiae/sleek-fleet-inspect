@@ -33,23 +33,16 @@ export const ResourcesSection = () => {
                   <List className="h-4 w-4" />
                   <span>Customise menu</span>
                 </Link>
+                <Link 
+                  to="/capabilities" 
+                  className={`flex items-center gap-2 px-2 py-2 text-sm rounded-md hover:bg-gray-100 transition-colors ${currentPath === '/capabilities' ? 'bg-gray-100 font-medium' : ''}`}
+                >
+                  <Plus className="h-4 w-4 text-orange-500" />
+                  <span>Add Capabilities</span>
+                </Link>
               </div>
             </PopoverContent>
           </Popover>
-        </SidebarMenuItem>
-        
-        <SidebarMenuItem>
-          <SidebarMenuButton 
-            isActive={currentPath === '/capabilities'} 
-            tooltip="Add Capabilities" 
-            className="py-4"
-            asChild
-          >
-            <Link to="/capabilities">
-              <Plus className="text-orange-500" />
-              <span>Add Capabilities</span>
-            </Link>
-          </SidebarMenuButton>
         </SidebarMenuItem>
         
         <SidebarMenuItem>
