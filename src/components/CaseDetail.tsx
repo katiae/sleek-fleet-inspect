@@ -217,12 +217,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   </div>
                 </Card>}
               
-              {/* Access Arrangements Card - Updated border radius for map area */}
+              {/* Access Arrangements Card - Updated height for map area */}
               {caseItem.access && <Card>
                   <div className="flex py-[14px] px-[14px]">
                     <div className="pl-2 w-1/3 px-0">
-                      {/* Google Maps Standard Map View - Updated border radius */}
-                      <div className="relative w-full h-[150px] overflow-hidden border border-gray-200 border-r-0 rounded-l-lg" style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}>
+                      {/* Google Maps Standard Map View - Updated to match height of adjacent content */}
+                      <div className="relative w-full h-full overflow-hidden border border-gray-200 border-r-0 rounded-l-lg" style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}>
                         <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} alt="Location map" className="w-full h-full object-cover" onError={e => console.error("Map loading error:", e)} />
                         {/* Overlay with icon that appears on hover */}
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition-opacity">
