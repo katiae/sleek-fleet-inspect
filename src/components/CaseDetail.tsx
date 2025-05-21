@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileText as FileTextIcon, Users } from "lucide-react";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -17,6 +16,27 @@ interface CaseDetailProps {
 export const CaseDetail: React.FC<CaseDetailProps> = ({
   caseItem
 }) => {
+  // Extract and format the day number explicitly
+  const getDayNumber = () => {
+    if (!caseItem.appointment?.date) return "";
+    
+    // Log the date string to verify its format
+    console.log("Date string:", caseItem.appointment.date);
+    
+    // Extract the day part explicitly
+    const dateParts = caseItem.appointment.date.split(" ");
+    if (dateParts.length >= 2) {
+      const day = dateParts[1];
+      // Remove any non-numeric characters and log the result
+      const numericDay = day.replace(/\D/g, '');
+      console.log("Extracted day:", numericDay);
+      return numericDay;
+    }
+    return "";
+  };
+
+  const dayNumber = getDayNumber();
+
   return <div className="space-y-6">
       <div className="flex justify-between items-start">
         <div>
@@ -116,9 +136,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 <div className="rounded-lg border border-gray-100 p-6 bg-white">
                   <div className="flex">
                     <div className="mr-8 text-center flex flex-col justify-center">
+                      {/* Explicitly show the day number with extra logging */}
                       <div className="text-[64px] text-blue-500 font-bold leading-none">
-                        {/* Extract only the day from the date string */}
-                        {caseItem.appointment.date.split(" ")[1]}
+                        {dayNumber || "N/A"}
                       </div>
                       <div className="text-sm text-gray-500 mt-2">
                         ETA {caseItem.appointment.time}
