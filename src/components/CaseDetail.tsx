@@ -11,7 +11,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 // Google Maps API Key
 const GOOGLE_MAPS_API_KEY = "AIzaSyBh7z3qRJnwouiI0l30sSaR-3wBhAGglro";
-
 interface CaseDetailProps {
   caseItem: Case;
 }
@@ -60,12 +59,11 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       };
     }
   };
-  
+
   // Get the encoded address for Google Maps
   const getEncodedAddress = () => {
     return encodeURIComponent(caseItem.address);
   };
-  
   const {
     day,
     weekday,
@@ -218,18 +216,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 </Card>}
               
               {/* Access Arrangements Card - With standard map view on the left and contact info on the right */}
-              {caseItem.access && (
-                <Card>
+              {caseItem.access && <Card>
                   <div className="flex py-[14px] px-[14px]">
-                    <div className="pl-2 w-1/3">
+                    <div className="pl-2 w-1/3 px-0">
                       {/* Google Maps Standard Map View - Fixed implementation */}
                       <div className="relative w-full h-[150px] overflow-hidden rounded-md border border-gray-200">
-                        <img 
-                          src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`}
-                          alt="Location map" 
-                          className="w-full h-full object-cover"
-                          onError={(e) => console.error("Map loading error:", e)}
-                        />
+                        <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${getEncodedAddress()}&zoom=15&size=400x200&key=${GOOGLE_MAPS_API_KEY}&markers=color:red%7C${getEncodedAddress()}`} alt="Location map" className="w-full h-full object-cover" onError={e => console.error("Map loading error:", e)} />
                         {/* Overlay with icon that appears on hover */}
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 bg-opacity-0 hover:bg-opacity-20 transition-opacity">
                           <MapPin className="h-8 w-8 text-red-500" />
@@ -252,27 +244,22 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           <div className="flex-1">{caseItem.address}</div>
                         </div>
                         
-                        {caseItem.access.contactPerson && (
-                          <div className="flex flex-col gap-1 mt-2">
+                        {caseItem.access.contactPerson && <div className="flex flex-col gap-1 mt-2">
                             <div className="flex items-center gap-2">
                               <User className="h-5 w-5 text-gray-500 flex-shrink-0" />
                               <div className="font-medium">{caseItem.access.contactPerson}</div>
                             </div>
                             <div className="ml-7 text-sm text-gray-600">Occupier</div>
-                          </div>
-                        )}
+                          </div>}
                         
-                        {caseItem.access.contactPhone && (
-                          <div className="flex gap-2 items-center ml-7 mt-1">
+                        {caseItem.access.contactPhone && <div className="flex gap-2 items-center ml-7 mt-1">
                             <Phone className="h-4 w-4 text-orange-500" />
                             <div className="text-orange-500">{caseItem.access.contactPhone}</div>
-                          </div>
-                        )}
+                          </div>}
                       </div>
                     </div>
                   </div>
-                </Card>
-              )}
+                </Card>}
 
               {/* Instruction Details Summary - As a separate card */}
               <Card>
