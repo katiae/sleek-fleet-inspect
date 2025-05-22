@@ -14,10 +14,10 @@ export const CaseList = () => {
     { id: "type", label: "Job type", visible: true },
     { id: "owner", label: "Customer", visible: true },
     { id: "lastInspected", label: "Last updated", visible: true },
-    { id: "createdDate", label: "Created date", visible: false },
-    { id: "invoiceStatus", label: "Invoice status", visible: false },
-    { id: "postcode", label: "Postcode", visible: false },
-    { id: "lender", label: "Lender", visible: false },
+    { id: "vehicle", label: "Vehicle", visible: false },
+    { id: "vin", label: "VIN", visible: false },
+    { id: "licensePlate", label: "License plate", visible: false },
+    { id: "mechanic", label: "Mechanic", visible: false },
   ]);
 
   const handleColumnToggle = (columnId: string) => {

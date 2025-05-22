@@ -74,10 +74,15 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
                       </>
                     )}
                     {column.id === 'lastInspected' && caseItem.lastInspected}
-                    {column.id === 'createdDate' && caseItem.createdDate}
-                    {column.id === 'invoiceStatus' && caseItem.invoiceStatus}
-                    {column.id === 'postcode' && caseItem.postcode}
-                    {column.id === 'lender' && caseItem.lender}
+                    {column.id === 'vehicle' && caseItem.vehicle && (
+                      <>
+                        <div>{caseItem.vehicle.make} {caseItem.vehicle.model}</div>
+                        <div className="text-sm text-gray-500">{caseItem.vehicle.year}</div>
+                      </>
+                    )}
+                    {column.id === 'vin' && caseItem.vehicle?.vin}
+                    {column.id === 'licensePlate' && caseItem.vehicle?.licensePlate}
+                    {column.id === 'mechanic' && caseItem.mechanic?.name}
                   </TableCell>
                 ))}
               </TableRow>
