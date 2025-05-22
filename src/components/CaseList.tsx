@@ -5,9 +5,15 @@ import { Plus, Filter, Columns } from "lucide-react";
 import { CaseTable } from "@/components/CaseTable";
 import { ColumnsSelection } from "@/components/ColumnsSelection";
 
+export type ColumnDefinition = {
+  id: string;
+  label: string;
+  visible: boolean;
+};
+
 export const CaseList = () => {
   const [columnSelectorOpen, setColumnSelectorOpen] = useState(false);
-  const [visibleColumns, setVisibleColumns] = useState([
+  const [visibleColumns, setVisibleColumns] = useState<ColumnDefinition[]>([
     { id: "id", label: "Inspection ID", visible: true },
     { id: "address", label: "Property address", visible: true },
     { id: "status", label: "Status", visible: true },
@@ -53,6 +59,10 @@ export const CaseList = () => {
     );
   };
 
+  const handleColumnsReorder = (reorderedColumns: ColumnDefinition[]) => {
+    setVisibleColumns(reorderedColumns);
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -89,6 +99,7 @@ export const CaseList = () => {
         onSelectAll={handleSelectAll}
         onSave={handleSave}
         onReset={handleReset}
+        onReorder={handleColumnsReorder}
       />
     </div>
   );

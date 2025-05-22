@@ -9,16 +9,81 @@ import {
   SheetTitle,
   SheetClose
 } from "@/components/ui/sheet";
-import { Check } from "lucide-react";
+import { Check, GripVertical } from "lucide-react";
+import { ColumnDefinition } from "@/components/CaseList";
+import { 
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+
+interface SortableItemProps {
+  id: string;
+  label: string;
+  visible: boolean;
+  onToggle: () => void;
+}
+
+function SortableItem({ id, label, visible, onToggle }: SortableItemProps) {
+  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+  
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div 
+      ref={setNodeRef} 
+      style={style} 
+      className="px-6 py-4 pl-10 flex items-center justify-between"
+    >
+      <div className="flex items-center space-x-2">
+        <Checkbox 
+          id={id} 
+          checked={visible} 
+          onCheckedChange={onToggle}
+          className="rounded-sm border-gray-300 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
+        />
+        <label 
+          htmlFor={id} 
+          className="text-base font-normal cursor-pointer"
+        >
+          {label}
+        </label>
+      </div>
+      <div 
+        className="text-gray-400 cursor-move"
+        {...attributes}
+        {...listeners}
+      >
+        <GripVertical size={20} />
+      </div>
+    </div>
+  );
+}
 
 interface ColumnsSelectionProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  columns: { id: string; label: string; visible: boolean }[];
+  columns: ColumnDefinition[];
   onColumnToggle: (columnId: string) => void;
   onSelectAll: () => void;
   onSave: () => void;
   onReset: () => void;
+  onReorder: (columns: ColumnDefinition[]) => void;
 }
 
 export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
@@ -29,7 +94,26 @@ export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
   onSelectAll,
   onSave,
   onReset,
+  onReorder,
 }) => {
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    
+    if (over && active.id !== over.id) {
+      const oldIndex = columns.findIndex(item => item.id === active.id);
+      const newIndex = columns.findIndex(item => item.id === over.id);
+      const newOrder = arrayMove(columns, oldIndex, newIndex);
+      onReorder(newOrder);
+    }
+  };
+
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
       <SheetContent className="sm:max-w-md p-0 overflow-y-auto">
@@ -65,29 +149,26 @@ export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
           </div>
         </div>
         <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
-          {columns.map((column) => (
-            <div key={column.id}>
-              <div className="px-6 py-4 pl-10 flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <Checkbox 
-                    id={column.id} 
-                    checked={column.visible} 
-                    onCheckedChange={() => onColumnToggle(column.id)}
-                    className="rounded-sm border-gray-300 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
-                  />
-                  <label 
-                    htmlFor={column.id} 
-                    className="text-base font-normal cursor-pointer"
-                  >
-                    {column.label}
-                  </label>
-                </div>
-                <div className="text-gray-400">
-                  ⋮⋮⋮
-                </div>
-              </div>
-            </div>
-          ))}
+          <DndContext
+            sensors={sensors}
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <SortableContext 
+              items={columns.map(col => col.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              {columns.map((column) => (
+                <SortableItem
+                  key={column.id}
+                  id={column.id}
+                  label={column.label}
+                  visible={column.visible}
+                  onToggle={() => onColumnToggle(column.id)}
+                />
+              ))}
+            </SortableContext>
+          </DndContext>
         </div>
         <div className="p-6 border-t mt-auto flex justify-between">
           <Button 
