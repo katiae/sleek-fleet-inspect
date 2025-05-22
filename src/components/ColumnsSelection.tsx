@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { 
@@ -50,14 +50,12 @@ export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
         </SheetHeader>
         <div className="px-6 py-4 border-b">
           <div className="flex items-center space-x-2">
-            <div className="bg-orange-500 rounded p-0.5">
-              <Checkbox 
-                id="show-all" 
-                checked={columns.every(col => col.visible)} 
-                onCheckedChange={onSelectAll}
-                className="data-[state=checked]:bg-white data-[state=checked]:text-orange-500 border-white"
-              />
-            </div>
+            <Checkbox 
+              id="show-all" 
+              checked={columns.every(col => col.visible)} 
+              onCheckedChange={onSelectAll}
+              className="rounded-sm border-gray-300 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
+            />
             <label 
               htmlFor="show-all" 
               className="text-base font-medium cursor-pointer"
@@ -71,14 +69,12 @@ export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
             <div key={column.id} className="border-b">
               <div className="px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div className={`rounded p-0.5 ${column.visible ? 'bg-orange-500' : 'border border-gray-300'}`}>
-                    <Checkbox 
-                      id={column.id} 
-                      checked={column.visible} 
-                      onCheckedChange={() => onColumnToggle(column.id)}
-                      className="data-[state=checked]:bg-white data-[state=checked]:text-orange-500 border-white"
-                    />
-                  </div>
+                  <Checkbox 
+                    id={column.id} 
+                    checked={column.visible} 
+                    onCheckedChange={() => onColumnToggle(column.id)}
+                    className="rounded-sm border-gray-300 data-[state=checked]:bg-orange-500 data-[state=checked]:border-orange-500"
+                  />
                   <label 
                     htmlFor={column.id} 
                     className="text-base font-medium cursor-pointer"
