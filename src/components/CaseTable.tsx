@@ -19,6 +19,7 @@ import {
 import { cases } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 
 interface ColumnDefinition {
   id: string;
@@ -39,6 +40,16 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
 
   const getVisibleColumns = () => {
     return visibleColumns.filter(column => column.visible);
+  };
+
+  const formatInspectionDate = (dateString?: string) => {
+    if (!dateString) return "";
+    try {
+      return format(new Date(dateString), "EEEE, d MMMM");
+    } catch (error) {
+      console.error("Error formatting date:", error);
+      return dateString;
+    }
   };
 
   return (
@@ -74,7 +85,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
                       </>
                     )}
                     {column.id === 'lastInspected' && caseItem.lastInspected}
-                    {column.id === 'inspectionDate' && caseItem.appointment?.date}
+                    {column.id === 'inspectionDate' && formatInspectionDate(caseItem.appointment?.date)}
                     {column.id === 'vehicle' && caseItem.vehicle && (
                       <>
                         <div>{caseItem.vehicle.make} {caseItem.vehicle.model}</div>
@@ -112,3 +123,4 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
     </div>
   );
 };
+
