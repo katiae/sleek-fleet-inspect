@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { 
   Table, 
@@ -20,7 +19,7 @@ import { cases } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ChevronUp } from "lucide-react";
 
 interface ColumnDefinition {
   id: string;
@@ -142,6 +141,21 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
     });
   };
 
+  const renderSortIcon = (columnId: string) => {
+    if (sortColumn === columnId) {
+      return sortDirection === "asc" ? (
+        <ArrowUp className="h-4 w-4 ml-1" />
+      ) : (
+        <ArrowDown className="h-4 w-4 ml-1" />
+      );
+    }
+    
+    // Show faded sort icons when not sorted
+    return (
+      <ChevronUp className="h-4 w-4 ml-1 text-gray-300" />
+    );
+  };
+
   return (
     <div className="bg-white border rounded-md">
       <div className="overflow-x-auto">
@@ -154,15 +168,9 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
                   onClick={() => handleSort(column.id)}
                   className="cursor-pointer hover:bg-gray-100"
                 >
-                  <div className="flex items-center space-x-1">
+                  <div className="flex items-center">
                     <span>{column.label}</span>
-                    {sortColumn === column.id && sortDirection && (
-                      sortDirection === "asc" ? (
-                        <ArrowUp className="h-4 w-4" />
-                      ) : (
-                        <ArrowDown className="h-4 w-4" />
-                      )
-                    )}
+                    {renderSortIcon(column.id)}
                   </div>
                 </TableHead>
               ))}
