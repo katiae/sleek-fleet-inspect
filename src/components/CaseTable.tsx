@@ -20,11 +20,25 @@ import { cases } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { useNavigate } from "react-router-dom";
 
-export const CaseTable = () => {
+interface ColumnDefinition {
+  id: string;
+  label: string;
+  visible: boolean;
+}
+
+interface CaseTableProps {
+  visibleColumns: ColumnDefinition[];
+}
+
+export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
   const navigate = useNavigate();
 
   const handleRowClick = (caseId: string) => {
     navigate(`/case/${caseId}`);
+  };
+
+  const getVisibleColumns = () => {
+    return visibleColumns.filter(column => column.visible);
   };
 
   return (
@@ -33,12 +47,9 @@ export const CaseTable = () => {
         <Table>
           <TableHeader className="bg-gray-50">
             <TableRow>
-              <TableHead>Inspection ID</TableHead>
-              <TableHead>Vehicle address</TableHead>
-              <TableHead>Inspection Status</TableHead>
-              <TableHead>Inspection Type</TableHead>
-              <TableHead>Owner</TableHead>
-              <TableHead>Last Inspected</TableHead>
+              {getVisibleColumns().map(column => (
+                <TableHead key={column.id}>{column.label}</TableHead>
+              ))}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -48,17 +59,27 @@ export const CaseTable = () => {
                 className="cursor-pointer hover:bg-gray-50"
                 onClick={() => handleRowClick(caseItem.id)}
               >
-                <TableCell className="font-medium">{caseItem.id}</TableCell>
-                <TableCell>{caseItem.address}</TableCell>
-                <TableCell>
-                  <CaseStatusBadge status={caseItem.status} />
-                </TableCell>
-                <TableCell>{caseItem.type}</TableCell>
-                <TableCell>
-                  <div className="text-sm text-gray-500">{caseItem.owner.type}</div>
-                  <div>{caseItem.owner.name}</div>
-                </TableCell>
-                <TableCell>{caseItem.lastInspected}</TableCell>
+                {getVisibleColumns().map(column => (
+                  <TableCell key={column.id}>
+                    {column.id === 'id' && caseItem.id}
+                    {column.id === 'address' && caseItem.address}
+                    {column.id === 'status' && (
+                      <CaseStatusBadge status={caseItem.status} />
+                    )}
+                    {column.id === 'type' && caseItem.type}
+                    {column.id === 'owner' && (
+                      <>
+                        <div className="text-sm text-gray-500">{caseItem.owner.type}</div>
+                        <div>{caseItem.owner.name}</div>
+                      </>
+                    )}
+                    {column.id === 'lastInspected' && caseItem.lastInspected}
+                    {column.id === 'createdDate' && caseItem.createdDate}
+                    {column.id === 'invoiceStatus' && caseItem.invoiceStatus}
+                    {column.id === 'postcode' && caseItem.postcode}
+                    {column.id === 'lender' && caseItem.lender}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           </TableBody>
