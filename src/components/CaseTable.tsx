@@ -42,10 +42,11 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
     return visibleColumns.filter(column => column.visible);
   };
 
-  const formatInspectionDate = (dateString?: string) => {
+  const formatInspectionDate = (dateString?: string, timeString?: string) => {
     if (!dateString) return "";
     try {
-      return format(new Date(dateString), "EEEE, d MMMM");
+      const formattedDate = format(new Date(dateString), "EEEE, d MMMM");
+      return timeString ? `${formattedDate} at ${timeString}` : formattedDate;
     } catch (error) {
       console.error("Error formatting date:", error);
       return dateString;
@@ -85,7 +86,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
                       </>
                     )}
                     {column.id === 'lastInspected' && caseItem.lastInspected}
-                    {column.id === 'inspectionDate' && formatInspectionDate(caseItem.appointment?.date)}
+                    {column.id === 'inspectionDate' && formatInspectionDate(caseItem.appointment?.date, caseItem.appointment?.time)}
                     {column.id === 'vehicle' && caseItem.vehicle && (
                       <>
                         <div>{caseItem.vehicle.make} {caseItem.vehicle.model}</div>
@@ -123,4 +124,3 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
     </div>
   );
 };
-
