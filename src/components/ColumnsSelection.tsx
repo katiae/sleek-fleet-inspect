@@ -66,7 +66,7 @@ export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
         </div>
         <div className="overflow-y-auto max-h-[calc(100vh-200px)]">
           {columns.map((column) => (
-            <div key={column.id} className="border-b">
+            <div key={column.id}>
               <div className="px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <Checkbox 
