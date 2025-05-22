@@ -14,6 +14,7 @@ export const CaseList = () => {
     { id: "type", label: "Job type", visible: true },
     { id: "owner", label: "Customer", visible: true },
     { id: "lastInspected", label: "Last updated", visible: true },
+    { id: "inspectionDate", label: "Inspection date", visible: false },
     { id: "vehicle", label: "Vehicle", visible: false },
     { id: "vin", label: "VIN", visible: false },
     { id: "licensePlate", label: "License plate", visible: false },
