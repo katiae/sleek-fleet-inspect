@@ -1,10 +1,57 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Filter, Columns } from "lucide-react";
 import { CaseTable } from "@/components/CaseTable";
+import { ColumnsSelection } from "@/components/ColumnsSelection";
 
 export const CaseList = () => {
+  const [columnSelectorOpen, setColumnSelectorOpen] = useState(false);
+  const [visibleColumns, setVisibleColumns] = useState([
+    { id: "id", label: "Inspection ID", visible: true },
+    { id: "address", label: "Property address", visible: true },
+    { id: "status", label: "Status", visible: true },
+    { id: "type", label: "Job type", visible: true },
+    { id: "owner", label: "Customer", visible: true },
+    { id: "lastInspected", label: "Last updated", visible: true },
+    { id: "createdDate", label: "Created date", visible: false },
+    { id: "invoiceStatus", label: "Invoice status", visible: false },
+    { id: "postcode", label: "Postcode", visible: false },
+    { id: "lender", label: "Lender", visible: false },
+  ]);
+
+  const handleColumnToggle = (columnId: string) => {
+    setVisibleColumns(columns => 
+      columns.map(col => 
+        col.id === columnId ? { ...col, visible: !col.visible } : col
+      )
+    );
+  };
+
+  const handleSelectAll = () => {
+    const areAllSelected = visibleColumns.every(col => col.visible);
+    setVisibleColumns(columns => 
+      columns.map(col => ({ ...col, visible: !areAllSelected }))
+    );
+  };
+
+  const handleSave = () => {
+    console.log("Saving columns configuration:", visibleColumns);
+    setColumnSelectorOpen(false);
+  };
+
+  const handleReset = () => {
+    setVisibleColumns(columns => 
+      columns.map(col => {
+        if (["id", "address", "status", "type", "owner", "lastInspected"].includes(col.id)) {
+          return { ...col, visible: true };
+        } else {
+          return { ...col, visible: false };
+        }
+      })
+    );
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -21,12 +68,27 @@ export const CaseList = () => {
         <Button variant="outline" size="sm" className="h-9">
           <Filter className="mr-2 h-4 w-4" /> Filter
         </Button>
-        <Button variant="outline" size="sm" className="h-9">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="h-9"
+          onClick={() => setColumnSelectorOpen(true)}
+        >
           <Columns className="mr-2 h-4 w-4" /> Columns
         </Button>
       </div>
       
-      <CaseTable />
+      <CaseTable visibleColumns={visibleColumns} />
+
+      <ColumnsSelection
+        isOpen={columnSelectorOpen}
+        onOpenChange={setColumnSelectorOpen}
+        columns={visibleColumns}
+        onColumnToggle={handleColumnToggle}
+        onSelectAll={handleSelectAll}
+        onSave={handleSave}
+        onReset={handleReset}
+      />
     </div>
   );
 };
