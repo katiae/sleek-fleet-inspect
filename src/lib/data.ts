@@ -116,7 +116,13 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    appointment: {
+      date: "2025-05-25",
+      time: "09:00 AM",
+      duration: "1.5 hours",
+      status: "Scheduled"
+    }
   },
   {
     id: "INS-2023-0012",
@@ -127,7 +133,13 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    appointment: {
+      date: "2025-05-21",
+      time: "14:15 PM",
+      duration: "2 hours",
+      status: "Completed"
+    }
   },
   {
     id: "INS-2023-0012",
@@ -138,7 +150,13 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    appointment: {
+      date: "2025-05-20",
+      time: "11:30 AM",
+      duration: "1 hour",
+      status: "Cancelled"
+    }
   },
   {
     id: "INS-2023-0012",
@@ -149,7 +167,13 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    appointment: {
+      date: "2025-04-15",
+      time: "10:00 AM",
+      duration: "2 hours",
+      status: "Expired"
+    }
   },
   {
     id: "INS-2023-0012",
@@ -160,7 +184,13 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    appointment: {
+      date: "2025-05-28",
+      time: "13:45 PM",
+      duration: "2 hours",
+      status: "On Hold"
+    }
   },
   {
     id: "INS-2023-0012",
@@ -171,7 +201,13 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    appointment: {
+      date: "2025-05-26",
+      time: "15:00 PM",
+      duration: "1.5 hours",
+      status: "Under Review"
+    }
   },
   {
     id: "INS-2023-0012",
@@ -182,6 +218,12 @@ export const cases: Case[] = [
       type: "Private",
       name: "Jane Smith"
     },
-    lastInspected: "Today, 5 mins ago"
+    lastInspected: "Today, 5 mins ago",
+    appointment: {
+      date: "2025-05-18",
+      time: "09:30 AM",
+      duration: "2 hours",
+      status: "Completed"
+    }
   }
 ];
