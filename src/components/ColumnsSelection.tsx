@@ -58,7 +58,7 @@ export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
             />
             <label 
               htmlFor="show-all" 
-              className="text-base font-medium cursor-pointer"
+              className="text-base font-normal cursor-pointer"
             >
               Show all
             </label>
@@ -77,7 +77,7 @@ export const ColumnsSelection: React.FC<ColumnsSelectionProps> = ({
                   />
                   <label 
                     htmlFor={column.id} 
-                    className="text-base font-medium cursor-pointer"
+                    className="text-base font-normal cursor-pointer"
                   >
                     {column.label}
                   </label>
