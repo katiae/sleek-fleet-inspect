@@ -211,7 +211,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Engine diagnostics check</span>
-                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5">In progress</Badge>
+                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded">In progress</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Continue</Button>
