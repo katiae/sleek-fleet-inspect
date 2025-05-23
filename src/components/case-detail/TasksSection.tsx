@@ -61,10 +61,10 @@ export const TasksSection: React.FC = () => {
                   <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Pending</Badge>
                 </div>
               </div>
-              <button className="task-card-button">
-                Schedule
-                <ChevronDown className="h-4 w-4" />
-              </button>
+              <div className="flex items-center gap-2">
+                <button className="task-card-button">Schedule</button>
+                <ChevronDown className="h-4 w-4 text-gray-400 cursor-pointer" />
+              </div>
             </div>
           </div>
         </div>
