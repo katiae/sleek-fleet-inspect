@@ -1,46 +1,35 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink, PartyPopper, Package, UserCheck, ClipboardList, Gauge, Cog, FileCheck } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { Card, CardContent } from "@/components/ui/card";
+import { TasksSection } from "./case-detail/TasksSection";
+import { ActivitySection } from "./case-detail/ActivitySection";
+import { SummarySection } from "./case-detail/SummarySection";
+import { ContactsSection } from "./case-detail/ContactsSection";
+import { CaseDetailsTab } from "./case-detail/CaseDetailsTab";
 
-// Google Maps API Key
-const GOOGLE_MAPS_API_KEY = "AIzaSyBh7z3qRJnwouiI0l30sSaR-3wBhAGglro";
 interface CaseDetailProps {
   caseItem: Case;
 }
-export const CaseDetail: React.FC<CaseDetailProps> = ({
-  caseItem
-}) => {
-  // State for tracking if the map image failed to load
-  const [mapLoadError, setMapLoadError] = useState(false);
 
-  // Add a reference to the Tabs component to control tab switching programmatically
+export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
   const [activeTab, setActiveTab] = useState("overview");
 
-  // Check if the user is on a mobile device
-  const isMobile = useIsMobile();
-
-  // Function to navigate to a specific tab
   const navigateToTab = (tabValue: string) => {
     setActiveTab(tabValue);
   };
 
-  // Function to open Google Maps in a new tab
   const openInGoogleMaps = () => {
     const encodedAddress = encodeURIComponent(caseItem.address);
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
     window.open(googleMapsUrl, '_blank');
   };
 
-  // Function to generate and download ICS file
   const downloadICSFile = () => {
     try {
       if (!caseItem.appointment?.date) {
@@ -48,50 +37,31 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
         return;
       }
 
-      // Convert the date to a proper format for .ics file (YYYYMMDD)
       const date = new Date(caseItem.appointment.date);
-
-      // Format the date as YYYYMMDDTHHMMSSZ
       const startDate = date.toISOString().replace(/-|:|\.\d+/g, "");
-
-      // Set end date 1 hour after start (or use duration if available)
       const endDate = new Date(date.getTime() + (caseItem.appointment.duration ? parseInt(caseItem.appointment.duration) * 60000 : 60 * 60000)).toISOString().replace(/-|:|\.\d+/g, "");
-
-      // Create event description with access information
       const description = caseItem.access ? `Access Contact: ${caseItem.access.contactPerson || 'Not specified'}\nContact Phone: ${caseItem.access.contactPhone || 'Not specified'}` : 'No access information provided';
-
-      // Create event title using job type or case type
       const eventTitle = caseItem.job?.type || `${caseItem.type} Inspection`;
 
-      // Create the .ics content
       const icsContent = ["BEGIN:VCALENDAR", "VERSION:2.0", "CALSCALE:GREGORIAN", "PRODID:-//Inspection Calendar//EN", "BEGIN:VEVENT", `UID:${Date.now()}@inspection.calendar`, `DTSTAMP:${new Date().toISOString().replace(/-|:|\.\d+/g, "")}`, `DTSTART:${startDate}`, `DTEND:${endDate}`, `SUMMARY:${eventTitle}`, `DESCRIPTION:${description.replace(/\n/g, '\\n')}`, `LOCATION:${caseItem.address}`, "END:VEVENT", "END:VCALENDAR"].join("\r\n");
 
-      // Create a Blob with the .ics content
       const blob = new Blob([icsContent], {
         type: "text/calendar;charset=utf-8"
       });
 
-      // Create a URL for the Blob
       const url = window.URL.createObjectURL(blob);
-
-      // Create a link element to trigger the download
       const link = document.createElement("a");
       link.href = url;
       link.download = `${caseItem.id}_inspection.ics`;
-
-      // Append the link to the document, trigger the click, and remove it
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-
-      // Release the URL object
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Error generating ICS file:", error);
     }
   };
 
-  // Extract and format date information
   const getDateInfo = () => {
     if (!caseItem.appointment?.date) return {
       day: "",
@@ -99,18 +69,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
       month: ""
     };
 
-    // Log the date string to verify its format
     console.log("Date string:", caseItem.appointment.date);
     try {
       const date = new Date(caseItem.appointment.date);
       const day = date.getDate().toString();
-
-      // Get weekday name (e.g., Monday, Tuesday)
       const weekday = date.toLocaleDateString('en-US', {
         weekday: 'long'
       });
-
-      // Get month name (e.g., January, February)
       const month = date.toLocaleDateString('en-US', {
         month: 'long'
       });
@@ -134,16 +99,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
     }
   };
 
-  // Get the encoded address for Google Maps
-  const getEncodedAddress = () => {
-    return encodeURIComponent(caseItem.address);
-  };
-  const {
-    day,
-    weekday,
-    month
-  } = getDateInfo();
-  return <div className="space-y-11">
+  const dateInfo = getDateInfo();
+
+  return (
+    <div className="space-y-11">
       <div className="flex justify-between items-start">
         <div>
           <h1 className="text-2xl font-semibold text-gray-800">{caseItem.address}</h1>
@@ -188,748 +147,24 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-11">
-            {/* Tasks and Activity Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Tasks Section - Grid column 1 */}
-              <div className="h-full flex flex-col">
-                <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-lg font-medium">
-                    Upcoming Tasks
-                  </h2>
-                  <Button variant="link" size="sm" className="text-sm text-orange-500">
-                    See all tasks
-                  </Button>
-                </div>
-                
-                <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col">
-                  <div className="space-y-3 mb-3">
-                    <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-11 h-11 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Gauge className="h-6 w-6 text-blue-600" />
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="font-medium text-sm">Engine diagnostics check</span>
-                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">In progress</Badge>
-                          </div>
-                        </div>
-                        <Button variant="secondary" size="sm" className="text-xs">Continue</Button>
-                      </div>
-                    </div>
-                    
-                    <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-11 h-11 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Car className="h-6 w-6 text-green-600" />
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="font-medium text-sm">Brake system inspection</span>
-                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Priority</Badge>
-                          </div>
-                        </div>
-                        <Button variant="secondary" size="sm" className="text-xs">Start</Button>
-                      </div>
-                    </div>
-                    
-                    <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="w-11 h-11 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <FileCheck className="h-6 w-6 text-purple-600" />
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="font-medium text-sm">Emissions testing</span>
-                            <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Pending</Badge>
-                          </div>
-                        </div>
-                        <Button variant="secondary" size="sm" className="text-xs">Schedule</Button>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Celebration message at the bottom of tasks - with consistent spacing */}
-                  <div className="flex flex-col items-center justify-center mt-auto bg-gray-100 rounded-md py-3">
-                    <PartyPopper className="h-6 w-6 text-gray-600 mb-2" />
-                    <p className="text-sm text-gray-600 text-center">You don't have any more upcoming tasks</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Recent Activity Section - Grid column 2 */}
-              <div className="h-full flex flex-col">
-                <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-lg font-medium">
-                    Recent Activity
-                  </h2>
-                  <Button variant="link" size="sm" className="text-sm text-orange-500" onClick={() => navigateToTab("activity")}>
-                    View all activity
-                  </Button>
-                </div>
-                
-                <Card className="flex-1">
-                  <div className="p-4 pt-0 pb-4 h-full">
-                    {/* Timeline with line and dots positioned on the left */}
-                    <div className="space-y-6 relative pb-4">
-                      {/* Updated vertical timeline container with better positioning */}
-                      <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-gray-200"></div>
-                      
-                      {/* Appointment scheduled */}
-                      <div className="flex items-start">
-                        {/* Timeline dot positioned centered on the left line */}
-                        <div className="relative mr-4 flex-shrink-0 mt-1.5">
-                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
-                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <h4 className="text-sm font-medium">Appointment scheduled</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">Today, 10:45 AM</p>
-                          <p className="text-sm text-gray-600 mt-2">
-                            Appointment set for {caseItem.appointment?.date}, {caseItem.appointment?.time}
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Mechanic assigned */}
-                      <div className="flex items-start">
-                        {/* Timeline dot positioned centered on the left line */}
-                        <div className="relative mr-4 flex-shrink-0 mt-1.5">
-                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
-                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <h4 className="text-sm font-medium">Mechanic assigned</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 3:22 PM</p>
-                          <p className="text-sm text-gray-600 mt-2">
-                            {caseItem.mechanic?.name} ({caseItem.mechanic?.specialization}) assigned to the case
-                          </p>
-                        </div>
-                      </div>
-                      
-                      {/* Customer confirmation */}
-                      <div className="flex items-start">
-                        {/* Timeline dot positioned centered on the left line */}
-                        <div className="relative mr-4 flex-shrink-0 mt-1.5">
-                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
-                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <h4 className="text-sm font-medium">Customer confirmed availability</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">Yesterday, 1:15 PM</p>
-                        </div>
-                      </div>
-                      
-                      {/* Initial assessment */}
-                      <div className="flex items-start">
-                        {/* Timeline dot positioned centered on the left line */}
-                        <div className="relative mr-4 flex-shrink-0 mt-1.5">
-                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
-                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <h4 className="text-sm font-medium">Initial assessment completed</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">May 20, 2025, 9:30 AM</p>
-                        </div>
-                      </div>
-                      
-                      {/* Case created */}
-                      <div className="flex items-start">
-                        {/* Timeline dot positioned centered on the left line */}
-                        <div className="relative mr-4 flex-shrink-0 mt-1.5">
-                          <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
-                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <h4 className="text-sm font-medium">Case created</h4>
-                          <p className="text-sm text-gray-500 mt-0.5">May 19, 2025, 4:15 PM</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              </div>
+              <TasksSection />
+              <ActivitySection caseItem={caseItem} onNavigateToTab={navigateToTab} />
             </div>
 
-            {/* Summary Section */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-medium">
-                  Summary
-                </h2>
-                <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0" onClick={() => navigateToTab("details")}>
-                  View all case details
-                </Button>
-              </div>
-                
-              {/* Card layout - Changed to lg breakpoint (1024px) for larger screens like 14-inch and above */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                {caseItem.appointment && <Card className="h-full">
-                  <div className="flex py-[14px] px-[14px] h-full">
-                    <div className="pl-6 mr-12 text-center flex flex-col justify-center">
-                      {/* Add weekday name above the day number */}
-                      <div className="text-lg text-gray-800 font-medium mb-1">
-                        {weekday}
-                      </div>
-                      {/* Large day number */}
-                      <div className="text-[64px] text-blue-500 font-bold leading-none">
-                        {day || "N/A"}
-                      </div>
-                      {/* Add month name below the day number */}
-                      <div className="text-sm text-gray-800 font-normal mt-1 mb-0.5">
-                        {month}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        ETA {caseItem.appointment.time}
-                      </div>
-                    </div>
+            <SummarySection 
+              caseItem={caseItem} 
+              onNavigateToTab={navigateToTab}
+              onDownloadICS={downloadICSFile}
+              onOpenInGoogleMaps={openInGoogleMaps}
+              dateInfo={dateInfo}
+            />
 
-                    <div className="flex-1 bg-gray-50 p-4 rounded-lg">
-                      <div className="flex justify-between items-start">
-                        <h3 className="text-base font-medium">Job details</h3>
-                        <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0" onClick={downloadICSFile}>
-                          <Calendar className="h-4 w-4 mr-0.5" />
-                          Add to Calendar
-                        </Button>
-                      </div>
-                      
-                      {caseItem.job && <div className="space-y-3 mt-4">
-                          <div className="flex gap-2 items-start">
-                            <Briefcase className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                            <div className="flex-1">{caseItem.job.type}</div>
-                          </div>
-                          
-                          <div className="flex gap-2 items-start">
-                            <FileText className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                            <div className="flex-1">{caseItem.job.description}</div>
-                          </div>
-                          
-                          {caseItem.vehicle && <div className="flex gap-2 items-start">
-                              <Car className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                              <div className="flex-1">
-                                {caseItem.vehicle.year} {caseItem.vehicle.make} {caseItem.vehicle.model}
-                              </div>
-                            </div>}
-                        </div>}
-                    </div>
-                  </div>
-                </Card>}
-              
-                {/* Access Arrangements Card */}
-                {caseItem.access && <Card className="h-full">
-                  <div className="flex py-[14px] px-[14px] h-full">
-                    <div className="w-1/3">
-                      {/* Green background with pin icon - removed all borders */}
-                      <div className="relative w-full h-full overflow-hidden rounded-l-lg bg-[#F2FCE2]" style={{
-                      borderTopRightRadius: 0,
-                      borderBottomRightRadius: 0
-                    }}>
-                        {/* Location pin and placeholder message */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-green-200">
-                          <MapPin className="h-8 w-8 text-gray-500 mb-2" />
-                          <p className="text-gray-600 text-sm font-medium">
-                            Property location
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex-1 bg-gray-50 p-4 rounded-r-lg">
-                      <div className="flex justify-between items-start">
-                        <h3 className="text-base font-medium">Access details</h3>
-                        <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0" onClick={openInGoogleMaps}>
-                          <ExternalLink className="h-4 w-4 mr-0.5" />
-                          Open in Google Maps
-                        </Button>
-                      </div>
-                      
-                      <div className="space-y-3 mt-4">
-                        <div className="flex gap-2 items-start">
-                          <MapPin className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                          <div className="flex-1">{caseItem.address}</div>
-                        </div>
-                        
-                        {caseItem.access.contactPerson && <div className="flex flex-col gap-1 mt-2">
-                            <div className="flex items-center gap-2">
-                              <User className="h-5 w-5 text-gray-500 flex-shrink-0" />
-                              <div className="font-normal">James Blackwell</div>
-                            </div>
-                            <div className="ml-7 text-sm text-gray-600">{caseItem.access.contactPerson}</div>
-                          </div>}
-                        
-                        {/* Updated phone styling to match the data styling above */}
-                        {caseItem.access.contactPhone && <div className="flex gap-2 items-start mt-2">
-                            <Phone className="h-5 w-5 mt-0.5 text-gray-500 flex-shrink-0" />
-                            <div className="flex-1">{caseItem.access.contactPhone}</div>
-                          </div>}
-                      </div>
-                    </div>
-                  </div>
-                </Card>}
-              </div>
-
-              {/* Instruction Details Summary */}
-              <Card>
-                <CardHeader className="py-4 pb-0">
-                  <CardTitle className="text-base font-medium">Case brief</CardTitle>
-                </CardHeader>
-                <CardContent className="py-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-                    <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
-                      <div>{caseItem.type}</div>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Estimated Price</h3>
-                      <div>{caseItem.job ? caseItem.job.estimatedCost : "N/A"}</div>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
-                      <div>{caseItem.vehicle ? `${caseItem.vehicle.year} ${caseItem.vehicle.make} ${caseItem.vehicle.model}` : "N/A"}</div>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
-                      <div>{caseItem.owner.type}</div>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Owner</h3>
-                      <div>{caseItem.owner.name}</div>
-                    </div>
-                    <div>
-                      <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
-                      <div>{caseItem.lastInspected}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Contacts Section */}
-            <div className="space-y-4">
-              <h2 className="text-lg font-medium">Case Contacts</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {caseItem.customer && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
-                    <div className="bg-blue-100 text-blue-700 p-2 rounded-full">
-                      <User className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium">{caseItem.customer.name}</h3>
-                      <p className="text-sm text-gray-500">Customer</p>
-                      <div className="mt-1 text-sm">
-                        <div>{caseItem.customer.phone}</div>
-                        <div>{caseItem.customer.email}</div>
-                      </div>
-                    </div>
-                  </div>}
-                
-                {caseItem.mechanic && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
-                    <div className="bg-orange-100 text-orange-700 p-2 rounded-full">
-                      <Wrench className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium">{caseItem.mechanic.name}</h3>
-                      <p className="text-sm text-gray-500">Mechanic - {caseItem.mechanic.specialization}</p>
-                      <div className="mt-1 text-sm">
-                        <div>{caseItem.mechanic.contact}</div>
-                        <div>ID: {caseItem.mechanic.id}</div>
-                      </div>
-                    </div>
-                  </div>}
-                
-                {caseItem.access && caseItem.access.contactPerson && <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
-                    <div className="bg-green-100 text-green-700 p-2 rounded-full">
-                      <Key className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium">{caseItem.access.contactPerson}</h3>
-                      <p className="text-sm text-gray-500">Access Contact</p>
-                      <div className="mt-1 text-sm">
-                        <div>{caseItem.access.contactPhone}</div>
-                      </div>
-                    </div>
-                  </div>}
-              </div>
-            </div>
+            <ContactsSection caseItem={caseItem} />
           </TabsContent>
           
           <TabsContent value="details" className="pt-6">
-            {/* Add inner category tabs for filtering case details */}
-            <Tabs defaultValue="case" className="mb-6">
-              <TabsList className="inline-flex h-10 bg-gray-50 mb-4">
-                <TabsTrigger value="case">Instruction</TabsTrigger>
-                <TabsTrigger value="job">Job Details</TabsTrigger>
-                <TabsTrigger value="vehicle">
-                  Vehicle Insights
-                </TabsTrigger>
-                <TabsTrigger value="risks">
-                  Risks
-                </TabsTrigger>
-              </TabsList>
-
-              {/* Case Details Tab */}
-              <TabsContent value="case" className="mt-4">
-                <div className="grid grid-cols-2 gap-4 border-0">
-                  {/* Case Information */}
-                  <div className="mb-4">
-                    <Accordion type="single" defaultValue="case-information" collapsible className="w-full">
-                      <AccordionItem value="case-information" className="border rounded-lg px-4">
-                        <div className="flex justify-between items-center">
-                          <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                            <span className="font-medium">Case information</span>
-                          </AccordionTrigger>
-                          <DropdownMenu>
-                            <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                              <DropdownMenuItem>Edit information</DropdownMenuItem>
-                              <DropdownMenuItem>Add note</DropdownMenuItem>
-                              <DropdownMenuItem>Export data</DropdownMenuItem>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
-                        </div>
-                        <AccordionContent className="pt-2 pb-4">
-                          <div className="grid grid-cols-1 gap-4">
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Address:</span>
-                                <span className="ml-4 text-right">{caseItem.address}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Case Type:</span>
-                                <span className="ml-4 text-right">{caseItem.type}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Status:</span>
-                                <span className="ml-4 text-right"><CaseStatusBadge status={caseItem.status} /></span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Last Inspected:</span>
-                                <span className="ml-4 text-right">{caseItem.lastInspected}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Owner Name:</span>
-                                <span className="ml-4 text-right">{caseItem.owner.name}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Owner Type:</span>
-                                <span className="ml-4 text-right">{caseItem.owner.type}</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div>
-                  
-                  {/* Customer Details */}
-                  {caseItem.customer && <div className="mb-4">
-                      <Accordion type="single" defaultValue="customer-details" collapsible className="w-full">
-                        <AccordionItem value="customer-details" className="border rounded-lg px-4">
-                          <div className="flex justify-between items-center">
-                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Customer details</span>
-                            </AccordionTrigger>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Edit customer</DropdownMenuItem>
-                                <DropdownMenuItem>Contact customer</DropdownMenuItem>
-                                <DropdownMenuItem>View history</DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </div>
-                          <AccordionContent className="pt-2 pb-4">
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Name:</span>
-                                <span className="ml-4 text-right">{caseItem.customer.name}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Phone:</span>
-                                <span className="ml-4 text-right">{caseItem.customer.phone}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Email:</span>
-                                <span className="ml-4 text-right">{caseItem.customer.email}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Preferred Contact:</span>
-                                <span className="ml-4 text-right">{caseItem.customer.preferredContact}</span>
-                              </li>
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>}
-                  
-                  {/* Mechanic Details - MOVED FROM JOB DETAILS TO CASE DETAILS */}
-                  {caseItem.mechanic && <div className="mb-4">
-                      <Accordion type="single" defaultValue="mechanic-details" collapsible className="w-full">
-                        <AccordionItem value="mechanic-details" className="border rounded-lg px-4">
-                          <div className="flex justify-between items-center">
-                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Mechanic details</span>
-                            </AccordionTrigger>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Contact mechanic</DropdownMenuItem>
-                                <DropdownMenuItem>Reassign job</DropdownMenuItem>
-                                <DropdownMenuItem>View schedule</DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </div>
-                          <AccordionContent className="pt-2 pb-4">
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Name:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.name}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">ID:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.id}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Specialization:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.specialization}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Contact:</span>
-                                <span className="ml-4 text-right">{caseItem.mechanic.contact}</span>
-                              </li>
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>}
-                </div>
-              </TabsContent>
-
-              {/* Job Details Tab */}
-              <TabsContent value="job" className="mt-4">
-                <div className="grid grid-cols-2 gap-4 border-0">
-                  {/* Job Details */}
-                  {caseItem.job && <div className="mb-4">
-                      <Accordion type="single" defaultValue="job-details" collapsible className="w-full">
-                        <AccordionItem value="job-details" className="border rounded-lg px-4">
-                          <div className="flex justify-between items-center">
-                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Inspection</span>
-                            </AccordionTrigger>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Edit job details</DropdownMenuItem>
-                                <DropdownMenuItem>Add parts</DropdownMenuItem>
-                                <DropdownMenuItem>Update cost</DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </div>
-                          <AccordionContent className="pt-2 pb-4">
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Type:</span>
-                                <span className="ml-4 text-right">{caseItem.job.type}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Description:</span>
-                                <span className="ml-4 text-right">{caseItem.job.description}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Estimated Cost:</span>
-                                <span className="ml-4 text-right">{caseItem.job.estimatedCost}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Required Parts:</span>
-                                <div className="ml-4 text-right">
-                                  <ul className="list-disc list-inside text-right mt-1">
-                                    {caseItem.job.parts.map((part, index) => <li key={index} className="text-right">{part}</li>)}
-                                  </ul>
-                                </div>
-                              </li>
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>}
-
-                  {/* Appointment Details */}
-                  {caseItem.appointment && <div className="mb-4">
-                      <Accordion type="single" defaultValue="appointment-details" collapsible className="w-full">
-                        <AccordionItem value="appointment-details" className="border rounded-lg px-4">
-                          <div className="flex justify-between items-center">
-                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Appointment details</span>
-                            </AccordionTrigger>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Reschedule</DropdownMenuItem>
-                                <DropdownMenuItem>Cancel appointment</DropdownMenuItem>
-                                <DropdownMenuItem>Send reminder</DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </div>
-                          <AccordionContent className="pt-2 pb-4">
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Date:</span>
-                                <span className="ml-4 text-right">{caseItem.appointment.date}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Time:</span>
-                                <span className="ml-4 text-right">{caseItem.appointment.time}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Duration:</span>
-                                <span className="ml-4 text-right">{caseItem.appointment.duration}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Status:</span>
-                                <span className="ml-4 text-right">{caseItem.appointment.status}</span>
-                              </li>
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>}
-
-                  {/* Access Arrangements - MOVED FROM CASE DETAILS TO JOB DETAILS */}
-                  {caseItem.access && <div className="mb-4">
-                      <Accordion type="single" defaultValue="access-details" collapsible className="w-full">
-                        <AccordionItem value="access-details" className="border rounded-lg px-4">
-                          <div className="flex justify-between items-center">
-                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Access arrangements</span>
-                            </AccordionTrigger>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Update access info</DropdownMenuItem>
-                                <DropdownMenuItem>Request access changes</DropdownMenuItem>
-                                <DropdownMenuItem>Print instructions</DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </div>
-                          <AccordionContent className="pt-2 pb-4">
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Instructions:</span>
-                                <span className="ml-4 text-right">{caseItem.access.instructions}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Restrictions:</span>
-                                <span className="ml-4 text-right">{caseItem.access.restrictions}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Contact Person:</span>
-                                <span className="ml-4 text-right">{caseItem.access.contactPerson}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Contact Phone:</span>
-                                <span className="ml-4 text-right">{caseItem.access.contactPhone}</span>
-                              </li>
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>}
-                </div>
-              </TabsContent>
-
-              {/* Vehicle Insights Tab */}
-              <TabsContent value="vehicle" className="mt-4">
-                <div className="grid grid-cols-2 gap-4 border-0">
-                  {/* Vehicle Details */}
-                  {caseItem.vehicle && <div className="mb-4">
-                      <Accordion type="single" defaultValue="vehicle-details" collapsible className="w-full">
-                        <AccordionItem value="vehicle-details" className="border rounded-lg px-4">
-                          <div className="flex justify-between items-center">
-                            <AccordionTrigger className="py-4 hover:no-underline [&[data-state=open]>svg]:hidden">
-                              <span className="font-medium">Vehicle details</span>
-                            </AccordionTrigger>
-                            <DropdownMenu>
-                              <DropdownMenuTrigger className="h-8 w-8 flex items-center justify-center rounded-md hover:bg-gray-100">
-                                <MoreHorizontal className="h-4 w-4" />
-                              </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end">
-                                <DropdownMenuItem>Update vehicle info</DropdownMenuItem>
-                                <DropdownMenuItem>View service history</DropdownMenuItem>
-                                <DropdownMenuItem>Check recalls</DropdownMenuItem>
-                              </DropdownMenuContent>
-                            </DropdownMenu>
-                          </div>
-                          <AccordionContent className="pt-2 pb-4">
-                            <ul className="space-y-2 text-sm">
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Make:</span>
-                                <span className="ml-4 text-right">{caseItem.vehicle.make}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Model:</span>
-                                <span className="ml-4 text-right">{caseItem.vehicle.model}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">Year:</span>
-                                <span className="ml-4 text-right">{caseItem.vehicle.year}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">VIN:</span>
-                                <span className="ml-4 text-right">{caseItem.vehicle.vin}</span>
-                              </li>
-                              <li className="flex justify-between items-start">
-                                <span className="text-gray-500">License Plate:</span>
-                                <span className="ml-4 text-right">{caseItem.vehicle.licensePlate}</span>
-                              </li>
-                            </ul>
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>}
-                </div>
-              </TabsContent>
-
-              {/* Risks Tab */}
-              <TabsContent value="risks" className="mt-4">
-                <div className="grid grid-cols-2 gap-4 border-0">
-                  {/* Placeholder for Risks */}
-                  <div className="mb-4">
-                    <Card>
-                      <CardContent className="p-6">
-                        <div className="flex items-center mb-4">
-                          <h3 className="text-lg font-medium">Risk assessment</h3>
-                        </div>
-                        <p className="text-gray-500 text-center my-6">
-                          No risk factors have been identified for this case yet.
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              </TabsContent>
-            </Tabs>
+            <CaseDetailsTab caseItem={caseItem} />
           </TabsContent>
           
           <TabsContent value="activity" className="pt-6">
@@ -949,5 +184,6 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
           </TabsContent>
         </Tabs>
       </div>
-    </div>;
+    </div>
+  );
 };
