@@ -103,12 +103,12 @@
 @keyframes unstrikethrough {
   0% {
     width: 100%;
-    transform-origin: right;
+    transform-origin: left;
     transform: scaleX(1);
   }
   100% {
     width: 100%;
-    transform-origin: right;
+    transform-origin: left;
     transform: scaleX(0);
   }
 }
