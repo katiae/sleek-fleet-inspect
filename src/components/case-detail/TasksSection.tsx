@@ -110,61 +110,77 @@ export const TasksSection: React.FC = () => {
             >
               <div className="mt-4 pt-3 border-t border-gray-100">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3.5 text-sm">
+                  <div className="flex items-start gap-3.5 text-sm">
                     <Checkbox 
                       size="large" 
                       checked={checkedTasks.exhaust} 
                       onCheckedChange={(checked) => handleTaskCheck('exhaust', checked as boolean)}
+                      className="mt-0.5"
                     />
-                    <span className={`relative transition-colors duration-200 ${
-                      checkedTasks.exhaust 
-                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
-                    }`}>
-                      Check exhaust system
-                    </span>
+                    <div className="flex flex-col gap-1 flex-1">
+                      <span className={`relative transition-colors duration-200 ${
+                        checkedTasks.exhaust 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        Check exhaust system
+                      </span>
+                      <span className="text-xs text-gray-500">Inspect exhaust pipes, muffler, and catalytic converter for leaks or damage</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3.5 text-sm">
+                  <div className="flex items-start gap-3.5 text-sm">
                     <Checkbox 
                       size="large" 
                       checked={checkedTasks.obd} 
                       onCheckedChange={(checked) => handleTaskCheck('obd', checked as boolean)}
+                      className="mt-0.5"
                     />
-                    <span className={`relative transition-colors duration-200 ${
-                      checkedTasks.obd 
-                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
-                    }`}>
-                      OBD-II diagnostic scan
-                    </span>
+                    <div className="flex flex-col gap-1 flex-1">
+                      <span className={`relative transition-colors duration-200 ${
+                        checkedTasks.obd 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        OBD-II diagnostic scan
+                      </span>
+                      <span className="text-xs text-gray-500">Connect scanner to check for engine error codes and system readiness</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3.5 text-sm">
+                  <div className="flex items-start gap-3.5 text-sm">
                     <Checkbox 
                       size="large" 
                       checked={checkedTasks.gasCap} 
                       onCheckedChange={(checked) => handleTaskCheck('gasCap', checked as boolean)}
+                      className="mt-0.5"
                     />
-                    <span className={`relative transition-colors duration-200 ${
-                      checkedTasks.gasCap 
-                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
-                    }`}>
-                      Gas cap inspection
-                    </span>
+                    <div className="flex flex-col gap-1 flex-1">
+                      <span className={`relative transition-colors duration-200 ${
+                        checkedTasks.gasCap 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        Gas cap inspection
+                      </span>
+                      <span className="text-xs text-gray-500">Verify proper seal and check for cracks or damage in the fuel cap</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3.5 text-sm">
+                  <div className="flex items-start gap-3.5 text-sm">
                     <Checkbox 
                       size="large" 
                       checked={checkedTasks.visual} 
                       onCheckedChange={(checked) => handleTaskCheck('visual', checked as boolean)}
+                      className="mt-0.5"
                     />
-                    <span className={`relative transition-colors duration-200 ${
-                      checkedTasks.visual 
-                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
-                    }`}>
-                      Visual inspection
-                    </span>
+                    <div className="flex flex-col gap-1 flex-1">
+                      <span className={`relative transition-colors duration-200 ${
+                        checkedTasks.visual 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        Visual inspection
+                      </span>
+                      <span className="text-xs text-gray-500">Perform overall visual check of vehicle exterior and engine bay</span>
+                    </div>
                   </div>
                 </div>
               </div>
