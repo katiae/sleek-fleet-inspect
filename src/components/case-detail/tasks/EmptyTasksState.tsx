@@ -1,6 +1,6 @@
 
 import React from "react";
-import { PartyPopper, Trophy } from "lucide-react";
+import { PartyPopper } from "lucide-react";
 
 interface EmptyTasksStateProps {
   variant?: "no-more-tasks" | "all-caught-up";
@@ -15,11 +15,7 @@ export const EmptyTasksState: React.FC<EmptyTasksStateProps> = ({
   
   return (
     <div className={`flex flex-col items-center justify-center w-full h-full bg-gray-100 rounded-md py-3 text-gray-400 animate-fade-in ${className}`}>
-      {isAllCaughtUp ? (
-        <Trophy className="h-6 w-6 text-gray-600 mb-2" />
-      ) : (
-        <PartyPopper className="h-6 w-6 text-gray-600 mb-2" />
-      )}
+      <PartyPopper className="h-6 w-6 text-gray-600 mb-2" />
       <p className="text-sm text-gray-600 text-center">
         {isAllCaughtUp 
           ? "You're all caught up! No tasks to complete right now" 
