@@ -36,7 +36,7 @@ export const TasksSection: React.FC = () => {
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Car className="h-7 w-7 text-green-600" />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                   <span className="font-medium text-sm">Brake system inspection</span>
                   <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Priority</Badge>
                 </div>
