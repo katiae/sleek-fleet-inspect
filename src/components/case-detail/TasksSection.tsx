@@ -24,6 +24,11 @@ export const TasksSection: React.FC = () => {
     }));
   };
 
+  // For now, we'll assume there are always tasks, but in a real app
+  // this would come from props or context based on the case data
+  const hasTasks = true; // This would be dynamic based on case data
+  const hasRemainingTasks = !isEmissionsExpanded; // This represents if there are more tasks after current ones
+
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
@@ -36,16 +41,22 @@ export const TasksSection: React.FC = () => {
       </div>
       
       <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col">
-        <TaskList
-          isEmissionsExpanded={isEmissionsExpanded}
-          toggleEmissionsExpanded={toggleEmissionsExpanded}
-          checkedTasks={checkedTasks}
-          handleTaskCheck={handleTaskCheck}
-        />
-        
-        <div className={`mt-auto transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
-          {!isEmissionsExpanded && <EmptyTasksState />}
-        </div>
+        {hasTasks ? (
+          <>
+            <TaskList
+              isEmissionsExpanded={isEmissionsExpanded}
+              toggleEmissionsExpanded={toggleEmissionsExpanded}
+              checkedTasks={checkedTasks}
+              handleTaskCheck={handleTaskCheck}
+            />
+            
+            <div className={`mt-auto transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+              {hasRemainingTasks && <EmptyTasksState variant="no-more-tasks" />}
+            </div>
+          </>
+        ) : (
+          <EmptyTasksState variant="all-caught-up" />
+        )}
       </div>
     </div>
   );
