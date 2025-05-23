@@ -205,14 +205,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   <div className="space-y-3 mb-3">
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
                               <Package className="h-5 w-5 text-blue-600" />
                             </div>
                             <span className="font-medium text-sm">Order required parts</span>
                           </div>
-                          <Badge variant="blue" className="ml-[52px] w-fit">Pending</Badge>
+                          <Badge variant="blue" className="ml-[52px] w-fit mt-1">Pending</Badge>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
                       </div>
@@ -220,14 +220,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                               <UserCheck className="h-5 w-5 text-green-600" />
                             </div>
                             <span className="font-medium text-sm">Contact customer to confirm appointment</span>
                           </div>
-                          <Badge variant="amber" className="ml-[52px] w-fit">Priority</Badge>
+                          <Badge variant="amber" className="ml-[52px] w-fit mt-1">Priority</Badge>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
                       </div>
@@ -235,14 +235,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
                               <ClipboardList className="h-5 w-5 text-purple-600" />
                             </div>
                             <span className="font-medium text-sm">Review inspection report</span>
                           </div>
-                          <Badge variant="purple" className="ml-[52px] w-fit">In progress</Badge>
+                          <Badge variant="purple" className="ml-[52px] w-fit mt-1">In progress</Badge>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Review</Button>
                       </div>
@@ -361,7 +361,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </div>
             </div>
 
-            {/* Summary Section - Restructured to have Summary as section title and separate cards */}
+            {/* Summary Section */}
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-medium">
@@ -514,7 +514,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
               </Card>
             </div>
 
-            {/* Contacts Section - Removed Card wrapper and adjusted layout for horizontal alignment on larger screens */}
+            {/* Contacts Section */}
             <div className="space-y-4">
               <h2 className="text-lg font-medium">Case Contacts</h2>
               
