@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +6,10 @@ import { Gauge, Car, FileCheck, PartyPopper, ChevronDown, ChevronUp } from "luci
 
 export const TasksSection: React.FC = () => {
   const [isEmissionsExpanded, setIsEmissionsExpanded] = useState(false);
+
+  const toggleEmissionsExpanded = () => {
+    setIsEmissionsExpanded(!isEmissionsExpanded);
+  };
 
   return <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
@@ -54,7 +57,10 @@ export const TasksSection: React.FC = () => {
           </div>
           
           <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
-            <div className="flex items-center justify-between">
+            <div 
+              className="flex items-center justify-between cursor-pointer"
+              onClick={toggleEmissionsExpanded}
+            >
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <FileCheck className="h-7 w-7 text-purple-600" />
@@ -65,17 +71,18 @@ export const TasksSection: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <button className="task-card-button">Schedule</button>
+                <button 
+                  className="task-card-button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  Schedule
+                </button>
                 {isEmissionsExpanded ? (
-                  <ChevronUp 
-                    className="h-4 w-4 text-gray-400 cursor-pointer" 
-                    onClick={() => setIsEmissionsExpanded(false)}
-                  />
+                  <ChevronUp className="h-4 w-4 text-gray-400" />
                 ) : (
-                  <ChevronDown 
-                    className="h-4 w-4 text-gray-400 cursor-pointer" 
-                    onClick={() => setIsEmissionsExpanded(true)}
-                  />
+                  <ChevronDown className="h-4 w-4 text-gray-400" />
                 )}
               </div>
             </div>
