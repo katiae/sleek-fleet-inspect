@@ -125,7 +125,13 @@ export const TasksSection: React.FC = () => {
                       }`}>
                         Check exhaust system
                       </span>
-                      <span className="text-xs text-gray-500">Inspect exhaust pipes, muffler, and catalytic converter for leaks or damage</span>
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                        checkedTasks.exhaust 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        Inspect exhaust pipes, muffler, and catalytic converter for leaks or damage
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-start gap-3.5 text-sm">
@@ -143,7 +149,13 @@ export const TasksSection: React.FC = () => {
                       }`}>
                         OBD-II diagnostic scan
                       </span>
-                      <span className="text-xs text-gray-500">Connect scanner to check for engine error codes and system readiness</span>
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                        checkedTasks.obd 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        Connect scanner to check for engine error codes and system readiness
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-start gap-3.5 text-sm">
@@ -161,7 +173,13 @@ export const TasksSection: React.FC = () => {
                       }`}>
                         Gas cap inspection
                       </span>
-                      <span className="text-xs text-gray-500">Verify proper seal and check for cracks or damage in the fuel cap</span>
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                        checkedTasks.gasCap 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        Verify proper seal and check for cracks or damage in the fuel cap
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-start gap-3.5 text-sm">
@@ -179,7 +197,13 @@ export const TasksSection: React.FC = () => {
                       }`}>
                         Visual inspection
                       </span>
-                      <span className="text-xs text-gray-500">Perform overall visual check of vehicle exterior and engine bay</span>
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                        checkedTasks.visual 
+                          ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                          : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
+                      }`}>
+                        Perform overall visual check of vehicle exterior and engine bay
+                      </span>
                     </div>
                   </div>
                 </div>
