@@ -1,7 +1,8 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Gauge, Car, FileCheck, PartyPopper } from "lucide-react";
+import { Gauge, Car, FileCheck, PartyPopper, ChevronDown } from "lucide-react";
 
 export const TasksSection: React.FC = () => {
   return <div className="h-full flex flex-col">
@@ -60,7 +61,10 @@ export const TasksSection: React.FC = () => {
                   <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Pending</Badge>
                 </div>
               </div>
-              <button className="task-card-button">Schedule</button>
+              <button className="task-card-button">
+                Schedule
+                <ChevronDown className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>
