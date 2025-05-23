@@ -27,6 +27,7 @@ export const EmissionsTestingTask: React.FC<EmissionsTestingTaskProps> = ({
       title="Emissions testing"
       badgeText="Pending"
       badgeVariant="purple"
+      iconBgColor="bg-purple-50"
       buttons={
         <button 
           className="task-card-button"

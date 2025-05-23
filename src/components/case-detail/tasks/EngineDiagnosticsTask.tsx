@@ -10,6 +10,7 @@ export const EngineDiagnosticsTask: React.FC = () => {
       title="Engine diagnostics check"
       badgeText="In progress"
       badgeVariant="blue"
+      iconBgColor="bg-blue-50"
       buttons={
         <button className="task-card-button text-black bg-white rounded">Continue</button>
       }

@@ -13,6 +13,7 @@ interface TaskItemProps {
   isExpanded?: boolean;
   onToggleExpand?: () => void;
   children?: React.ReactNode;
+  iconBgColor?: string; // Add an optional prop for custom background color
 }
 
 export const TaskItem: React.FC<TaskItemProps> = ({
@@ -24,7 +25,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   isExpandable = false,
   isExpanded = false,
   onToggleExpand,
-  children
+  children,
+  iconBgColor = "bg-blue-100" // Default to blue-100 if no color is provided
 }) => {
   return (
     <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
@@ -33,7 +35,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         onClick={isExpandable ? onToggleExpand : undefined}
       >
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className={`w-12 h-12 ${iconBgColor} rounded-lg flex items-center justify-center flex-shrink-0`}>
             {icon}
           </div>
           <div className="flex flex-col gap-1">
