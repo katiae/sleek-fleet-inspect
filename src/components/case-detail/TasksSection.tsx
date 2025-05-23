@@ -1,10 +1,11 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Gauge, Car, FileCheck, PartyPopper, ChevronDown } from "lucide-react";
+import { Gauge, Car, FileCheck, PartyPopper, ChevronDown, ChevronUp } from "lucide-react";
 
 export const TasksSection: React.FC = () => {
+  const [isEmissionsExpanded, setIsEmissionsExpanded] = useState(false);
+
   return <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-lg font-medium">
@@ -63,9 +64,42 @@ export const TasksSection: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <button className="task-card-button">Schedule</button>
-                <ChevronDown className="h-4 w-4 text-gray-400 cursor-pointer" />
+                {isEmissionsExpanded ? (
+                  <ChevronUp 
+                    className="h-4 w-4 text-gray-400 cursor-pointer" 
+                    onClick={() => setIsEmissionsExpanded(false)}
+                  />
+                ) : (
+                  <ChevronDown 
+                    className="h-4 w-4 text-gray-400 cursor-pointer" 
+                    onClick={() => setIsEmissionsExpanded(true)}
+                  />
+                )}
               </div>
             </div>
+            
+            {isEmissionsExpanded && (
+              <div className="mt-4 pt-3 border-t border-gray-100">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">• Check exhaust system</span>
+                    <Badge variant="green" className="text-xs">Complete</Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">• OBD-II diagnostic scan</span>
+                    <Badge variant="blue" className="text-xs">In progress</Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">• Gas cap inspection</span>
+                    <Badge variant="purple" className="text-xs">Pending</Badge>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-600">• Visual inspection</span>
+                    <Badge variant="purple" className="text-xs">Pending</Badge>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         
