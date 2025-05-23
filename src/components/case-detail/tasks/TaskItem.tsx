@@ -48,7 +48,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         <div className="flex items-center gap-2">
           {buttons}
           {isExpandable && (
-            <div className="transition-transform duration-300 ease-in-out">
+            <div className="transition-transform duration-700 ease-out">
               {isExpanded ? (
                 <ChevronUp className="h-4 w-4 text-gray-400" />
               ) : (
