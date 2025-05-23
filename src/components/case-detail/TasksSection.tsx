@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Gauge, Car, FileCheck, PartyPopper, ChevronDown, ChevronUp } from "lucide-react";
 
 export const TasksSection: React.FC = () => {
@@ -83,19 +85,19 @@ export const TasksSection: React.FC = () => {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">• Check exhaust system</span>
-                    <Badge variant="green" className="text-xs">Complete</Badge>
+                    <Checkbox checked={true} disabled />
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">• OBD-II diagnostic scan</span>
-                    <Badge variant="blue" className="text-xs">In progress</Badge>
+                    <Checkbox checked={false} />
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">• Gas cap inspection</span>
-                    <Badge variant="purple" className="text-xs">Pending</Badge>
+                    <Checkbox checked={false} />
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-600">• Visual inspection</span>
-                    <Badge variant="purple" className="text-xs">Pending</Badge>
+                    <Checkbox checked={false} />
                   </div>
                 </div>
               </div>
