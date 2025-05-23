@@ -211,7 +211,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Engine diagnostics check</span>
-                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5">In progress</Badge>
+                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">In progress</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Continue</Button>
@@ -226,7 +226,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Brake system inspection</span>
-                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5">Priority</Badge>
+                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Priority</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Start</Button>
@@ -241,7 +241,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Emissions testing</span>
-                            <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5">Pending</Badge>
+                            <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Pending</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Schedule</Button>
