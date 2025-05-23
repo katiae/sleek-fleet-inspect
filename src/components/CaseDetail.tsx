@@ -203,14 +203,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                 
                 <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col">
                   <div className="space-y-3 mb-3">
-                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
+                    <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Gauge className="h-5 w-5 text-blue-600" />
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Gauge className="h-4 w-4 text-blue-600" />
                           </div>
                           <div className="flex flex-col">
-                            <span className="font-medium text-sm">Check engine diagnostics</span>
+                            <span className="font-medium text-sm">Engine diagnostics check</span>
                             <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5">In progress</Badge>
                           </div>
                         </div>
@@ -218,29 +218,29 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                       </div>
                     </div>
                     
-                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
+                    <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Car className="h-5 w-5 text-green-600" />
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Car className="h-4 w-4 text-green-600" />
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Brake system inspection</span>
-                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded">Priority</Badge>
+                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5">Priority</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Start</Button>
                       </div>
                     </div>
                     
-                    <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
+                    <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <FileCheck className="h-5 w-5 text-purple-600" />
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <FileCheck className="h-4 w-4 text-purple-600" />
                           </div>
                           <div className="flex flex-col">
-                            <span className="font-medium text-sm">Complete emissions test</span>
+                            <span className="font-medium text-sm">Emissions testing</span>
                             <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5">Pending</Badge>
                           </div>
                         </div>
