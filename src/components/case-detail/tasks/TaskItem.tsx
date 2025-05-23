@@ -7,7 +7,7 @@ interface TaskItemProps {
   icon: React.ReactNode;
   title: string;
   badgeText: string;
-  badgeVariant: "blue" | "amber" | "purple" | string;
+  badgeVariant: "blue" | "amber" | "purple" | "default" | "secondary" | "destructive" | "outline" | "green";
   buttons: React.ReactNode;
   isExpandable?: boolean;
   isExpanded?: boolean;
