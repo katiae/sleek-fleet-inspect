@@ -206,12 +206,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Gauge className="h-4 w-4 text-blue-600" />
+                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Gauge className="h-6 w-6 text-blue-600" />
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Engine diagnostics check</span>
-                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded">In progress</Badge>
+                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5">In progress</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Continue</Button>
@@ -221,8 +221,8 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <Car className="h-4 w-4 text-green-600" />
+                          <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Car className="h-6 w-6 text-green-600" />
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Brake system inspection</span>
@@ -236,12 +236,12 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <FileCheck className="h-4 w-4 text-purple-600" />
+                          <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <FileCheck className="h-6 w-6 text-purple-600" />
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Emissions testing</span>
-                            <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded">Pending</Badge>
+                            <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5">Pending</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Schedule</Button>
