@@ -47,7 +47,7 @@ export const TasksSection: React.FC = () => {
           
           <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <FileCheck className="h-7 w-7 text-purple-600" />
                 </div>
