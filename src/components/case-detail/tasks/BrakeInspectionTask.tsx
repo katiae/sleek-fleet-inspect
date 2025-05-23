@@ -10,6 +10,7 @@ export const BrakeInspectionTask: React.FC = () => {
       title="Brake system inspection"
       badgeText="Priority"
       badgeVariant="amber"
+      iconBgColor="bg-green-50"
       buttons={
         <div className="flex gap-2">
           <button className="task-card-button">Start</button>
