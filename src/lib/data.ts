@@ -108,7 +108,7 @@ export const cases: Case[] = [
     }
   },
   {
-    id: "INS-2023-0012",
+    id: "INS-2023-0013",
     address: "17 Kensington Gardens, London, W8 4PX",
     status: "PENDING",
     type: "Full Inspection",
@@ -125,7 +125,7 @@ export const cases: Case[] = [
     }
   },
   {
-    id: "INS-2023-0012",
+    id: "INS-2023-0014",
     address: "221B Baker Street, London, NW1 6XE",
     status: "APPROVED",
     type: "Full Inspection",
@@ -142,7 +142,7 @@ export const cases: Case[] = [
     }
   },
   {
-    id: "INS-2023-0012",
+    id: "INS-2023-0015",
     address: "10 Downing Street, London, SW1A 2AA",
     status: "REJECTED",
     type: "Full Inspection",
@@ -159,7 +159,7 @@ export const cases: Case[] = [
     }
   },
   {
-    id: "INS-2023-0012",
+    id: "INS-2023-0016",
     address: "20 Mayfair Avenue, London, W1J 8LT",
     status: "EXPIRED",
     type: "Full Inspection",
@@ -176,7 +176,7 @@ export const cases: Case[] = [
     }
   },
   {
-    id: "INS-2023-0012",
+    id: "INS-2023-0017",
     address: "15 Notting Hill Gate, London, W11 3JQ",
     status: "SUSPENDED",
     type: "Full Inspection",
@@ -193,7 +193,7 @@ export const cases: Case[] = [
     }
   },
   {
-    id: "INS-2023-0012",
+    id: "INS-2023-0018",
     address: "30 St Mary Axe, London, EC3A 8EP",
     status: "UNDER REVIEW",
     type: "Full Inspection",
@@ -210,7 +210,7 @@ export const cases: Case[] = [
     }
   },
   {
-    id: "INS-2023-0012",
+    id: "INS-2023-0019",
     address: "5 Covent Garden, London, WC2E 8RF",
     status: "COMPLETED",
     type: "Full Inspection",
