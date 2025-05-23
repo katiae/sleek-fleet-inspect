@@ -4,15 +4,17 @@ import { PartyPopper, Glasses } from "lucide-react";
 
 interface EmptyTasksStateProps {
   variant?: "no-more-tasks" | "all-caught-up";
+  className?: string;
 }
 
 export const EmptyTasksState: React.FC<EmptyTasksStateProps> = ({ 
-  variant = "no-more-tasks" 
+  variant = "no-more-tasks",
+  className = ""
 }) => {
   const isAllCaughtUp = variant === "all-caught-up";
   
   return (
-    <div className="flex flex-col items-center justify-center mt-auto bg-gray-100 rounded-md py-3 text-gray-400 animate-fade-in">
+    <div className={`flex flex-col items-center justify-center h-full bg-gray-100 rounded-md py-3 text-gray-400 animate-fade-in ${className}`}>
       {isAllCaughtUp ? (
         <Glasses className="h-6 w-6 text-gray-600 mb-2" />
       ) : (

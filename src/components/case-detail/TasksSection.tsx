@@ -54,12 +54,14 @@ export const TasksSection: React.FC<TasksSectionProps> = ({ caseItem }) => {
               handleTaskCheck={handleTaskCheck}
             />
             
-            <div className={`mt-auto transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+            <div className={`mt-auto flex-1 transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
               {hasRemainingTasks && <EmptyTasksState variant="no-more-tasks" />}
             </div>
           </>
         ) : (
-          <EmptyTasksState variant="all-caught-up" />
+          <div className="flex-1 flex">
+            <EmptyTasksState variant="all-caught-up" className="w-full" />
+          </div>
         )}
       </div>
     </div>
