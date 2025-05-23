@@ -2,8 +2,10 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Gauge, Car, FileCheck, PartyPopper } from "lucide-react";
+
 export const TasksSection: React.FC = () => {
-  return <div className="h-full flex flex-col">
+  return (
+    <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-lg font-medium">
           Upcoming Tasks
@@ -26,7 +28,7 @@ export const TasksSection: React.FC = () => {
                   <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">In progress</Badge>
                 </div>
               </div>
-              <Button variant="secondary" size="sm" className="text-xs">Continue</Button>
+              <button className="task-card-button">Continue</button>
             </div>
           </div>
           
@@ -41,7 +43,7 @@ export const TasksSection: React.FC = () => {
                   <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Priority</Badge>
                 </div>
               </div>
-              <Button variant="secondary" size="sm" className="text-xs">Start</Button>
+              <button className="task-card-button">Start</button>
             </div>
           </div>
           
@@ -56,7 +58,7 @@ export const TasksSection: React.FC = () => {
                   <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Pending</Badge>
                 </div>
               </div>
-              <Button variant="secondary" size="sm" className="text-xs">Schedule</Button>
+              <button className="task-card-button">Schedule</button>
             </div>
           </div>
         </div>
@@ -66,5 +68,6 @@ export const TasksSection: React.FC = () => {
           <p className="text-sm text-gray-600 text-center">You don't have any more upcoming tasks</p>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
