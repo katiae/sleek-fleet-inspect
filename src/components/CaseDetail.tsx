@@ -4,7 +4,7 @@ import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink, PartyPopper, Package, UserCheck, ClipboardList } from "lucide-react";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink, PartyPopper, Package, UserCheck, ClipboardList, Gauge, Cog, FileCheck } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -208,13 +208,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <div className="flex flex-col">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                              <Package className="h-5 w-5 text-blue-600" />
+                              <Gauge className="h-5 w-5 text-blue-600" />
                             </div>
-                            <span className="font-medium text-sm">Order required parts</span>
+                            <span className="font-medium text-sm">Check engine diagnostics</span>
                           </div>
-                          <Badge variant="blue" className="ml-[52px] w-fit mt-1">Pending</Badge>
+                          <Badge variant="blue" className="ml-[52px] w-fit mt-0.5 text-xs px-2 py-0.5">In progress</Badge>
                         </div>
-                        <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
+                        <Button variant="secondary" size="sm" className="text-xs">Continue</Button>
                       </div>
                     </div>
                     
@@ -223,13 +223,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <div className="flex flex-col">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                              <UserCheck className="h-5 w-5 text-green-600" />
+                              <Car className="h-5 w-5 text-green-600" />
                             </div>
-                            <span className="font-medium text-sm">Contact customer to confirm appointment</span>
+                            <span className="font-medium text-sm">Brake system inspection</span>
                           </div>
-                          <Badge variant="amber" className="ml-[52px] w-fit mt-1">Priority</Badge>
+                          <Badge variant="amber" className="ml-[52px] w-fit mt-0.5 text-xs px-2 py-0.5">Priority</Badge>
                         </div>
-                        <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
+                        <Button variant="secondary" size="sm" className="text-xs">Start</Button>
                       </div>
                     </div>
                     
@@ -238,13 +238,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                         <div className="flex flex-col">
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                              <ClipboardList className="h-5 w-5 text-purple-600" />
+                              <FileCheck className="h-5 w-5 text-purple-600" />
                             </div>
-                            <span className="font-medium text-sm">Review inspection report</span>
+                            <span className="font-medium text-sm">Complete emissions test</span>
                           </div>
-                          <Badge variant="purple" className="ml-[52px] w-fit mt-1">In progress</Badge>
+                          <Badge variant="purple" className="ml-[52px] w-fit mt-0.5 text-xs px-2 py-0.5">Pending</Badge>
                         </div>
-                        <Button variant="secondary" size="sm" className="text-xs">Review</Button>
+                        <Button variant="secondary" size="sm" className="text-xs">Schedule</Button>
                       </div>
                     </div>
                   </div>
