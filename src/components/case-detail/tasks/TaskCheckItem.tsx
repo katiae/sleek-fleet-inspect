@@ -29,14 +29,14 @@ export const TaskCheckItem: React.FC<TaskCheckItemProps> = ({
         <span className={`relative inline-block transition-colors duration-200 w-fit ${
           checked 
             ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[strikethrough_0.3s_ease-out_forwards] after:w-full' 
-            : 'text-gray-900'
+            : 'text-gray-900 after:content-[""] after:absolute after:left-0 after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards] after:w-0'
         }`}>
           {title}
         </span>
         <span className={`text-xs inline-block transition-colors duration-200 relative w-fit ${
           checked 
             ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[strikethrough_0.3s_ease-out_forwards] after:w-full' 
-            : 'text-gray-500'
+            : 'text-gray-500 after:content-[""] after:absolute after:left-0 after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards] after:w-0'
         }`}>
           {description}
         </span>
