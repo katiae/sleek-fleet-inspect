@@ -84,7 +84,7 @@ export const TasksSection: React.FC = () => {
               <div className="mt-4 pt-3 border-t border-gray-100">
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 text-sm">
-                    <Checkbox size="large" checked={true} disabled />
+                    <Checkbox size="large" checked={true} />
                     <span className="text-gray-900">Check exhaust system</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
