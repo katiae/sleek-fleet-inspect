@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -84,19 +85,19 @@ export const TasksSection: React.FC = () => {
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={true} disabled />
-                    <span className="text-gray-600">Check exhaust system</span>
+                    <span className="text-gray-900">Check exhaust system</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={false} />
-                    <span className="text-gray-600">OBD-II diagnostic scan</span>
+                    <span className="text-gray-900">OBD-II diagnostic scan</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={false} />
-                    <span className="text-gray-600">Gas cap inspection</span>
+                    <span className="text-gray-900">Gas cap inspection</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={false} />
-                    <span className="text-gray-600">Visual inspection</span>
+                    <span className="text-gray-900">Visual inspection</span>
                   </div>
                 </div>
               </div>
