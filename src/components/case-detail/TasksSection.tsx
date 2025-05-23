@@ -43,7 +43,7 @@ export const TasksSection: React.FC = () => {
           handleTaskCheck={handleTaskCheck}
         />
         
-        <EmptyTasksState />
+        {!isEmissionsExpanded && <EmptyTasksState />}
       </div>
     </div>
   );
