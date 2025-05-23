@@ -10,8 +10,8 @@ const Checkbox = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> & { size?: "default" | "large" }
 >(({ className, size = "default", ...props }, ref) => {
   const sizeClasses = {
-    default: "h-4 w-4",
-    large: "h-5 w-5"
+    default: "h-5 w-5",
+    large: "h-6 w-6"
   }
 
   return (
@@ -27,7 +27,7 @@ const Checkbox = React.forwardRef<
       <CheckboxPrimitive.Indicator
         className={cn("flex items-center justify-center text-current")}
       >
-        <Check className={size === "large" ? "h-4 w-4" : "h-3 w-3"} />
+        <Check className={size === "large" ? "h-4 w-4" : "h-3.5 w-3.5"} />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )
