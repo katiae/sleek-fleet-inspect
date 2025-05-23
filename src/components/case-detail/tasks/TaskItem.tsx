@@ -61,7 +61,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       
       {isExpandable && (
         <div 
-          className={`overflow-hidden transition-all duration-600 ease-out ${
+          className={`overflow-hidden transition-all duration-700 ease-out ${
             isExpanded ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0 mt-0'
           }`}
         >
