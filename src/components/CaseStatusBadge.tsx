@@ -1,6 +1,7 @@
 
 import React from "react";
 import { CaseStatus } from "@/lib/data";
+import { Badge } from "@/components/ui/badge";
 
 interface CaseStatusBadgeProps {
   status: CaseStatus;
