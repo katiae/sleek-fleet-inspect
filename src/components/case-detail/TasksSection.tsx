@@ -3,8 +3,13 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { TaskList } from "./tasks/TaskList";
 import { EmptyTasksState } from "./tasks/EmptyTasksState";
+import { Case } from "@/lib/data";
 
-export const TasksSection: React.FC = () => {
+interface TasksSectionProps {
+  caseItem: Case;
+}
+
+export const TasksSection: React.FC<TasksSectionProps> = ({ caseItem }) => {
   const [isEmissionsExpanded, setIsEmissionsExpanded] = useState(false);
   const [checkedTasks, setCheckedTasks] = useState({
     exhaust: true,
@@ -24,10 +29,9 @@ export const TasksSection: React.FC = () => {
     }));
   };
 
-  // For now, we'll assume there are always tasks, but in a real app
-  // this would come from props or context based on the case data
-  const hasTasks = true; // This would be dynamic based on case data
-  const hasRemainingTasks = !isEmissionsExpanded; // This represents if there are more tasks after current ones
+  // Determine if this case has tasks - for demo purposes, only the first case has tasks
+  const hasTasks = caseItem.address === "42 Baker Street, London, NW1 6XE";
+  const hasRemainingTasks = !isEmissionsExpanded;
 
   return (
     <div className="h-full flex flex-col">

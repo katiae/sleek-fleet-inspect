@@ -147,7 +147,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
           
           <TabsContent value="overview" className="pt-6 space-y-11">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <TasksSection />
+              <TasksSection caseItem={caseItem} />
               <ActivitySection caseItem={caseItem} onNavigateToTab={navigateToTab} />
             </div>
 
