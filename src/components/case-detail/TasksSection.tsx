@@ -118,14 +118,14 @@ export const TasksSection: React.FC = () => {
                       className="mt-0.5"
                     />
                     <div className="flex flex-col gap-1 flex-1">
-                      <span className={`relative transition-colors duration-200 ${
+                      <span className={`relative transition-colors duration-200 inline-block ${
                         checkedTasks.exhaust 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                       }`}>
                         Check exhaust system
                       </span>
-                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 inline-block ${
                         checkedTasks.exhaust 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
@@ -142,14 +142,14 @@ export const TasksSection: React.FC = () => {
                       className="mt-0.5"
                     />
                     <div className="flex flex-col gap-1 flex-1">
-                      <span className={`relative transition-colors duration-200 ${
+                      <span className={`relative transition-colors duration-200 inline-block ${
                         checkedTasks.obd 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                       }`}>
                         OBD-II diagnostic scan
                       </span>
-                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 inline-block ${
                         checkedTasks.obd 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
@@ -166,14 +166,14 @@ export const TasksSection: React.FC = () => {
                       className="mt-0.5"
                     />
                     <div className="flex flex-col gap-1 flex-1">
-                      <span className={`relative transition-colors duration-200 ${
+                      <span className={`relative transition-colors duration-200 inline-block ${
                         checkedTasks.gasCap 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                       }`}>
                         Gas cap inspection
                       </span>
-                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 inline-block ${
                         checkedTasks.gasCap 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
@@ -190,14 +190,14 @@ export const TasksSection: React.FC = () => {
                       className="mt-0.5"
                     />
                     <div className="flex flex-col gap-1 flex-1">
-                      <span className={`relative transition-colors duration-200 ${
+                      <span className={`relative transition-colors duration-200 inline-block ${
                         checkedTasks.visual 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                       }`}>
                         Visual inspection
                       </span>
-                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 ${
+                      <span className={`text-xs text-gray-500 relative transition-colors duration-200 inline-block ${
                         checkedTasks.visual 
                           ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
                           : 'text-gray-500 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
