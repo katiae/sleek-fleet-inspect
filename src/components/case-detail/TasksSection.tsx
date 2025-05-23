@@ -43,7 +43,9 @@ export const TasksSection: React.FC = () => {
           handleTaskCheck={handleTaskCheck}
         />
         
-        {!isEmissionsExpanded && <EmptyTasksState />}
+        <div className={`mt-auto transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+          {!isEmissionsExpanded && <EmptyTasksState />}
+        </div>
       </div>
     </div>
   );
