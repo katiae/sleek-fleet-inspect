@@ -20,7 +20,7 @@ export const TasksSection: React.FC = () => {
         <div className="space-y-3 mb-3">
           <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Gauge className="h-7 w-7 text-blue-600" />
                 </div>
