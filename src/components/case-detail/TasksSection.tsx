@@ -21,7 +21,7 @@ export const TasksSection: React.FC = () => {
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Gauge className="h-7 w-7 text-blue-600" />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                   <span className="font-medium text-sm">Engine diagnostics check</span>
                   <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">In progress</Badge>
                 </div>
