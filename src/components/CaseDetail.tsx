@@ -236,7 +236,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <div className="w-11 h-11 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <FileCheck className="h-6 w-6 text-purple-600" />
                           </div>
                           <div className="flex flex-col">
