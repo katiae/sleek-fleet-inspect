@@ -10,7 +10,7 @@ export const Navbar = () => {
   const showBackButton = location.pathname.startsWith('/case/');
 
   return (
-    <div className="border-b bg-white">
+    <div className="border-b bg-white sticky top-0 z-50">
       <div className="flex h-16 items-center px-6">
         {showBackButton && (
           <Link to="/">
