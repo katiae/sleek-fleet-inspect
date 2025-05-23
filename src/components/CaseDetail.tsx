@@ -3,7 +3,7 @@ import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent } from "@/components/ui/card";
 import { TasksSection } from "./case-detail/TasksSection";
@@ -114,7 +114,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="actions-button">
-              Actions <MoreHorizontal className="ml-2 h-4 w-4" />
+              Actions <ChevronDown className="ml-2 h-4 w-4" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
