@@ -1,12 +1,9 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Gauge, Car, FileCheck, PartyPopper } from "lucide-react";
-
 export const TasksSection: React.FC = () => {
-  return (
-    <div className="h-full flex flex-col">
+  return <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-lg font-medium">
           Upcoming Tasks
@@ -35,7 +32,7 @@ export const TasksSection: React.FC = () => {
           
           <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Car className="h-7 w-7 text-green-600" />
                 </div>
@@ -69,6 +66,5 @@ export const TasksSection: React.FC = () => {
           <p className="text-sm text-gray-600 text-center">You don't have any more upcoming tasks</p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
