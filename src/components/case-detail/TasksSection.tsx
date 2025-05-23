@@ -116,7 +116,11 @@ export const TasksSection: React.FC = () => {
                       checked={checkedTasks.exhaust} 
                       onCheckedChange={(checked) => handleTaskCheck('exhaust', checked as boolean)}
                     />
-                    <span className={`${checkedTasks.exhaust ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                    <span className={`relative transition-colors duration-200 ${
+                      checkedTasks.exhaust 
+                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                        : 'text-gray-900'
+                    }`}>
                       Check exhaust system
                     </span>
                   </div>
@@ -126,7 +130,11 @@ export const TasksSection: React.FC = () => {
                       checked={checkedTasks.obd} 
                       onCheckedChange={(checked) => handleTaskCheck('obd', checked as boolean)}
                     />
-                    <span className={`${checkedTasks.obd ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                    <span className={`relative transition-colors duration-200 ${
+                      checkedTasks.obd 
+                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                        : 'text-gray-900'
+                    }`}>
                       OBD-II diagnostic scan
                     </span>
                   </div>
@@ -136,7 +144,11 @@ export const TasksSection: React.FC = () => {
                       checked={checkedTasks.gasCap} 
                       onCheckedChange={(checked) => handleTaskCheck('gasCap', checked as boolean)}
                     />
-                    <span className={`${checkedTasks.gasCap ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                    <span className={`relative transition-colors duration-200 ${
+                      checkedTasks.gasCap 
+                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                        : 'text-gray-900'
+                    }`}>
                       Gas cap inspection
                     </span>
                   </div>
@@ -146,7 +158,11 @@ export const TasksSection: React.FC = () => {
                       checked={checkedTasks.visual} 
                       onCheckedChange={(checked) => handleTaskCheck('visual', checked as boolean)}
                     />
-                    <span className={`${checkedTasks.visual ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                    <span className={`relative transition-colors duration-200 ${
+                      checkedTasks.visual 
+                        ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
+                        : 'text-gray-900'
+                    }`}>
                       Visual inspection
                     </span>
                   </div>
