@@ -226,7 +226,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                           </div>
                           <div className="flex flex-col">
                             <span className="font-medium text-sm">Brake system inspection</span>
-                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5">Priority</Badge>
+                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded">Priority</Badge>
                           </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Start</Button>
