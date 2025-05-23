@@ -44,7 +44,7 @@ export const TasksSection: React.FC<TasksSectionProps> = ({ caseItem }) => {
         </Button>
       </div>
       
-      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col">
+      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col h-full">
         {hasTasks ? (
           <>
             <TaskList
@@ -54,12 +54,12 @@ export const TasksSection: React.FC<TasksSectionProps> = ({ caseItem }) => {
               handleTaskCheck={handleTaskCheck}
             />
             
-            <div className={`mt-auto flex-1 transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
-              {hasRemainingTasks && <EmptyTasksState variant="no-more-tasks" />}
+            <div className={`mt-auto flex-1 flex transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+              {hasRemainingTasks && <EmptyTasksState variant="no-more-tasks" className="w-full" />}
             </div>
           </>
         ) : (
-          <div className="flex-1 flex">
+          <div className="flex-1 flex h-full">
             <EmptyTasksState variant="all-caught-up" className="w-full" />
           </div>
         )}

@@ -14,7 +14,7 @@ export const EmptyTasksState: React.FC<EmptyTasksStateProps> = ({
   const isAllCaughtUp = variant === "all-caught-up";
   
   return (
-    <div className={`flex flex-col items-center justify-center h-full bg-gray-100 rounded-md py-3 text-gray-400 animate-fade-in ${className}`}>
+    <div className={`flex flex-col items-center justify-center w-full h-full bg-gray-100 rounded-md py-3 text-gray-400 animate-fade-in ${className}`}>
       {isAllCaughtUp ? (
         <Glasses className="h-6 w-6 text-gray-600 mb-2" />
       ) : (
