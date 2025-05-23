@@ -7,9 +7,22 @@ import { Gauge, Car, FileCheck, PartyPopper, ChevronDown, ChevronUp } from "luci
 
 export const TasksSection: React.FC = () => {
   const [isEmissionsExpanded, setIsEmissionsExpanded] = useState(false);
+  const [checkedTasks, setCheckedTasks] = useState({
+    exhaust: true,
+    obd: false,
+    gasCap: false,
+    visual: false
+  });
 
   const toggleEmissionsExpanded = () => {
     setIsEmissionsExpanded(!isEmissionsExpanded);
+  };
+
+  const handleTaskCheck = (taskId: string, checked: boolean) => {
+    setCheckedTasks(prev => ({
+      ...prev,
+      [taskId]: checked
+    }));
   };
 
   return <div className="h-full flex flex-col">
@@ -98,20 +111,44 @@ export const TasksSection: React.FC = () => {
               <div className="mt-4 pt-3 border-t border-gray-100">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3.5 text-sm">
-                    <Checkbox size="large" checked={true} />
-                    <span className="text-gray-900">Check exhaust system</span>
+                    <Checkbox 
+                      size="large" 
+                      checked={checkedTasks.exhaust} 
+                      onCheckedChange={(checked) => handleTaskCheck('exhaust', checked as boolean)}
+                    />
+                    <span className={`${checkedTasks.exhaust ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                      Check exhaust system
+                    </span>
                   </div>
                   <div className="flex items-center gap-3.5 text-sm">
-                    <Checkbox size="large" checked={false} />
-                    <span className="text-gray-900">OBD-II diagnostic scan</span>
+                    <Checkbox 
+                      size="large" 
+                      checked={checkedTasks.obd} 
+                      onCheckedChange={(checked) => handleTaskCheck('obd', checked as boolean)}
+                    />
+                    <span className={`${checkedTasks.obd ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                      OBD-II diagnostic scan
+                    </span>
                   </div>
                   <div className="flex items-center gap-3.5 text-sm">
-                    <Checkbox size="large" checked={false} />
-                    <span className="text-gray-900">Gas cap inspection</span>
+                    <Checkbox 
+                      size="large" 
+                      checked={checkedTasks.gasCap} 
+                      onCheckedChange={(checked) => handleTaskCheck('gasCap', checked as boolean)}
+                    />
+                    <span className={`${checkedTasks.gasCap ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                      Gas cap inspection
+                    </span>
                   </div>
                   <div className="flex items-center gap-3.5 text-sm">
-                    <Checkbox size="large" checked={false} />
-                    <span className="text-gray-900">Visual inspection</span>
+                    <Checkbox 
+                      size="large" 
+                      checked={checkedTasks.visual} 
+                      onCheckedChange={(checked) => handleTaskCheck('visual', checked as boolean)}
+                    />
+                    <span className={`${checkedTasks.visual ? 'line-through text-gray-400' : 'text-gray-900'}`}>
+                      Visual inspection
+                    </span>
                   </div>
                 </div>
               </div>
