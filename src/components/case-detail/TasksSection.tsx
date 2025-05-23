@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -79,15 +80,21 @@ export const TasksSection: React.FC = () => {
                 >
                   Schedule
                 </button>
-                {isEmissionsExpanded ? (
-                  <ChevronUp className="h-4 w-4 text-gray-400" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-gray-400" />
-                )}
+                <div className="transition-transform duration-300 ease-in-out">
+                  {isEmissionsExpanded ? (
+                    <ChevronUp className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4 text-gray-400" />
+                  )}
+                </div>
               </div>
             </div>
             
-            {isEmissionsExpanded && (
+            <div 
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                isEmissionsExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
               <div className="mt-4 pt-3 border-t border-gray-100">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3.5 text-sm">
@@ -108,7 +115,7 @@ export const TasksSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </div>
         
