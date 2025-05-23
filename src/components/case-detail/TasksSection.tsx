@@ -119,7 +119,7 @@ export const TasksSection: React.FC = () => {
                     <span className={`relative transition-colors duration-200 ${
                       checkedTasks.exhaust 
                         ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900'
+                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                     }`}>
                       Check exhaust system
                     </span>
@@ -133,7 +133,7 @@ export const TasksSection: React.FC = () => {
                     <span className={`relative transition-colors duration-200 ${
                       checkedTasks.obd 
                         ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900'
+                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                     }`}>
                       OBD-II diagnostic scan
                     </span>
@@ -147,7 +147,7 @@ export const TasksSection: React.FC = () => {
                     <span className={`relative transition-colors duration-200 ${
                       checkedTasks.gasCap 
                         ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900'
+                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                     }`}>
                       Gas cap inspection
                     </span>
@@ -161,7 +161,7 @@ export const TasksSection: React.FC = () => {
                     <span className={`relative transition-colors duration-200 ${
                       checkedTasks.visual 
                         ? 'text-gray-400 after:content-[""] after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:w-full after:animate-[strikethrough_0.3s_ease-out_forwards]' 
-                        : 'text-gray-900'
+                        : 'text-gray-900 after:content-[""] after:absolute after:right-0 after:top-1/2 after:h-[1px] after:bg-gray-400 after:animate-[unstrikethrough_0.3s_ease-out_forwards]'
                     }`}>
                       Visual inspection
                     </span>
