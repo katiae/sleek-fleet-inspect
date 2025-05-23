@@ -51,7 +51,7 @@ export const TasksSection: React.FC = () => {
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                   <FileCheck className="h-7 w-7 text-purple-600" />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-1">
                   <span className="font-medium text-sm">Emissions testing</span>
                   <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Pending</Badge>
                 </div>
