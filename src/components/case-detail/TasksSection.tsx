@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -83,21 +82,21 @@ export const TasksSection: React.FC = () => {
             {isEmissionsExpanded && (
               <div className="mt-4 pt-3 border-t border-gray-100">
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">• Check exhaust system</span>
+                  <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={true} disabled />
+                    <span className="text-gray-600">Check exhaust system</span>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">• OBD-II diagnostic scan</span>
+                  <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={false} />
+                    <span className="text-gray-600">OBD-II diagnostic scan</span>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">• Gas cap inspection</span>
+                  <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={false} />
+                    <span className="text-gray-600">Gas cap inspection</span>
                   </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">• Visual inspection</span>
+                  <div className="flex items-center gap-3 text-sm">
                     <Checkbox checked={false} />
+                    <span className="text-gray-600">Visual inspection</span>
                   </div>
                 </div>
               </div>
