@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -114,9 +113,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">
+            <button className="actions-button">
               Actions <MoreHorizontal className="ml-2 h-4 w-4" />
-            </Button>
+            </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>Schedule Inspection</DropdownMenuItem>
