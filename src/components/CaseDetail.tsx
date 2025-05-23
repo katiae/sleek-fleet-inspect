@@ -3,7 +3,7 @@ import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink, PartyPopper } from "lucide-react";
+import { MoreHorizontal, List, FileText, Clipboard, FileBarChart, Car, Wrench, User, Calendar, Briefcase, Key, Shield, Activity, FileTextIcon, Users, MapPin, Phone, ExternalLink, PartyPopper, Package, UserCheck, ClipboardList } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -204,7 +204,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   <div className="space-y-3 mb-3">
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <Package className="h-5 w-5 text-blue-600" />
+                          </div>
                           <span className="font-medium text-sm">Order required parts</span>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Order parts</Button>
@@ -213,7 +216,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                            <UserCheck className="h-5 w-5 text-green-600" />
+                          </div>
                           <span className="font-medium text-sm">Contact customer to confirm appointment</span>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Contact</Button>
@@ -222,7 +228,10 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <ClipboardList className="h-5 w-5 text-purple-600" />
+                          </div>
                           <span className="font-medium text-sm">Review inspection report</span>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Review</Button>
