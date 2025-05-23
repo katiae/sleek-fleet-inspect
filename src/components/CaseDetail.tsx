@@ -205,14 +205,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                   <div className="space-y-3 mb-3">
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                              <Gauge className="h-5 w-5 text-blue-600" />
-                            </div>
-                            <span className="font-medium text-sm">Check engine diagnostics</span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Gauge className="h-5 w-5 text-blue-600" />
                           </div>
-                          <Badge variant="blue" className="ml-[52px] w-fit mt-0.5 text-xs px-2 py-0.5">In progress</Badge>
+                          <div className="flex flex-col">
+                            <span className="font-medium text-sm">Check engine diagnostics</span>
+                            <Badge variant="blue" className="w-fit mt-0.5 text-xs px-2 py-0.5">In progress</Badge>
+                          </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Continue</Button>
                       </div>
@@ -220,14 +220,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                              <Car className="h-5 w-5 text-green-600" />
-                            </div>
-                            <span className="font-medium text-sm">Brake system inspection</span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Car className="h-5 w-5 text-green-600" />
                           </div>
-                          <Badge variant="amber" className="ml-[52px] w-fit mt-0.5 text-xs px-2 py-0.5">Priority</Badge>
+                          <div className="flex flex-col">
+                            <span className="font-medium text-sm">Brake system inspection</span>
+                            <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5">Priority</Badge>
+                          </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Start</Button>
                       </div>
@@ -235,14 +235,14 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({
                     
                     <div className="border rounded-md p-5 px-6 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
                       <div className="flex items-center justify-between">
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                              <FileCheck className="h-5 w-5 text-purple-600" />
-                            </div>
-                            <span className="font-medium text-sm">Complete emissions test</span>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <FileCheck className="h-5 w-5 text-purple-600" />
                           </div>
-                          <Badge variant="purple" className="ml-[52px] w-fit mt-0.5 text-xs px-2 py-0.5">Pending</Badge>
+                          <div className="flex flex-col">
+                            <span className="font-medium text-sm">Complete emissions test</span>
+                            <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5">Pending</Badge>
+                          </div>
                         </div>
                         <Button variant="secondary" size="sm" className="text-xs">Schedule</Button>
                       </div>
