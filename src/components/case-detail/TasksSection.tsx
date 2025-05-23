@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Gauge, Car, FileCheck, PartyPopper } from "lucide-react";
+
 export const TasksSection: React.FC = () => {
   return <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
@@ -41,7 +42,10 @@ export const TasksSection: React.FC = () => {
                   <Badge variant="amber" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">Priority</Badge>
                 </div>
               </div>
-              <button className="task-card-button">Start</button>
+              <div className="flex gap-2">
+                <button className="task-card-button">Start</button>
+                <button className="task-card-button">Schedule</button>
+              </div>
             </div>
           </div>
           
