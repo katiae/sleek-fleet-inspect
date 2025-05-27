@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { 
   Table, 
@@ -20,7 +19,7 @@ import { cases } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
-import { ArrowDown, ArrowUp, ChevronUp } from "lucide-react";
+import { ArrowDown, ArrowUp, ChevronDown, ChevronUp } from "lucide-react";
 
 interface ColumnDefinition {
   id: string;
@@ -157,158 +156,65 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
     );
   };
 
-  const getColumnWidth = (columnId: string) => {
-    const widths: Record<string, string> = {
-      id: "140px",
-      address: "200px", 
-      status: "140px",
-      type: "160px",
-      owner: "180px",
-      lastInspected: "140px",
-      inspectionDate: "180px",
-      vehicle: "160px",
-      vin: "160px",
-      licensePlate: "140px",
-      mechanic: "140px",
-    };
-    return widths[columnId] || "140px";
-  };
-
-  const visibleCols = getVisibleColumns();
-  const firstColumn = visibleCols[0];
-  const remainingColumns = visibleCols.slice(1);
-
   return (
     <div className="bg-white border rounded-md">
-      <div className="relative overflow-hidden">
-        <div className="flex">
-          {/* Fixed first column */}
-          {firstColumn && (
-            <div className="flex-shrink-0 bg-white border-r border-gray-200 z-10">
-              <Table>
-                <TableHeader className="bg-gray-50">
-                  <TableRow>
-                    <TableHead 
-                      onClick={() => handleSort(firstColumn.id)}
-                      className="cursor-pointer hover:bg-gray-100"
-                      style={{ width: getColumnWidth(firstColumn.id), minWidth: getColumnWidth(firstColumn.id) }}
-                    >
-                      <div className="flex items-center">
-                        <span>{firstColumn.label}</span>
-                        {renderSortIcon(firstColumn.id)}
-                      </div>
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {getSortedCases().map((caseItem, index) => (
-                    <TableRow 
-                      key={index} 
-                      className="cursor-pointer hover:bg-gray-50"
-                      onClick={() => handleRowClick(caseItem.id)}
-                    >
-                      <TableCell style={{ width: getColumnWidth(firstColumn.id), minWidth: getColumnWidth(firstColumn.id) }}>
-                        {firstColumn.id === 'id' && caseItem.id}
-                        {firstColumn.id === 'address' && caseItem.address}
-                        {firstColumn.id === 'status' && (
-                          <CaseStatusBadge status={caseItem.status} />
-                        )}
-                        {firstColumn.id === 'type' && caseItem.type}
-                        {firstColumn.id === 'owner' && (
-                          <>
-                            <div className="text-sm text-gray-500">{caseItem.owner.type}</div>
-                            <div>{caseItem.owner.name}</div>
-                          </>
-                        )}
-                        {firstColumn.id === 'lastInspected' && caseItem.lastInspected}
-                        {firstColumn.id === 'inspectionDate' && formatInspectionDate(caseItem.appointment?.date, caseItem.appointment?.time)}
-                        {firstColumn.id === 'vehicle' && caseItem.vehicle && (
-                          <>
-                            <div>{caseItem.vehicle.make} {caseItem.vehicle.model}</div>
-                            <div className="text-sm text-gray-500">{caseItem.vehicle.year}</div>
-                          </>
-                        )}
-                        {firstColumn.id === 'vin' && caseItem.vehicle?.vin}
-                        {firstColumn.id === 'licensePlate' && caseItem.vehicle?.licensePlate}
-                        {firstColumn.id === 'mechanic' && caseItem.mechanic?.name}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          )}
-
-          {/* Scrollable remaining columns */}
-          {remainingColumns.length > 0 && (
-            <div className="flex-1 overflow-x-auto relative">
-              {/* Right shadow indicator */}
-              <div className="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-white/80 to-transparent pointer-events-none z-10" />
-              
-              <Table>
-                <TableHeader className="bg-gray-50">
-                  <TableRow>
-                    {remainingColumns.map(column => (
-                      <TableHead 
-                        key={column.id}
-                        onClick={() => handleSort(column.id)}
-                        className="cursor-pointer hover:bg-gray-100"
-                        style={{ width: getColumnWidth(column.id), minWidth: getColumnWidth(column.id) }}
-                      >
-                        <div className="flex items-center">
-                          <span>{column.label}</span>
-                          {renderSortIcon(column.id)}
-                        </div>
-                      </TableHead>
-                    ))}
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {getSortedCases().map((caseItem, index) => (
-                    <TableRow 
-                      key={index} 
-                      className="cursor-pointer hover:bg-gray-50"
-                      onClick={() => handleRowClick(caseItem.id)}
-                    >
-                      {remainingColumns.map(column => (
-                        <TableCell 
-                          key={column.id}
-                          style={{ width: getColumnWidth(column.id), minWidth: getColumnWidth(column.id) }}
-                        >
-                          {column.id === 'id' && caseItem.id}
-                          {column.id === 'address' && caseItem.address}
-                          {column.id === 'status' && (
-                            <CaseStatusBadge status={caseItem.status} />
-                          )}
-                          {column.id === 'type' && caseItem.type}
-                          {column.id === 'owner' && (
-                            <>
-                              <div className="text-sm text-gray-500">{caseItem.owner.type}</div>
-                              <div>{caseItem.owner.name}</div>
-                            </>
-                          )}
-                          {column.id === 'lastInspected' && caseItem.lastInspected}
-                          {column.id === 'inspectionDate' && formatInspectionDate(caseItem.appointment?.date, caseItem.appointment?.time)}
-                          {column.id === 'vehicle' && caseItem.vehicle && (
-                            <>
-                              <div>{caseItem.vehicle.make} {caseItem.vehicle.model}</div>
-                              <div className="text-sm text-gray-500">{caseItem.vehicle.year}</div>
-                            </>
-                          )}
-                          {column.id === 'vin' && caseItem.vehicle?.vin}
-                          {column.id === 'licensePlate' && caseItem.vehicle?.licensePlate}
-                          {column.id === 'mechanic' && caseItem.mechanic?.name}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          )}
-        </div>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader className="bg-gray-50">
+            <TableRow>
+              {getVisibleColumns().map(column => (
+                <TableHead 
+                  key={column.id}
+                  onClick={() => handleSort(column.id)}
+                  className="cursor-pointer hover:bg-gray-100"
+                >
+                  <div className="flex items-center">
+                    <span>{column.label}</span>
+                    {renderSortIcon(column.id)}
+                  </div>
+                </TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {getSortedCases().map((caseItem, index) => (
+              <TableRow 
+                key={index} 
+                className="cursor-pointer hover:bg-gray-50"
+                onClick={() => handleRowClick(caseItem.id)}
+              >
+                {getVisibleColumns().map(column => (
+                  <TableCell key={column.id}>
+                    {column.id === 'id' && caseItem.id}
+                    {column.id === 'address' && caseItem.address}
+                    {column.id === 'status' && (
+                      <CaseStatusBadge status={caseItem.status} />
+                    )}
+                    {column.id === 'type' && caseItem.type}
+                    {column.id === 'owner' && (
+                      <>
+                        <div className="text-sm text-gray-500">{caseItem.owner.type}</div>
+                        <div>{caseItem.owner.name}</div>
+                      </>
+                    )}
+                    {column.id === 'lastInspected' && caseItem.lastInspected}
+                    {column.id === 'inspectionDate' && formatInspectionDate(caseItem.appointment?.date, caseItem.appointment?.time)}
+                    {column.id === 'vehicle' && caseItem.vehicle && (
+                      <>
+                        <div>{caseItem.vehicle.make} {caseItem.vehicle.model}</div>
+                        <div className="text-sm text-gray-500">{caseItem.vehicle.year}</div>
+                      </>
+                    )}
+                    {column.id === 'vin' && caseItem.vehicle?.vin}
+                    {column.id === 'licensePlate' && caseItem.vehicle?.licensePlate}
+                    {column.id === 'mechanic' && caseItem.mechanic?.name}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
-      
       <div className="flex items-center justify-between px-4 py-2 border-t">
         <div className="text-sm text-muted-foreground">
           Page <span className="font-medium">1</span> of <span className="font-medium">32</span>
