@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus, Filter, Columns } from "lucide-react";
@@ -70,7 +69,7 @@ export const CaseList = () => {
           <h1 className="text-2xl font-semibold text-gray-800">Cases</h1>
           <p className="text-gray-500 mt-1">Track, manage and progress cases.</p>
         </div>
-        <Button className="bg-orange-500 hover:bg-orange-600">
+        <Button variant="icon">
           <Plus className="mr-2 h-4 w-4" /> Create new case
         </Button>
       </div>
