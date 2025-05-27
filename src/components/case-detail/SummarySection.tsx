@@ -153,41 +153,55 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
         </CardHeader>
         <CardContent className="py-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-3">
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Case Type</h3>
-              <div>{caseItem.type}</div>
+            <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+              <div className="space-y-3">
+                <div>
+                  <h3 className="font-medium text-sm text-blue-700 mb-1">Case Type</h3>
+                  <div className="text-gray-900">{caseItem.type}</div>
+                </div>
+                <div>
+                  <h3 className="font-medium text-sm text-blue-700 mb-1">Estimated Price</h3>
+                  <div className="text-gray-900">{caseItem.job ? caseItem.job.estimatedCost : "N/A"}</div>
+                </div>
+                <div>
+                  <h3 className="font-medium text-sm text-blue-700 mb-1">Duration</h3>
+                  <div className="text-gray-900">{caseItem.appointment ? caseItem.appointment.duration : "N/A"}</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Estimated Price</h3>
-              <div>{caseItem.job ? caseItem.job.estimatedCost : "N/A"}</div>
+
+            <div className="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+              <div className="space-y-3">
+                <div>
+                  <h3 className="font-medium text-sm text-green-700 mb-1">Vehicle</h3>
+                  <div className="text-gray-900">{caseItem.vehicle ? `${caseItem.vehicle.year} ${caseItem.vehicle.make} ${caseItem.vehicle.model}` : "N/A"}</div>
+                </div>
+                <div>
+                  <h3 className="font-medium text-sm text-green-700 mb-1">Owner Type</h3>
+                  <div className="text-gray-900">{caseItem.owner.type}</div>
+                </div>
+                <div>
+                  <h3 className="font-medium text-sm text-green-700 mb-1">Job Status</h3>
+                  <div className="text-gray-900">{caseItem.appointment ? caseItem.appointment.status : "Not Scheduled"}</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Duration</h3>
-              <div>{caseItem.appointment ? caseItem.appointment.duration : "N/A"}</div>
-            </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Vehicle</h3>
-              <div>{caseItem.vehicle ? `${caseItem.vehicle.year} ${caseItem.vehicle.make} ${caseItem.vehicle.model}` : "N/A"}</div>
-            </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Owner Type</h3>
-              <div>{caseItem.owner.type}</div>
-            </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Job Status</h3>
-              <div>{caseItem.appointment ? caseItem.appointment.status : "Not Scheduled"}</div>
-            </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Owner</h3>
-              <div>{caseItem.owner.name}</div>
-            </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Last Inspected</h3>
-              <div>{caseItem.lastInspected}</div>
-            </div>
-            <div>
-              <h3 className="font-medium text-sm text-gray-500 mb-1">Parts Required</h3>
-              <div>{caseItem.job?.parts ? `${caseItem.job.parts.length} items` : "None specified"}</div>
+
+            <div className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+              <div className="space-y-3">
+                <div>
+                  <h3 className="font-medium text-sm text-orange-700 mb-1">Owner</h3>
+                  <div className="text-gray-900">{caseItem.owner.name}</div>
+                </div>
+                <div>
+                  <h3 className="font-medium text-sm text-orange-700 mb-1">Last Inspected</h3>
+                  <div className="text-gray-900">{caseItem.lastInspected}</div>
+                </div>
+                <div>
+                  <h3 className="font-medium text-sm text-orange-700 mb-1">Parts Required</h3>
+                  <div className="text-gray-900">{caseItem.job?.parts ? `${caseItem.job.parts.length} items` : "None specified"}</div>
+                </div>
+              </div>
             </div>
           </div>
         </CardContent>
