@@ -217,11 +217,12 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
 
   return (
     <div className="bg-white border rounded-md">
-      {/* Horizontally scrollable table container */}
-      <div className="relative overflow-x-auto w-full">
-        {/* Right shadow indicator */}
+      {/* Table container with horizontal scroll */}
+      <div className="relative overflow-x-auto">
+        {/* Shadow indicator for more content */}
         <div className="absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-white/80 to-transparent pointer-events-none z-10" />
         
+        {/* Remove the w-full from Table and add min-width */}
         <Table className="min-w-[1000px]">
           <TableHeader className="bg-gray-50">
             <TableRow>
@@ -230,7 +231,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
                   key={column.id}
                   onClick={() => handleSort(column.id)}
                   className={`cursor-pointer hover:bg-gray-100 ${
-                    index === 0 ? 'sticky left-0 z-20 bg-gray-50' : ''
+                    index === 0 ? 'sticky left-0 z-20 bg-gray-50 hover:bg-gray-100' : ''
                   }`}
                   style={{ 
                     width: getColumnWidth(column.id), 
@@ -255,7 +256,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
                 {visibleCols.map((column, colIndex) => (
                   <TableCell 
                     key={column.id}
-                    className={colIndex === 0 ? 'sticky left-0 z-10 bg-white' : ''}
+                    className={colIndex === 0 ? 'sticky left-0 z-10 bg-white hover:bg-gray-50' : ''}
                     style={{ 
                       width: getColumnWidth(column.id), 
                       minWidth: getColumnWidth(column.id) 
