@@ -59,11 +59,13 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
 
   const handleSort = (columnId: string) => {
     if (sortColumn === columnId) {
+      // Toggle direction if clicking the same column
       setSortDirection(prev => prev === "asc" ? "desc" : prev === "desc" ? null : "asc");
       if (sortDirection === "desc") {
         setSortColumn(null);
       }
     } else {
+      // Set new column and default to ascending
       setSortColumn(columnId);
       setSortDirection("asc");
     }
@@ -76,23 +78,65 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
 
     return [...cases].sort((a, b) => {
       let valueA, valueB;
+
+      // Extract the values to compare based on the column
       switch (sortColumn) {
-        case 'id': valueA = a.id; valueB = b.id; break;
-        case 'address': valueA = a.address; valueB = b.address; break;
-        case 'status': valueA = a.status; valueB = b.status; break;
-        case 'type': valueA = a.type; valueB = b.type; break;
-        case 'owner': valueA = a.owner?.name || ''; valueB = b.owner?.name || ''; break;
-        case 'lastInspected': valueA = a.lastInspected || ''; valueB = b.lastInspected || ''; break;
-        case 'inspectionDate': valueA = a.appointment?.date || ''; valueB = b.appointment?.date || ''; break;
-        case 'vehicle': valueA = a.vehicle ? `${a.vehicle.make} ${a.vehicle.model}` : ''; valueB = b.vehicle ? `${b.vehicle.make} ${b.vehicle.model}` : ''; break;
-        case 'vin': valueA = a.vehicle?.vin || ''; valueB = b.vehicle?.vin || ''; break;
-        case 'licensePlate': valueA = a.vehicle?.licensePlate || ''; valueB = b.vehicle?.licensePlate || ''; break;
-        case 'mechanic': valueA = a.mechanic?.name || ''; valueB = b.mechanic?.name || ''; break;
-        default: valueA = ''; valueB = '';
+        case 'id':
+          valueA = a.id;
+          valueB = b.id;
+          break;
+        case 'address':
+          valueA = a.address;
+          valueB = b.address;
+          break;
+        case 'status':
+          valueA = a.status;
+          valueB = b.status;
+          break;
+        case 'type':
+          valueA = a.type;
+          valueB = b.type;
+          break;
+        case 'owner':
+          valueA = a.owner?.name || '';
+          valueB = b.owner?.name || '';
+          break;
+        case 'lastInspected':
+          valueA = a.lastInspected || '';
+          valueB = b.lastInspected || '';
+          break;
+        case 'inspectionDate':
+          valueA = a.appointment?.date || '';
+          valueB = b.appointment?.date || '';
+          break;
+        case 'vehicle':
+          valueA = a.vehicle ? `${a.vehicle.make} ${a.vehicle.model}` : '';
+          valueB = b.vehicle ? `${b.vehicle.make} ${b.vehicle.model}` : '';
+          break;
+        case 'vin':
+          valueA = a.vehicle?.vin || '';
+          valueB = b.vehicle?.vin || '';
+          break;
+        case 'licensePlate':
+          valueA = a.vehicle?.licensePlate || '';
+          valueB = b.vehicle?.licensePlate || '';
+          break;
+        case 'mechanic':
+          valueA = a.mechanic?.name || '';
+          valueB = b.mechanic?.name || '';
+          break;
+        default:
+          valueA = '';
+          valueB = '';
       }
 
-      if (valueA < valueB) return sortDirection === "asc" ? -1 : 1;
-      if (valueA > valueB) return sortDirection === "asc" ? 1 : -1;
+      // Compare the values
+      if (valueA < valueB) {
+        return sortDirection === "asc" ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return sortDirection === "asc" ? 1 : -1;
+      }
       return 0;
     });
   };
@@ -105,20 +149,24 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
         <ArrowDown className="h-4 w-4 ml-1" />
       );
     }
-    return <ChevronUp className="h-4 w-4 ml-1 text-gray-300" />;
+    
+    // Show faded sort icons when not sorted
+    return (
+      <ChevronUp className="h-4 w-4 ml-1 text-gray-300" />
+    );
   };
 
   return (
     <div className="bg-white border rounded-md">
-      <div className="overflow-x-auto w-full">
-        <Table className="min-w-[1000px]">
+      <div className="overflow-x-auto">
+        <Table>
           <TableHeader className="bg-gray-50">
             <TableRow>
-              {getVisibleColumns().map((column, colIndex) => (
+              {getVisibleColumns().map(column => (
                 <TableHead 
                   key={column.id}
                   onClick={() => handleSort(column.id)}
-                  className={`cursor-pointer hover:bg-gray-100 ${colIndex === 0 ? 'sticky left-0 bg-white z-10' : ''}`}
+                  className="cursor-pointer hover:bg-gray-100"
                 >
                   <div className="flex items-center">
                     <span>{column.label}</span>
@@ -135,11 +183,13 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
                 className="cursor-pointer hover:bg-gray-50"
                 onClick={() => handleRowClick(caseItem.id)}
               >
-                {getVisibleColumns().map((column, colIndex) => (
-                  <TableCell key={column.id} className={`${colIndex === 0 ? 'sticky left-0 bg-white z-10' : ''}`}>
+                {getVisibleColumns().map(column => (
+                  <TableCell key={column.id}>
                     {column.id === 'id' && caseItem.id}
                     {column.id === 'address' && caseItem.address}
-                    {column.id === 'status' && <CaseStatusBadge status={caseItem.status} />}
+                    {column.id === 'status' && (
+                      <CaseStatusBadge status={caseItem.status} />
+                    )}
                     {column.id === 'type' && caseItem.type}
                     {column.id === 'owner' && (
                       <>

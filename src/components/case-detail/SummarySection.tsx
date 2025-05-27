@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -152,7 +153,7 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
         </CardHeader>
         <CardContent className="py-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-3">
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-300">
               <div className="space-y-3">
                 <div>
                   <h3 className="font-medium text-sm text-gray-600 mb-1">Case Type</h3>
@@ -169,7 +170,7 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
               </div>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-300">
               <div className="space-y-3">
                 <div>
                   <h3 className="font-medium text-sm text-gray-600 mb-1">Vehicle</h3>
@@ -186,7 +187,7 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
               </div>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-gray-50 rounded-lg border-l-4 border-gray-300">
               <div className="space-y-3">
                 <div>
                   <h3 className="font-medium text-sm text-gray-600 mb-1">Owner</h3>
