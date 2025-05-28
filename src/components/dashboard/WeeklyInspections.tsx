@@ -1,8 +1,7 @@
-
-
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Download, Calendar } from "lucide-react";
 import { format, startOfWeek, endOfWeek, eachDayOfInterval, isSameDay, addWeeks, subWeeks } from "date-fns";
 
@@ -152,43 +151,38 @@ export const WeeklyInspections = () => {
             ))}
           </div>
 
-          {/* Time slots grid with external scrollbar */}
-          <div className="relative">
-            <div className="max-h-96 overflow-y-auto pr-2">
-              <div className="pr-2">
-                {timeSlots.map((time) => (
-                  <div key={time} className="grid grid-cols-8 border-b last:border-b-0 min-h-[60px]">
-                    {/* Time column */}
-                    <div className="p-3 text-xs text-muted-foreground border-r bg-muted/10 flex items-start w-20 flex-shrink-0">
-                      {time}
-                    </div>
-                    
-                    {/* Day columns */}
-                    {weekDays.map((day) => {
-                      const inspection = getInspectionForTimeSlot(day, time);
-                      return (
-                        <div key={day.toISOString()} className="p-2 border-r last:border-r-0 relative flex-1">
-                          {inspection && (
-                            <div className="bg-orange-50 border border-orange-100 text-orange-700 text-xs p-2 rounded text-center h-full flex flex-col justify-center">
-                              <div className="font-medium truncate">
-                                {inspection.title.split(' - ')[0]}
-                              </div>
-                              <div className="text-orange-500 truncate">
-                                {inspection.title.split(' - ')[1]}
-                              </div>
-                            </div>
-                          )}
+          {/* Time slots grid with ScrollArea */}
+          <ScrollArea className="h-96">
+            {timeSlots.map((time) => (
+              <div key={time} className="grid grid-cols-8 border-b last:border-b-0 min-h-[60px]">
+                {/* Time column */}
+                <div className="p-3 text-xs text-muted-foreground border-r bg-muted/10 flex items-start w-20 flex-shrink-0">
+                  {time}
+                </div>
+                
+                {/* Day columns */}
+                {weekDays.map((day) => {
+                  const inspection = getInspectionForTimeSlot(day, time);
+                  return (
+                    <div key={day.toISOString()} className="p-2 border-r last:border-r-0 relative flex-1">
+                      {inspection && (
+                        <div className="bg-orange-50 border border-orange-100 text-orange-700 text-xs p-2 rounded text-center h-full flex flex-col justify-center">
+                          <div className="font-medium truncate">
+                            {inspection.title.split(' - ')[0]}
+                          </div>
+                          <div className="text-orange-500 truncate">
+                            {inspection.title.split(' - ')[1]}
+                          </div>
                         </div>
-                      );
-                    })}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-            </div>
-          </div>
+            ))}
+          </ScrollArea>
         </div>
       </CardContent>
     </Card>
   );
 };
-
