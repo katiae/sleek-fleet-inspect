@@ -185,7 +185,7 @@
   }
 
   .ai-ask-button:hover {
-    background: linear-gradient(#e5e7eb, #e5e7eb) padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
+    background: linear-gradient(#f9fafb, #f9fafb) padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
     border: 1px solid transparent;
     color: #374151;
   }
