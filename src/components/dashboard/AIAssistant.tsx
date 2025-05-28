@@ -2,7 +2,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Sparkles, MessageCircle } from "lucide-react";
 
 interface AIAssistantProps {
@@ -46,12 +46,12 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               </p>
             </div>
           </div>
-          <form onSubmit={handleAiSubmit} className="space-y-2 flex-1 flex flex-col">
-            <Input 
+          <form onSubmit={handleAiSubmit} className="flex-1 flex flex-col space-y-2">
+            <Textarea 
               placeholder="Ask me anything..." 
               value={aiQuery} 
               onChange={e => setAiQuery(e.target.value)} 
-              className="flex-1"
+              className="flex-1 resize-none"
             />
             <button 
               type="submit" 
