@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { TaskCard } from "@/components/shared/TaskCard";
 import { ExpandableTaskCard } from "@/components/shared/ExpandableTaskCard";
 import { CheckSquare, FileText, Users, Calendar, Clock, MessageSquare, Send, Sparkles, AlertCircle, TrendingUp, Activity, CirclePlay, CircleDot } from "lucide-react";
+
 const Dashboard = () => {
   const [aiQuery, setAiQuery] = useState("");
   const [notes, setNotes] = useState("");
@@ -21,6 +22,7 @@ const Dashboard = () => {
     gasCap: false,
     visual: false
   });
+
   const toggleEmissionsExpanded = () => {
     setIsEmissionsExpanded(!isEmissionsExpanded);
   };
@@ -185,10 +187,10 @@ const Dashboard = () => {
                 <Card className="flex-1">
                   <CardHeader>
                     <div className="flex items-center justify-between">
-                      <CardTitle className="flex items-center gap-2">
+                      <h2 className="text-lg font-medium flex items-center gap-2">
                         <Calendar className="w-5 h-5" />
                         Today's Tasks
-                      </CardTitle>
+                      </h2>
                       <Button variant="outline" size="sm">View all tasks</Button>
                     </div>
                   </CardHeader>
@@ -206,10 +208,10 @@ const Dashboard = () => {
                 <Card className="flex-1">
                   <CardHeader>
                     <div className="flex items-center justify-between">
-                      <CardTitle className="flex items-center gap-2">
+                      <h2 className="text-lg font-medium flex items-center gap-2">
                         <FileText className="w-5 h-5" />
                         Active Cases
-                      </CardTitle>
+                      </h2>
                       <Button variant="outline" size="sm">View All Cases</Button>
                     </div>
                   </CardHeader>
@@ -239,10 +241,10 @@ const Dashboard = () => {
                 {/* AI Assistant */}
                 <Card className="flex-1">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <h2 className="text-lg font-medium flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-purple-600" />
                       AI Assistant
-                    </CardTitle>
+                    </h2>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="space-y-4 h-full flex flex-col">
@@ -265,10 +267,10 @@ const Dashboard = () => {
                 {/* Quick Notes */}
                 <Card className="flex-1">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <h2 className="text-lg font-medium flex items-center gap-2">
                       <MessageSquare className="w-5 h-5" />
                       Quick Notes
-                    </CardTitle>
+                    </h2>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="h-full flex flex-col">
@@ -283,10 +285,10 @@ const Dashboard = () => {
                 {/* Recent Activity */}
                 <Card className="flex-1">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
+                    <h2 className="text-lg font-medium flex items-center gap-2">
                       <Activity className="w-5 h-5" />
                       Recent Activity
-                    </CardTitle>
+                    </h2>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="space-y-3">
@@ -308,4 +310,5 @@ const Dashboard = () => {
       </div>
     </SidebarProvider>;
 };
+
 export default Dashboard;
