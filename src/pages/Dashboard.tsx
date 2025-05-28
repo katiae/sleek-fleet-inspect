@@ -1,59 +1,105 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Navbar } from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import { Calendar, Users, FileText, CheckSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { 
+  CheckSquare, 
+  FileText, 
+  Users, 
+  Calendar, 
+  Clock,
+  MessageSquare,
+  Send,
+  Sparkles,
+  AlertCircle,
+  TrendingUp,
+  Activity
+} from "lucide-react";
 
 const Dashboard = () => {
-  // Sample data for charts
-  const caseData = [
-    { month: 'Jan', cases: 12 },
-    { month: 'Feb', cases: 19 },
-    { month: 'Mar', cases: 15 },
-    { month: 'Apr', cases: 22 },
-    { month: 'May', cases: 18 },
-    { month: 'Jun', cases: 25 },
+  const [aiQuery, setAiQuery] = useState("");
+  const [notes, setNotes] = useState("");
+
+  // Sample data for the dashboard
+  const upcomingTasks = [
+    {
+      id: 1,
+      title: "Engine diagnostics check",
+      case: "42 Baker Street",
+      priority: "high",
+      dueTime: "9:00 AM",
+      status: "pending"
+    },
+    {
+      id: 2,
+      title: "Brake system inspection",
+      case: "156 Oak Avenue",
+      priority: "medium",
+      dueTime: "11:30 AM",
+      status: "pending"
+    },
+    {
+      id: 3,
+      title: "Emissions testing",
+      case: "42 Baker Street",
+      priority: "low",
+      dueTime: "2:00 PM",
+      status: "in-progress"
+    }
   ];
 
-  const statusData = [
-    { name: 'Active', value: 45, color: '#f97316' },
-    { name: 'Pending', value: 23, color: '#eab308' },
-    { name: 'Completed', value: 32, color: '#22c55e' },
+  const casesSummary = [
+    {
+      id: 1,
+      address: "42 Baker Street, London",
+      status: "active",
+      tasksCount: 3,
+      priority: "high",
+      lastUpdate: "2 hours ago"
+    },
+    {
+      id: 2,
+      address: "156 Oak Avenue, Manchester",
+      status: "pending",
+      tasksCount: 2,
+      priority: "medium",
+      lastUpdate: "1 day ago"
+    },
+    {
+      id: 3,
+      address: "789 Pine Road, Birmingham",
+      status: "review",
+      tasksCount: 1,
+      priority: "low",
+      lastUpdate: "3 days ago"
+    }
+  ];
+
+  const recentActivity = [
+    { action: "Completed brake inspection", case: "123 Main St", time: "1 hour ago" },
+    { action: "Updated case notes", case: "456 Oak Ave", time: "3 hours ago" },
+    { action: "Scheduled follow-up", case: "789 Pine Rd", time: "5 hours ago" }
   ];
 
   const stats = [
-    {
-      title: "Total Cases",
-      value: "156",
-      icon: FileText,
-      change: "+12%",
-      changeType: "positive" as const
-    },
-    {
-      title: "Active Inspections",
-      value: "45",
-      icon: CheckSquare,
-      change: "+8%",
-      changeType: "positive" as const
-    },
-    {
-      title: "Scheduled Today",
-      value: "8",
-      icon: Calendar,
-      change: "-2%",
-      changeType: "negative" as const
-    },
-    {
-      title: "Total Inspectors",
-      value: "24",
-      icon: Users,
-      change: "+1",
-      changeType: "positive" as const
-    }
+    { title: "Today's Tasks", value: "8", icon: CheckSquare, color: "text-blue-600" },
+    { title: "Active Cases", value: "12", icon: FileText, color: "text-orange-600" },
+    { title: "Completed This Week", value: "24", icon: TrendingUp, color: "text-green-600" },
+    { title: "Pending Reviews", value: "5", icon: AlertCircle, color: "text-red-600" }
   ];
+
+  const handleAiSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // AI functionality would be implemented here
+    console.log("AI Query:", aiQuery);
+    setAiQuery("");
+  };
 
   return (
     <SidebarProvider>
@@ -62,125 +108,181 @@ const Dashboard = () => {
         <SidebarInset className="flex-1">
           <Navbar />
           <div className="p-6 space-y-6">
+            {/* Welcome Header */}
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-              <p className="text-gray-600 mt-1">Welcome back! Here's an overview of your inspection activities.</p>
+              <h1 className="text-3xl font-bold text-gray-900">Good morning! 👋</h1>
+              <p className="text-gray-600 mt-1">Here's what's on your schedule for today</p>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Stats Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {stats.map((stat, index) => (
                 <Card key={index}>
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                        <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                        <p className={`text-sm ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
-                          {stat.change} from last month
-                        </p>
+                        <p className="text-2xl font-bold">{stat.value}</p>
                       </div>
-                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                        <stat.icon className="w-6 h-6 text-orange-600" />
-                      </div>
+                      <stat.icon className={`w-8 h-8 ${stat.color}`} />
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            {/* Charts Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Cases Over Time Chart */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Cases Over Time</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={caseData}>
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="month" />
-                      <YAxis />
-                      <Tooltip />
-                      <Bar dataKey="cases" fill="#f97316" />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </CardContent>
-              </Card>
-
-              {/* Case Status Distribution */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Case Status Distribution</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={statusData}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={60}
-                        outerRadius={100}
-                        paddingAngle={5}
-                        dataKey="value"
-                      >
-                        {statusData.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={entry.color} />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                    </PieChart>
-                  </ResponsiveContainer>
-                  <div className="flex justify-center space-x-4 mt-4">
-                    {statusData.map((entry, index) => (
-                      <div key={index} className="flex items-center">
-                        <div 
-                          className="w-3 h-3 rounded-full mr-2" 
-                          style={{ backgroundColor: entry.color }}
-                        ></div>
-                        <span className="text-sm text-gray-600">{entry.name}: {entry.value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Recent Activity */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { action: "New case assigned", case: "123 Main St", time: "2 hours ago", status: "pending" },
-                    { action: "Inspection completed", case: "456 Oak Ave", time: "4 hours ago", status: "completed" },
-                    { action: "Report generated", case: "789 Pine Rd", time: "6 hours ago", status: "active" },
-                    { action: "Case updated", case: "321 Elm St", time: "1 day ago", status: "pending" },
-                  ].map((activity, index) => (
-                    <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
-                      <div>
-                        <p className="font-medium text-gray-900">{activity.action}</p>
-                        <p className="text-sm text-gray-600">{activity.case}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm text-gray-500">{activity.time}</p>
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          activity.status === 'completed' ? 'bg-green-100 text-green-800' :
-                          activity.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                          'bg-orange-100 text-orange-800'
-                        }`}>
-                          {activity.status}
-                        </span>
-                      </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Left Column */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Today's Tasks */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5" />
+                        Today's Tasks
+                      </CardTitle>
+                      <Button variant="outline" size="sm">View All</Button>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {upcomingTasks.map((task) => (
+                        <div key={task.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <div className="flex items-center gap-3">
+                            <CheckSquare className="w-5 h-5 text-gray-400" />
+                            <div>
+                              <p className="font-medium">{task.title}</p>
+                              <p className="text-sm text-gray-600">{task.case}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Badge variant={task.priority === 'high' ? 'destructive' : task.priority === 'medium' ? 'default' : 'secondary'}>
+                              {task.priority}
+                            </Badge>
+                            <span className="text-sm text-gray-500 flex items-center gap-1">
+                              <Clock className="w-4 h-4" />
+                              {task.dueTime}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Cases Summary */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="flex items-center gap-2">
+                        <FileText className="w-5 h-5" />
+                        Active Cases
+                      </CardTitle>
+                      <Button variant="outline" size="sm">View All Cases</Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {casesSummary.map((caseItem) => (
+                        <div key={caseItem.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                          <div>
+                            <p className="font-medium">{caseItem.address}</p>
+                            <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • Updated {caseItem.lastUpdate}</p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Badge variant={caseItem.status === 'active' ? 'default' : caseItem.status === 'pending' ? 'secondary' : 'outline'}>
+                              {caseItem.status}
+                            </Badge>
+                            <Badge variant={caseItem.priority === 'high' ? 'destructive' : caseItem.priority === 'medium' ? 'default' : 'secondary'} className="text-xs">
+                              {caseItem.priority}
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-6">
+                {/* AI Assistant */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-purple-600" />
+                      AI Assistant
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="bg-purple-50 p-3 rounded-lg">
+                        <p className="text-sm text-purple-800">
+                          💡 Based on your schedule, I recommend prioritizing the brake inspection at 156 Oak Avenue due to safety concerns.
+                        </p>
+                      </div>
+                      <form onSubmit={handleAiSubmit} className="space-y-2">
+                        <Input
+                          placeholder="Ask me anything about your cases..."
+                          value={aiQuery}
+                          onChange={(e) => setAiQuery(e.target.value)}
+                        />
+                        <Button type="submit" size="sm" className="w-full">
+                          <Send className="w-4 h-4 mr-2" />
+                          Ask AI
+                        </Button>
+                      </form>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Quick Notes */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <MessageSquare className="w-5 h-5" />
+                      Quick Notes
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Textarea
+                      placeholder="Jot down quick notes, reminders, or observations..."
+                      value={notes}
+                      onChange={(e) => setNotes(e.target.value)}
+                      className="min-h-[120px] resize-none"
+                    />
+                    <Button size="sm" className="mt-2 w-full" variant="outline">
+                      Save Notes
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Recent Activity */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Activity className="w-5 h-5" />
+                      Recent Activity
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {recentActivity.map((activity, index) => (
+                        <div key={index} className="flex items-start gap-3 text-sm">
+                          <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <div>
+                            <p className="font-medium">{activity.action}</p>
+                            <p className="text-gray-600">{activity.case}</p>
+                            <p className="text-gray-500 text-xs">{activity.time}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         </SidebarInset>
       </div>
