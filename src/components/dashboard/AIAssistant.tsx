@@ -33,7 +33,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
           </div>
           <form onSubmit={handleAiSubmit} className="space-y-2 mt-auto">
             <Input 
-              placeholder="Ask me anything about your cases..." 
+              placeholder="Ask me anything?" 
               value={aiQuery} 
               onChange={e => setAiQuery(e.target.value)} 
             />
