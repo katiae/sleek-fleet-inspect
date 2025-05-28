@@ -1,8 +1,9 @@
+
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sparkles, Speech } from "lucide-react";
+import { Sparkles, MessageCircle } from "lucide-react";
 
 interface AIAssistantProps {
   aiQuery: string;
@@ -40,7 +41,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               type="submit" 
               className="ai-ask-button w-full"
             >
-              <Speech className="w-4 h-4 mr-2" />
+              <MessageCircle className="w-4 h-4 mr-2" />
               Ask AI
             </button>
           </form>
