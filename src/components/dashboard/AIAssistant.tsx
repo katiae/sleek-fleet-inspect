@@ -25,8 +25,8 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
         </h3>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col">
-        <div className="flex-1 flex flex-col justify-between space-y-4">
-          <div className="bg-purple-50 p-4 rounded-lg space-y-4 flex-1 flex flex-col justify-center min-h-[300px]">
+        <div className="flex-1 flex flex-col space-y-4">
+          <div className="bg-purple-50 p-4 rounded-lg space-y-4">
             <div className="flex items-start gap-2">
               <span className="text-sm">💡</span>
               <p className="text-sm text-purple-800 flex-1">
@@ -46,11 +46,12 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               </p>
             </div>
           </div>
-          <form onSubmit={handleAiSubmit} className="space-y-2">
+          <form onSubmit={handleAiSubmit} className="space-y-2 flex-1 flex flex-col">
             <Input 
               placeholder="Ask me anything..." 
               value={aiQuery} 
               onChange={e => setAiQuery(e.target.value)} 
+              className="flex-1"
             />
             <button 
               type="submit" 
