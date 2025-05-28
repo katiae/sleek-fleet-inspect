@@ -42,11 +42,12 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full relative bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50">
-        {/* Multiple layered gradient blobs for visible background */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-orange-200 via-pink-200 to-purple-200 rounded-full blur-3xl opacity-60 pointer-events-none z-0"></div>
-        <div className="absolute top-32 right-32 w-[600px] h-[600px] bg-gradient-to-tl from-pink-300 via-purple-300 to-blue-300 rounded-full blur-2xl opacity-40 pointer-events-none z-0"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-yellow-200 via-orange-200 to-red-200 rounded-full blur-3xl opacity-30 pointer-events-none z-0"></div>
+      <div className="min-h-screen flex w-full relative bg-orange-100">
+        {/* Much more visible gradient blobs */}
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-200/80 via-pink-200/70 to-purple-200/60 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-bl from-orange-300/90 via-pink-300/80 to-purple-300/70 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-yellow-300/70 via-orange-300/60 to-red-300/50 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-pink-400/60 via-purple-400/50 to-blue-400/40 rounded-full blur-2xl pointer-events-none"></div>
         
         <AppSidebar />
         <SidebarInset className="flex-1 relative z-10">
