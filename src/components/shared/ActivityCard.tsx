@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Activity } from "lucide-react";
 
 interface ActivityItem {
@@ -47,6 +48,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
           )}
         </div>
       </CardHeader>
+      <Separator />
       <CardContent className="flex-1">
         <div className="space-y-6 relative pb-4">
           <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-gray-200"></div>
