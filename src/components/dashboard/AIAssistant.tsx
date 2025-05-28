@@ -25,7 +25,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
         </h3>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col">
-        <div className="flex-1 flex flex-col space-y-4">
+        <div className="flex-1 flex flex-col space-y-6">
           <div className="bg-purple-50 p-4 rounded-lg space-y-4">
             <div className="flex items-start gap-2">
               <span className="text-sm">💡</span>
