@@ -209,7 +209,7 @@ const Dashboard = () => {
                     </div>
                   </CardHeader>
                   <CardContent className="flex-1">
-                    <div className="space-y-3">
+                    <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                       {upcomingTasks.map((task) => (
                         <TaskCard key={task.id} task={task} />
                       ))}
