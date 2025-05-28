@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -42,12 +41,10 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full relative bg-orange-100">
-        {/* Much more visible gradient blobs */}
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-200/80 via-pink-200/70 to-purple-200/60 pointer-events-none"></div>
-        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-gradient-to-bl from-orange-300/90 via-pink-300/80 to-purple-300/70 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-gradient-to-tr from-yellow-300/70 via-orange-300/60 to-red-300/50 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-pink-400/60 via-purple-400/50 to-blue-400/40 rounded-full blur-2xl pointer-events-none"></div>
+      <div className="min-h-screen flex w-full relative">
+        {/* Subtle gradient background that fades to white */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 via-pink-50/30 to-white pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-purple-100/30 via-pink-50/20 to-transparent pointer-events-none"></div>
         
         <AppSidebar />
         <SidebarInset className="flex-1 relative z-10">
