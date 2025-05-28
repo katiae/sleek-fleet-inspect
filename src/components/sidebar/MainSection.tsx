@@ -1,7 +1,7 @@
 
 import React from "react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
-import { Folder, FileText, CheckSquare, Calendar } from "lucide-react";
+import { Folder, FileText, CheckSquare, Calendar, LayoutDashboard } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useCapabilities } from "@/context/CapabilitiesContext";
 
@@ -18,6 +18,13 @@ export const MainSection = () => {
 
   return (
     <SidebarMenu>
+      <SidebarMenuItem>
+        <SidebarMenuButton tooltip="Dashboard" className="py-4">
+          <LayoutDashboard />
+          <span>Dashboard</span>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+      
       <SidebarMenuItem>
         <SidebarMenuButton 
           isActive={isCasesActive} 
