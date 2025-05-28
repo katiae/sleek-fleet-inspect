@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -121,7 +122,7 @@ export const WeeklyInspections = () => {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-        <CardTitle className="flex items-center gap-2 text-2xl font-semibold leading-none tracking-tight">
+        <CardTitle className="flex items-center gap-2">
           <Calendar className="h-5 w-5" />
           Your inspections this week
         </CardTitle>
