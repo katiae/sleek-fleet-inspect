@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { TaskCard } from "@/components/shared/TaskCard";
 import { ExpandableTaskCard } from "@/components/shared/ExpandableTaskCard";
-import { CheckSquare, FileText, Users, Calendar, Clock, MessageSquare, Send, Sparkles, AlertCircle, TrendingUp, Activity, CirclePlay, CircleDot } from "lucide-react";
+import { CheckSquare, FileText, Users, Calendar, Clock, MessageSquare, Send, Sparkles, AlertCircle, TrendingUp, Activity, CirclePlay, CircleDot, Settings } from "lucide-react";
 
 const Dashboard = () => {
   const [aiQuery, setAiQuery] = useState("");
@@ -160,9 +160,15 @@ const Dashboard = () => {
           <Navbar />
           <div className="px-11 py-6 space-y-6">
             {/* Welcome Header */}
-            <div>
-              <h1 className="text-2xl font-semibold text-gray-800">Welcome back, {userName}! 👋</h1>
-              <p className="text-gray-500 mt-1">Here's what's on your schedule for today</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-semibold text-gray-800">Welcome back, {userName}! 👋</h1>
+                <p className="text-gray-500 mt-1">Here's what's on your schedule for today</p>
+              </div>
+              <Button variant="outline" className="gap-2">
+                <Settings className="w-4 h-4" />
+                Customise view
+              </Button>
             </div>
 
             {/* Stats Overview */}
