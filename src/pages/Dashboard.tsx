@@ -154,9 +154,12 @@ const Dashboard = () => {
     setAiQuery("");
   };
   return <SidebarProvider>
-      <div className="min-h-screen flex w-full">
+      <div className="min-h-screen flex w-full relative">
+        {/* Blob gradient background */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-pink-200/40 via-purple-200/30 to-transparent rounded-full blur-3xl pointer-events-none z-0"></div>
+        
         <AppSidebar />
-        <SidebarInset className="flex-1">
+        <SidebarInset className="flex-1 relative z-10">
           <Navbar />
           <div className="px-11 py-6 space-y-6">
             {/* Welcome Header */}
