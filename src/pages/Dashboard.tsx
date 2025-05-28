@@ -10,6 +10,7 @@ import { ActiveCases } from "@/components/dashboard/ActiveCases";
 import { AIAssistant } from "@/components/dashboard/AIAssistant";
 import { QuickNotes } from "@/components/dashboard/QuickNotes";
 import { RecentActivity } from "@/components/dashboard/RecentActivity";
+import { WeeklyInspections } from "@/components/dashboard/WeeklyInspections";
 
 const Dashboard = () => {
   const [aiQuery, setAiQuery] = useState("");
@@ -65,6 +66,7 @@ const Dashboard = () => {
               />
               <ActiveCases />
               <QuickNotes notes={notes} setNotes={setNotes} />
+              <WeeklyInspections />
             </div>
 
             {/* Full Width Card */}
