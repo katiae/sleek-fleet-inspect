@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -8,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { TaskCard } from "@/components/shared/TaskCard";
 import { 
   CheckSquare, 
   FileText, 
@@ -33,25 +33,40 @@ const Dashboard = () => {
       id: 1,
       title: "Engine diagnostics check",
       case: "42 Baker Street",
-      priority: "high",
+      priority: "high" as const,
       dueTime: "9:00 AM",
-      status: "pending"
+      status: "pending",
+      icon: <CheckSquare className="w-6 h-6 text-gray-600" />,
+      buttons: <Button variant="outline" size="sm" className="task-card-button">
+        <Clock className="w-4 h-4" />
+        9:00 AM
+      </Button>
     },
     {
       id: 2,
       title: "Brake system inspection",
       case: "156 Oak Avenue",
-      priority: "medium",
+      priority: "medium" as const,
       dueTime: "11:30 AM",
-      status: "pending"
+      status: "pending",
+      icon: <CheckSquare className="w-6 h-6 text-gray-600" />,
+      buttons: <Button variant="outline" size="sm" className="task-card-button">
+        <Clock className="w-4 h-4" />
+        11:30 AM
+      </Button>
     },
     {
       id: 3,
       title: "Emissions testing",
       case: "42 Baker Street",
-      priority: "low",
+      priority: "low" as const,
       dueTime: "2:00 PM",
-      status: "in-progress"
+      status: "in-progress",
+      icon: <CheckSquare className="w-6 h-6 text-gray-600" />,
+      buttons: <Button variant="outline" size="sm" className="task-card-button">
+        <Clock className="w-4 h-4" />
+        2:00 PM
+      </Button>
     }
   ];
 
@@ -102,32 +117,6 @@ const Dashboard = () => {
     setAiQuery("");
   };
 
-  const getPriorityBadgeVariant = (priority: string) => {
-    switch (priority) {
-      case 'high':
-        return 'destructive' as const;
-      case 'medium':
-        return 'default' as const;
-      case 'low':
-        return 'secondary' as const;
-      default:
-        return 'secondary' as const;
-    }
-  };
-
-  const getPriorityIconBg = (priority: string) => {
-    switch (priority) {
-      case 'high':
-        return 'bg-red-100';
-      case 'medium':
-        return 'bg-amber-100';
-      case 'low':
-        return 'bg-blue-100';
-      default:
-        return 'bg-blue-100';
-    }
-  };
-
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -175,27 +164,7 @@ const Dashboard = () => {
                   <CardContent className="flex-1">
                     <div className="space-y-3">
                       {upcomingTasks.map((task) => (
-                        <div key={task.id} className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className={`w-12 h-12 ${getPriorityIconBg(task.priority)} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                                <CheckSquare className="w-6 h-6 text-gray-600" />
-                              </div>
-                              <div className="flex flex-col gap-1">
-                                <span className="font-medium text-sm">{task.title}</span>
-                                <Badge variant={getPriorityBadgeVariant(task.priority)} className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">
-                                  {task.priority} priority
-                                </Badge>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Button variant="outline" size="sm" className="task-card-button">
-                                <Clock className="w-4 h-4" />
-                                {task.dueTime}
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
+                        <TaskCard key={task.id} task={task} />
                       ))}
                     </div>
                   </CardContent>
