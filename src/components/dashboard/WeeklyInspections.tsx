@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { Download } from "lucide-react";
-import { format, startOfWeek, endOfWeek, eachDayOfInterval } from "date-fns";
+import { Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { format, startOfWeek, endOfWeek, eachDayOfInterval, addWeeks, subWeeks, isSameDay, parseISO } from "date-fns";
 
 interface Inspection {
   id: string;
@@ -21,7 +20,7 @@ const weeklyInspections: Inspection[] = [
     id: "INS-2023-0020",
     title: "Vehicle Inspection - Toyota Camry",
     date: new Date(2025, 4, 26), // May 26, 2025 (Monday)
-    time: "09:00 AM",
+    time: "09:00",
     address: "42 Baker Street, London",
     type: "Full Inspection"
   },
@@ -29,7 +28,7 @@ const weeklyInspections: Inspection[] = [
     id: "INS-2023-0021",
     title: "Emissions Test - Ford Focus",
     date: new Date(2025, 4, 28), // May 28, 2025 (Wednesday)
-    time: "14:30 PM",
+    time: "16:14",
     address: "17 Kensington Gardens, London",
     type: "Emissions Test"
   },
@@ -37,14 +36,24 @@ const weeklyInspections: Inspection[] = [
     id: "INS-2023-0022",
     title: "Safety Inspection - BMW X5",
     date: new Date(2025, 4, 30), // May 30, 2025 (Friday)
-    time: "11:15 AM",
+    time: "11:15",
     address: "221B Baker Street, London",
     type: "Safety Check"
   }
 ];
 
+// Generate time slots from 8:00 to 19:00
+const timeSlots = Array.from({ length: 12 }, (_, i) => {
+  const hour = i + 8;
+  return `${hour.toString().padStart(2, '0')}:00`;
+});
+
 export const WeeklyInspections = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+  const [currentWeek, setCurrentWeek] = useState(new Date());
+
+  const weekStart = startOfWeek(currentWeek, { weekStartsOn: 1 });
+  const weekEnd = endOfWeek(currentWeek, { weekStartsOn: 1 });
+  const weekDays = eachDayOfInterval({ start: weekStart, end: weekEnd });
 
   const exportToICS = () => {
     const icsContent = generateICSContent(weeklyInspections);
@@ -91,13 +100,43 @@ export const WeeklyInspections = () => {
     return icsContent;
   };
 
-  // Get dates that have inspections
-  const inspectionDates = weeklyInspections.map(inspection => inspection.date);
+  const getInspectionForTimeSlot = (day: Date, time: string) => {
+    return weeklyInspections.find(inspection => 
+      isSameDay(inspection.date, day) && inspection.time.startsWith(time.split(':')[0])
+    );
+  };
+
+  const goToPreviousWeek = () => {
+    setCurrentWeek(subWeeks(currentWeek, 1));
+  };
+
+  const goToNextWeek = () => {
+    setCurrentWeek(addWeeks(currentWeek, 1));
+  };
+
+  const goToToday = () => {
+    setCurrentWeek(new Date());
+  };
 
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-        <CardTitle>Weekly Inspections</CardTitle>
+        <div className="flex items-center gap-4">
+          <CardTitle>
+            {format(weekStart, 'MMM yyyy')}
+          </CardTitle>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" size="sm" onClick={goToPreviousWeek}>
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="sm" onClick={goToToday}>
+              Today
+            </Button>
+            <Button variant="outline" size="sm" onClick={goToNextWeek}>
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
         <Button
           variant="outline"
           size="sm"
@@ -109,47 +148,50 @@ export const WeeklyInspections = () => {
         </Button>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <Calendar
-            mode="single"
-            selected={selectedDate}
-            onSelect={setSelectedDate}
-            modifiers={{
-              inspection: inspectionDates
-            }}
-            modifiersStyles={{
-              inspection: {
-                backgroundColor: '#f97316',
-                color: 'white',
-                borderRadius: '50%'
-              }
-            }}
-            className="rounded-md border w-full"
-            weekStartsOn={1}
-            showOutsideDays={false}
-          />
-          
-          <div className="space-y-2">
-            <h4 className="text-sm font-medium">This Week's Schedule</h4>
-            {weeklyInspections.length === 0 ? (
-              <p className="text-sm text-muted-foreground">No inspections scheduled</p>
-            ) : (
-              <div className="space-y-2">
-                {weeklyInspections.map(inspection => (
-                  <div key={inspection.id} className="flex items-center justify-between p-2 border rounded-md">
-                    <div>
-                      <p className="text-sm font-medium">{inspection.title}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {format(inspection.date, 'MMM dd')} at {inspection.time}
-                      </p>
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {inspection.type}
-                    </div>
-                  </div>
-                ))}
+        <div className="border rounded-lg overflow-hidden">
+          {/* Header with days */}
+          <div className="grid grid-cols-8 border-b bg-muted/30">
+            <div className="p-2 text-xs font-medium text-muted-foreground border-r">
+              {/* Empty cell for time column */}
+            </div>
+            {weekDays.map((day) => (
+              <div key={day.toISOString()} className="p-2 text-center border-r last:border-r-0">
+                <div className="text-xs font-medium text-muted-foreground">
+                  {format(day, 'EEE')} {format(day, 'd')}
+                </div>
               </div>
-            )}
+            ))}
+          </div>
+
+          {/* Time slots grid */}
+          <div className="max-h-96 overflow-y-auto">
+            {timeSlots.map((time) => (
+              <div key={time} className="grid grid-cols-8 border-b last:border-b-0 min-h-[60px]">
+                {/* Time column */}
+                <div className="p-2 text-xs text-muted-foreground border-r bg-muted/10 flex items-start">
+                  {time}
+                </div>
+                
+                {/* Day columns */}
+                {weekDays.map((day) => {
+                  const inspection = getInspectionForTimeSlot(day, time);
+                  return (
+                    <div key={day.toISOString()} className="p-1 border-r last:border-r-0 relative">
+                      {inspection && (
+                        <div className="bg-orange-500 text-white text-xs p-1 rounded text-center h-full flex flex-col justify-center">
+                          <div className="font-medium truncate">
+                            {inspection.title.split(' - ')[0]}
+                          </div>
+                          <div className="text-orange-100 truncate">
+                            {inspection.title.split(' - ')[1]}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
       </CardContent>
