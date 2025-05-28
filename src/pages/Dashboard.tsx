@@ -9,22 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { TaskCard } from "@/components/shared/TaskCard";
 import { ExpandableTaskCard } from "@/components/shared/ExpandableTaskCard";
-import { 
-  CheckSquare, 
-  FileText, 
-  Users, 
-  Calendar, 
-  Clock,
-  MessageSquare,
-  Send,
-  Sparkles,
-  AlertCircle,
-  TrendingUp,
-  Activity,
-  CirclePlay,
-  CircleDot
-} from "lucide-react";
-
+import { CheckSquare, FileText, Users, Calendar, Clock, MessageSquare, Send, Sparkles, AlertCircle, TrendingUp, Activity, CirclePlay, CircleDot } from "lucide-react";
 const Dashboard = () => {
   const [aiQuery, setAiQuery] = useState("");
   const [notes, setNotes] = useState("");
@@ -36,11 +21,9 @@ const Dashboard = () => {
     gasCap: false,
     visual: false
   });
-
   const toggleEmissionsExpanded = () => {
     setIsEmissionsExpanded(!isEmissionsExpanded);
   };
-
   const handleTaskCheck = (taskId: string, checked: boolean) => {
     setCheckedTasks(prev => ({
       ...prev,
@@ -49,33 +32,28 @@ const Dashboard = () => {
   };
 
   // Sample data for the dashboard - updated to match Case Detail styling
-  const upcomingTasks = [
-    {
-      id: 1,
-      title: "Engine diagnostics check",
-      priority: "high" as const,
-      badgeText: "In progress",
-      badgeVariant: "blue" as const,
-      icon: <CirclePlay className="w-6 h-6 text-blue-600" />,
-      iconBgColor: "bg-blue-100",
-      buttons: <Button variant="outline" size="sm">Continue</Button>
-    },
-    {
-      id: 2,
-      title: "Brake system inspection",
-      priority: "medium" as const,
-      badgeText: "Priority",
-      badgeVariant: "amber" as const,
-      icon: <CircleDot className="w-6 h-6 text-green-600" />,
-      iconBgColor: "bg-green-100",
-      buttons: (
-        <div className="flex gap-2">
+  const upcomingTasks = [{
+    id: 1,
+    title: "Engine diagnostics check",
+    priority: "high" as const,
+    badgeText: "In progress",
+    badgeVariant: "blue" as const,
+    icon: <CirclePlay className="w-6 h-6 text-blue-600" />,
+    iconBgColor: "bg-blue-100",
+    buttons: <Button variant="outline" size="sm">Continue</Button>
+  }, {
+    id: 2,
+    title: "Brake system inspection",
+    priority: "medium" as const,
+    badgeText: "Priority",
+    badgeVariant: "amber" as const,
+    icon: <CircleDot className="w-6 h-6 text-green-600" />,
+    iconBgColor: "bg-green-100",
+    buttons: <div className="flex gap-2">
           <Button variant="outline" size="sm">Start</Button>
           <Button variant="outline" size="sm">Schedule</Button>
         </div>
-      )
-    }
-  ];
+  }];
 
   // Expandable emissions testing task data
   const emissionsTask = {
@@ -86,86 +64,94 @@ const Dashboard = () => {
     icon: <CheckSquare className="w-6 h-6 text-purple-600" />,
     iconBgColor: "bg-purple-100",
     buttons: <Button variant="outline" size="sm">Schedule</Button>,
-    subTasks: [
-      {
-        id: "exhaust",
-        title: "Exhaust emissions check",
-        description: "Check exhaust system for proper emissions levels",
-        checked: checkedTasks.exhaust
-      },
-      {
-        id: "obd",
-        title: "OBD system verification",
-        description: "Verify onboard diagnostics system functionality",
-        checked: checkedTasks.obd
-      },
-      {
-        id: "gasCap",
-        title: "Gas cap pressure test",
-        description: "Test gas cap seal and pressure retention",
-        checked: checkedTasks.gasCap
-      },
-      {
-        id: "visual",
-        title: "Visual inspection",
-        description: "Perform overall visual check of vehicle exterior",
-        checked: checkedTasks.visual
-      }
-    ],
+    subTasks: [{
+      id: "exhaust",
+      title: "Exhaust emissions check",
+      description: "Check exhaust system for proper emissions levels",
+      checked: checkedTasks.exhaust
+    }, {
+      id: "obd",
+      title: "OBD system verification",
+      description: "Verify onboard diagnostics system functionality",
+      checked: checkedTasks.obd
+    }, {
+      id: "gasCap",
+      title: "Gas cap pressure test",
+      description: "Test gas cap seal and pressure retention",
+      checked: checkedTasks.gasCap
+    }, {
+      id: "visual",
+      title: "Visual inspection",
+      description: "Perform overall visual check of vehicle exterior",
+      checked: checkedTasks.visual
+    }],
     isExpanded: isEmissionsExpanded,
     onToggleExpand: toggleEmissionsExpanded,
     onTaskCheck: handleTaskCheck
   };
-
-  const casesSummary = [
-    {
-      id: 1,
-      address: "42 Baker Street, London",
-      status: "active",
-      tasksCount: 3,
-      priority: "high",
-      lastUpdate: "2 hours ago"
-    },
-    {
-      id: 2,
-      address: "156 Oak Avenue, Manchester",
-      status: "pending",
-      tasksCount: 2,
-      priority: "medium",
-      lastUpdate: "1 day ago"
-    },
-    {
-      id: 3,
-      address: "789 Pine Road, Birmingham",
-      status: "review",
-      tasksCount: 1,
-      priority: "low",
-      lastUpdate: "3 days ago"
-    }
-  ];
-
-  const recentActivity = [
-    { action: "Completed brake inspection", case: "123 Main St", time: "1 hour ago" },
-    { action: "Updated case notes", case: "456 Oak Ave", time: "3 hours ago" },
-    { action: "Scheduled follow-up", case: "789 Pine Rd", time: "5 hours ago" }
-  ];
-
-  const stats = [
-    { title: "Today's Tasks", value: "8", icon: CheckSquare, color: "text-blue-600" },
-    { title: "Active Cases", value: "12", icon: FileText, color: "text-orange-600" },
-    { title: "Completed This Week", value: "24", icon: TrendingUp, color: "text-green-600" },
-    { title: "Pending Reviews", value: "5", icon: AlertCircle, color: "text-red-600" }
-  ];
-
+  const casesSummary = [{
+    id: 1,
+    address: "42 Baker Street, London",
+    status: "active",
+    tasksCount: 3,
+    priority: "high",
+    lastUpdate: "2 hours ago"
+  }, {
+    id: 2,
+    address: "156 Oak Avenue, Manchester",
+    status: "pending",
+    tasksCount: 2,
+    priority: "medium",
+    lastUpdate: "1 day ago"
+  }, {
+    id: 3,
+    address: "789 Pine Road, Birmingham",
+    status: "review",
+    tasksCount: 1,
+    priority: "low",
+    lastUpdate: "3 days ago"
+  }];
+  const recentActivity = [{
+    action: "Completed brake inspection",
+    case: "123 Main St",
+    time: "1 hour ago"
+  }, {
+    action: "Updated case notes",
+    case: "456 Oak Ave",
+    time: "3 hours ago"
+  }, {
+    action: "Scheduled follow-up",
+    case: "789 Pine Rd",
+    time: "5 hours ago"
+  }];
+  const stats = [{
+    title: "Today's Tasks",
+    value: "8",
+    icon: CheckSquare,
+    color: "text-blue-600"
+  }, {
+    title: "Active Cases",
+    value: "12",
+    icon: FileText,
+    color: "text-orange-600"
+  }, {
+    title: "Completed This Week",
+    value: "24",
+    icon: TrendingUp,
+    color: "text-green-600"
+  }, {
+    title: "Pending Reviews",
+    value: "5",
+    icon: AlertCircle,
+    color: "text-red-600"
+  }];
   const handleAiSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // AI functionality would be implemented here
     console.log("AI Query:", aiQuery);
     setAiQuery("");
   };
-
-  return (
-    <SidebarProvider>
+  return <SidebarProvider>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         <SidebarInset className="flex-1">
@@ -179,8 +165,7 @@ const Dashboard = () => {
 
             {/* Stats Overview */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {stats.map((stat, index) => (
-                <Card key={index}>
+              {stats.map((stat, index) => <Card key={index}>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div>
@@ -190,8 +175,7 @@ const Dashboard = () => {
                       <stat.icon className={`w-8 h-8 ${stat.color}`} />
                     </div>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
@@ -205,14 +189,12 @@ const Dashboard = () => {
                         <Calendar className="w-5 h-5" />
                         Today's Tasks
                       </CardTitle>
-                      <Button variant="outline" size="sm">View All</Button>
+                      <Button variant="outline" size="sm">View all tasks</Button>
                     </div>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="bg-gray-50 rounded-lg p-4 space-y-3">
-                      {upcomingTasks.map((task) => (
-                        <TaskCard key={task.id} task={task} />
-                      ))}
+                      {upcomingTasks.map(task => <TaskCard key={task.id} task={task} />)}
                       
                       {/* Expandable Emissions Testing Task */}
                       <ExpandableTaskCard task={emissionsTask} />
@@ -233,8 +215,7 @@ const Dashboard = () => {
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="space-y-3">
-                      {casesSummary.map((caseItem) => (
-                        <div key={caseItem.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
+                      {casesSummary.map(caseItem => <div key={caseItem.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
                           <div>
                             <p className="font-medium">{caseItem.address}</p>
                             <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • Updated {caseItem.lastUpdate}</p>
@@ -247,8 +228,7 @@ const Dashboard = () => {
                               {caseItem.priority}
                             </Badge>
                           </div>
-                        </div>
-                      ))}
+                        </div>)}
                     </div>
                   </CardContent>
                 </Card>
@@ -272,11 +252,7 @@ const Dashboard = () => {
                         </p>
                       </div>
                       <form onSubmit={handleAiSubmit} className="space-y-2 mt-auto">
-                        <Input
-                          placeholder="Ask me anything about your cases..."
-                          value={aiQuery}
-                          onChange={(e) => setAiQuery(e.target.value)}
-                        />
+                        <Input placeholder="Ask me anything about your cases..." value={aiQuery} onChange={e => setAiQuery(e.target.value)} />
                         <Button type="submit" size="sm" className="w-full">
                           <Send className="w-4 h-4 mr-2" />
                           Ask AI
@@ -296,12 +272,7 @@ const Dashboard = () => {
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="h-full flex flex-col">
-                      <Textarea
-                        placeholder="Jot down quick notes, reminders, or observations..."
-                        value={notes}
-                        onChange={(e) => setNotes(e.target.value)}
-                        className="flex-1 resize-none"
-                      />
+                      <Textarea placeholder="Jot down quick notes, reminders, or observations..." value={notes} onChange={e => setNotes(e.target.value)} className="flex-1 resize-none" />
                       <Button size="sm" className="mt-2 w-full" variant="outline">
                         Save Notes
                       </Button>
@@ -319,16 +290,14 @@ const Dashboard = () => {
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="space-y-3">
-                      {recentActivity.map((activity, index) => (
-                        <div key={index} className="flex items-start gap-3 text-sm">
+                      {recentActivity.map((activity, index) => <div key={index} className="flex items-start gap-3 text-sm">
                           <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                           <div>
                             <p className="font-medium">{activity.action}</p>
                             <p className="text-gray-600">{activity.case}</p>
                             <p className="text-gray-500 text-xs">{activity.time}</p>
                           </div>
-                        </div>
-                      ))}
+                        </div>)}
                     </div>
                   </CardContent>
                 </Card>
@@ -337,8 +306,6 @@ const Dashboard = () => {
           </div>
         </SidebarInset>
       </div>
-    </SidebarProvider>
-  );
+    </SidebarProvider>;
 };
-
 export default Dashboard;
