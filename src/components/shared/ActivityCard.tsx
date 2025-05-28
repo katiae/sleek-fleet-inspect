@@ -29,14 +29,21 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
         </h3>
       </CardHeader>
       <CardContent className="flex-1">
-        <div className="space-y-3">
+        <div className="space-y-6 relative pb-4">
+          <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-gray-200"></div>
+          
           {activities.map((activity, index) => (
-            <div key={index} className="flex items-start gap-3 text-sm">
-              <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-              <div>
-                <p className="font-medium">{activity.action}</p>
-                <p className="text-gray-600">{activity.case}</p>
-                <p className="text-gray-500 text-xs">{activity.time}</p>
+            <div key={index} className="flex items-start">
+              <div className="relative mr-4 flex-shrink-0 mt-1.5">
+                <div className="w-3 h-3 rounded-full bg-gray-100 flex items-center justify-center z-10 relative">
+                  <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+                </div>
+              </div>
+              
+              <div className="flex-1">
+                <h4 className="text-sm font-medium">{activity.action}</h4>
+                <p className="text-sm text-gray-500 mt-0.5">{activity.time}</p>
+                <p className="text-sm text-gray-600 mt-2">{activity.case}</p>
               </div>
             </div>
           ))}
