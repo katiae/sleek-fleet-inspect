@@ -49,37 +49,27 @@ const Dashboard = () => {
             <DashboardHeader userName={userName} />
             <StatsOverview />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Left Column */}
-              <div className="flex flex-col space-y-6 h-full">
-                <div className="flex-1">
-                  <TodaysTasks
-                    isEmissionsExpanded={isEmissionsExpanded}
-                    toggleEmissionsExpanded={toggleEmissionsExpanded}
-                    checkedTasks={checkedTasks}
-                    handleTaskCheck={handleTaskCheck}
-                  />
-                </div>
-                <div className="flex-1">
-                  <ActiveCases />
-                </div>
+              <div className="space-y-6">
+                <TodaysTasks
+                  isEmissionsExpanded={isEmissionsExpanded}
+                  toggleEmissionsExpanded={toggleEmissionsExpanded}
+                  checkedTasks={checkedTasks}
+                  handleTaskCheck={handleTaskCheck}
+                />
+                <ActiveCases />
               </div>
 
               {/* Right Column */}
-              <div className="flex flex-col space-y-6 h-full">
-                <div className="flex-1">
-                  <AIAssistant
-                    aiQuery={aiQuery}
-                    setAiQuery={setAiQuery}
-                    handleAiSubmit={handleAiSubmit}
-                  />
-                </div>
-                <div className="flex-1">
-                  <QuickNotes notes={notes} setNotes={setNotes} />
-                </div>
-                <div className="flex-1">
-                  <RecentActivity />
-                </div>
+              <div className="space-y-6">
+                <AIAssistant
+                  aiQuery={aiQuery}
+                  setAiQuery={setAiQuery}
+                  handleAiSubmit={handleAiSubmit}
+                />
+                <QuickNotes notes={notes} setNotes={setNotes} />
+                <RecentActivity />
               </div>
             </div>
           </div>
