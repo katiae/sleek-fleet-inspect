@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -9,8 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { TaskCard } from "@/components/shared/TaskCard";
-import { TaskCheckItem } from "@/components/case-detail/tasks/TaskCheckItem";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ExpandableTaskCard } from "@/components/shared/ExpandableTaskCard";
 import { 
   CheckSquare, 
   FileText, 
@@ -78,6 +76,46 @@ const Dashboard = () => {
       )
     }
   ];
+
+  // Expandable emissions testing task data
+  const emissionsTask = {
+    id: "emissions",
+    title: "Emissions testing",
+    badgeText: "Pending",
+    badgeVariant: "purple" as const,
+    icon: <CheckSquare className="w-6 h-6 text-purple-600" />,
+    iconBgColor: "bg-purple-100",
+    buttons: <Button variant="outline" size="sm">Schedule</Button>,
+    subTasks: [
+      {
+        id: "exhaust",
+        title: "Exhaust emissions check",
+        description: "Check exhaust system for proper emissions levels",
+        checked: checkedTasks.exhaust
+      },
+      {
+        id: "obd",
+        title: "OBD system verification",
+        description: "Verify onboard diagnostics system functionality",
+        checked: checkedTasks.obd
+      },
+      {
+        id: "gasCap",
+        title: "Gas cap pressure test",
+        description: "Test gas cap seal and pressure retention",
+        checked: checkedTasks.gasCap
+      },
+      {
+        id: "visual",
+        title: "Visual inspection",
+        description: "Perform overall visual check of vehicle exterior",
+        checked: checkedTasks.visual
+      }
+    ],
+    isExpanded: isEmissionsExpanded,
+    onToggleExpand: toggleEmissionsExpanded,
+    onTaskCheck: handleTaskCheck
+  };
 
   const casesSummary = [
     {
@@ -177,72 +215,7 @@ const Dashboard = () => {
                       ))}
                       
                       {/* Expandable Emissions Testing Task */}
-                      <div className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
-                        <div 
-                          className="flex items-center justify-between cursor-pointer"
-                          onClick={toggleEmissionsExpanded}
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <CheckSquare className="w-6 h-6 text-purple-600" />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                              <span className="font-medium text-sm">Emissions testing</span>
-                              <Badge variant="purple" className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">
-                                Pending
-                              </Badge>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Button variant="outline" size="sm">Schedule</Button>
-                            <div className="transition-transform duration-700 ease-out">
-                              {isEmissionsExpanded ? (
-                                <ChevronUp className="h-4 w-4 text-gray-400" />
-                              ) : (
-                                <ChevronDown className="h-4 w-4 text-gray-400" />
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Expandable content within the same card */}
-                        <div 
-                          className={`overflow-hidden transition-all duration-700 ease-out ${
-                            isEmissionsExpanded ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
-                          }`}
-                        >
-                          <div className="pl-[60px] space-y-3">
-                            <TaskCheckItem
-                              id="exhaust"
-                              title="Exhaust emissions check"
-                              description="Check exhaust system for proper emissions levels"
-                              checked={checkedTasks.exhaust}
-                              onCheckedChange={handleTaskCheck}
-                            />
-                            <TaskCheckItem
-                              id="obd"
-                              title="OBD system verification"
-                              description="Verify onboard diagnostics system functionality"
-                              checked={checkedTasks.obd}
-                              onCheckedChange={handleTaskCheck}
-                            />
-                            <TaskCheckItem
-                              id="gasCap"
-                              title="Gas cap pressure test"
-                              description="Test gas cap seal and pressure retention"
-                              checked={checkedTasks.gasCap}
-                              onCheckedChange={handleTaskCheck}
-                            />
-                            <TaskCheckItem
-                              id="visual"
-                              title="Visual inspection"
-                              description="Perform overall visual check of vehicle exterior"
-                              checked={checkedTasks.visual}
-                              onCheckedChange={handleTaskCheck}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      <ExpandableTaskCard task={emissionsTask} />
                     </div>
                   </CardContent>
                 </Card>
