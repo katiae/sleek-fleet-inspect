@@ -19,7 +19,9 @@ import {
   Sparkles,
   AlertCircle,
   TrendingUp,
-  Activity
+  Activity,
+  CirclePlay,
+  CircleDot
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -27,46 +29,42 @@ const Dashboard = () => {
   const [notes, setNotes] = useState("");
   const [userName, setUserName] = useState("John"); // This can be prepopulated from user data
 
-  // Sample data for the dashboard
+  // Sample data for the dashboard - updated to match Case Detail styling
   const upcomingTasks = [
     {
       id: 1,
       title: "Engine diagnostics check",
-      case: "42 Baker Street",
       priority: "high" as const,
-      dueTime: "9:00 AM",
-      status: "pending",
-      icon: <CheckSquare className="w-6 h-6 text-gray-600" />,
-      buttons: <Button variant="outline" size="sm" className="task-card-button">
-        <Clock className="w-4 h-4" />
-        9:00 AM
-      </Button>
+      badgeText: "In progress",
+      badgeVariant: "blue" as const,
+      icon: <CirclePlay className="w-6 h-6 text-blue-600" />,
+      iconBgColor: "bg-blue-100",
+      buttons: <Button variant="outline" size="sm">Continue</Button>
     },
     {
       id: 2,
       title: "Brake system inspection",
-      case: "156 Oak Avenue",
       priority: "medium" as const,
-      dueTime: "11:30 AM",
-      status: "pending",
-      icon: <CheckSquare className="w-6 h-6 text-gray-600" />,
-      buttons: <Button variant="outline" size="sm" className="task-card-button">
-        <Clock className="w-4 h-4" />
-        11:30 AM
-      </Button>
+      badgeText: "Priority",
+      badgeVariant: "amber" as const,
+      icon: <CircleDot className="w-6 h-6 text-green-600" />,
+      iconBgColor: "bg-green-100",
+      buttons: (
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">Start</Button>
+          <Button variant="outline" size="sm">Schedule</Button>
+        </div>
+      )
     },
     {
       id: 3,
       title: "Emissions testing",
-      case: "42 Baker Street",
       priority: "low" as const,
-      dueTime: "2:00 PM",
-      status: "in-progress",
-      icon: <CheckSquare className="w-6 h-6 text-gray-600" />,
-      buttons: <Button variant="outline" size="sm" className="task-card-button">
-        <Clock className="w-4 h-4" />
-        2:00 PM
-      </Button>
+      badgeText: "Pending",
+      badgeVariant: "purple" as const,
+      icon: <CheckSquare className="w-6 h-6 text-purple-600" />,
+      iconBgColor: "bg-purple-100",
+      buttons: <Button variant="outline" size="sm">Schedule</Button>
     }
   ];
 
