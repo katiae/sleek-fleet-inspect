@@ -26,7 +26,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
       </CardHeader>
       <CardContent className="flex-1 flex flex-col">
         <div className="flex-1 flex flex-col justify-between space-y-4">
-          <div className="bg-purple-50 p-3 rounded-lg space-y-3 flex-1 flex flex-col justify-center">
+          <div className="bg-purple-50 p-4 rounded-lg space-y-4 flex-1 flex flex-col justify-center min-h-0">
             <div className="flex items-start gap-2">
               <span className="text-sm">💡</span>
               <p className="text-sm text-purple-800 flex-1">
@@ -43,6 +43,18 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               <span className="text-sm">⚡</span>
               <p className="text-sm text-purple-800 flex-1">
                 You have 3 pending diagnostic reports that need review before end of day.
+              </p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-sm">📋</span>
+              <p className="text-sm text-purple-800 flex-1">
+                The hydraulic system inspection for Case #HC-789 can be completed during the morning slot.
+              </p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-sm">⏰</span>
+              <p className="text-sm text-purple-800 flex-1">
+                Remember to update the maintenance log for the fleet vehicles inspected yesterday.
               </p>
             </div>
           </div>
