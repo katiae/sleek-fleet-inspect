@@ -131,11 +131,11 @@ const Dashboard = () => {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
               {/* Left Column */}
-              <div className="space-y-6">
+              <div className="flex flex-col space-y-6">
                 {/* Today's Tasks */}
-                <Card>
+                <Card className="flex-1">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <CardTitle className="flex items-center gap-2">
@@ -145,7 +145,7 @@ const Dashboard = () => {
                       <Button variant="outline" size="sm">View All</Button>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-1">
                     <div className="space-y-3">
                       {upcomingTasks.map((task) => (
                         <div key={task.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
@@ -172,7 +172,7 @@ const Dashboard = () => {
                 </Card>
 
                 {/* Cases Summary */}
-                <Card>
+                <Card className="flex-1">
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <CardTitle className="flex items-center gap-2">
@@ -182,7 +182,7 @@ const Dashboard = () => {
                       <Button variant="outline" size="sm">View All Cases</Button>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-1">
                     <div className="space-y-3">
                       {casesSummary.map((caseItem) => (
                         <div key={caseItem.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
@@ -206,23 +206,23 @@ const Dashboard = () => {
               </div>
 
               {/* Right Column */}
-              <div className="space-y-6">
+              <div className="flex flex-col space-y-6">
                 {/* AI Assistant */}
-                <Card>
+                <Card className="flex-1">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-purple-600" />
                       AI Assistant
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
+                  <CardContent className="flex-1">
+                    <div className="space-y-4 h-full flex flex-col">
                       <div className="bg-purple-50 p-3 rounded-lg">
                         <p className="text-sm text-purple-800">
                           💡 Based on your schedule, I recommend prioritizing the brake inspection at 156 Oak Avenue due to safety concerns.
                         </p>
                       </div>
-                      <form onSubmit={handleAiSubmit} className="space-y-2">
+                      <form onSubmit={handleAiSubmit} className="space-y-2 mt-auto">
                         <Input
                           placeholder="Ask me anything about your cases..."
                           value={aiQuery}
@@ -238,35 +238,37 @@ const Dashboard = () => {
                 </Card>
 
                 {/* Quick Notes */}
-                <Card>
+                <Card className="flex-1">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <MessageSquare className="w-5 h-5" />
                       Quick Notes
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <Textarea
-                      placeholder="Jot down quick notes, reminders, or observations..."
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                      className="min-h-[120px] resize-none"
-                    />
-                    <Button size="sm" className="mt-2 w-full" variant="outline">
-                      Save Notes
-                    </Button>
+                  <CardContent className="flex-1">
+                    <div className="h-full flex flex-col">
+                      <Textarea
+                        placeholder="Jot down quick notes, reminders, or observations..."
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
+                        className="flex-1 resize-none"
+                      />
+                      <Button size="sm" className="mt-2 w-full" variant="outline">
+                        Save Notes
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
 
                 {/* Recent Activity */}
-                <Card>
+                <Card className="flex-1">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Activity className="w-5 h-5" />
                       Recent Activity
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-1">
                     <div className="space-y-3">
                       {recentActivity.map((activity, index) => (
                         <div key={index} className="flex items-start gap-3 text-sm">
