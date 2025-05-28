@@ -50,8 +50,8 @@ const Dashboard = () => {
             <DashboardHeader userName={userName} />
             <StatsOverview />
 
-            {/* First Row - Equal Height Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Grid Layout - Using same approach as StatsOverview */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <TodaysTasks
                 isEmissionsExpanded={isEmissionsExpanded}
                 toggleEmissionsExpanded={toggleEmissionsExpanded}
@@ -63,15 +63,11 @@ const Dashboard = () => {
                 setAiQuery={setAiQuery}
                 handleAiSubmit={handleAiSubmit}
               />
-            </div>
-
-            {/* Second Row - Equal Height Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <ActiveCases />
               <QuickNotes notes={notes} setNotes={setNotes} />
             </div>
 
-            {/* Third Row - Single Card */}
+            {/* Full Width Card */}
             <div className="grid grid-cols-1 gap-6">
               <RecentActivity />
             </div>
