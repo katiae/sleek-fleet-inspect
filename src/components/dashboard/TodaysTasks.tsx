@@ -1,8 +1,7 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, CirclePlay, CircleDot, CheckSquare } from "lucide-react";
+import { Calendar, CirclePlay, CircleDot, CheckSquare, Wrench } from "lucide-react";
 import { TaskCard } from "@/components/shared/TaskCard";
 import { ExpandableTaskCard, ExpandableTaskCardData } from "@/components/shared/ExpandableTaskCard";
 
@@ -44,6 +43,16 @@ export const TodaysTasks: React.FC<TodaysTasksProps> = ({
           <Button variant="outline" size="sm">Schedule</Button>
         </div>
       )
+    },
+    {
+      id: 3,
+      title: "Oil change service",
+      priority: "low" as const,
+      badgeText: "Scheduled",
+      badgeVariant: "green" as const,
+      icon: <Wrench className="w-6 h-6 text-orange-600" />,
+      iconBgColor: "bg-orange-100",
+      buttons: <Button variant="outline" size="sm">View details</Button>
     }
   ];
 

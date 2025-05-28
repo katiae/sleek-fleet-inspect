@@ -1,4 +1,5 @@
 
+
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -81,3 +82,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
