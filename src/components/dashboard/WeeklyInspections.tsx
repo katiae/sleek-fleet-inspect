@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -138,11 +139,11 @@ export const WeeklyInspections = () => {
         <div className="border rounded-lg overflow-hidden">
           {/* Header with days */}
           <div className="grid grid-cols-8 border-b bg-muted/30">
-            <div className="p-2 text-xs font-medium text-muted-foreground border-r">
+            <div className="p-3 text-xs font-medium text-muted-foreground border-r w-20 flex-shrink-0">
               {/* Empty cell for time column */}
             </div>
             {weekDays.map((day) => (
-              <div key={day.toISOString()} className="p-2 text-center border-r last:border-r-0">
+              <div key={day.toISOString()} className="p-3 text-center border-r last:border-r-0 flex-1">
                 <div className="text-xs font-medium text-muted-foreground">
                   {format(day, 'EEE')} {format(day, 'd')}
                 </div>
@@ -155,7 +156,7 @@ export const WeeklyInspections = () => {
             {timeSlots.map((time) => (
               <div key={time} className="grid grid-cols-8 border-b last:border-b-0 min-h-[60px]">
                 {/* Time column */}
-                <div className="p-2 text-xs text-muted-foreground border-r bg-muted/10 flex items-start">
+                <div className="p-3 text-xs text-muted-foreground border-r bg-muted/10 flex items-start w-20 flex-shrink-0">
                   {time}
                 </div>
                 
@@ -163,9 +164,9 @@ export const WeeklyInspections = () => {
                 {weekDays.map((day) => {
                   const inspection = getInspectionForTimeSlot(day, time);
                   return (
-                    <div key={day.toISOString()} className="p-1 border-r last:border-r-0 relative">
+                    <div key={day.toISOString()} className="p-2 border-r last:border-r-0 relative flex-1">
                       {inspection && (
-                        <div className="bg-orange-50 border border-orange-100 text-orange-700 text-xs p-1 rounded text-center h-full flex flex-col justify-center">
+                        <div className="bg-orange-50 border border-orange-100 text-orange-700 text-xs p-2 rounded text-center h-full flex flex-col justify-center">
                           <div className="font-medium truncate">
                             {inspection.title.split(' - ')[0]}
                           </div>
