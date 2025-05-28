@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Button } from "@/components/ui/button";
 import { ActivityCard } from "@/components/shared/ActivityCard";
 
 const recentActivity = [
@@ -22,9 +23,19 @@ const recentActivity = [
 
 export const RecentActivity: React.FC = () => {
   return (
-    <ActivityCard
-      title="Recent activity"
-      activities={recentActivity}
-    />
+    <div className="h-full flex flex-col">
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-lg font-medium">Recent activity</h2>
+        <Button variant="link" size="sm" className="text-sm text-orange-500">
+          View all activity
+        </Button>
+      </div>
+      
+      <ActivityCard
+        title=""
+        activities={recentActivity}
+        className="flex-1"
+      />
+    </div>
   );
 };
