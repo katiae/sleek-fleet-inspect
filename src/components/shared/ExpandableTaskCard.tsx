@@ -1,9 +1,9 @@
-
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { TaskCheckItem } from "@/components/case-detail/tasks/TaskCheckItem";
+import { Separator } from "@/components/ui/separator";
 
 export interface SubTask {
   id: string;
@@ -67,9 +67,10 @@ export const ExpandableTaskCard: React.FC<ExpandableTaskCardProps> = ({
       {/* Expandable content within the same card */}
       <div 
         className={`overflow-hidden transition-all duration-700 ease-out ${
-          task.isExpanded ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
+          task.isExpanded ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'
         }`}
       >
+        <Separator className="mb-4" />
         <div className="pl-[60px] space-y-3">
           {task.subTasks.map((subTask) => (
             <TaskCheckItem
