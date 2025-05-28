@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { TaskCard } from "@/components/shared/TaskCard";
 import { ExpandableTaskCard } from "@/components/shared/ExpandableTaskCard";
-import { CheckSquare, FileText, Users, Calendar, Clock, MessageSquare, Send, Sparkles, AlertCircle, TrendingUp, Activity, CirclePlay, CircleDot, Settings } from "lucide-react";
+import { CheckSquare, FileText, Users, Calendar, Clock, MessageSquare, Send, Sparkles, AlertCircle, TrendingUp, Activity, CirclePlay, CircleDot, Grid2X2 } from "lucide-react";
 
 const Dashboard = () => {
   const [aiQuery, setAiQuery] = useState("");
@@ -166,7 +166,7 @@ const Dashboard = () => {
                 <p className="text-gray-500 mt-1">Here's what's on your schedule for today</p>
               </div>
               <Button variant="outline" className="gap-2">
-                <Settings className="w-4 h-4" />
+                <Grid2X2 className="w-4 h-4" />
                 Customise view
               </Button>
             </div>
