@@ -51,7 +51,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               placeholder="Ask me anything..." 
               value={aiQuery} 
               onChange={e => setAiQuery(e.target.value)} 
-              className="flex-1 resize-none"
+              className="resize-none xl:flex-1 xl:min-h-[120px] min-h-[40px]"
             />
             <button 
               type="submit" 
