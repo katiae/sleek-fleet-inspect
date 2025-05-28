@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -101,6 +102,32 @@ const Dashboard = () => {
     setAiQuery("");
   };
 
+  const getPriorityBadgeVariant = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return 'destructive' as const;
+      case 'medium':
+        return 'default' as const;
+      case 'low':
+        return 'secondary' as const;
+      default:
+        return 'secondary' as const;
+    }
+  };
+
+  const getPriorityIconBg = (priority: string) => {
+    switch (priority) {
+      case 'high':
+        return 'bg-red-100';
+      case 'medium':
+        return 'bg-amber-100';
+      case 'low':
+        return 'bg-blue-100';
+      default:
+        return 'bg-blue-100';
+    }
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -148,22 +175,25 @@ const Dashboard = () => {
                   <CardContent className="flex-1">
                     <div className="space-y-3">
                       {upcomingTasks.map((task) => (
-                        <div key={task.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <div className="flex items-center gap-3">
-                            <CheckSquare className="w-5 h-5 text-gray-400" />
-                            <div>
-                              <p className="font-medium">{task.title}</p>
-                              <p className="text-sm text-gray-600">{task.case}</p>
+                        <div key={task.id} className="border rounded-md p-4 shadow-sm bg-white hover:shadow-md transition-shadow duration-200">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                              <div className={`w-12 h-12 ${getPriorityIconBg(task.priority)} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                                <CheckSquare className="w-6 h-6 text-gray-600" />
+                              </div>
+                              <div className="flex flex-col gap-1">
+                                <span className="font-medium text-sm">{task.title}</span>
+                                <Badge variant={getPriorityBadgeVariant(task.priority)} className="w-fit mt-0.5 text-xs px-2 py-0.5 rounded-sm">
+                                  {task.priority} priority
+                                </Badge>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Badge variant={task.priority === 'high' ? 'destructive' : task.priority === 'medium' ? 'default' : 'secondary'}>
-                              {task.priority}
-                            </Badge>
-                            <span className="text-sm text-gray-500 flex items-center gap-1">
-                              <Clock className="w-4 h-4" />
-                              {task.dueTime}
-                            </span>
+                            <div className="flex items-center gap-2">
+                              <Button variant="outline" size="sm" className="task-card-button">
+                                <Clock className="w-4 h-4" />
+                                {task.dueTime}
+                              </Button>
+                            </div>
                           </div>
                         </div>
                       ))}
