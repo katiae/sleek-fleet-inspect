@@ -187,10 +187,10 @@ const Dashboard = () => {
                 <Card className="flex-1">
                   <CardHeader>
                     <div className="flex items-center justify-between">
-                      <h2 className="text-lg font-medium flex items-center gap-2">
+                      <h3 className="flex items-center gap-2">
                         <Calendar className="w-5 h-5" />
-                        Today's Tasks
-                      </h2>
+                        Today's tasks
+                      </h3>
                       <Button variant="outline" size="sm">View all tasks</Button>
                     </div>
                   </CardHeader>
@@ -208,10 +208,10 @@ const Dashboard = () => {
                 <Card className="flex-1">
                   <CardHeader>
                     <div className="flex items-center justify-between">
-                      <h2 className="text-lg font-medium flex items-center gap-2">
+                      <h3 className="flex items-center gap-2">
                         <FileText className="w-5 h-5" />
-                        Active Cases
-                      </h2>
+                        Active cases
+                      </h3>
                       <Button variant="outline" size="sm">View All Cases</Button>
                     </div>
                   </CardHeader>
@@ -241,10 +241,10 @@ const Dashboard = () => {
                 {/* AI Assistant */}
                 <Card className="flex-1">
                   <CardHeader>
-                    <h2 className="text-lg font-medium flex items-center gap-2">
+                    <h3 className="flex items-center gap-2">
                       <Sparkles className="w-5 h-5 text-purple-600" />
-                      AI Assistant
-                    </h2>
+                      AI assistant
+                    </h3>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="space-y-4 h-full flex flex-col">
@@ -267,10 +267,10 @@ const Dashboard = () => {
                 {/* Quick Notes */}
                 <Card className="flex-1">
                   <CardHeader>
-                    <h2 className="text-lg font-medium flex items-center gap-2">
+                    <h3 className="flex items-center gap-2">
                       <MessageSquare className="w-5 h-5" />
-                      Quick Notes
-                    </h2>
+                      Quick notes
+                    </h3>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="h-full flex flex-col">
@@ -285,10 +285,10 @@ const Dashboard = () => {
                 {/* Recent Activity */}
                 <Card className="flex-1">
                   <CardHeader>
-                    <h2 className="text-lg font-medium flex items-center gap-2">
+                    <h3 className="flex items-center gap-2">
                       <Activity className="w-5 h-5" />
-                      Recent Activity
-                    </h2>
+                      Recent activity
+                    </h3>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="space-y-3">
