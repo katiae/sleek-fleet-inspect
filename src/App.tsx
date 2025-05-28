@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Capabilities from "./pages/Capabilities";
 import CustomizeMenu from "./pages/CustomizeMenu";
 import CaseDetail from "./pages/CaseDetail";
+import Dashboard from "./pages/Dashboard";
 import { CapabilitiesProvider } from "./context/CapabilitiesContext";
 import { MenuProvider } from "./context/MenuContext";
 
@@ -24,6 +25,7 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/capabilities" element={<Capabilities />} />
               <Route path="/customize-menu" element={<CustomizeMenu />} />
               <Route path="/case/:id" element={<CaseDetail />} />

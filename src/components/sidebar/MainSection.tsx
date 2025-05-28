@@ -12,6 +12,7 @@ export const MainSection = () => {
   
   // Check if the current path is the home page or a case detail page
   const isCasesActive = currentPath === '/' || currentPath.startsWith('/case/');
+  const isDashboardActive = currentPath === '/dashboard';
   
   // Filter active capabilities by section
   const mainCapabilities = capabilities.filter(cap => cap.active && cap.section === "Main");
@@ -19,9 +20,16 @@ export const MainSection = () => {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <SidebarMenuButton tooltip="Dashboard" className="py-4">
-          <LayoutDashboard />
-          <span>Dashboard</span>
+        <SidebarMenuButton 
+          isActive={isDashboardActive} 
+          tooltip="Dashboard" 
+          className={`py-4 ${isDashboardActive ? "text-sidebar-foreground font-medium !bg-transparent" : ""}`}
+          asChild
+        >
+          <Link to="/dashboard">
+            <LayoutDashboard className={isDashboardActive ? "text-orange-500" : ""} />
+            <span>Dashboard</span>
+          </Link>
         </SidebarMenuButton>
       </SidebarMenuItem>
       
