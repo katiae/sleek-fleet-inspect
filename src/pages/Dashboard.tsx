@@ -158,7 +158,7 @@ const Dashboard = () => {
         <AppSidebar />
         <SidebarInset className="flex-1">
           <Navbar />
-          <div className="p-6 space-y-6">
+          <div className="px-6 py-6 space-y-6">
             {/* Welcome Header */}
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Welcome back, {userName}! 👋</h1>
