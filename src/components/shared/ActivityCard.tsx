@@ -48,7 +48,9 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
           )}
         </div>
       </CardHeader>
-      <Separator />
+      <div className="px-6">
+        <Separator />
+      </div>
       <CardContent className="flex-1">
         <div className="space-y-6 relative pb-4">
           <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-gray-200"></div>
