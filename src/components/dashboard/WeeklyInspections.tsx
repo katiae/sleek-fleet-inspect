@@ -124,7 +124,9 @@ export const WeeklyInspections = () => {
                 borderRadius: '50%'
               }
             }}
-            className="rounded-md border"
+            className="rounded-md border w-full"
+            weekStartsOn={1}
+            showOutsideDays={false}
           />
           
           <div className="space-y-2">
