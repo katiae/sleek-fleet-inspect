@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -186,7 +185,8 @@
 
   .ai-ask-button:hover {
     @apply bg-gray-200;
-    border: 1px solid #d1d5db;
+    background: #f3f4f6 padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
+    border: 1px solid transparent;
     color: #374151;
   }
 }
