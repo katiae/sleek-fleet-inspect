@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -71,7 +72,7 @@ export const ExpandableTaskCard: React.FC<ExpandableTaskCardProps> = ({
         }`}
       >
         <Separator className="mb-4" />
-        <div className="pl-[60px] space-y-3">
+        <div className="space-y-3">
           {task.subTasks.map((subTask) => (
             <TaskCheckItem
               key={subTask.id}
