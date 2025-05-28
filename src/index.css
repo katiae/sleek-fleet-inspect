@@ -179,27 +179,12 @@
 
   .ai-ask-button {
     @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
-    background: white;
+    background: linear-gradient(white, white) padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
     border: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
-  }
-
-  .ai-ask-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    margin: -2px;
-    border-radius: inherit;
-    background: linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc);
   }
 
   .ai-ask-button:hover {
-    background: #f9fafb;
+    background: linear-gradient(#f9fafb, #f9fafb) padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
   }
 }
 
