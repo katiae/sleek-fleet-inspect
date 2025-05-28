@@ -122,10 +122,10 @@ export const WeeklyInspections = () => {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-        <CardTitle className="flex items-center gap-2">
+        <h3 className="flex items-center gap-2">
           <Calendar className="h-5 w-5" />
           Your inspections this week
-        </CardTitle>
+        </h3>
         <Button
           variant="outline"
           size="sm"
