@@ -41,7 +41,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               type="submit" 
               className="ai-ask-button w-full"
             >
-              <MessageCircle className="w-4 h-4 mr-2" />
+              <MessageCircle className="w-4 h-4 mr-1" />
               Ask AI
             </button>
           </form>
