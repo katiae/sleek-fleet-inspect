@@ -51,39 +51,29 @@ const Dashboard = () => {
             <StatsOverview />
 
             {/* First Row - Equal Height Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-96">
-              <div className="h-full">
-                <TodaysTasks
-                  isEmissionsExpanded={isEmissionsExpanded}
-                  toggleEmissionsExpanded={toggleEmissionsExpanded}
-                  checkedTasks={checkedTasks}
-                  handleTaskCheck={handleTaskCheck}
-                />
-              </div>
-              <div className="h-full">
-                <AIAssistant
-                  aiQuery={aiQuery}
-                  setAiQuery={setAiQuery}
-                  handleAiSubmit={handleAiSubmit}
-                />
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <TodaysTasks
+                isEmissionsExpanded={isEmissionsExpanded}
+                toggleEmissionsExpanded={toggleEmissionsExpanded}
+                checkedTasks={checkedTasks}
+                handleTaskCheck={handleTaskCheck}
+              />
+              <AIAssistant
+                aiQuery={aiQuery}
+                setAiQuery={setAiQuery}
+                handleAiSubmit={handleAiSubmit}
+              />
             </div>
 
             {/* Second Row - Equal Height Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-80">
-              <div className="h-full">
-                <ActiveCases />
-              </div>
-              <div className="h-full">
-                <QuickNotes notes={notes} setNotes={setNotes} />
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <ActiveCases />
+              <QuickNotes notes={notes} setNotes={setNotes} />
             </div>
 
             {/* Third Row - Single Card */}
-            <div className="grid grid-cols-1 gap-6 h-80">
-              <div className="h-full">
-                <RecentActivity />
-              </div>
+            <div className="grid grid-cols-1 gap-6">
+              <RecentActivity />
             </div>
           </div>
         </SidebarInset>
