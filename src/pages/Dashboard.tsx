@@ -42,9 +42,10 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full relative">
-        {/* Blob gradient background */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-orange-200/60 via-pink-200/50 to-purple-200/40 rounded-full blur-2xl pointer-events-none z-0"></div>
+      <div className="min-h-screen flex w-full relative bg-gray-50">
+        {/* Enhanced blob gradient background */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-orange-300/80 via-pink-300/70 to-purple-300/60 rounded-full blur-3xl pointer-events-none z-0"></div>
+        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-tl from-coral-200/60 via-pink-200/50 to-purple-200/40 rounded-full blur-2xl pointer-events-none z-0"></div>
         
         <AppSidebar />
         <SidebarInset className="flex-1 relative z-10">
