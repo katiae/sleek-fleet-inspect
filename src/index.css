@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -179,12 +180,12 @@
 
   .ai-ask-button {
     @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
-    background: white padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
+    background: linear-gradient(white, white) padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
     border: 1px solid transparent;
   }
 
   .ai-ask-button:hover {
-    background: #e5e7eb padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
+    background: linear-gradient(#e5e7eb, #e5e7eb) padding-box, linear-gradient(90deg, #fca5a5, #fdba74, #a78bfa, #c084fc) border-box;
     border: 1px solid transparent;
     color: #374151;
   }
