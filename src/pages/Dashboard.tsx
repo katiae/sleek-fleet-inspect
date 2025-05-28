@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { TaskCard } from "@/components/shared/TaskCard";
+import { TaskItem } from "@/components/case-detail/tasks/TaskItem";
+import { Checkbox } from "@/components/ui/checkbox";
 import { 
   CheckSquare, 
   FileText, 
@@ -28,6 +30,24 @@ const Dashboard = () => {
   const [aiQuery, setAiQuery] = useState("");
   const [notes, setNotes] = useState("");
   const [userName, setUserName] = useState("John"); // This can be prepopulated from user data
+  const [isEmissionsExpanded, setIsEmissionsExpanded] = useState(false);
+  const [checkedTasks, setCheckedTasks] = useState({
+    exhaust: false,
+    obd: false,
+    gasCap: false,
+    visual: false
+  });
+
+  const toggleEmissionsExpanded = () => {
+    setIsEmissionsExpanded(!isEmissionsExpanded);
+  };
+
+  const handleTaskCheck = (taskId: string, checked: boolean) => {
+    setCheckedTasks(prev => ({
+      ...prev,
+      [taskId]: checked
+    }));
+  };
 
   // Sample data for the dashboard - updated to match Case Detail styling
   const upcomingTasks = [
@@ -55,16 +75,6 @@ const Dashboard = () => {
           <Button variant="outline" size="sm">Schedule</Button>
         </div>
       )
-    },
-    {
-      id: 3,
-      title: "Emissions testing",
-      priority: "low" as const,
-      badgeText: "Pending",
-      badgeVariant: "purple" as const,
-      icon: <CheckSquare className="w-6 h-6 text-purple-600" />,
-      iconBgColor: "bg-purple-100",
-      buttons: <Button variant="outline" size="sm">Schedule</Button>
     }
   ];
 
@@ -164,6 +174,54 @@ const Dashboard = () => {
                       {upcomingTasks.map((task) => (
                         <TaskCard key={task.id} task={task} />
                       ))}
+                      
+                      {/* Expandable Emissions Testing Task */}
+                      <TaskItem
+                        icon={<CheckSquare className="w-6 h-6 text-purple-600" />}
+                        title="Emissions testing"
+                        badgeText="Pending"
+                        badgeVariant="purple"
+                        iconBgColor="bg-purple-100"
+                        buttons={<Button variant="outline" size="sm">Schedule</Button>}
+                        isExpandable={true}
+                        isExpanded={isEmissionsExpanded}
+                        onToggleExpand={toggleEmissionsExpanded}
+                      >
+                        <div className="pl-[60px] space-y-2">
+                          <div className="flex items-center space-x-2">
+                            <Checkbox 
+                              id="exhaust"
+                              checked={checkedTasks.exhaust}
+                              onCheckedChange={(checked) => handleTaskCheck('exhaust', checked as boolean)}
+                            />
+                            <label htmlFor="exhaust" className="text-sm">Exhaust emissions check</label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Checkbox 
+                              id="obd"
+                              checked={checkedTasks.obd}
+                              onCheckedChange={(checked) => handleTaskCheck('obd', checked as boolean)}
+                            />
+                            <label htmlFor="obd" className="text-sm">OBD system verification</label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Checkbox 
+                              id="gasCap"
+                              checked={checkedTasks.gasCap}
+                              onCheckedChange={(checked) => handleTaskCheck('gasCap', checked as boolean)}
+                            />
+                            <label htmlFor="gasCap" className="text-sm">Gas cap pressure test</label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Checkbox 
+                              id="visual"
+                              checked={checkedTasks.visual}
+                              onCheckedChange={(checked) => handleTaskCheck('visual', checked as boolean)}
+                            />
+                            <label htmlFor="visual" className="text-sm">Visual inspection</label>
+                          </div>
+                        </div>
+                      </TaskItem>
                     </div>
                   </CardContent>
                 </Card>
