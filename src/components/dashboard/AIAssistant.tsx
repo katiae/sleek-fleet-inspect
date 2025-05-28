@@ -26,16 +26,25 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
       </CardHeader>
       <CardContent className="flex-1">
         <div className="space-y-4 h-full flex flex-col">
-          <div className="bg-purple-50 p-3 rounded-lg space-y-2">
-            <p className="text-sm text-purple-800">
-              💡 Based on your schedule, I recommend prioritizing the brake inspection at 156 Oak Avenue due to safety concerns.
-            </p>
-            <p className="text-sm text-purple-800">
-              🔧 Consider scheduling the emissions test for vehicle #A1234 this afternoon while the weather is clear.
-            </p>
-            <p className="text-sm text-purple-800">
-              ⚡ You have 3 pending diagnostic reports that need review before end of day.
-            </p>
+          <div className="bg-purple-50 p-3 rounded-lg space-y-3">
+            <div className="flex items-start gap-2">
+              <span className="text-sm">💡</span>
+              <p className="text-sm text-purple-800 flex-1">
+                Based on your schedule, I recommend prioritizing the brake inspection at 156 Oak Avenue due to safety concerns.
+              </p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-sm">🔧</span>
+              <p className="text-sm text-purple-800 flex-1">
+                Consider scheduling the emissions test for vehicle #A1234 this afternoon while the weather is clear.
+              </p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-sm">⚡</span>
+              <p className="text-sm text-purple-800 flex-1">
+                You have 3 pending diagnostic reports that need review before end of day.
+              </p>
+            </div>
           </div>
           <form onSubmit={handleAiSubmit} className="space-y-2 mt-auto">
             <Input 
