@@ -161,8 +161,8 @@ const Dashboard = () => {
           <div className="px-6 py-6 space-y-6">
             {/* Welcome Header */}
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Welcome back, {userName}! 👋</h1>
-              <p className="text-gray-600 mt-1">Here's what's on your schedule for today</p>
+              <h1 className="text-2xl font-semibold text-gray-800">Welcome back, {userName}! 👋</h1>
+              <p className="text-gray-500 mt-1">Here's what's on your schedule for today</p>
             </div>
 
             {/* Stats Overview */}
