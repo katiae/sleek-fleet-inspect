@@ -17,16 +17,16 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
   handleAiSubmit,
 }) => {
   return (
-    <Card className="flex-1">
+    <Card className="flex-1 flex flex-col">
       <CardHeader>
         <h3 className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-purple-600" />
           AI assistant
         </h3>
       </CardHeader>
-      <CardContent className="flex-1">
-        <div className="space-y-4 h-full flex flex-col">
-          <div className="bg-purple-50 p-3 rounded-lg space-y-3">
+      <CardContent className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col justify-between space-y-4">
+          <div className="bg-purple-50 p-3 rounded-lg space-y-3 flex-1 flex flex-col justify-center">
             <div className="flex items-start gap-2">
               <span className="text-sm">💡</span>
               <p className="text-sm text-purple-800 flex-1">
@@ -46,7 +46,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               </p>
             </div>
           </div>
-          <form onSubmit={handleAiSubmit} className="space-y-2 mt-auto">
+          <form onSubmit={handleAiSubmit} className="space-y-2">
             <Input 
               placeholder="Ask me anything..." 
               value={aiQuery} 
