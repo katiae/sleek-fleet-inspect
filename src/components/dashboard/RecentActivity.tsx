@@ -23,19 +23,11 @@ const recentActivity = [
 
 export const RecentActivity: React.FC = () => {
   return (
-    <div className="h-full flex flex-col">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-medium">Recent activity</h2>
-        <Button variant="link" size="sm" className="text-sm text-orange-500">
-          View all activity
-        </Button>
-      </div>
-      
-      <ActivityCard
-        title=""
-        activities={recentActivity}
-        className="flex-1"
-      />
-    </div>
+    <ActivityCard
+      title="Recent activity"
+      activities={recentActivity}
+      showViewAllButton={true}
+      viewAllButtonText="View all activity"
+    />
   );
 };
