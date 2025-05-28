@@ -44,9 +44,9 @@ export const ActivitySection: React.FC<ActivitySectionProps> = ({ caseItem, onNa
         <h2 className="text-lg font-medium">
           Recent Activity
         </h2>
-        <Button variant="link" size="sm" className="text-sm text-orange-500" onClick={() => onNavigateToTab("activity")}>
+        <button className="view-all-button" onClick={() => onNavigateToTab("activity")}>
           View all activity
-        </Button>
+        </button>
       </div>
       
       <ActivityCard

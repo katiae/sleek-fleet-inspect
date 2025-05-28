@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -37,14 +36,12 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
             {title}
           </h3>
           {showViewAllButton && (
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="text-xs"
+            <button 
+              className="view-all-button"
               onClick={onViewAllClick}
             >
               {viewAllButtonText}
-            </Button>
+            </button>
           )}
         </div>
       </CardHeader>
