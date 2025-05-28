@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -25,6 +24,7 @@ import {
 const Dashboard = () => {
   const [aiQuery, setAiQuery] = useState("");
   const [notes, setNotes] = useState("");
+  const [userName, setUserName] = useState("John"); // This can be prepopulated from user data
 
   // Sample data for the dashboard
   const upcomingTasks = [
@@ -110,7 +110,7 @@ const Dashboard = () => {
           <div className="p-6 space-y-6">
             {/* Welcome Header */}
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Welcome back, UserName! 👋</h1>
+              <h1 className="text-3xl font-bold text-gray-900">Welcome back, {userName}! 👋</h1>
               <p className="text-gray-600 mt-1">Here's what's on your schedule for today</p>
             </div>
 
