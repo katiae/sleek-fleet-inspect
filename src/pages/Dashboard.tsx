@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -41,13 +42,9 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full relative">
-        {/* Subtle gradient background that fades to white */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-100/40 via-pink-50/30 to-white pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-purple-100/30 via-pink-50/20 to-transparent pointer-events-none"></div>
-        
+      <div className="min-h-screen flex w-full">
         <AppSidebar />
-        <SidebarInset className="flex-1 relative z-10">
+        <SidebarInset className="flex-1">
           <Navbar />
           <div className="px-11 py-6 space-y-6">
             <DashboardHeader userName={userName} />
