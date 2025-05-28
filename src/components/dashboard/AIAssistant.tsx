@@ -37,10 +37,13 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               value={aiQuery} 
               onChange={e => setAiQuery(e.target.value)} 
             />
-            <Button type="submit" size="sm" className="w-full">
+            <button 
+              type="submit" 
+              className="ai-ask-button w-full"
+            >
               <Send className="w-4 h-4 mr-2" />
               Ask AI
-            </Button>
+            </button>
           </form>
         </div>
       </CardContent>
