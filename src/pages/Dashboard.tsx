@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
@@ -49,26 +50,38 @@ const Dashboard = () => {
             <DashboardHeader userName={userName} />
             <StatsOverview />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Left Column */}
-              <div className="space-y-6">
+            {/* First Row - Equal Height Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-96">
+              <div className="h-full">
                 <TodaysTasks
                   isEmissionsExpanded={isEmissionsExpanded}
                   toggleEmissionsExpanded={toggleEmissionsExpanded}
                   checkedTasks={checkedTasks}
                   handleTaskCheck={handleTaskCheck}
                 />
-                <ActiveCases />
               </div>
-
-              {/* Right Column */}
-              <div className="space-y-6">
+              <div className="h-full">
                 <AIAssistant
                   aiQuery={aiQuery}
                   setAiQuery={setAiQuery}
                   handleAiSubmit={handleAiSubmit}
                 />
+              </div>
+            </div>
+
+            {/* Second Row - Equal Height Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-80">
+              <div className="h-full">
+                <ActiveCases />
+              </div>
+              <div className="h-full">
                 <QuickNotes notes={notes} setNotes={setNotes} />
+              </div>
+            </div>
+
+            {/* Third Row - Single Card */}
+            <div className="grid grid-cols-1 gap-6 h-80">
+              <div className="h-full">
                 <RecentActivity />
               </div>
             </div>
