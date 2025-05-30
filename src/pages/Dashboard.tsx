@@ -51,8 +51,8 @@ const Dashboard = () => {
             <DashboardHeader userName={userName} />
             <StatsOverview />
 
-            {/* Grid Layout - Using same responsive approach as StatsOverview */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Grid Layout - Full width on screens < 14inch (1440px), 2 columns on larger screens */}
+            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
               <TodaysTasks
                 isEmissionsExpanded={isEmissionsExpanded}
                 toggleEmissionsExpanded={toggleEmissionsExpanded}
