@@ -73,12 +73,12 @@ export const ActiveCases: React.FC = () => {
               <div>
                 <p className="font-medium">{caseItem.address}</p>
                 <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • {caseItem.jobType} • {caseItem.customer} ({caseItem.customerType})</p>
+                <p className="text-xs text-gray-500">{caseItem.lastUpdate}</p>
               </div>
-              <div className="flex flex-col items-end gap-1">
+              <div className="flex items-center">
                 <div className="scale-75">
                   <CaseStatusBadge status={caseItem.status} />
                 </div>
-                <p className="text-xs text-gray-500">{caseItem.lastUpdate}</p>
               </div>
             </div>
           ))}
