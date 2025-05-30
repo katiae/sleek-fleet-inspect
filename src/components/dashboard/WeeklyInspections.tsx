@@ -178,11 +178,11 @@ export const WeeklyInspections = () => {
                   return (
                     <div key={day.toISOString()} className="p-2 border-r last:border-r-0 relative">
                       {inspection && (
-                        <div className="bg-orange-50 border border-orange-100 text-orange-700 text-xs p-2 rounded text-center h-full flex flex-col justify-center">
-                          <div className="font-medium truncate">
+                        <div className="bg-orange-50 border border-orange-100 text-xs p-2 rounded h-full flex flex-col justify-center text-left">
+                          <div className="font-medium truncate text-gray-900">
                             {inspection.title.split(' - ')[0]}
                           </div>
-                          <div className="text-orange-500 truncate">
+                          <div className="truncate text-gray-700">
                             {inspection.title.split(' - ')[1]}
                           </div>
                         </div>
