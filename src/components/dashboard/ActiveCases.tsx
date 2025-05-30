@@ -2,7 +2,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { FileText } from "lucide-react";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { CaseStatus } from "@/lib/data";
@@ -63,11 +62,10 @@ export const ActiveCases: React.FC = () => {
                 <p className="font-medium">{caseItem.address}</p>
                 <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • Updated {caseItem.lastUpdate}</p>
               </div>
-              <div className="flex items-center gap-2">
-                <CaseStatusBadge status={caseItem.status} />
-                <Badge variant={caseItem.priority === 'high' ? 'destructive' : caseItem.priority === 'medium' ? 'default' : 'secondary'} className="text-xs">
-                  {caseItem.priority}
-                </Badge>
+              <div className="flex items-center">
+                <div className="scale-90">
+                  <CaseStatusBadge status={caseItem.status} />
+                </div>
               </div>
             </div>
           ))}
