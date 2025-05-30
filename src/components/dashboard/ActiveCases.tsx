@@ -32,7 +32,7 @@ const casesSummary: CaseItem[] = [
   },
   {
     id: 2,
-    address: "156 Manchester Residential Park Lane, Manchester",
+    address: "Rosewood House, 156 Manchester Residential Park Lane, Manchester",
     status: "PENDING",
     tasksCount: 2,
     priority: "medium",
