@@ -139,7 +139,12 @@ export const WeeklyInspections = () => {
       <CardContent>
         <div className="border rounded-lg overflow-hidden">
           {/* Header with days */}
-          <div className="grid border-b bg-muted/30" style={{ gridTemplateColumns: '80px repeat(7, 1fr)' }}>
+          <div 
+            className="grid border-b bg-muted/30" 
+            style={{ 
+              gridTemplateColumns: 'minmax(60px, 80px) repeat(7, minmax(0, 1fr))' 
+            }}
+          >
             <div className="p-3 text-xs font-medium text-muted-foreground border-r">
               {/* Empty cell for time column */}
             </div>
@@ -155,7 +160,13 @@ export const WeeklyInspections = () => {
           {/* Time slots grid with ScrollArea */}
           <ScrollArea className="h-96">
             {timeSlots.map((time) => (
-              <div key={time} className="grid border-b last:border-b-0 min-h-[60px]" style={{ gridTemplateColumns: '80px repeat(7, 1fr)' }}>
+              <div 
+                key={time} 
+                className="grid border-b last:border-b-0 min-h-[60px]" 
+                style={{ 
+                  gridTemplateColumns: 'minmax(60px, 80px) repeat(7, minmax(0, 1fr))' 
+                }}
+              >
                 {/* Time column */}
                 <div className="p-3 text-xs text-muted-foreground border-r bg-muted/10 flex items-start">
                   {time}
