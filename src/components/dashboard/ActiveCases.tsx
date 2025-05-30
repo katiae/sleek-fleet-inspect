@@ -59,7 +59,7 @@ export const ActiveCases: React.FC = () => {
             <FileText className="w-5 h-5" />
             Active cases
           </h3>
-          <Button variant="outline" size="sm">View All Cases</Button>
+          <Button variant="outline" size="sm">View all cases</Button>
         </div>
       </CardHeader>
       <CardContent className="flex-1">
