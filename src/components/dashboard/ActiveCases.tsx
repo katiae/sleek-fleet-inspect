@@ -13,6 +13,8 @@ interface CaseItem {
   tasksCount: number;
   priority: string;
   lastUpdate: string;
+  jobType?: string;
+  customer?: string;
 }
 
 const casesSummary: CaseItem[] = [
@@ -22,7 +24,9 @@ const casesSummary: CaseItem[] = [
     status: "NEW",
     tasksCount: 3,
     priority: "high",
-    lastUpdate: "2 hours ago"
+    lastUpdate: "2 hours ago",
+    jobType: "Maintenance",
+    customer: "Jane Smith"
   },
   {
     id: 2,
@@ -30,7 +34,9 @@ const casesSummary: CaseItem[] = [
     status: "PENDING",
     tasksCount: 2,
     priority: "medium",
-    lastUpdate: "1 day ago"
+    lastUpdate: "1 day ago",
+    jobType: "Full Inspection",
+    customer: "John Doe"
   },
   {
     id: 3,
@@ -38,7 +44,9 @@ const casesSummary: CaseItem[] = [
     status: "UNDER REVIEW",
     tasksCount: 1,
     priority: "low",
-    lastUpdate: "3 days ago"
+    lastUpdate: "3 days ago",
+    jobType: "Diagnostic",
+    customer: "Sarah Wilson"
   }
 ];
 
@@ -60,7 +68,7 @@ export const ActiveCases: React.FC = () => {
             <div key={caseItem.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
               <div>
                 <p className="font-medium">{caseItem.address}</p>
-                <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • Updated {caseItem.lastUpdate}</p>
+                <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • {caseItem.jobType} • {caseItem.customer}</p>
               </div>
               <div className="flex items-center">
                 <div className="scale-90">
