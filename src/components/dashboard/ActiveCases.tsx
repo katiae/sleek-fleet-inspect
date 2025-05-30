@@ -21,7 +21,7 @@ interface CaseItem {
 const casesSummary: CaseItem[] = [
   {
     id: 1,
-    address: "42 Baker Street, Marylebone, Westminster, London, England, United Kingdom",
+    address: "42 Westminster Palace Gardens Avenue, London",
     status: "NEW",
     tasksCount: 3,
     priority: "high",
@@ -32,7 +32,7 @@ const casesSummary: CaseItem[] = [
   },
   {
     id: 2,
-    address: "156 Oak Avenue, Manchester",
+    address: "156 Manchester Industrial Boulevard, Manchester",
     status: "PENDING",
     tasksCount: 2,
     priority: "medium",
@@ -43,7 +43,7 @@ const casesSummary: CaseItem[] = [
   },
   {
     id: 3,
-    address: "789 Pine Road, Birmingham",
+    address: "789 Birmingham Commercial Enterprise Way, Birmingham",
     status: "UNDER REVIEW",
     tasksCount: 1,
     priority: "low",
