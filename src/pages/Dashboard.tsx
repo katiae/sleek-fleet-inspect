@@ -52,7 +52,7 @@ const Dashboard = () => {
             <StatsOverview />
 
             {/* Grid Layout - Full width on screens < 14inch (1440px), 2 columns on 14inch+ screens */}
-            <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
               <TodaysTasks
                 isEmissionsExpanded={isEmissionsExpanded}
                 toggleEmissionsExpanded={toggleEmissionsExpanded}
