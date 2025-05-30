@@ -66,11 +66,11 @@ const Dashboard = () => {
               />
               <ActiveCases />
               <QuickNotes notes={notes} setNotes={setNotes} />
-              <WeeklyInspections />
             </div>
 
-            {/* Full Width Card */}
+            {/* Full Width Cards */}
             <div className="grid grid-cols-1 gap-6">
+              <WeeklyInspections />
               <RecentActivity />
             </div>
           </div>
