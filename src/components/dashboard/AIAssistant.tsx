@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -46,7 +45,7 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
               </p>
             </div>
           </div>
-          <form onSubmit={handleAiSubmit} className="flex-1 flex flex-col space-y-2">
+          <form onSubmit={handleAiSubmit} className="flex-1 flex flex-col space-y-4">
             <Textarea 
               placeholder="Ask me anything..." 
               value={aiQuery} 
