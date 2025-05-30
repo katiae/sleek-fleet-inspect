@@ -12,7 +12,6 @@ interface CaseItem {
   status: CaseStatus;
   tasksCount: number;
   priority: string;
-  lastUpdate: string;
   jobType?: string;
   customer?: string;
   customerType?: string;
@@ -25,7 +24,6 @@ const casesSummary: CaseItem[] = [
     status: "NEW",
     tasksCount: 3,
     priority: "high",
-    lastUpdate: "2 hours ago",
     jobType: "Maintenance",
     customer: "Jane Smith",
     customerType: "Private"
@@ -36,7 +34,6 @@ const casesSummary: CaseItem[] = [
     status: "PENDING",
     tasksCount: 2,
     priority: "medium",
-    lastUpdate: "1 day ago",
     jobType: "Full Inspection",
     customer: "John Doe",
     customerType: "Business"
@@ -47,7 +44,6 @@ const casesSummary: CaseItem[] = [
     status: "UNDER REVIEW",
     tasksCount: 1,
     priority: "low",
-    lastUpdate: "3 days ago",
     jobType: "Diagnostic",
     customer: "Sarah Wilson",
     customerType: "Private"
@@ -72,8 +68,7 @@ export const ActiveCases: React.FC = () => {
             <div key={caseItem.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
               <div>
                 <p className="font-medium">{caseItem.address}</p>
-                <p className="text-sm text-gray-600 mb-1">{caseItem.tasksCount} tasks remaining • {caseItem.jobType} • {caseItem.customer} ({caseItem.customerType})</p>
-                <p className="text-xs text-gray-500">Last updated {caseItem.lastUpdate}</p>
+                <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • {caseItem.jobType} • {caseItem.customer} ({caseItem.customerType})</p>
               </div>
               <div className="flex items-center">
                 <CaseStatusBadge status={caseItem.status} />
