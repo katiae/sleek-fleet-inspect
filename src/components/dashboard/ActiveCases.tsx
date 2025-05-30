@@ -67,7 +67,7 @@ export const ActiveCases: React.FC = () => {
           {casesSummary.map(caseItem => (
             <div key={caseItem.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
               <div>
-                <p className="font-medium">{caseItem.address}</p>
+                <p className="font-medium mb-2">{caseItem.address}</p>
                 <p className="text-sm text-gray-600">{caseItem.tasksCount} tasks remaining • {caseItem.jobType} • {caseItem.customer} ({caseItem.customerType})</p>
               </div>
               <div className="flex items-center">
