@@ -21,7 +21,7 @@ interface CaseItem {
 const casesSummary: CaseItem[] = [
   {
     id: 1,
-    address: "42 Baker Street, London",
+    address: "42 Baker Street, Marylebone, Westminster, London, England, United Kingdom",
     status: "NEW",
     tasksCount: 3,
     priority: "high",
@@ -76,9 +76,7 @@ export const ActiveCases: React.FC = () => {
                 <p className="text-xs text-gray-500">{caseItem.lastUpdate}</p>
               </div>
               <div className="flex items-center">
-                <div className="scale-75">
-                  <CaseStatusBadge status={caseItem.status} />
-                </div>
+                <CaseStatusBadge status={caseItem.status} />
               </div>
             </div>
           ))}
