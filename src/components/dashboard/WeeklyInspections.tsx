@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Download, Calendar } from "lucide-react";
-import { format, startOfWeek, endOfWeek, eachDayOfInterval, isSameDay, addWeeks, subWeeks } from "date-fns";
+import { Download, Calendar, ChevronLeft, ChevronRight, Bell } from "lucide-react";
+import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameDay, addMonths, subMonths, isSameMonth, isToday } from "date-fns";
 
 interface Inspection {
   id: string;
@@ -15,12 +14,12 @@ interface Inspection {
   type: string;
 }
 
-// Sample data for the week
-const weeklyInspections: Inspection[] = [
+// Sample data for the month
+const monthlyInspections: Inspection[] = [
   {
     id: "INS-2023-0020",
     title: "Vehicle Inspection - Toyota Camry",
-    date: new Date(2025, 4, 26), // May 26, 2025 (Monday)
+    date: new Date(2025, 5, 7), // June 7, 2025
     time: "09:00",
     address: "42 Baker Street, London",
     type: "Full Inspection"
@@ -28,7 +27,7 @@ const weeklyInspections: Inspection[] = [
   {
     id: "INS-2023-0021",
     title: "Emissions Test - Ford Focus",
-    date: new Date(2025, 4, 28), // May 28, 2025 (Wednesday)
+    date: new Date(2025, 5, 12), // June 12, 2025
     time: "16:14",
     address: "17 Kensington Gardens, London",
     type: "Emissions Test"
@@ -36,32 +35,60 @@ const weeklyInspections: Inspection[] = [
   {
     id: "INS-2023-0022",
     title: "Safety Inspection - BMW X5",
-    date: new Date(2025, 4, 30), // May 30, 2025 (Friday)
+    date: new Date(2025, 5, 16), // June 16, 2025
     time: "11:15",
     address: "221B Baker Street, London",
     type: "Safety Check"
+  },
+  {
+    id: "INS-2023-0023",
+    title: "Brake Inspection",
+    date: new Date(2025, 5, 16), // June 16, 2025
+    time: "14:30",
+    address: "456 Main Street, London",
+    type: "Brake Check"
+  },
+  {
+    id: "INS-2023-0024",
+    title: "Engine Diagnostics",
+    date: new Date(2025, 5, 28), // June 28, 2025
+    time: "10:00",
+    address: "789 Park Avenue, London",
+    type: "Diagnostics"
+  },
+  {
+    id: "INS-2023-0025",
+    title: "Annual Inspection",
+    date: new Date(2025, 5, 28), // June 28, 2025
+    time: "15:45",
+    address: "321 Oak Street, London",
+    type: "Annual Check"
   }
 ];
 
-// Generate time slots from 8:00 to 19:00
-const timeSlots = Array.from({ length: 12 }, (_, i) => {
-  const hour = i + 8;
-  return `${hour.toString().padStart(2, '0')}:00`;
-});
+const viewTypes = [
+  { label: "Schedule", active: false },
+  { label: "Day", active: false },
+  { label: "Week", active: false },
+  { label: "Month", active: true },
+  { label: "Year", active: false }
+];
 
 export const WeeklyInspections = () => {
-  const [currentWeek, setCurrentWeek] = useState(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 5, 1)); // June 2025
 
-  const weekStart = startOfWeek(currentWeek, { weekStartsOn: 1 });
-  const weekEnd = endOfWeek(currentWeek, { weekStartsOn: 1 });
-  const weekDays = eachDayOfInterval({ start: weekStart, end: weekEnd });
+  const monthStart = startOfMonth(currentDate);
+  const monthEnd = endOfMonth(currentDate);
+  const calendarStart = startOfWeek(monthStart, { weekStartsOn: 1 });
+  const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 1 });
+  const calendarDays = eachDayOfInterval({ start: calendarStart, end: calendarEnd });
 
   const exportToICS = () => {
-    const icsContent = generateICSContent(weeklyInspections);
+    const icsContent = generateICSContent(monthlyInspections);
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'weekly-inspections.ics';
+    link.download = 'monthly-inspections.ics';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -74,7 +101,7 @@ export const WeeklyInspections = () => {
     let icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//Your Company//Weekly Inspections//EN',
+      'PRODID:-//Your Company//Monthly Inspections//EN',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH'
     ].join('\r\n');
@@ -101,98 +128,128 @@ export const WeeklyInspections = () => {
     return icsContent;
   };
 
-  const getInspectionForTimeSlot = (day: Date, time: string) => {
-    return weeklyInspections.find(inspection => 
-      isSameDay(inspection.date, day) && inspection.time.startsWith(time.split(':')[0])
+  const getInspectionsForDay = (day: Date) => {
+    return monthlyInspections.filter(inspection => 
+      isSameDay(inspection.date, day)
     );
   };
 
-  const goToPreviousWeek = () => {
-    setCurrentWeek(subWeeks(currentWeek, 1));
+  const goToPreviousMonth = () => {
+    setCurrentDate(subMonths(currentDate, 1));
   };
 
-  const goToNextWeek = () => {
-    setCurrentWeek(addWeeks(currentWeek, 1));
+  const goToNextMonth = () => {
+    setCurrentDate(addMonths(currentDate, 1));
   };
 
-  const goToToday = () => {
-    setCurrentWeek(new Date());
-  };
+  const weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-        <h3 className="flex items-center gap-2">
-          <Calendar className="h-5 w-5" />
-          Your inspections this week
-        </h3>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={exportToICS}
-          className="flex items-center gap-2"
-        >
-          <Download className="h-4 w-4" />
-          Export ICS
-        </Button>
-      </CardHeader>
-      <CardContent>
-        <div className="border rounded-lg overflow-hidden">
-          {/* Header with days */}
-          <div 
-            className="grid border-b bg-muted/30" 
-            style={{ 
-              gridTemplateColumns: 'minmax(60px, 80px) repeat(7, minmax(0, 1fr))' 
-            }}
-          >
-            <div className="p-3 text-xs font-medium text-muted-foreground border-r">
-              {/* Empty cell for time column */}
+    <Card className="w-full">
+      <CardContent className="p-6">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <h2 className="text-2xl font-semibold">
+              {format(currentDate, 'MMMM yyyy')}
+            </h2>
+            <div className="flex items-center gap-1">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={goToPreviousMonth}
+                className="h-8 w-8"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={goToNextMonth}
+                className="h-8 w-8"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
             </div>
-            {weekDays.map((day) => (
-              <div key={day.toISOString()} className="p-3 text-center border-r last:border-r-0">
-                <div className="text-xs font-medium text-muted-foreground">
-                  {format(day, 'EEE')} {format(day, 'd')}
-                </div>
-              </div>
-            ))}
           </div>
 
-          {/* Time slots grid with ScrollArea */}
-          <ScrollArea className="h-96">
-            {timeSlots.map((time) => (
-              <div 
-                key={time} 
-                className="grid border-b last:border-b-0 min-h-[60px]" 
-                style={{ 
-                  gridTemplateColumns: 'minmax(60px, 80px) repeat(7, minmax(0, 1fr))' 
-                }}
+          <div className="flex items-center gap-4">
+            {/* View Type Buttons */}
+            <div className="flex items-center gap-1">
+              {viewTypes.map((view) => (
+                <Button
+                  key={view.label}
+                  variant={view.active ? "default" : "ghost"}
+                  size="sm"
+                  className={view.active ? "bg-black text-white hover:bg-black/90" : ""}
+                >
+                  {view.label}
+                </Button>
+              ))}
+            </div>
+
+            {/* Notification Bell */}
+            <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Bell className="h-4 w-4" />
+            </Button>
+
+            {/* Export ICS Button */}
+            <Button
+              onClick={exportToICS}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              Export ICS
+            </Button>
+          </div>
+        </div>
+
+        {/* Calendar Grid */}
+        <div className="grid grid-cols-7 gap-0 border border-gray-200 rounded-lg overflow-hidden">
+          {/* Day Headers */}
+          {weekDays.map((day) => (
+            <div key={day} className="bg-gray-50 p-3 text-center text-sm font-medium text-gray-600 border-b border-gray-200">
+              {day}
+            </div>
+          ))}
+
+          {/* Calendar Days */}
+          {calendarDays.map((day, index) => {
+            const dayInspections = getInspectionsForDay(day);
+            const isCurrentMonth = isSameMonth(day, currentDate);
+            const isDayToday = isToday(day);
+
+            return (
+              <div
+                key={day.toISOString()}
+                className={`min-h-[120px] p-2 border-b border-r border-gray-200 last:border-r-0 ${
+                  index >= calendarDays.length - 7 ? 'border-b-0' : ''
+                } ${!isCurrentMonth ? 'bg-gray-50' : 'bg-white'}`}
               >
-                {/* Time column */}
-                <div className="p-3 text-xs text-muted-foreground border-r bg-muted/10 flex items-start">
-                  {time}
+                <div className={`text-sm font-medium mb-2 ${
+                  !isCurrentMonth ? 'text-gray-400' : isDayToday ? 'text-blue-600' : 'text-gray-900'
+                }`}>
+                  {format(day, 'd')}
                 </div>
                 
-                {/* Day columns */}
-                {weekDays.map((day) => {
-                  const inspection = getInspectionForTimeSlot(day, time);
-                  return (
-                    <div key={day.toISOString()} className="p-2 border-r last:border-r-0 relative">
-                      {inspection && (
-                        <div className="bg-orange-50 border border-orange-100 text-xs p-2 rounded h-full flex flex-col justify-center text-left">
-                          <div className="font-medium truncate text-gray-900">
-                            {inspection.title.split(' - ')[0]}
-                          </div>
-                          <div className="truncate text-gray-700">
-                            {inspection.title.split(' - ')[1]}
-                          </div>
-                        </div>
-                      )}
+                <div className="space-y-1">
+                  {dayInspections.slice(0, 2).map((inspection) => (
+                    <div
+                      key={inspection.id}
+                      className="text-xs p-1 rounded bg-purple-100 text-purple-800 truncate"
+                    >
+                      {inspection.title.split(' - ')[0]}
                     </div>
-                  );
-                })}
+                  ))}
+                  {dayInspections.length > 2 && (
+                    <div className="text-xs text-purple-600 cursor-pointer hover:underline">
+                      See more
+                    </div>
+                  )}
+                </div>
               </div>
-            ))}
-          </ScrollArea>
+            );
+          })}
         </div>
       </CardContent>
     </Card>
