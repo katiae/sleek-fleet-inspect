@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -105,6 +104,14 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
     handleAiSubmit(e);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      const formEvent = new Event('submit', { bubbles: true, cancelable: true }) as any;
+      handleSubmit(formEvent);
+    }
+  };
+
   return (
     <Card className="flex-1 flex flex-col">
       <CardHeader>
@@ -129,7 +136,8 @@ export const AIAssistant: React.FC<AIAssistantProps> = ({
             <Textarea 
               placeholder="Ask me anything..." 
               value={aiQuery} 
-              onChange={e => setAiQuery(e.target.value)} 
+              onChange={e => setAiQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
               className="resize-none xl:flex-1 xl:min-h-[120px] min-h-[32px]"
             />
             <button 
