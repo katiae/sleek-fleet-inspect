@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ interface ActivityCardProps {
   showViewAllButton?: boolean;
   viewAllButtonText?: string;
   onViewAllClick?: () => void;
+  hideHeader?: boolean;
 }
 
 export const ActivityCard: React.FC<ActivityCardProps> = ({
@@ -25,29 +27,34 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
   className = "",
   showViewAllButton = false,
   viewAllButtonText = "View all",
-  onViewAllClick
+  onViewAllClick,
+  hideHeader = false
 }) => {
   return (
     <Card className={`flex-1 ${className}`}>
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <h3 className="flex items-center gap-2">
-            <Activity className="w-5 h-5" />
-            {title}
-          </h3>
-          {showViewAllButton && (
-            <button 
-              className="view-all-button"
-              onClick={onViewAllClick}
-            >
-              {viewAllButtonText}
-            </button>
-          )}
-        </div>
-      </CardHeader>
-      <div className="px-6">
-        <Separator />
-      </div>
+      {!hideHeader && (
+        <>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <h3 className="flex items-center gap-2">
+                <Activity className="w-5 h-5" />
+                {title}
+              </h3>
+              {showViewAllButton && (
+                <button 
+                  className="view-all-button"
+                  onClick={onViewAllClick}
+                >
+                  {viewAllButtonText}
+                </button>
+              )}
+            </div>
+          </CardHeader>
+          <div className="px-6">
+            <Separator />
+          </div>
+        </>
+      )}
       <CardContent className="flex-1">
         <div className="space-y-6 relative pb-4">
           <div className="absolute left-[5px] top-0 bottom-0 w-0.5 bg-gray-200"></div>

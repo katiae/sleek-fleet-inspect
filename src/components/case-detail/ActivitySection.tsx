@@ -53,6 +53,7 @@ export const ActivitySection: React.FC<ActivitySectionProps> = ({ caseItem, onNa
         title=""
         activities={activityItems}
         className="flex-1"
+        hideHeader={true}
       />
     </div>
   );
