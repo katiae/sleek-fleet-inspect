@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -149,9 +150,13 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
           </div>
           
           <TabsContent value="overview" className="pt-6 space-y-11">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <TasksSection caseItem={caseItem} />
-              <ActivitySection caseItem={caseItem} onNavigateToTab={navigateToTab} />
+            <div className="grid grid-cols-4 gap-6">
+              <div className="col-span-3">
+                <TasksSection caseItem={caseItem} />
+              </div>
+              <div className="col-span-1">
+                <ActivitySection caseItem={caseItem} onNavigateToTab={navigateToTab} />
+              </div>
             </div>
 
             <SummarySection 
