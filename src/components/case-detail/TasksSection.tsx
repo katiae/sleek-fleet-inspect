@@ -34,7 +34,7 @@ export const TasksSection: React.FC<TasksSectionProps> = ({ caseItem }) => {
   const hasRemainingTasks = !isEmissionsExpanded;
 
   return (
-    <div className="flex flex-col max-h-96">
+    <div className="flex flex-col">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-lg font-medium">
           Upcoming Tasks
@@ -44,7 +44,7 @@ export const TasksSection: React.FC<TasksSectionProps> = ({ caseItem }) => {
         </Button>
       </div>
       
-      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex-1 flex flex-col overflow-hidden">
+      <div className="bg-gray-50 p-4 rounded-lg border border-gray-100 flex flex-col">
         {hasTasks ? (
           <>
             <TaskList
@@ -54,14 +54,14 @@ export const TasksSection: React.FC<TasksSectionProps> = ({ caseItem }) => {
               handleTaskCheck={handleTaskCheck}
             />
             
-            <div className={`mt-auto flex-1 flex transition-opacity duration-300 ${isEmissionsExpanded ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
-              {hasRemainingTasks && <EmptyTasksState variant="no-more-tasks" className="w-full" />}
-            </div>
+            {hasRemainingTasks && (
+              <div className="mt-3">
+                <EmptyTasksState variant="no-more-tasks" className="w-full" />
+              </div>
+            )}
           </>
         ) : (
-          <div className="flex-1 flex">
-            <EmptyTasksState variant="all-caught-up" className="w-full" />
-          </div>
+          <EmptyTasksState variant="all-caught-up" className="w-full" />
         )}
       </div>
     </div>

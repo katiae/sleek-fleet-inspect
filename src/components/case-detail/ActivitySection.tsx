@@ -39,7 +39,7 @@ export const ActivitySection: React.FC<ActivitySectionProps> = ({ caseItem, onNa
   ];
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="space-y-4">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-lg font-medium">
           Recent Activity
@@ -52,7 +52,7 @@ export const ActivitySection: React.FC<ActivitySectionProps> = ({ caseItem, onNa
       <ActivityCard
         title=""
         activities={activityItems}
-        className="flex-1"
+        className=""
         hideHeader={true}
       />
     </div>
