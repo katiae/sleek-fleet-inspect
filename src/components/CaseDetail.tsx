@@ -1,4 +1,5 @@
 
+
 import React, { useState } from "react";
 import { Case } from "@/lib/data";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
@@ -151,23 +152,21 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
           
           <TabsContent value="overview" className="pt-6 space-y-11">
             <div className="grid grid-cols-4 gap-6">
-              <div className="col-span-3">
+              <div className="col-span-3 space-y-11">
                 <TasksSection caseItem={caseItem} />
+                <SummarySection 
+                  caseItem={caseItem} 
+                  onNavigateToTab={navigateToTab}
+                  onDownloadICS={downloadICSFile}
+                  onOpenInGoogleMaps={openInGoogleMaps}
+                  dateInfo={dateInfo}
+                />
               </div>
-              <div className="col-span-1">
+              <div className="col-span-1 space-y-11">
                 <ActivitySection caseItem={caseItem} onNavigateToTab={navigateToTab} />
+                <ContactsSection caseItem={caseItem} />
               </div>
             </div>
-
-            <SummarySection 
-              caseItem={caseItem} 
-              onNavigateToTab={navigateToTab}
-              onDownloadICS={downloadICSFile}
-              onOpenInGoogleMaps={openInGoogleMaps}
-              dateInfo={dateInfo}
-            />
-
-            <ContactsSection caseItem={caseItem} />
           </TabsContent>
           
           <TabsContent value="details" className="pt-6">
@@ -200,3 +199,4 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
     </div>
   );
 };
+
