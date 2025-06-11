@@ -12,7 +12,7 @@ export const ContactsSection: React.FC<ContactsSectionProps> = ({ caseItem }) =>
     <div className="space-y-4">
       <h2 className="text-lg font-medium">Case Contacts</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="space-y-3">
         {caseItem.customer && (
           <div className="flex items-start gap-4 p-3 rounded-lg border border-gray-200 hover:bg-gray-50">
             <div className="bg-blue-100 text-blue-700 p-2 rounded-full">

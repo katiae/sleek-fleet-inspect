@@ -37,7 +37,7 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
         </Button>
       </div>
         
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="space-y-4">
         {caseItem.appointment && (
           <Card className="h-full">
             <div className="flex py-[14px] px-[14px] h-full">
