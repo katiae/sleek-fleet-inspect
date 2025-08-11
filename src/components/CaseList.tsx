@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Plus, Filter, Columns } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Plus, Filter, Columns, Search } from "lucide-react";
 import { CaseTable } from "@/components/CaseTable";
 import { ColumnsSelection } from "@/components/ColumnsSelection";
 
@@ -25,6 +26,7 @@ export const CaseList = () => {
     { id: "licensePlate", label: "License plate", visible: false },
     { id: "mechanic", label: "Mechanic", visible: false },
   ]);
+  const [search, setSearch] = useState("");
 
   const handleColumnToggle = (columnId: string) => {
     setVisibleColumns(columns => 
@@ -74,10 +76,23 @@ export const CaseList = () => {
         </Button>
       </div>
       
-      <div className="flex justify-end space-x-2 mb-4">
-        <Button variant="outline" size="sm" className="h-9">
-          <Filter className="mr-2 h-4 w-4" /> Filter
-        </Button>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className="relative">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search cases..."
+              aria-label="Search cases"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-[220px] pl-8 md:w-[320px]"
+            />
+          </div>
+          <Button variant="outline" size="sm" className="h-9">
+            <Filter className="mr-2 h-4 w-4" /> Filter
+          </Button>
+        </div>
         <Button 
           variant="outline" 
           size="sm" 
