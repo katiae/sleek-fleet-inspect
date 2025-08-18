@@ -222,13 +222,13 @@ export const CaseTable: React.FC<CaseTableProps> = ({ visibleColumns }) => {
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious href="#" />
+              <PaginationPrevious />
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href="#" isActive>1</PaginationLink>
+              <PaginationLink isActive>1</PaginationLink>
             </PaginationItem>
             <PaginationItem>
-              <PaginationNext href="#" />
+              <PaginationNext />
             </PaginationItem>
           </PaginationContent>
         </Pagination>
