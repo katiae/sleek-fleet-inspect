@@ -56,10 +56,6 @@ export const RiskResultCard: React.FC<RiskResultCardProps> = ({
           {risks.map((risk, index) => (
             <div key={index} className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-500">Results type:</span>
-                <span className="text-sm font-medium text-gray-900">{risk.type}</span>
-              </div>
-              <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-500">Risk level:</span>
                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${getRAGBadgeStyles(risk.ragStatus)}`}>
                   {risk.ragStatus}
