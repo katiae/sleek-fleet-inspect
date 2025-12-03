@@ -9,6 +9,8 @@ export type CaseStatus =
   "UNDER REVIEW" | 
   "COMPLETED";
 
+export type MiningResultRAG = "Red" | "Amber" | "Green";
+
 export type Case = {
   id: string;
   address: string;
@@ -55,6 +57,10 @@ export type Case = {
     restrictions: string;
     contactPerson: string;
     contactPhone: string;
+  };
+  miningResult?: {
+    miningResultRAG: MiningResultRAG;
+    miningResultGuidance: string;
   };
 };
 
@@ -105,6 +111,10 @@ export const cases: Case[] = [
       restrictions: "No access after 5:00 PM",
       contactPerson: "Building Manager",
       contactPhone: "(555) 987-6543"
+    },
+    miningResult: {
+      miningResultRAG: "Amber",
+      miningResultGuidance: "Historical mining activity detected within 500m radius. Recommend ground stability assessment before proceeding with inspection. Review geological survey data for subsidence risks."
     }
   },
   {
