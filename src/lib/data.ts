@@ -9,7 +9,13 @@ export type CaseStatus =
   "UNDER REVIEW" | 
   "COMPLETED";
 
-export type MiningResultRAG = "Red" | "Amber" | "Green";
+export type RAGStatus = "Red" | "Amber" | "Green";
+
+export type RiskResult = {
+  type: string;
+  ragStatus: RAGStatus;
+  guidance: string;
+};
 
 export type Case = {
   id: string;
@@ -58,10 +64,7 @@ export type Case = {
     contactPerson: string;
     contactPhone: string;
   };
-  miningResult?: {
-    miningResultRAG: MiningResultRAG;
-    miningResultGuidance: string;
-  };
+  riskResults?: RiskResult[];
 };
 
 export const cases: Case[] = [
@@ -112,10 +115,18 @@ export const cases: Case[] = [
       contactPerson: "Building Manager",
       contactPhone: "(555) 987-6543"
     },
-    miningResult: {
-      miningResultRAG: "Amber",
-      miningResultGuidance: "Historical mining activity detected within 500m radius. Recommend ground stability assessment before proceeding with inspection. Review geological survey data for subsidence risks."
-    }
+    riskResults: [
+      {
+        type: "Mining",
+        ragStatus: "Amber",
+        guidance: "Historical mining activity detected within 500m radius. Recommend ground stability assessment before proceeding with inspection."
+      },
+      {
+        type: "Flood",
+        ragStatus: "Green",
+        guidance: "Property is not in a flood risk zone. Standard precautions apply."
+      }
+    ]
   },
   {
     id: "INS-2023-0013",
