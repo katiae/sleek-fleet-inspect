@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MoreHorizontal } from "lucide-react";
 import { CaseStatusBadge } from "@/components/CaseStatusBadge";
 import { Case } from "@/lib/data";
+import { RiskResultCard } from "./RiskResultCard";
 
 interface CaseDetailsTabProps {
   caseItem: Case;
@@ -377,33 +378,7 @@ export const CaseDetailsTab: React.FC<CaseDetailsTabProps> = ({ caseItem }) => {
           </div>
           
           <div className="mb-4">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <h3 className="text-lg font-medium">Risk results</h3>
-                </div>
-                <ul className="space-y-4 text-sm">
-                  <li className="flex justify-between items-center">
-                    <span className="text-gray-500">Mining Result RAG:</span>
-                    <span className={`ml-4 px-3 py-1 rounded-full text-sm font-medium ${
-                      caseItem.miningResult?.miningResultRAG === "Red" 
-                        ? "bg-red-100 text-red-800" 
-                        : caseItem.miningResult?.miningResultRAG === "Amber" 
-                        ? "bg-amber-100 text-amber-800" 
-                        : "bg-green-100 text-green-800"
-                    }`}>
-                      {caseItem.miningResult?.miningResultRAG || "Green"}
-                    </span>
-                  </li>
-                  <li className="flex flex-col gap-2">
-                    <span className="text-gray-500">Mining Result Guidance:</span>
-                    <span className="text-gray-700 bg-gray-50 p-3 rounded-md">
-                      {caseItem.miningResult?.miningResultGuidance || "No specific guidance available for this case. Standard inspection procedures apply."}
-                    </span>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+            <RiskResultCard risks={caseItem.riskResults || []} />
           </div>
         </div>
       </TabsContent>
