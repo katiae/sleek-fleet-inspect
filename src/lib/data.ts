@@ -123,8 +123,8 @@ export const cases: Case[] = [
       },
       {
         type: "Flood",
-        ragStatus: "Green",
-        guidance: "Property is not in a flood risk zone. Standard precautions apply."
+        ragStatus: "Red",
+        guidance: "Property is located in a high-risk flood zone. Immediate flood defence assessment required. Do not proceed without waterproofing measures in place."
       }
     ]
   },
