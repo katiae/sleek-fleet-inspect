@@ -377,9 +377,14 @@ export const CaseDetailsTab: React.FC<CaseDetailsTabProps> = ({ caseItem }) => {
             </Card>
           </div>
           
-          <div className="mb-4">
-            <RiskResultCard risks={caseItem.riskResults || []} />
-          </div>
+          {(caseItem.riskResults || []).map((risk, index) => (
+            <div key={index} className="mb-4">
+              <RiskResultCard 
+                title={`${risk.type} risk`} 
+                risks={[risk]} 
+              />
+            </div>
+          ))}
         </div>
       </TabsContent>
     </Tabs>
