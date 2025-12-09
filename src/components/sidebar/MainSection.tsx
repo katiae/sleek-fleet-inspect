@@ -1,7 +1,7 @@
 
 import React from "react";
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
-import { Folder, FileText, CheckSquare, Calendar, LayoutDashboard } from "lucide-react";
+import { Folder, FileText, CheckSquare, Calendar, LayoutDashboard, UserPlus } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useCapabilities } from "@/context/CapabilitiesContext";
 
@@ -51,6 +51,20 @@ export const MainSection = () => {
         <SidebarMenuButton tooltip="Reports" className="py-4">
           <FileText />
           <span>Reports</span>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+      
+      <SidebarMenuItem>
+        <SidebarMenuButton 
+          isActive={currentPath === '/onboarding'} 
+          tooltip="Onboarding" 
+          className={`py-4 ${currentPath === '/onboarding' ? "text-sidebar-foreground font-medium !bg-transparent" : ""}`}
+          asChild
+        >
+          <Link to="/onboarding">
+            <UserPlus className={currentPath === '/onboarding' ? "text-orange-500" : ""} />
+            <span>Onboarding</span>
+          </Link>
         </SidebarMenuButton>
       </SidebarMenuItem>
       
