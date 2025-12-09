@@ -146,7 +146,7 @@ export const CreateOnboardingSheet = ({
               {availableTasks.map((task) => (
                 <div
                   key={task.id}
-                  className="flex items-start space-x-3 p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors"
+                  className="flex items-center space-x-3 p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors"
                 >
                   <Checkbox
                     id={task.id}
