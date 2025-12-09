@@ -18,6 +18,21 @@ const Onboarding = () => {
     setIsCreateOpen(false);
   };
 
+  const handleEdit = (flow: OnboardingFlow) => {
+    // TODO: Implement edit functionality
+    console.log("Edit flow:", flow);
+  };
+
+  const handleDelete = (flowId: string) => {
+    setFlows(flows.filter(f => f.id !== flowId));
+  };
+
+  const handleUnpublish = (flowId: string) => {
+    setFlows(flows.map(f => 
+      f.id === flowId ? { ...f, status: "Draft" as const } : f
+    ));
+  };
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-background">
@@ -38,7 +53,12 @@ const Onboarding = () => {
               </Button>
             </div>
             
-            <OnboardingTable flows={flows} />
+            <OnboardingTable 
+              flows={flows} 
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onUnpublish={handleUnpublish}
+            />
           </main>
         </div>
       </div>
