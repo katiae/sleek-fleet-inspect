@@ -10,6 +10,7 @@ import Capabilities from "./pages/Capabilities";
 import CustomizeMenu from "./pages/CustomizeMenu";
 import CaseDetail from "./pages/CaseDetail";
 import Dashboard from "./pages/Dashboard";
+import Onboarding from "./pages/Onboarding";
 import { CapabilitiesProvider } from "./context/CapabilitiesContext";
 import { MenuProvider } from "./context/MenuContext";
 
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/capabilities" element={<Capabilities />} />
               <Route path="/customize-menu" element={<CustomizeMenu />} />
               <Route path="/case/:id" element={<CaseDetail />} />
+              <Route path="/onboarding" element={<Onboarding />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
