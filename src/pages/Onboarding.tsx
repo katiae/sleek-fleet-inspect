@@ -1,26 +1,19 @@
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { OnboardingTable } from "@/components/onboarding/OnboardingTable";
-import { CreateOnboardingSheet } from "@/components/onboarding/CreateOnboardingSheet";
 import { sampleOnboardingFlows, OnboardingFlow } from "@/lib/onboarding-data";
 
 const Onboarding = () => {
-  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const navigate = useNavigate();
   const [flows, setFlows] = useState<OnboardingFlow[]>(sampleOnboardingFlows);
 
-  const handleCreateFlow = (newFlow: OnboardingFlow) => {
-    setFlows([...flows, newFlow]);
-    setIsCreateOpen(false);
-  };
-
   const handleEdit = (flow: OnboardingFlow) => {
-    // TODO: Implement edit functionality
-    console.log("Edit flow:", flow);
+    navigate(`/onboarding/edit/${flow.id}`);
   };
 
   const handleDelete = (flowId: string) => {
@@ -47,7 +40,7 @@ const Onboarding = () => {
                   Manage onboarding flows that are automatically assigned to cases based on product type
                 </p>
               </div>
-              <Button onClick={() => setIsCreateOpen(true)}>
+              <Button onClick={() => navigate("/onboarding/create")}>
                 <Plus className="h-4 w-4 mr-2" />
                 Create Onboarding
               </Button>
@@ -62,12 +55,6 @@ const Onboarding = () => {
           </main>
         </div>
       </div>
-      
-      <CreateOnboardingSheet 
-        open={isCreateOpen} 
-        onOpenChange={setIsCreateOpen}
-        onCreateFlow={handleCreateFlow}
-      />
     </SidebarProvider>
   );
 };
