@@ -103,9 +103,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
   return (
     <div className="space-y-11">
-      <div className="flex justify-between items-start">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-800">{caseItem.address}</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">{caseItem.address}</h1>
           <div className="flex items-center gap-3 mt-2">
             <CaseStatusBadge status={caseItem.status} />
             <span className="text-gray-500">ID: {caseItem.id}</span>
@@ -114,7 +114,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="actions-button">
+            <button className="actions-button w-fit">
               Actions <ChevronDown className="ml-2 h-4 w-4" />
             </button>
           </DropdownMenuTrigger>
