@@ -40,12 +40,12 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
       <div className="space-y-4">
         {caseItem.appointment && (
           <Card className="h-full">
-            <div className="flex py-[14px] px-[14px] h-full">
-              <div className="pl-6 mr-12 text-center flex flex-col justify-center">
+            <div className="flex flex-col sm:flex-row py-[14px] px-[14px] h-full">
+              <div className="pl-0 sm:pl-6 mr-0 mb-4 sm:mr-12 sm:mb-0 text-center flex flex-col justify-center">
                 <div className="text-lg text-gray-800 font-medium mb-1">
                   {weekday}
                 </div>
-                <div className="text-[64px] text-blue-500 font-bold leading-none">
+                <div className="text-[40px] sm:text-[64px] text-blue-500 font-bold leading-none">
                   {day || "N/A"}
                 </div>
                 <div className="text-sm text-gray-800 font-normal mt-1 mb-0.5">
