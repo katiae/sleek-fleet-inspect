@@ -40,12 +40,12 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
       <div className="space-y-4">
         {caseItem.appointment && (
           <Card className="h-full">
-            <div className="flex py-[14px] px-[14px] h-full">
-              <div className="pl-6 mr-12 text-center flex flex-col justify-center">
+            <div className="flex flex-col sm:flex-row py-[14px] px-[14px] h-full">
+              <div className="pl-0 sm:pl-6 mr-0 mb-4 sm:mr-12 sm:mb-0 text-center flex flex-col justify-center">
                 <div className="text-lg text-gray-800 font-medium mb-1">
                   {weekday}
                 </div>
-                <div className="text-[64px] text-blue-500 font-bold leading-none">
+                <div className="text-[40px] sm:text-[64px] text-blue-500 font-bold leading-none">
                   {day || "N/A"}
                 </div>
                 <div className="text-sm text-gray-800 font-normal mt-1 mb-0.5">
@@ -94,9 +94,9 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
       
         {caseItem.access && (
           <Card className="h-full">
-            <div className="flex py-[14px] px-[14px] h-full">
-              <div className="w-1/3">
-                <div className="relative w-full h-full overflow-hidden rounded-l-lg bg-[#F2FCE2]" style={{
+            <div className="flex flex-col sm:flex-row py-[14px] px-[14px] h-full">
+              <div className="w-full h-32 sm:w-1/3 sm:h-auto">
+                <div className="relative w-full h-full overflow-hidden rounded-lg sm:rounded-l-lg bg-[#F2FCE2]" style={{
                   borderTopRightRadius: 0,
                   borderBottomRightRadius: 0
                 }}>
@@ -109,7 +109,7 @@ export const SummarySection: React.FC<SummarySectionProps> = ({
                 </div>
               </div>
 
-              <div className="flex-1 bg-gray-50 p-4 rounded-r-lg">
+              <div className="flex-1 bg-gray-50 p-4 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none">
                 <div className="flex justify-between items-start">
                   <h3 className="text-base font-medium">Access details</h3>
                   <Button variant="ghost" size="sm" className="text-orange-500 h-6 px-2 py-0" onClick={onOpenInGoogleMaps}>

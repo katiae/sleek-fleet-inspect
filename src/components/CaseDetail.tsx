@@ -103,9 +103,9 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
 
   return (
     <div className="space-y-11">
-      <div className="flex justify-between items-start">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-800">{caseItem.address}</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold text-gray-800">{caseItem.address}</h1>
           <div className="flex items-center gap-3 mt-2">
             <CaseStatusBadge status={caseItem.status} />
             <span className="text-gray-500">ID: {caseItem.id}</span>
@@ -114,7 +114,7 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="actions-button">
+            <button className="actions-button w-fit">
               Actions <ChevronDown className="ml-2 h-4 w-4" />
             </button>
           </DropdownMenuTrigger>
@@ -130,20 +130,20 @@ export const CaseDetail: React.FC<CaseDetailProps> = ({ caseItem }) => {
       <div className="w-full">
         <Tabs defaultValue="overview" value={activeTab} onValueChange={setActiveTab} className="mt-6">
           <div className="border-b border-gray-200 w-full">
-            <TabsList className="flex h-auto p-0 bg-transparent space-x-8 mb-0 justify-start">
-              <TabsTrigger value="overview" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal text-center">
+            <TabsList className="flex h-auto p-0 bg-transparent space-x-4 sm:space-x-8 mb-0 justify-start overflow-x-auto">
+              <TabsTrigger value="overview" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal text-center whitespace-nowrap">
                 Overview
               </TabsTrigger>
-              <TabsTrigger value="details" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal">
+              <TabsTrigger value="details" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal whitespace-nowrap">
                 Case details
               </TabsTrigger>
-              <TabsTrigger value="tasks" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal">
+              <TabsTrigger value="tasks" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal whitespace-nowrap">
                 Tasks
               </TabsTrigger>
-              <TabsTrigger value="activity" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal">
+              <TabsTrigger value="activity" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal whitespace-nowrap">
                 Activity
               </TabsTrigger>
-              <TabsTrigger value="reports" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal">
+              <TabsTrigger value="reports" className="px-0 py-4 h-auto rounded-none border-b-2 border-transparent data-[state=active]:border-orange-500 data-[state=active]:bg-transparent data-[state=active]:shadow-none text-gray-600 data-[state=active]:text-gray-900 font-normal whitespace-nowrap">
                 Reports
               </TabsTrigger>
             </TabsList>
