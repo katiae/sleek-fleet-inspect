@@ -167,7 +167,7 @@ export const CaseDetailsTab: React.FC<CaseDetailsTabProps> = ({ caseItem }) => {
       </TabsContent>
 
       <TabsContent value="job" className="mt-4">
-        <div className="grid grid-cols-2 gap-4 border-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-0">
           {caseItem.job && (
             <div className="mb-4">
               <Accordion type="single" defaultValue="job-details" collapsible className="w-full">
