@@ -199,7 +199,7 @@ export const WeeklyInspections = () => {
               className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
             >
               <Download className="h-4 w-4" />
-              Export ICS
+              Export to my calendar
             </Button>
           </div>
         </div>
